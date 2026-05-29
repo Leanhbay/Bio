@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title id="tab-title">Bio Link | LeAnhBay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            height: 100dvh; 
+            overflow: hidden; 
+            -webkit-tap-highlight-color: transparent; 
+            margin: 0;
+            padding: 0;
+        }
+
+        /* --- HIỆU ỨNG VIỀN SÁNG CHẠY --- */
+        @property --border-angle {
+            syntax: "<angle>";
+            inherits: false;
+            initial-value: 0deg;
+        }
+
+        .bio-button {
+            position: relative;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            border: none;
+            rotate: 0deg;
+            transform: translateZ(0); 
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        background-color 0.4s ease;
+            will-change: transform, box-shadow, rotate;
+        }
+
+        .bio-button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: conic-gradient(from var(--border-angle), transparent 60%, #38bdf8 80%, #c084fc 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: spinBorder 3.5s linear infinite;
+            pointer-events: none;
+        }
+
+        .bio-button > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .bio-button:hover {
+            transform: translate3d(0, -6px, 0) scale(1.02);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+                        0 20px 40px -10px rgba(0, 0, 0, 0.5), 
+                        0 0 25px rgba(192, 132, 252, 0.4);
+            animation-play-state: paused !important;
+        }
+
+        .bio-button:hover::before {
+            animation-duration: 1.2s; 
+            background: conic-gradient(from var(--border-angle), transparent 40%, #38bdf8 70%, #c084fc 100%);
+        }
+
+        .bio-button:active {
+            transform: translate3d(0, -2px, 0) scale(0.98);
+            transition-duration: 0.1s;
+        }
+
+        @keyframes spinBorder {
+            to { --border-angle: 360deg; }
+        }
+        
+        .ip-widget-active {
+            position: relative;
+        }
+        .ip-widget-active::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: conic-gradient(from var(--border-angle), transparent 60%, #38bdf8 80%, #c084fc 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: spinBorder 3.5s linear infinite;
+            pointer-events: none;
+        }
+        .ip-widget-active > span {
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes fadeInRise {
+            0% { opacity: 0; transform: translate3d(0, 30px, 0) scale(0.9); filter: blur(8px); }
+            100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeInRise 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            will-change: transform, opacity, filter;
+        }
+
+        .animate-ios-shake {
+            animation: iosShake 0.35s infinite alternate ease-in-out;
+            transform-origin: center;
+        }
+
+        @keyframes iosShake {
+            0% { rotate: -0.6deg; }
+            100% { rotate: 0.6deg; }
+        }
+        
+        .money-drop { position: fixed; top: -10%; z-index: 0; user-select: none; pointer-events: none; animation: moneyFall linear forwards; }
+        @keyframes moneyFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(115vh) rotate(360deg); opacity: 0; }
+        }
+        
+        #image-popup { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform-origin: center; }
+        #image-popup.active { transform: translate(-50%, -50%) scale(1); opacity: 1; pointer-events: auto; }
+        #image-popup:not(.active) { transform: translate(-50%, -50%) scale(0); opacity: 0; pointer-events: none; }
+        
+        @keyframes avatarPulse {
+            0% { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; transform: scale(1); }
+            25% { border-color: #ff00ff; box-shadow: 0 0 20px #ff00ff; transform: scale(1.08); }
+            50% { border-color: #00ff00; box-shadow: 0 0 15px #00ff00; transform: scale(0.98); }
+            75% { border-color: #00ffff; box-shadow: 0 0 20px #00ffff; transform: scale(1.05); }
+            100% { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; transform: scale(1); }
+        }
+        .avatar-visualizer {
+            border-width: 4px;
+            border-style: solid;
+            border-radius: 50%;
+            animation: avatarPulse 2.5s infinite ease-in-out;
+            will-change: transform, border-color, box-shadow;
+        }
+        
+        @keyframes heartbeat { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        .animate-heartbeat { animation: heartbeat 1.5s infinite; }
+
+        @keyframes floatWidgetCenter { 
+            0% { transform: translate(-50%, var(--drop-y)); } 
+            50% { transform: translate(-50%, calc(var(--drop-y) - 8px)); } 
+            100% { transform: translate(-50%, var(--drop-y)); } 
+        }
+        .floating-widget-center { 
+            animation: floatWidgetCenter 3s ease-in-out infinite; 
+        }
+        
+        @keyframes blinkCursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .cursor-blink { animation: blinkCursor 1s step-end infinite; }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center w-full relative">
+
+    <div id="bg-layer" class="fixed inset-0 w-full h-[100dvh] -z-10 bg-cover bg-center bg-no-repeat"></div>
+
+    <div id="welcome-overlay" class="fixed inset-0 z-[100] bg-slate-900/90 backdrop-blur-md flex flex-col items-center justify-center transition-opacity duration-700">
+        <img src="https://sf-static.upanhlaylink.com/img/image_20260422d19d8c975970f37d448368b012dd11fb.jpg" class="w-24 h-24 rounded-full object-cover border-4 border-white/20 mb-6 shadow-2xl animate-heartbeat">
+        <h2 class="text-white text-2xl font-bold mb-2 tracking-wide">Lê Anh Bảy</h2>
+        
+        <div id="analysis-text" class="h-8 flex items-center justify-center mt-2 transition-all duration-300"></div>
+
+        <div id="tap-to-enter-container" class="opacity-0 transition-all duration-1000 transform translate-y-4 absolute bottom-[120px]">
+            <p class="text-white/80 bg-white/10 px-6 py-2 rounded-full flex items-center gap-2 animate-pulse mt-2 shadow-lg backdrop-blur-sm">
+                <i class="ph-fill ph-hand-tap text-xl"></i>
+                Chạm vào màn hình
+            </p>
+        </div>
+    </div>
+
+    <div id="center-info-drop" class="fixed top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-[110] hidden flex-wrap items-center justify-center text-cyan-300 font-mono text-[13px] sm:text-sm font-semibold w-max pointer-events-none"></div>
+
+    <audio id="bg-music" loop playsinline preload="auto">
+        <source id="music-src" src="" type="audio/mpeg">
+    </audio>
+
+    <button id="music-toggle" class="hidden fixed bottom-6 left-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-full shadow-2xl items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+        <i id="music-icon" class="ph-bold ph-speaker-slash text-lg sm:text-xl"></i>
+    </button>
+
+    <button onclick="togglePopupImage()" class="hidden fixed bottom-6 right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white text-slate-900 rounded-full shadow-2xl items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+        <i class="ph-bold ph-currency-dollar text-lg sm:text-xl text-green-600"></i>
+    </button>
+
+    <div id="image-popup" class="fixed top-1/2 left-1/2 w-[280px] h-[280px] sm:w-80 sm:h-80 bg-white/10 backdrop-blur-md p-2 rounded-2xl border border-white/20 shadow-2xl z-50 hidden">
+        <button onclick="togglePopupImage()" class="absolute -top-3 -left-3 w-7 h-7 flex items-center justify-center rounded-full bg-slate-800 text-white border border-white/20 hover:bg-slate-700 shadow-lg z-10">
+            <i class="ph-bold ph-x text-xs"></i>
+        </button>
+        <img id="popup-image-content" src="" class="w-full h-full object-cover rounded-xl" alt="Image">
+    </div>
+
+    <main class="w-full max-w-md h-[100dvh] flex flex-col justify-center px-4 z-10 relative overflow-hidden">
+        
+        <div class="flex-shrink-0 text-center opacity-0 stagger-anim relative" style="animation-delay: 0.1s;">
+            <div class="relative inline-block mb-2 sm:mb-4">
+                <div class="absolute inset-0 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-full blur-lg opacity-50 animate-pulse"></div>
+                <img id="avatar" src="" alt="Avatar" class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-white/20 object-cover transition-transform duration-300">
+            </div>
+            <h1 id="display-name" class="text-xl sm:text-2xl font-bold text-white mb-1 uppercase tracking-tight"></h1>
+            
+            <!-- Đã thêm chiều cao h-[20px] sm:h-[24px] để giữ khung giao diện không bị giật khi xóa chữ -->
+            <p id="bio-text" class="text-slate-400 text-xs sm:text-sm mb-3 leading-relaxed h-[20px] sm:h-[24px]"></p>
+            
+            <div class="flex justify-center gap-4 text-white/60">
+                <a id="social-fb" href="#" class="hover:text-white transition-colors"><i class="ph-bold ph-facebook-logo text-xl sm:text-2xl"></i></a>
+                <a id="social-zl" href="#" class="hover:text-white transition-colors"><i class="ph-bold ph-chats-teardrop text-xl sm:text-2xl"></i></a>
+                <a id="social-tg" href="#" class="hover:text-white transition-colors"><i class="ph-bold ph-telegram-logo text-xl sm:text-2xl"></i></a>
+                <a id="social-tt" href="#" class="hover:text-white transition-colors"><i class="ph-bold ph-tiktok-logo text-xl sm:text-2xl"></i></a>
+            </div>
+        </div>
+
+        <div id="links-container" class="w-full flex-1 max-h-fit flex flex-col justify-center gap-2.5 mt-4 mb-2">
+            <a id="btn-fb" href="#" class="bio-button flex items-center px-4 py-2.5 sm:py-3 rounded-2xl w-full opacity-0 stagger-anim" style="animation-delay: 0.3s;">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-blue-600/20 rounded-xl flex items-center justify-center text-blue-400 mr-3 flex-shrink-0"><i class="ph-bold ph-facebook-logo text-lg"></i></div>
+                <div class="flex-1 text-left"><h2 class="text-white text-sm font-semibold h-[20px]" data-text="Facebook"></h2><p class="text-slate-500 text-[11px] h-[16px]" data-text="Trang cá nhân chính chủ"></p></div>
+                <i class="ph ph-caret-right text-slate-500"></i>
+            </a>
+            <a id="btn-tt" href="#" class="bio-button flex items-center px-4 py-2.5 sm:py-3 rounded-2xl w-full opacity-0 stagger-anim" style="animation-delay: 0.45s;">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-slate-100/20 rounded-xl flex items-center justify-center text-white mr-3 flex-shrink-0"><i class="ph-bold ph-tiktok-logo text-lg"></i></div>
+                <div class="flex-1 text-left"><h2 class="text-white text-sm font-semibold h-[20px]" data-text="TikTok"></h2><p class="text-slate-500 text-[11px] h-[16px]" data-text="Video sáng tạo"></p></div>
+                <i class="ph ph-caret-right text-slate-500"></i>
+            </a>
+            <a id="btn-zl" href="#" class="bio-button flex items-center px-4 py-2.5 sm:py-3 rounded-2xl w-full opacity-0 stagger-anim" style="animation-delay: 0.6s;">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-blue-400/20 rounded-xl flex items-center justify-center text-blue-300 mr-3 flex-shrink-0"><i class="ph-bold ph-chats-teardrop text-lg"></i></div>
+                <div class="flex-1 text-left"><h2 class="text-white text-sm font-semibold h-[20px]" data-text="Zalo"></h2><p class="text-slate-500 text-[11px] h-[16px]" data-text="Kết nối nhanh chóng"></p></div>
+                <i class="ph ph-caret-right text-slate-500"></i>
+            </a>
+            <a id="btn-tg" href="#" class="bio-button flex items-center px-4 py-2.5 sm:py-3 rounded-2xl w-full opacity-0 stagger-anim" style="animation-delay: 0.75s;">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-sky-500/20 rounded-xl flex items-center justify-center text-sky-400 mr-3 flex-shrink-0"><i class="ph-bold ph-telegram-logo text-lg"></i></div>
+                <div class="flex-1 text-left"><h2 class="text-white text-sm font-semibold h-[20px]" data-text="Telegram"></h2><p class="text-slate-500 text-[11px] h-[16px]" data-text="Trao đổi công việc"></p></div>
+                <i class="ph ph-caret-right text-slate-500"></i>
+            </a>
+            <a id="btn-mail" href="#" class="bio-button flex items-center px-4 py-2.5 sm:py-3 rounded-2xl w-full opacity-0 stagger-anim" style="animation-delay: 0.9s;">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-red-500/20 rounded-xl flex items-center justify-center text-red-400 mr-3 flex-shrink-0"><i class="ph-bold ph-envelope text-lg"></i></div>
+                <div class="flex-1 text-left"><h2 class="text-white text-sm font-semibold h-[20px]" data-text="Gmail"></h2><p class="text-slate-500 text-[11px] h-[16px]" data-text="Liên hệ qua thư điện tử"></p></div>
+                <i class="ph ph-caret-right text-slate-500"></i>
+            </a>
+        </div>
+
+        <footer class="flex-shrink-0 text-center opacity-0 stagger-anim pt-2" style="animation-delay: 1.05s;">
+            <p id="footer-text" class="text-slate-500 text-[10px] uppercase tracking-widest font-semibold"></p>
+        </footer>
+    </main>
+
+    <script>
+        const CONFIG = {
+            name: "LeAnhBay",
+            bgImageUrl: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2070&auto=format&fit=crop", 
+            avatar: "https://sf-static.upanhlaylink.com/img/image_20260422d19d8c975970f37d448368b012dd11fb.jpg",
+            popupImageUrl: "https://sf-static.upanhlaylink.com/img/image_20260422cb051728967d78243e652478c696223b.jpg",
+            bio: "Tất cả đều miễn phí trừ những thứ trả phí :)",
+            musicUrl: "https://www.dropbox.com/scl/fi/gvkocofm9tl09qbdl33at/Ng-i-nh-h-nh-ph-c-mp3cut.net.mp3?rlkey=30wpccrvhvl47remeo2j5g47y&st=hiimcry7&raw=1",
+            links: {
+                facebook: "https://www.facebook.com/share/1CTtfYmwnt/?mibextid=wwXIfr",
+                zalo: "https://zalo.me/0353319326",
+                telegram: "https://t.me/mr777lab",
+                tiktok: "https://tiktok.com/@leanhbay",
+                gmail: "mailto:leanhbayy@gmail.com" 
+            }
+        };
+
+        const bgMusic = document.getElementById('bg-music');
+        const avatar = document.getElementById('avatar');
+        const welcomeOverlay = document.getElementById('welcome-overlay');
+
+        async function typeWriterEffect(elementId, text, speed = 50) {
+            const el = document.getElementById(elementId);
+            el.innerHTML = `
+                <i class="ph ph-terminal-window mr-2 text-green-400"></i>
+                <span id="typed-text" class="font-mono text-green-400"></span>
+                <span class="font-mono text-green-400 cursor-blink">_</span>
+            `;
+            const textSpan = document.getElementById('typed-text');
+            for (let i = 0; i < text.length; i++) {
+                textSpan.innerHTML += text.charAt(i);
+                await new Promise(resolve => setTimeout(resolve, speed));
+            }
+        }
+
+        // HÀM GÕ CHỮ (XUẤT HIỆN)
+        async function simpleTypeWriter(element, text, speed) {
+            element.innerHTML = '';
+            const cursor = document.createElement('span');
+            cursor.className = 'cursor-blink text-slate-400 opacity-70 ml-0.5';
+            cursor.textContent = '|';
+            element.appendChild(cursor);
+            
+            let currentText = '';
+            for (let i = 0; i < text.length; i++) {
+                currentText += text.charAt(i);
+                element.innerHTML = currentText;
+                element.appendChild(cursor);
+                await new Promise(resolve => setTimeout(resolve, speed));
+            }
+            cursor.remove(); 
+        }
+
+        // HÀM XÓA CHỮ (BACKSPACE)
+        async function simpleDeleteWriter(element, text, speed) {
+            const cursor = document.createElement('span');
+            cursor.className = 'cursor-blink text-slate-400 opacity-70 ml-0.5';
+            cursor.textContent = '|';
+            
+            let currentText = text;
+            for (let i = text.length; i >= 0; i--) {
+                currentText = text.substring(0, i);
+                element.innerHTML = currentText;
+                element.appendChild(cursor);
+                await new Promise(resolve => setTimeout(resolve, speed));
+            }
+            cursor.remove();
+        }
+
+        // VÒNG LẶP GÕ VÀ XÓA MÔ TẢ TRONG CÁC NÚT (SO LE)
+        async function runTypingCycle(btn, titleEl, descEl, titleText, descText, delay) {
+            await new Promise(r => setTimeout(r, delay));
+            btn.classList.add('animate-ios-shake');
+
+            const titleSpeed = 50; 
+            const altDescText = "Uy Tín - An Toàn - Chất Lượng";
+
+            await simpleTypeWriter(titleEl, titleText, titleSpeed);
+            let isOriginalText = true;
+
+            while (true) {
+                const currentText = isOriginalText ? descText : altDescText;
+                const typeDurationDesc = 3000;
+                const typeSpeedDesc = typeDurationDesc / currentText.length;
+                const deleteDurationDesc = 1700;
+                const deleteSpeedDesc = deleteDurationDesc / currentText.length;
+
+                await simpleTypeWriter(descEl, currentText, typeSpeedDesc);
+                await new Promise(r => setTimeout(r, 2000));
+                await simpleDeleteWriter(descEl, currentText, deleteSpeedDesc);
+                isOriginalText = !isOriginalText;
+            }
+        }
+
+        // VÒNG LẶP CHO TIỂU SỬ DƯỚI TÊN (Gõ 2.5s -> Nhấp nháy 3 lần -> Xóa 1.7s)
+        async function runBioTypingCycle(element, text, delay) {
+            await new Promise(r => setTimeout(r, delay));
+
+            const typeDuration = 2500;
+            const typeSpeed = typeDuration / text.length;
+            const deleteDuration = 1700;
+            const deleteSpeed = deleteDuration / text.length;
+
+            while (true) {
+                // 1. Gõ chữ trong 2.5s
+                await simpleTypeWriter(element, text, typeSpeed);
+
+                // Thêm con trỏ tạm để làm đẹp khi nhấp nháy
+                element.innerHTML = text + '<span class="cursor-blink text-slate-400 opacity-70 ml-0.5">|</span>';
+
+                // 2. Nhấp nháy nhẹ 3 lần
+                for(let i = 0; i < 3; i++) {
+                    element.style.transition = 'opacity 0.2s ease-in-out';
+                    element.style.opacity = '0.3';
+                    await new Promise(r => setTimeout(r, 250));
+                    element.style.opacity = '1';
+                    await new Promise(r => setTimeout(r, 250));
+                }
+
+                // Xóa con trỏ tạm, vì hàm simpleDeleteWriter sẽ tự tạo lại con trỏ khác
+                element.innerHTML = text;
+
+                // 3. Xóa trong 1.7s
+                await simpleDeleteWriter(element, text, deleteSpeed);
+
+                // Đợi 0.5s trước khi lặp lại vòng tiếp theo
+                await new Promise(r => setTimeout(r, 500));
+            }
+        }
+
+        async function fetchUserInfo() {
+            const analysisEl = document.getElementById('analysis-text');
+            const centerInfoDrop = document.getElementById('center-info-drop');
+            
+            let userIP = "Unknown";
+            const fetchPromise = fetch('https://api.ipify.org?format=json')
+                .then(res => res.json())
+                .then(data => { userIP = data.ip; })
+                .catch(error => { userIP = "Lỗi IP"; });
+
+            const textToType = "Đang Truy Xuất Thông Tin...";
+            const typingDuration = 2500; 
+            const speedPerChar = typingDuration / textToType.length; 
+
+            await typeWriterEffect('analysis-text', textToType, speedPerChar);
+            await fetchPromise; 
+            await new Promise(r => setTimeout(r, 600)); 
+
+            analysisEl.innerHTML = `<i class="ph-fill ph-check-circle mr-2 text-green-500"></i><span class="text-green-400 font-bold font-mono">Truy Xuất Thành Công!</span>`;
+            await new Promise(r => setTimeout(r, 600)); 
+            
+            analysisEl.style.display = 'none';
+            centerInfoDrop.classList.remove('hidden');
+            centerInfoDrop.classList.add('flex');
+
+            const ua = navigator.userAgent;
+            let deviceName = "Unknown";
+            let browserName = "Unknown";
+
+            if (/iPhone|iPad|iPod/.test(ua)) { deviceName = "iOS"; } 
+            else if (/Android/.test(ua)) { deviceName = "Android"; } 
+            else if (/Windows/.test(ua)) { deviceName = "Windows"; } 
+            else if (/Mac OS/.test(ua)) { deviceName = "MacOS"; }
+            else if (/Linux/.test(ua)) { deviceName = "Linux"; }
+
+            if (ua.includes("Firefox")) { browserName = "Firefox"; }
+            else if (ua.includes("OPR/") || ua.includes("Opera/")) { browserName = "Opera"; }
+            else if (ua.includes("Edg/")) { browserName = "Edge"; }
+            else if (ua.includes("Chrome")) { browserName = "Chrome"; }
+            else if (ua.includes("Safari") && !ua.includes("Chrome")) { browserName = "Safari"; }
+
+            const infoString = `[${userIP}] - ${deviceName} - ${browserName}`;
+            for (let i = 0; i < infoString.length; i++) {
+                const span = document.createElement('span');
+                span.textContent = infoString[i] === ' ' ? '\u00A0' : infoString[i];
+                span.style.opacity = '0';
+                span.style.display = 'inline-block';
+                span.style.transition = 'opacity 0.1s';
+                centerInfoDrop.appendChild(span);
+
+                await new Promise(r => setTimeout(r, 35));
+                span.style.opacity = '1';
+            }
+
+            await new Promise(r => setTimeout(r, 200));
+
+            const spans = centerInfoDrop.querySelectorAll('span');
+            const rect = centerInfoDrop.getBoundingClientRect();
+            const currentCenterY = rect.top + (rect.height / 2);
+            const targetCenterY = window.innerHeight - 30; 
+            const dropDistancePx = targetCenterY - currentCenterY;
+            
+            spans.forEach((span, i) => {
+                setTimeout(() => {
+                    span.style.transition = 'transform 0.5s cubic-bezier(0.5, 1.5, 0.6, 1), color 0.3s';
+                    span.style.transform = `translateY(${dropDistancePx}px)`;
+                    span.style.color = '#f8fafc'; 
+                }, i * 35);
+            });
+
+            const dropDuration = spans.length * 35 + 500; 
+
+            setTimeout(() => {
+                centerInfoDrop.style.transition = 'none';
+                centerInfoDrop.style.transform = `translate(-50%, calc(-50% + ${dropDistancePx}px))`;
+                
+                spans.forEach(span => {
+                    span.style.transition = 'none';
+                    span.style.transform = 'translateY(0)';
+                });
+
+                void centerInfoDrop.offsetWidth;
+
+                centerInfoDrop.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                centerInfoDrop.classList.add('bg-white/10', 'rounded-xl', 'px-5', 'py-2.5', 'shadow-[0_10px_30px_rgba(0,0,0,0.5)]', 'backdrop-blur-xl', 'ip-widget-active');
+                
+                centerInfoDrop.style.setProperty('--drop-y', `calc(-50% + ${dropDistancePx}px)`);
+                
+                setTimeout(() => {
+                    centerInfoDrop.classList.add('floating-widget-center');
+
+                    welcomeOverlay.classList.add('cursor-pointer');
+                    const tapContainer = document.getElementById('tap-to-enter-container');
+                    tapContainer.classList.remove('opacity-0', 'translate-y-4');
+                    tapContainer.classList.add('opacity-100', 'translate-y-0');
+                    
+                    welcomeOverlay.addEventListener('click', startApp, { once: true });
+                }, 600); 
+
+            }, dropDuration); 
+        }
+
+        function initBioLink() {
+            if (CONFIG.bgImageUrl && CONFIG.bgImageUrl !== "") {
+                document.getElementById('bg-layer').style.backgroundImage = `url('${CONFIG.bgImageUrl}')`;
+            }
+            document.title = `Bio Link | ${CONFIG.name}`;
+            document.getElementById('display-name').innerText = CONFIG.name;
+            document.getElementById('avatar').src = CONFIG.avatar;
+            document.getElementById('popup-image-content').src = CONFIG.popupImageUrl;
+            
+            // NOTE: bio-text giờ sẽ được gõ bằng hiệu ứng khi startApp() thay vì gán tĩnh luôn ở đây.
+            document.getElementById('footer-text').innerHTML = `&copy; 2026 ${CONFIG.name}`;
+            
+            document.getElementById('social-fb').href = CONFIG.links.facebook;
+            document.getElementById('social-zl').href = CONFIG.links.zalo;
+            document.getElementById('social-tg').href = CONFIG.links.telegram;
+            document.getElementById('social-tt').href = CONFIG.links.tiktok;
+            
+            document.getElementById('btn-fb').href = CONFIG.links.facebook;
+            document.getElementById('btn-tt').href = CONFIG.links.tiktok;
+            document.getElementById('btn-zl').href = CONFIG.links.zalo;
+            document.getElementById('btn-tg').href = CONFIG.links.telegram;
+            document.getElementById('btn-mail').href = CONFIG.links.gmail;
+
+            document.getElementById('music-src').src = CONFIG.musicUrl;
+            bgMusic.load();
+
+            fetchUserInfo();
+        }
+
+        function startApp() {
+            welcomeOverlay.style.opacity = '0';
+            
+            const elementsToAnimate = document.querySelectorAll('.stagger-anim');
+            elementsToAnimate.forEach(el => {
+                el.classList.remove('opacity-0');
+                el.classList.add('animate-fade-in');
+            });
+
+            // Chạy hiệu ứng cho tiểu sử dưới Tên với độ trễ 600ms để đợi giao diện nổi lên
+            runBioTypingCycle(document.getElementById('bio-text'), CONFIG.bio, 600);
+
+            const buttons = document.querySelectorAll('.bio-button');
+            buttons.forEach((btn, index) => {
+                const titleEl = btn.querySelector('h2');
+                const descEl = btn.querySelector('p');
+                const titleText = titleEl.getAttribute('data-text');
+                const descText = descEl.getAttribute('data-text');
+                
+                const delay = (0.3 + index * 0.15) * 1000 + 400; 
+                runTypingCycle(btn, titleEl, descEl, titleText, descText, delay);
+            });
+
+            setTimeout(() => {
+                welcomeOverlay.style.display = 'none';
+            }, 700);
+
+            bgMusic.play().then(() => {
+                avatar.classList.add('avatar-visualizer');
+            }).catch(e => console.log("Lỗi phát nhạc: ", e));
+        }
+
+        function togglePopupImage() {
+            const popup = document.getElementById('image-popup');
+            if (popup.classList.contains('hidden')) {
+                popup.classList.remove('hidden');
+            }
+            popup.classList.toggle('active');
+        }
+
+        function createMoneyRain() {
+            const money = document.createElement('div');
+            money.innerHTML = ['💵', '💸', '💰', '🪙'][Math.floor(Math.random() * 4)];
+            money.classList.add('money-drop');
+            money.style.left = Math.random() * 100 + 'vw';
+            money.style.fontSize = Math.random() * 1.5 + 1 + 'rem';
+            money.style.animationDuration = Math.random() * 3 + 4 + 's';
+            money.style.opacity = Math.random() * 0.5 + 0.3;
+            document.body.appendChild(money);
+            setTimeout(() => money.remove(), 7000); 
+        }
+        setInterval(createMoneyRain, 400);
+
+        initBioLink();
+    </script>
+</body>
+</html>
