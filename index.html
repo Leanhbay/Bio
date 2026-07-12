@@ -8,74 +8,38 @@
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #030304; color: #fff; min-height: 100vh; overflow-x: hidden; }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Inter',sans-serif;background:#030304;color:#fff;min-height:100vh;overflow-x:hidden}
 
-        .bg-glow-1 {
-            position: fixed; top: -200px; left: -200px;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
-            filter: blur(80px); pointer-events: none; z-index: 0;
-            animation: float1 8s ease-in-out infinite;
-        }
-        .bg-glow-2 {
-            position: fixed; bottom: -200px; right: -200px;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%);
-            filter: blur(80px); pointer-events: none; z-index: 0;
-            animation: float2 10s ease-in-out infinite;
-        }
-        .bg-glow-3 {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
-            filter: blur(100px); pointer-events: none; z-index: 0;
-            animation: float3 12s ease-in-out infinite;
-        }
-        @keyframes float1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(60px,40px) scale(1.1)} }
-        @keyframes float2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-50px,-30px) scale(1.15)} }
-        @keyframes float3 { 0%,100%{transform:translate(-50%,-50%) scale(1)} 50%{transform:translate(-50%,-50%) scale(1.2)} }
+        .bg-glow-1{position:fixed;top:-200px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,0.15) 0%,transparent 70%);filter:blur(80px);pointer-events:none;z-index:0;animation:float1 8s ease-in-out infinite}
+        .bg-glow-2{position:fixed;bottom:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(168,85,247,0.12) 0%,transparent 70%);filter:blur(80px);pointer-events:none;z-index:0;animation:float2 10s ease-in-out infinite}
+        .bg-glow-3{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:400px;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 70%);filter:blur(100px);pointer-events:none;z-index:0;animation:float3 12s ease-in-out infinite}
+        @keyframes float1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,40px) scale(1.1)}}
+        @keyframes float2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,-30px) scale(1.15)}}
+        @keyframes float3{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.2)}}
 
-        .noise-overlay {
-            position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.03;
-            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-            background-size: 200px 200px;
-        }
+        .noise-overlay{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.03;background-image:url('https://grainy-gradients.vercel.app/noise.svg');background-size:200px 200px}
 
-        .reveal {
-            opacity: 0; transform: translateY(30px) scale(0.98);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            filter: blur(10px);
-        }
-        .reveal.active { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        .reveal{opacity:0;transform:translateY(30px) scale(0.98);transition:all 0.8s cubic-bezier(0.16,1,0.3,1);filter:blur(10px)}
+        .reveal.active{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
         .delay-1{transition-delay:100ms}.delay-2{transition-delay:200ms}.delay-3{transition-delay:300ms}
         .delay-4{transition-delay:400ms}.delay-5{transition-delay:500ms}.delay-6{transition-delay:600ms}
         .delay-7{transition-delay:700ms}.delay-8{transition-delay:800ms}.delay-9{transition-delay:900ms}
         .delay-10{transition-delay:1000ms}.delay-11{transition-delay:1100ms}
 
-        .avatar-ring {
-            background: conic-gradient(from 0deg, #6366f1, #a855f7, #3b82f6, #6366f1);
-            animation: ring-rotate 4s linear infinite;
-        }
-        @keyframes ring-rotate { to { transform: rotate(360deg); } }
+        .avatar-ring{background:conic-gradient(from 0deg,#6366f1,#a855f7,#3b82f6,#6366f1);animation:ring-rotate 4s linear infinite}
+        @keyframes ring-rotate{to{transform:rotate(360deg)}}
+        .avatar-wrapper{transition:transform 0.5s cubic-bezier(0.16,1,0.3,1)}
+        .avatar-wrapper:hover{transform:scale(1.05)}
 
-        .avatar-wrapper { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        .avatar-wrapper:hover { transform: scale(1.05); }
+        .status-dot{animation:pulse-dot 2s ease-in-out infinite}
+        @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.6)}50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
 
-        .status-dot { animation: pulse-dot 2s ease-in-out infinite; }
-        @keyframes pulse-dot { 0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.6)} 50%{box-shadow:0 0 0 6px rgba(34,197,94,0)} }
-
-        .social-link {
-            position: relative; display: flex; align-items: center; gap: 16px;
-            padding: 16px 24px; border-radius: 16px;
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-            backdrop-filter: blur(10px); transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
-            overflow: hidden; cursor: pointer; text-decoration: none; color: #fff;
-        }
-        .social-link::before { content:''; position:absolute; inset:0; opacity:0; transition:opacity 0.4s ease; border-radius:16px; }
-        .social-link:hover { transform: translateY(-2px) scale(1.02); border-color: rgba(255,255,255,0.12); }
-        .social-link:hover::before { opacity: 1; }
-        .social-link:active { transform: translateY(0) scale(0.98); }
+        .social-link{position:relative;display:flex;align-items:center;gap:16px;padding:16px 24px;border-radius:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(10px);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);overflow:hidden;cursor:pointer;text-decoration:none;color:#fff}
+        .social-link::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.4s ease;border-radius:16px}
+        .social-link:hover{transform:translateY(-2px) scale(1.02);border-color:rgba(255,255,255,0.12)}
+        .social-link:hover::before{opacity:1}
+        .social-link:active{transform:translateY(0) scale(0.98)}
 
         .social-link.facebook::before{background:linear-gradient(135deg,rgba(24,119,242,0.15),rgba(24,119,242,0.03))}
         .social-link.facebook:hover{border-color:rgba(24,119,242,0.3);box-shadow:0 8px 30px -8px rgba(24,119,242,0.2)}
@@ -106,15 +70,11 @@
         .social-arrow{margin-left:auto;opacity:0;transform:translateX(-8px);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);color:#64748b}
         .social-link:hover .social-arrow{opacity:1;transform:translateX(0)}
 
-        .stat-card {
-            background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
-            border-radius:16px;padding:20px;text-align:center;transition:all 0.4s ease;
-        }
+        .stat-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:20px;text-align:center;transition:all 0.4s ease}
         .stat-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);transform:translateY(-2px)}
 
         .divider{height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,0.08),transparent)}
-        ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}
-        ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:99px}
+        ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:99px}
         #particles{position:fixed;inset:0;z-index:0;pointer-events:none}
 
         .music-bar{width:3px;border-radius:99px;background:linear-gradient(to top,#6366f1,#a855f7);animation:music-bounce 0.8s ease-in-out infinite alternate}
@@ -134,7 +94,7 @@
         .toast{position:fixed;bottom:84px;right:24px;z-index:50;padding:12px 20px;border-radius:12px;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:#34D399;font-size:13px;font-weight:500;backdrop-filter:blur(10px);opacity:0;transform:translateY(10px);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);pointer-events:none}
         .toast.show{opacity:1;transform:translateY(0)}
 
-        /* ===== IP / GPS Visitor Card ===== */
+        /* Visitor Card */
         .ip-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:20px;overflow:hidden;transition:all 0.4s ease}
         .ip-card:hover{border-color:rgba(99,102,241,0.2);box-shadow:0 0 40px -12px rgba(99,102,241,0.15)}
         .ip-card-header{padding:16px 20px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.04)}
@@ -159,63 +119,18 @@
         .ip-copy-btn:hover{background:rgba(255,255,255,0.1);color:#e2e8f0;border-color:rgba(255,255,255,0.15)}
         .ip-copy-btn.copied{background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);color:#34D399}
 
-        /* ===== Live Clock ===== */
-        .live-clock-container {
-            display: flex; align-items: center; justify-content: center; gap: 16px;
-            padding: 18px 20px; border-radius: 16px;
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
-            margin-bottom: 8px;
-        }
-        .clock-time {
-            font-size: 32px; font-weight: 600; letter-spacing: -0.5px;
-            font-variant-numeric: tabular-nums;
-            background: linear-gradient(135deg, #fff 0%, #a5b4fc 50%, #c4b5fd 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .clock-seconds {
-            font-size: 18px; font-weight: 400; color: #6366f1; opacity: 0.7;
-            font-variant-numeric: tabular-nums;
-            animation: sec-pulse 1s ease-in-out infinite;
-        }
-        @keyframes sec-pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+        /* Live Clock */
+        .live-clock-container{display:flex;align-items:center;justify-content:center;gap:16px;padding:18px 20px;border-radius:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);margin-bottom:8px}
+        .clock-time{font-size:32px;font-weight:600;letter-spacing:-0.5px;font-variant-numeric:tabular-nums;background:linear-gradient(135deg,#fff 0%,#a5b4fc 50%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .clock-seconds{font-size:18px;font-weight:400;color:#6366f1;opacity:0.7;font-variant-numeric:tabular-nums;animation:sec-pulse 1s ease-in-out infinite}
+        @keyframes sec-pulse{0%,100%{opacity:0.4}50%{opacity:1}}
+        .clock-separator{display:flex;flex-direction:column;gap:4px}
+        .clock-separator span{width:3px;height:3px;border-radius:50%;background:#6366f1;opacity:0.4}
+        .clock-date{font-size:12px;color:#64748b;font-weight:500;text-align:center;margin-bottom:20px}
 
-        .clock-separator {
-            display: flex; flex-direction: column; gap: 4px;
-        }
-        .clock-separator span {
-            width: 3px; height: 3px; border-radius: 50%;
-            background: #6366f1; opacity: 0.4;
-        }
-
-        .clock-date {
-            font-size: 12px; color: #64748b; font-weight: 500;
-            text-align: center; margin-bottom: 20px;
-        }
-
-        .gps-pulse {
-            display: inline-block; width: 8px; height: 8px; border-radius: 50%;
-            background: #22c55e; position: relative;
-        }
-        .gps-pulse::before {
-            content: ''; position: absolute; inset: -3px; border-radius: 50%;
-            border: 1.5px solid rgba(34,197,94,0.4);
-            animation: gps-ring 2s ease-out infinite;
-        }
-        @keyframes gps-ring { 0%{transform:scale(1);opacity:1} 100%{transform:scale(2);opacity:0} }
-
-        .gps-locating {
-            display: flex; align-items: center; gap: 8px;
-            color: #f59e0b; font-size: 12px; font-weight: 500;
-        }
-        .gps-locating .iconify { animation: spin 1.5s linear infinite; }
-
-        .accuracy-badge {
-            display: inline-flex; align-items: center; gap: 3px;
-            padding: 1px 6px; border-radius: 4px; font-size: 9px; font-weight: 600;
-            background: rgba(34,197,94,0.1); color: #4ade80;
-            text-transform: uppercase; letter-spacing: 0.3px;
-        }
+        .online-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;position:relative;flex-shrink:0}
+        .online-dot::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px solid rgba(34,197,94,0.4);animation:gps-ring 2s ease-out infinite}
+        @keyframes gps-ring{0%{transform:scale(1);opacity:1}100%{transform:scale(2);opacity:0}}
     </style>
 </head>
 <body>
@@ -228,7 +143,7 @@
     <main class="relative z-10 flex items-center justify-center min-h-screen px-4 py-12">
         <div class="w-full max-w-md">
 
-            <!-- Profile Section -->
+            <!-- Profile -->
             <div class="flex flex-col items-center mb-8">
                 <div class="reveal avatar-wrapper mb-6 relative">
                     <div class="avatar-ring w-[120px] h-[120px] rounded-full p-[3px]">
@@ -240,23 +155,16 @@
                         <div class="status-dot w-3.5 h-3.5 rounded-full bg-green-500"></div>
                     </div>
                 </div>
-
                 <h1 class="reveal delay-1 text-2xl font-semibold tracking-tight mb-1">Nguyễn Văn A</h1>
                 <p class="reveal delay-2 text-sm text-slate-400 mb-3">@nguyenvana.official</p>
-
                 <p class="reveal delay-3 text-center text-sm text-slate-400 leading-relaxed max-w-xs mb-4">
                     ✨ Creator & Content Strategist<br>
                     🎬 Chia sẻ kiến thức & trải nghiệm sống<br>
                     📍 Hà Nội, Việt Nam
                 </p>
-
                 <div class="reveal delay-4 now-playing" onclick="toggleMusic()">
                     <div class="flex items-end gap-[3px] h-5" id="musicBars">
-                        <div class="music-bar"></div>
-                        <div class="music-bar"></div>
-                        <div class="music-bar"></div>
-                        <div class="music-bar"></div>
-                        <div class="music-bar"></div>
+                        <div class="music-bar"></div><div class="music-bar"></div><div class="music-bar"></div><div class="music-bar"></div><div class="music-bar"></div>
                     </div>
                     <div class="text-left">
                         <div class="text-[11px] text-slate-500 font-medium uppercase tracking-wider">Now Playing</div>
@@ -281,40 +189,34 @@
                 </div>
             </div>
 
-            <!-- ===== Live Clock ===== -->
+            <!-- Live Clock -->
             <div class="reveal delay-6">
                 <div class="live-clock-container">
-                    <div style="display:flex;align-items:baseline;gap:2px;">
+                    <div style="display:flex;align-items:baseline;gap:2px">
                         <span class="clock-time" id="clockHM">--:--</span>
-                        <span class="clock-seconds" id="clockSec">--</span>
+                        <span class="clock-seconds" id="clockSec">:--</span>
                     </div>
                     <div class="clock-separator"><span></span><span></span></div>
-                    <div style="text-align:right;">
-                        <div style="font-size:11px;color:#6366f1;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;" id="clockTzLabel">UTC</div>
-                        <div style="font-size:10px;color:#475569;font-weight:500;" id="clockTzOffset">+00:00</div>
+                    <div style="text-align:right">
+                        <div style="font-size:11px;color:#6366f1;font-weight:600;letter-spacing:0.5px;text-transform:uppercase" id="clockTzLabel">UTC</div>
+                        <div style="font-size:10px;color:#475569;font-weight:500" id="clockTzOffset">+00:00</div>
                     </div>
                 </div>
                 <div class="clock-date" id="clockDate">--</div>
             </div>
 
-            <!-- ===== IP & GPS Visitor Card ===== -->
+            <!-- IP Visitor Card -->
             <div class="reveal delay-7 ip-card mb-8">
                 <div class="ip-card-header">
-                    <span class="iconify" data-icon="mdi:shield-eye" data-width="18" style="color: #6366f1;"></span>
+                    <span class="iconify" data-icon="mdi:shield-eye" data-width="18" style="color:#6366f1"></span>
                     <span class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Thông tin truy cập</span>
-                    <span class="ml-auto" id="gpsStatusIcon">
-                        <div class="ip-spinner" style="width:12px;height:12px;border-width:1.5px;"></div>
-                    </span>
+                    <span class="ml-auto" id="statusIcon"><div class="ip-spinner" style="width:12px;height:12px;border-width:1.5px"></div></span>
                 </div>
                 <div class="ip-card-body" id="ipBody">
-                    <div class="ip-loading">
-                        <div class="ip-spinner"></div>
-                        <span>Đang lấy thông tin...</span>
-                    </div>
+                    <div class="ip-loading"><div class="ip-spinner"></div><span>Đang lấy thông tin...</span></div>
                 </div>
             </div>
 
-            <!-- Divider -->
             <div class="reveal delay-8 divider mb-6"></div>
 
             <!-- Social Links -->
@@ -352,7 +254,6 @@
             </div>
 
             <div class="reveal delay-11 divider mb-6"></div>
-
             <div class="reveal delay-11 text-center">
                 <div class="flex items-center justify-center gap-2 mb-3">
                     <div class="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
@@ -374,295 +275,157 @@
 
     <script>
         // ===== Reveal =====
-        function revealElements() {
-            document.querySelectorAll('.reveal').forEach(el => {
-                if (el.getBoundingClientRect().top < window.innerHeight - 40) el.classList.add('active');
-            });
-        }
-        window.addEventListener('scroll', revealElements);
-        window.addEventListener('load', revealElements);
+        function revealElements(){document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top<innerHeight-40)el.classList.add('active')})}
+        addEventListener('scroll',revealElements);addEventListener('load',revealElements);
 
         // ===== Counters =====
-        function animateCounter(el, target) {
-            let c = 0; const step = target / 125;
-            (function update() {
-                c += step;
-                if (c >= target) { el.textContent = fmtN(target); return; }
-                el.textContent = fmtN(Math.floor(c)); requestAnimationFrame(update);
-            })();
-        }
-        function fmtN(n) { return n >= 1e6 ? (n/1e6).toFixed(1)+'M' : n >= 1e3 ? (n/1e3).toFixed(1)+'K' : n.toString(); }
-        setTimeout(() => {
-            animateCounter(document.getElementById('statFollowers'), 125000);
-            animateCounter(document.getElementById('statLikes'), 890000);
-            animateCounter(document.getElementById('statViews'), 5200000);
-        }, 800);
+        function animateCounter(el,t){let c=0;const s=t/125;(function u(){c+=s;if(c>=t){el.textContent=fmtN(t);return}el.textContent=fmtN(Math.floor(c));requestAnimationFrame(u)})()}
+        function fmtN(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(1)+'K':n.toString()}
+        setTimeout(()=>{animateCounter(document.getElementById('statFollowers'),125000);animateCounter(document.getElementById('statLikes'),890000);animateCounter(document.getElementById('statViews'),5200000)},800);
 
         // ===== Particles =====
-        const cvs = document.getElementById('particles'), cx = cvs.getContext('2d');
-        let pts = [];
-        function rsz() { cvs.width = innerWidth; cvs.height = innerHeight; }
-        rsz(); addEventListener('resize', rsz);
-        class P { constructor(){this.r()} r(){this.x=Math.random()*cvs.width;this.y=Math.random()*cvs.height;this.s=Math.random()*1.5+.5;this.dx=(Math.random()-.5)*.3;this.dy=(Math.random()-.5)*.3;this.o=Math.random()*.3+.1} u(){this.x+=this.dx;this.y+=this.dy;if(this.x<0||this.x>cvs.width||this.y<0||this.y>cvs.height)this.r()} d(){cx.beginPath();cx.arc(this.x,this.y,this.s,0,Math.PI*2);cx.fillStyle=`rgba(148,163,184,${this.o})`;cx.fill()} }
+        const cvs=document.getElementById('particles'),cx=cvs.getContext('2d');let pts=[];
+        function rsz(){cvs.width=innerWidth;cvs.height=innerHeight}rsz();addEventListener('resize',rsz);
+        class P{constructor(){this.r()}r(){this.x=Math.random()*cvs.width;this.y=Math.random()*cvs.height;this.s=Math.random()*1.5+.5;this.dx=(Math.random()-.5)*.3;this.dy=(Math.random()-.5)*.3;this.o=Math.random()*.3+.1}u(){this.x+=this.dx;this.y+=this.dy;if(this.x<0||this.x>cvs.width||this.y<0||this.y>cvs.height)this.r()}d(){cx.beginPath();cx.arc(this.x,this.y,this.s,0,Math.PI*2);cx.fillStyle=`rgba(148,163,184,${this.o})`;cx.fill()}}
         for(let i=0;i<50;i++)pts.push(new P);
         (function a(){cx.clearRect(0,0,cvs.width,cvs.height);pts.forEach(p=>{p.u();p.d()});requestAnimationFrame(a)})();
 
         // ===== Share =====
-        function shareProfile() {
-            if (navigator.share) navigator.share({title:'Bio',text:'Xem profile!',url:location.href}).catch(()=>{});
-            else { navigator.clipboard.writeText(location.href).then(()=>showToast('Đã sao chép liên kết!')).catch(()=>{}); }
-        }
-        function showToast(t) { const e=document.getElementById('toast');document.getElementById('toastText').textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2500); }
+        function shareProfile(){if(navigator.share)navigator.share({title:'Bio',text:'Xem profile!',url:location.href}).catch(()=>{});else navigator.clipboard.writeText(location.href).then(()=>showToast('Đã sao chép liên kết!')).catch(()=>{})}
+        function showToast(t){const e=document.getElementById('toast');document.getElementById('toastText').textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2500)}
 
         // ===== Music =====
-        let musicOn = true;
-        function toggleMusic() { musicOn=!musicOn; document.getElementById('musicBars').classList.toggle('paused',!musicOn); }
+        let musicOn=true;
+        function toggleMusic(){musicOn=!musicOn;document.getElementById('musicBars').classList.toggle('paused',!musicOn)}
 
         // ============================================================
         //  LIVE CLOCK — chạy song song, chính xác theo thiết bị
         // ============================================================
-        const clockHM = document.getElementById('clockHM');
-        const clockSec = document.getElementById('clockSec');
-        const clockDate = document.getElementById('clockDate');
-        const clockTzLabel = document.getElementById('clockTzLabel');
-        const clockTzOffset = document.getElementById('clockTzOffset');
+        const clockHM=document.getElementById('clockHM'),clockSec=document.getElementById('clockSec');
+        const clockDate=document.getElementById('clockDate'),clockTzLabel=document.getElementById('clockTzLabel');
+        const clockTzOffset=document.getElementById('clockTzOffset');
 
-        // Lấy timezone từ thiết bị
-        const deviceTZ = Intl.DateTimeFormat().resolvedOptions().timeZone; // vd: "Asia/Ho_Chi_Minh"
-        const tzAbbr = new Date().toLocaleTimeString('vi-VN', { timeZoneName: 'short' }).split(' ').pop(); // vd: "GMT+7"
-        clockTzLabel.textContent = deviceTZ.split('/').pop().replace(/_/g,' ');
+        const deviceTZ=Intl.DateTimeFormat().resolvedOptions().timeZone;
+        clockTzLabel.textContent=deviceTZ.split('/').pop().replace(/_/g,' ');
 
-        // Tính offset
-        const now0 = new Date();
-        const utcStr = now0.toLocaleString('en-US', { timeZone: 'UTC' });
-        const localStr = now0.toLocaleString('en-US');
-        const diffMs = new Date(localStr) - new Date(utcStr);
-        const diffH = Math.round(diffMs / 3600000);
-        const sign = diffH >= 0 ? '+' : '';
-        clockTzOffset.textContent = `UTC${sign}${diffH}`;
+        const now0=new Date();
+        const utcStr=now0.toLocaleString('en-US',{timeZone:'UTC'});
+        const localStr=now0.toLocaleString('en-US');
+        const diffH=Math.round((new Date(localStr)-new Date(utcStr))/3600000);
+        clockTzOffset.textContent=`UTC${diffH>=0?'+':''}${diffH}`;
 
-        // Tên ngày trong tuần bằng tiếng Việt
-        const dayNames = ['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'];
-
-        function updateClock() {
-            const n = new Date();
-            const h = String(n.getHours()).padStart(2,'0');
-            const m = String(n.getMinutes()).padStart(2,'0');
-            const s = String(n.getSeconds()).padStart(2,'0');
-            clockHM.textContent = `${h}:${m}`;
-            clockSec.textContent = `:${s}`;
-            clockDate.textContent = `${dayNames[n.getDay()]}, ${n.getDate().toString().padStart(2,'0')}/${(n.getMonth()+1).toString().padStart(2,'0')}/${n.getFullYear()}`;
+        const dayNames=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'];
+        function updateClock(){
+            const n=new Date();
+            clockHM.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
+            clockSec.textContent=':'+String(n.getSeconds()).padStart(2,'0');
+            clockDate.textContent=`${dayNames[n.getDay()]}, ${String(n.getDate()).padStart(2,'0')}/${String(n.getMonth()+1).padStart(2,'0')}/${n.getFullYear()}`;
         }
-        updateClock();
-        setInterval(updateClock, 1000); // Cập nhật mỗi giây
+        updateClock();setInterval(updateClock,1000);
 
         // ============================================================
-        //  GPS + IP — chạy song song, cập nhật dần
+        //  IP INFO — chỉ dùng IP, không GPS
         // ============================================================
-        const ipBody = document.getElementById('ipBody');
-        const gpsStatusIcon = document.getElementById('gpsStatusIcon');
+        const ipBody=document.getElementById('ipBody');
+        const statusIcon=document.getElementById('statusIcon');
 
-        // Dữ liệu sẽ được gom dần
-        let visitorData = {
-            ip: null, ipVersion: null, isp: null,
-            gpsLat: null, gpsLon: null, gpsAccuracy: null,
-            gpsCity: null, gpsDistrict: null, gpsCountry: null, gpsCountryCode: null,
-            ipCity: null, ipRegion: null, ipCountry: null, ipCountryCode: null,
-            timezone: deviceTZ,
-            gpsDone: false, ipDone: false, reverseDone: false
-        };
+        function getFlag(c){return String.fromCodePoint(...c.toUpperCase().split('').map(ch=>127397+ch.charCodeAt(0)))}
 
-        // Hàm render — gọi lại mỗi khi có dữ liệu mới
-        function renderVisitorCard() {
-            const d = visitorData;
-            const ipStr = d.ip || 'Đang lấy...';
-            const badge = d.ipVersion || '';
-            const badgeCls = badge === 'IPv6' ? 'ipv6' : 'ipv4';
+        async function fetchIPInfo(){
+            try{
+                // Bước 1: Lấy IP
+                const r1=await fetch('https://api.ipify.org?format=json');
+                const d1=await r1.json();
+                const ip=d1.ip;
+                const ver=ip.includes(':')?'IPv6':'IPv4';
 
-            // Ưu tiên GPS location, fallback IP location
-            const city = d.gpsCity || d.ipCity || '—';
-            const region = d.gpsDistrict || d.ipRegion || '';
-            const country = d.gpsCountry || d.ipCountry || '—';
-            const cc = d.gpsCountryCode || d.ipCountryCode || '';
-            const flag = cc ? getFlag(cc) : '🌍';
-            const locStr = [city, region, country].filter(Boolean).join(', ') || 'Không xác định';
+                // Render tạm thời với IP
+                ipBody.innerHTML=buildHTML({ip,ver,loading:true});
+                statusIcon.innerHTML='<div class="ip-spinner" style="width:12px;height:12px;border-width:1.5px"></div>';
 
-            // Tọa độ
-            const lat = d.gpsLat ?? (d.ipLat || null);
-            const lon = d.gpsLon ?? (d.ipLon || null);
+                // Bước 2: Lấy chi tiết từ IP
+                const r2=await fetch(`https://ipapi.co/${ip}/json/`);
+                const d2=await r2.json();
 
-            // GPS accuracy
-            let accuracyHtml = '';
-            if (d.gpsAccuracy) {
-                const acc = Math.round(d.gpsAccuracy);
-                const lvl = acc < 50 ? 'Cao' : acc < 200 ? 'Trung bình' : 'Thấp';
-                const clr = acc < 50 ? '#4ade80' : acc < 200 ? '#fbbf24' : '#f87171';
-                accuracyHtml = `<span class="accuracy-badge" style="background:${clr}15;color:${clr};border:1px solid ${clr}30;">GPS ±${acc}m · ${lvl}</span>`;
+                const city=d2.city||'—';
+                const region=d2.region||'';
+                const country=d2.country_name||'—';
+                const cc=d2.country_code||'';
+                const tz=d2.timezone||deviceTZ;
+                const lat=d2.latitude;
+                const lon=d2.longitude;
+                const flag=cc?getFlag(cc):'🌍';
+                const loc=[city,region,country].filter(Boolean).join(', ')||'Không xác định';
+
+                // Render hoàn chỉnh
+                ipBody.innerHTML=buildHTML({ip,ver,flag,loc,tz,lat,lon,loading:false});
+                statusIcon.innerHTML='<div class="online-dot"></div>';
+
+            }catch(e){
+                ipBody.innerHTML=`
+                    <div style="text-align:center;padding:8px 0">
+                        <span class="iconify" data-icon="mdi:wifi-off" data-width="24" style="color:#ef4444;display:inline-block;margin-bottom:8px"></span>
+                        <p style="font-size:13px;color:#94a3b8">Không thể lấy thông tin</p>
+                        <p style="font-size:11px;color:#475569;margin-top:4px">Kiểm tra kết nối mạng</p>
+                    </div>`;
+                statusIcon.innerHTML='<span class="iconify" data-icon="mdi:close-circle" data-width="14" style="color:#ef4444"></span>';
             }
+        }
 
-            // ISP
-            const ispStr = d.isp || '—';
-
-            // Status icon
-            if (d.gpsDone && d.ipDone) {
-                gpsStatusIcon.innerHTML = '<div class="gps-pulse"></div>';
-            } else if (d.gpsDone) {
-                gpsStatusIcon.innerHTML = '<div class="gps-pulse"></div>';
-            } else {
-                // đang load
-            }
-
-            ipBody.innerHTML = `
-                <!-- IP -->
+        function buildHTML(d){
+            const badgeCls=d.ver==='IPv6'?'ipv6':'ipv4';
+            let rows=`
                 <div class="ip-row">
-                    <div class="ip-label">
-                        <span class="iconify" data-icon="mdi:ip-network" data-width="14"></span>
-                        Địa chỉ IP
-                    </div>
+                    <div class="ip-label"><span class="iconify" data-icon="mdi:ip-network" data-width="14"></span>Địa chỉ IP</div>
                     <div class="flex items-center gap-2">
-                        <span class="ip-value primary">${ipStr}</span>
-                        ${badge ? `<span class="ip-badge ${badgeCls}">${badge}</span>` : ''}
+                        <span class="ip-value primary">${d.ip}</span>
+                        <span class="ip-badge ${badgeCls}">${d.ver}</span>
                     </div>
-                </div>
+                </div>`;
 
-                <!-- Vị trí GPS -->
+            if(d.loading){
+                rows+=`
                 <div class="ip-row">
-                    <div class="ip-label">
-                        <span class="iconify" data-icon="mdi:map-marker-radius" data-width="14"></span>
-                        Vị trí
-                    </div>
-                    <div class="flex items-center gap-1.5 flex-wrap justify-end">
-                        <span class="text-sm">${flag}</span>
-                        <span class="ip-value">${locStr}</span>
-                        ${accuracyHtml}
-                    </div>
+                    <div class="ip-label"><span class="iconify" data-icon="mdi:map-marker" data-width="14"></span>Vị trí</div>
+                    <div class="ip-loading" style="justify-content:flex-end"><div class="ip-spinner" style="width:12px;height:12px;border-width:1.5px"></div><span style="font-size:12px">Đang xác định...</span></div>
                 </div>
-
-                <!-- ISP -->
                 <div class="ip-row">
-                    <div class="ip-label">
-                        <span class="iconify" data-icon="mdi:server-network" data-width="14"></span>
-                        Nhà cung cấp
-                    </div>
-                    <span class="ip-value text-right" style="max-width:200px;word-break:break-all;font-size:12px;color:#94a3b8;">${ispStr}</span>
+                    <div class="ip-label"><span class="iconify" data-icon="mdi:clock-outline" data-width="14"></span>Múi giờ</div>
+                    <div class="ip-loading" style="justify-content:flex-end"><div class="ip-spinner" style="width:12px;height:12px;border-width:1.5px"></div></div>
+                </div>`;
+            }else{
+                rows+=`
+                <div class="ip-row">
+                    <div class="ip-label"><span class="iconify" data-icon="mdi:map-marker" data-width="14"></span>Vị trí</div>
+                    <div class="flex items-center gap-1.5"><span class="text-sm">${d.flag}</span><span class="ip-value">${d.loc}</span></div>
                 </div>
-
-                <!-- Múi giờ -->
                 <div class="ip-row">
-                    <div class="ip-label">
-                        <span class="iconify" data-icon="mdi:clock-outline" data-width="14"></span>
-                        Múi giờ
-                    </div>
-                    <span class="ip-value" style="font-size:12px;color:#94a3b8;">${d.timezone}</span>
-                </div>
-
-                <!-- Tọa độ -->
-                ${lat !== null && lon !== null ? `
-                <div class="ip-row">
-                    <div class="ip-label">
-                        <span class="iconify" data-icon="mdi:crosshairs-gps" data-width="14"></span>
-                        Tọa độ GPS
-                    </div>
-                    <span class="ip-value" style="font-size:12px;color:#94a3b8;font-family:'SF Mono','Fira Code',monospace;">${lat.toFixed(6)}, ${lon.toFixed(6)}</span>
-                </div>` : ''}
-
-                <!-- Copy -->
-                ${d.ip ? `
-                <div style="padding-top:12px;display:flex;justify-content:center;">
-                    <button class="ip-copy-btn" onclick="copyIP('${d.ip}',this)">
-                        <span class="iconify" data-icon="mdi:content-copy" data-width="12"></span>
-                        Sao chép IP
-                    </button>
-                </div>` : ''}
-            `;
-        }
-
-        function getFlag(code) {
-            return String.fromCodePoint(...code.toUpperCase().split('').map(c => 127397 + c.charCodeAt(0)));
-        }
-
-        // ---------- 1) Lấy IP + info từ API ----------
-        async function fetchIP() {
-            try {
-                const r1 = await fetch('https://api.ipify.org?format=json');
-                const d1 = await r1.json();
-                visitorData.ip = d1.ip;
-                visitorData.ipVersion = d1.ip.includes(':') ? 'IPv6' : 'IPv4';
-                renderVisitorCard();
-
-                const r2 = await fetch(`https://ipapi.co/${d1.ip}/json/`);
-                const d2 = await r2.json();
-                visitorData.isp = d2.org || null;
-                visitorData.ipCity = d2.city || null;
-                visitorData.ipRegion = d2.region || null;
-                visitorData.ipCountry = d2.country_name || null;
-                visitorData.ipCountryCode = d2.country_code || null;
-                visitorData.ipLat = d2.latitude || null;
-                visitorData.ipLon = d2.longitude || null;
-                visitorData.ipDone = true;
-                renderVisitorCard();
-            } catch(e) {
-                visitorData.ipDone = true;
-                renderVisitorCard();
+                    <div class="ip-label"><span class="iconify" data-icon="mdi:clock-outline" data-width="14"></span>Múi giờ</div>
+                    <span class="ip-value" style="font-size:12px;color:#94a3b8">${d.tz}</span>
+                </div>`;
+                if(d.lat!=null&&d.lon!=null){
+                    rows+=`
+                    <div class="ip-row">
+                        <div class="ip-label"><span class="iconify" data-icon="mdi:crosshairs-gps" data-width="14"></span>Tọa độ</div>
+                        <span class="ip-value" style="font-size:12px;color:#94a3b8;font-family:'SF Mono','Fira Code',monospace">${d.lat.toFixed(4)}, ${d.lon.toFixed(4)}</span>
+                    </div>`;
+                }
             }
+
+            rows+=`<div style="padding-top:12px;display:flex;justify-content:center"><button class="ip-copy-btn" onclick="copyIP('${d.ip}',this)"><span class="iconify" data-icon="mdi:content-copy" data-width="12"></span>Sao chép IP</button></div>`;
+            return rows;
         }
 
-        // ---------- 2) Lấy GPS từ thiết bị ----------
-        function fetchGPS() {
-            if (!navigator.geolocation) {
-                visitorData.gpsDone = true;
-                renderVisitorCard();
-                return;
-            }
-            navigator.geolocation.getCurrentPosition(
-                async (pos) => {
-                    visitorData.gpsLat = pos.coords.latitude;
-                    visitorData.gpsLon = pos.coords.longitude;
-                    visitorData.gpsAccuracy = pos.coords.accuracy;
-                    visitorData.gpsDone = true;
-                    renderVisitorCard();
-
-                    // Reverse geocoding → lấy tên địa điểm
-                    try {
-                        const r = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&accept-language=vi&zoom=14`);
-                        const d = await r.json();
-                        const addr = d.address || {};
-                        visitorData.gpsCity = addr.city || addr.town || addr.village || addr.county || null;
-                        visitorData.gpsDistrict = addr.suburb || addr.district || addr.neighbourhood || addr.quarter || null;
-                        visitorData.gpsCountry = addr.country || null;
-                        visitorData.gpsCountryCode = addr.country_code?.toUpperCase() || null;
-                        visitorData.reverseDone = true;
-                        renderVisitorCard();
-                    } catch(e) {
-                        visitorData.reverseDone = true;
-                        renderVisitorCard();
-                    }
-                },
-                (err) => {
-                    // GPS bị từ chối — không sao, dùng IP location
-                    visitorData.gpsDone = true;
-                    renderVisitorCard();
-                },
-                { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
-            );
-        }
-
-        // Chạy song song
-        fetchIP();
-        fetchGPS();
-
-        // ===== Copy IP =====
-        function copyIP(ip, btn) {
-            navigator.clipboard.writeText(ip).then(() => {
+        function copyIP(ip,btn){
+            navigator.clipboard.writeText(ip).then(()=>{
                 btn.classList.add('copied');
-                btn.innerHTML = '<span class="iconify" data-icon="mdi:check" data-width="12"></span> Đã sao chép!';
-                showToast('Đã sao chép IP: ' + ip);
-                setTimeout(() => {
-                    btn.classList.remove('copied');
-                    btn.innerHTML = '<span class="iconify" data-icon="mdi:content-copy" data-width="12"></span> Sao chép IP';
-                }, 2000);
+                btn.innerHTML='<span class="iconify" data-icon="mdi:check" data-width="12"></span> Đã sao chép!';
+                showToast('Đã sao chép IP: '+ip);
+                setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='<span class="iconify" data-icon="mdi:content-copy" data-width="12"></span> Sao chép IP'},2000);
             });
         }
+
+        fetchIPInfo();
     </script>
 </body>
 </html>
