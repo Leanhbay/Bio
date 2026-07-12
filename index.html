@@ -369,8 +369,17 @@
         }, 500);
 
         // ===== Reveal =====
-        function revealElements(){document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top<innerHeight-40)el.classList.add('active')})}
-        addEventListener('scroll',revealElements);addEventListener('load',revealElements);
+        function revealElements(){
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 40) {
+                    el.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealElements);
+        document.body.addEventListener('scroll', revealElements); 
+        window.addEventListener('load', revealElements);
+        setTimeout(revealElements, 1000);
 
         // ===== Particles =====
         const cvs=document.getElementById('particles'),cx=cvs.getContext('2d');let pts=[];
