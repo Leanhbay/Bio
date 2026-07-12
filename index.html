@@ -44,23 +44,18 @@
         .social-link.facebook::before{background:linear-gradient(135deg,rgba(24,119,242,0.15),rgba(24,119,242,0.03))}
         .social-link.facebook:hover{border-color:rgba(24,119,242,0.3);box-shadow:0 8px 30px -8px rgba(24,119,242,0.2)}
         .social-link.facebook .social-icon{color:#1877F2}
-
         .social-link.instagram::before{background:linear-gradient(135deg,rgba(225,48,108,0.15),rgba(131,58,180,0.08))}
         .social-link.instagram:hover{border-color:rgba(225,48,108,0.3);box-shadow:0 8px 30px -8px rgba(225,48,108,0.2)}
         .social-link.instagram .social-icon{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-
         .social-link.tiktok::before{background:linear-gradient(135deg,rgba(255,0,80,0.15),rgba(0,242,234,0.08))}
         .social-link.tiktok:hover{border-color:rgba(255,0,80,0.3);box-shadow:0 8px 30px -8px rgba(255,0,80,0.15)}
         .social-link.tiktok .social-icon{background:linear-gradient(135deg,#ff0050,#00f2ea);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-
         .social-link.zalo::before{background:linear-gradient(135deg,rgba(0,136,255,0.15),rgba(0,136,255,0.03))}
         .social-link.zalo:hover{border-color:rgba(0,136,255,0.3);box-shadow:0 8px 30px -8px rgba(0,136,255,0.2)}
         .social-link.zalo .social-icon{color:#0088FF}
-
         .social-link.youtube::before{background:linear-gradient(135deg,rgba(255,0,0,0.15),rgba(255,0,0,0.03))}
         .social-link.youtube:hover{border-color:rgba(255,0,0,0.3);box-shadow:0 8px 30px -8px rgba(255,0,0,0.2)}
         .social-link.youtube .social-icon{color:#FF0000}
-
         .social-link.telegram::before{background:linear-gradient(135deg,rgba(0,136,204,0.15),rgba(0,136,204,0.03))}
         .social-link.telegram:hover{border-color:rgba(0,136,204,0.3);box-shadow:0 8px 30px -8px rgba(0,136,204,0.2)}
         .social-link.telegram .social-icon{color:#0088CC}
@@ -94,22 +89,19 @@
         .toast{position:fixed;bottom:84px;right:24px;z-index:50;padding:12px 20px;border-radius:12px;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:#34D399;font-size:13px;font-weight:500;backdrop-filter:blur(10px);opacity:0;transform:translateY(10px);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);pointer-events:none}
         .toast.show{opacity:1;transform:translateY(0)}
 
-        /* Visitor Card */
-        .ip-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:20px;overflow:hidden;transition:all 0.4s ease}
-        .ip-card:hover{border-color:rgba(99,102,241,0.2);box-shadow:0 0 40px -12px rgba(99,102,241,0.15)}
+        /* ===== Visitor Card — ẩn hoàn toàn khi chưa có data ===== */
+        .ip-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:20px;overflow:hidden;max-height:0;opacity:0;margin-bottom:0;transition:all 0.6s cubic-bezier(0.16,1,0.3,1);border-width:0}
+        .ip-card.visible{max-height:600px;opacity:1;margin-bottom:32px;border-width:1px}
         .ip-card-header{padding:16px 20px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.04)}
-        .ip-card-body{padding:16px 20px 20px}
+        .ip-card-body{padding:4px 20px 20px}
 
-        .ip-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
+        .ip-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;opacity:0;transform:translateY(12px);transition:all 0.5s cubic-bezier(0.16,1,0.3,1)}
+        .ip-row.show{opacity:1;transform:translateY(0)}
         .ip-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,0.03)}
         .ip-label{display:flex;align-items:center;gap:8px;font-size:12px;color:#64748b;font-weight:500}
         .ip-label .iconify{font-size:14px;color:#475569}
         .ip-value{font-size:13px;color:#e2e8f0;font-weight:500;font-variant-numeric:tabular-nums}
         .ip-value.primary{color:#a5b4fc;font-weight:600;font-size:14px;letter-spacing:0.5px}
-
-        .ip-loading{display:flex;align-items:center;gap:8px;color:#64748b;font-size:13px}
-        .ip-spinner{width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,255,255,0.1);border-top-color:#6366f1;animation:spin 0.8s linear infinite}
-        @keyframes spin{to{transform:rotate(360deg)}}
 
         .ip-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
         .ip-badge.ipv4{background:rgba(99,102,241,0.12);color:#a5b4fc}
@@ -119,7 +111,7 @@
         .ip-copy-btn:hover{background:rgba(255,255,255,0.1);color:#e2e8f0;border-color:rgba(255,255,255,0.15)}
         .ip-copy-btn.copied{background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);color:#34D399}
 
-        /* Live Clock */
+        /* ===== Live Clock ===== */
         .live-clock-container{display:flex;align-items:center;justify-content:center;gap:16px;padding:18px 20px;border-radius:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);margin-bottom:8px}
         .clock-time{font-size:32px;font-weight:600;letter-spacing:-0.5px;font-variant-numeric:tabular-nums;background:linear-gradient(135deg,#fff 0%,#a5b4fc 50%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
         .clock-seconds{font-size:18px;font-weight:400;color:#6366f1;opacity:0.7;font-variant-numeric:tabular-nums;animation:sec-pulse 1s ease-in-out infinite}
@@ -205,19 +197,17 @@
                 <div class="clock-date" id="clockDate">--</div>
             </div>
 
-            <!-- IP Visitor Card -->
-            <div class="reveal delay-7 ip-card mb-8">
+            <!-- IP Visitor Card — ẩn đến khi có data -->
+            <div class="ip-card reveal delay-7" id="ipCard">
                 <div class="ip-card-header">
                     <span class="iconify" data-icon="mdi:shield-eye" data-width="18" style="color:#6366f1"></span>
                     <span class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Thông tin truy cập</span>
-                    <span class="ml-auto" id="statusIcon"><div class="ip-spinner" style="width:12px;height:12px;border-width:1.5px"></div></span>
+                    <span class="ml-auto" id="statusIcon"></span>
                 </div>
-                <div class="ip-card-body" id="ipBody">
-                    <div class="ip-loading"><div class="ip-spinner"></div><span>Đang lấy thông tin...</span></div>
-                </div>
+                <div class="ip-card-body" id="ipBody"></div>
             </div>
 
-            <div class="reveal delay-8 divider mb-6"></div>
+            <div class="reveal delay-8 divider mb-6" id="dividerAfterCard"></div>
 
             <!-- Social Links -->
             <div class="flex flex-col gap-3 mb-8">
@@ -299,121 +289,149 @@
         function toggleMusic(){musicOn=!musicOn;document.getElementById('musicBars').classList.toggle('paused',!musicOn)}
 
         // ============================================================
-        //  LIVE CLOCK — chạy song song, chính xác theo thiết bị
+        //  LIVE CLOCK
         // ============================================================
         const clockHM=document.getElementById('clockHM'),clockSec=document.getElementById('clockSec');
         const clockDate=document.getElementById('clockDate'),clockTzLabel=document.getElementById('clockTzLabel');
         const clockTzOffset=document.getElementById('clockTzOffset');
-
         const deviceTZ=Intl.DateTimeFormat().resolvedOptions().timeZone;
         clockTzLabel.textContent=deviceTZ.split('/').pop().replace(/_/g,' ');
-
-        const now0=new Date();
-        const utcStr=now0.toLocaleString('en-US',{timeZone:'UTC'});
-        const localStr=now0.toLocaleString('en-US');
-        const diffH=Math.round((new Date(localStr)-new Date(utcStr))/3600000);
-        clockTzOffset.textContent=`UTC${diffH>=0?'+':''}${diffH}`;
-
-        const dayNames=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'];
-        function updateClock(){
-            const n=new Date();
-            clockHM.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
-            clockSec.textContent=':'+String(n.getSeconds()).padStart(2,'0');
-            clockDate.textContent=`${dayNames[n.getDay()]}, ${String(n.getDate()).padStart(2,'0')}/${String(n.getMonth()+1).padStart(2,'0')}/${n.getFullYear()}`;
-        }
-        updateClock();setInterval(updateClock,1000);
+        const n0=new Date(),u0=n0.toLocaleString('en-US',{timeZone:'UTC'}),l0=n0.toLocaleString('en-US');
+        const dH=Math.round((new Date(l0)-new Date(u0))/3600000);
+        clockTzOffset.textContent=`UTC${dH>=0?'+':''}${dH}`;
+        const dayN=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'];
+        function tick(){const n=new Date();clockHM.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');clockSec.textContent=':'+String(n.getSeconds()).padStart(2,'0');clockDate.textContent=`${dayN[n.getDay()]}, ${String(n.getDate()).padStart(2,'0')}/${String(n.getMonth()+1).padStart(2,'0')}/${n.getFullYear()}`}
+        tick();setInterval(tick,1000);
 
         // ============================================================
-        //  IP INFO — chỉ dùng IP, không GPS
+        //  IP INFO — 3 API fallback, không xin phép GPS
         // ============================================================
-        const ipBody=document.getElementById('ipBody');
-        const statusIcon=document.getElementById('statusIcon');
-
         function getFlag(c){return String.fromCodePoint(...c.toUpperCase().split('').map(ch=>127397+ch.charCodeAt(0)))}
 
-        async function fetchIPInfo(){
-            try{
-                // Bước 1: Lấy IP
-                const r1=await fetch('https://api.ipify.org?format=json');
-                const d1=await r1.json();
-                const ip=d1.ip;
-                const ver=ip.includes(':')?'IPv6':'IPv4';
-
-                // Render tạm thời với IP
-                ipBody.innerHTML=buildHTML({ip,ver,loading:true});
-                statusIcon.innerHTML='<div class="ip-spinner" style="width:12px;height:12px;border-width:1.5px"></div>';
-
-                // Bước 2: Lấy chi tiết từ IP
-                const r2=await fetch(`https://ipapi.co/${ip}/json/`);
-                const d2=await r2.json();
-
-                const city=d2.city||'—';
-                const region=d2.region||'';
-                const country=d2.country_name||'—';
-                const cc=d2.country_code||'';
-                const tz=d2.timezone||deviceTZ;
-                const lat=d2.latitude;
-                const lon=d2.longitude;
-                const flag=cc?getFlag(cc):'🌍';
-                const loc=[city,region,country].filter(Boolean).join(', ')||'Không xác định';
-
-                // Render hoàn chỉnh
-                ipBody.innerHTML=buildHTML({ip,ver,flag,loc,tz,lat,lon,loading:false});
-                statusIcon.innerHTML='<div class="online-dot"></div>';
-
-            }catch(e){
-                ipBody.innerHTML=`
-                    <div style="text-align:center;padding:8px 0">
-                        <span class="iconify" data-icon="mdi:wifi-off" data-width="24" style="color:#ef4444;display:inline-block;margin-bottom:8px"></span>
-                        <p style="font-size:13px;color:#94a3b8">Không thể lấy thông tin</p>
-                        <p style="font-size:11px;color:#475569;margin-top:4px">Kiểm tra kết nối mạng</p>
-                    </div>`;
-                statusIcon.innerHTML='<span class="iconify" data-icon="mdi:close-circle" data-width="14" style="color:#ef4444"></span>';
-            }
+        // Fetch với timeout
+        function fetchWithTimeout(url, ms=8000){
+            const ctrl=new AbortController();
+            const tid=setTimeout(()=>ctrl.abort(),ms);
+            return fetch(url,{signal:ctrl.signal}).then(r=>{
+                clearTimeout(tid);
+                if(!r.ok) throw new Error(r.status);
+                return r.json();
+            }).catch(e=>{clearTimeout(tid);throw e});
         }
 
-        function buildHTML(d){
-            const badgeCls=d.ver==='IPv6'?'ipv6':'ipv4';
-            let rows=`
-                <div class="ip-row">
-                    <div class="ip-label"><span class="iconify" data-icon="mdi:ip-network" data-width="14"></span>Địa chỉ IP</div>
-                    <div class="flex items-center gap-2">
-                        <span class="ip-value primary">${d.ip}</span>
-                        <span class="ip-badge ${badgeCls}">${d.ver}</span>
-                    </div>
-                </div>`;
+        // Chuẩn hóa dữ liệu từ bất kỳ API nào về cùng 1 format
+        function normalize(data, source){
+            const r={ip:null,ver:null,city:null,region:null,country:null,cc:null,tz:null,lat:null,lon:null};
+            if(source==='ipwho'){
+                r.ip=data.ip; r.ver=data.type||'IPv4';
+                r.city=data.city; r.region=data.region;
+                r.country=data.country; r.cc=data.country_code;
+                r.tz=data.timezone?.id; r.lat=data.latitude; r.lon=data.longitude;
+            }else if(source==='ipapi'){
+                r.ip=data.ip; r.ver=(data.ip||'').includes(':')?'IPv6':'IPv4';
+                r.city=data.city; r.region=data.region;
+                r.country=data.country_name; r.cc=data.country_code;
+                r.tz=data.timezone; r.lat=data.latitude; r.lon=data.longitude;
+            }else if(source==='freeip'){
+                r.ip=data.ipAddress; r.ver=(data.ipAddress||'').includes(':')?'IPv6':'IPv4';
+                r.city=data.cityName; r.region=data.regionName;
+                r.country=data.countryName; r.cc=data.countryCode;
+                r.tz=data.timeZone; r.lat=data.latitude; r.lon=data.longitude;
+            }else if(source==='ipify'){
+                r.ip=data.ip; r.ver=(data.ip||'').includes(':')?'IPv6':'IPv4';
+            }
+            return r;
+        }
 
-            if(d.loading){
-                rows+=`
-                <div class="ip-row">
-                    <div class="ip-label"><span class="iconify" data-icon="mdi:map-marker" data-width="14"></span>Vị trí</div>
-                    <div class="ip-loading" style="justify-content:flex-end"><div class="ip-spinner" style="width:12px;height:12px;border-width:1.5px"></div><span style="font-size:12px">Đang xác định...</span></div>
-                </div>
-                <div class="ip-row">
-                    <div class="ip-label"><span class="iconify" data-icon="mdi:clock-outline" data-width="14"></span>Múi giờ</div>
-                    <div class="ip-loading" style="justify-content:flex-end"><div class="ip-spinner" style="width:12px;height:12px;border-width:1.5px"></div></div>
-                </div>`;
-            }else{
-                rows+=`
-                <div class="ip-row">
-                    <div class="ip-label"><span class="iconify" data-icon="mdi:map-marker" data-width="14"></span>Vị trí</div>
-                    <div class="flex items-center gap-1.5"><span class="text-sm">${d.flag}</span><span class="ip-value">${d.loc}</span></div>
-                </div>
-                <div class="ip-row">
-                    <div class="ip-label"><span class="iconify" data-icon="mdi:clock-outline" data-width="14"></span>Múi giờ</div>
-                    <span class="ip-value" style="font-size:12px;color:#94a3b8">${d.tz}</span>
-                </div>`;
-                if(d.lat!=null&&d.lon!=null){
-                    rows+=`
-                    <div class="ip-row">
-                        <div class="ip-label"><span class="iconify" data-icon="mdi:crosshairs-gps" data-width="14"></span>Tọa độ</div>
-                        <span class="ip-value" style="font-size:12px;color:#94a3b8;font-family:'SF Mono','Fira Code',monospace">${d.lat.toFixed(4)}, ${d.lon.toFixed(4)}</span>
-                    </div>`;
-                }
+        async function fetchIPInfo(){
+            let info=null;
+
+            // Thử 1: ipwho.is — nhanh, đầy đủ, HTTPS
+            try{const d=await fetchWithTimeout('https://ipwho.is/json/',8000);if(d&&d.success!==false&&d.ip){info=normalize(d,'ipwho');}}catch(e){console.log('ipwho fail:',e.message)}
+
+            // Thử 2: ipapi.co — HTTPS, ổn định
+            if(!info||!info.city){
+                try{const d=await fetchWithTimeout('https://ipapi.co/json/',8000);if(d&&d.ip){const n=normalize(d,'ipapi');info=info?{...info,...n}:n;}}catch(e){console.log('ipapi fail:',e.message)}
             }
 
-            rows+=`<div style="padding-top:12px;display:flex;justify-content:center"><button class="ip-copy-btn" onclick="copyIP('${d.ip}',this)"><span class="iconify" data-icon="mdi:content-copy" data-width="12"></span>Sao chép IP</button></div>`;
-            return rows;
+            // Thử 3: freeipapi.com — HTTPS, backup
+            if(!info||!info.city){
+                try{const d=await fetchWithTimeout('https://freeipapi.com/api/json',8000);if(d&&d.ipAddress){const n=normalize(d,'freeip');info=info?{...info,...n}:n;}}catch(e){console.log('freeip fail:',e.message)}
+            }
+
+            // Thử 4: chỉ lấy IP nếu mọi thứ khác fail
+            if(!info){
+                try{const d=await fetchWithTimeout('https://api.ipify.org?format=json',8000);if(d&&d.ip){info=normalize(d,'ipify');}}catch(e){console.log('ipify fail:',e.message)}
+            }
+
+            // Render
+            if(info&&info.ip){
+                showCard(info);
+            }
+            // Nếu tất cả fail → ẩn card, không hiện lỗi
+        }
+
+        function showCard(d){
+            const card=document.getElementById('ipCard');
+            const body=document.getElementById('ipBody');
+            const icon=document.getElementById('statusIcon');
+
+            const ver=d.ver||'IPv4';
+            const verCls=ver==='IPv6'?'ipv6':'ipv4';
+            const cc=d.cc||'';
+            const flag=cc?getFlag(cc):'🌍';
+            const loc=[d.city,d.region,d.country].filter(Boolean).join(', ')||'Không xác định';
+            const tz=d.tz||deviceTZ;
+
+            // Build rows
+            let html='';
+
+            // Row 1: IP
+            html+=`<div class="ip-row" data-i="0">
+                <div class="ip-label"><span class="iconify" data-icon="mdi:ip-network" data-width="14"></span>Địa chỉ IP</div>
+                <div class="flex items-center gap-2"><span class="ip-value primary">${d.ip}</span><span class="ip-badge ${verCls}">${ver}</span></div>
+            </div>`;
+
+            // Row 2: Vị trí
+            html+=`<div class="ip-row" data-i="1">
+                <div class="ip-label"><span class="iconify" data-icon="mdi:map-marker" data-width="14"></span>Vị trí</div>
+                <div class="flex items-center gap-1.5"><span class="text-sm">${flag}</span><span class="ip-value">${loc}</span></div>
+            </div>`;
+
+            // Row 3: Múi giờ
+            html+=`<div class="ip-row" data-i="2">
+                <div class="ip-label"><span class="iconify" data-icon="mdi:clock-outline" data-width="14"></span>Múi giờ</div>
+                <span class="ip-value" style="font-size:12px;color:#94a3b8">${tz}</span>
+            </div>`;
+
+            // Row 4: Tọa độ
+            if(d.lat!=null&&d.lon!=null){
+                html+=`<div class="ip-row" data-i="3">
+                    <div class="ip-label"><span class="iconify" data-icon="mdi:crosshairs-gps" data-width="14"></span>Tọa độ</div>
+                    <span class="ip-value" style="font-size:12px;color:#94a3b8;font-family:'SF Mono','Fira Code',monospace">${Number(d.lat).toFixed(4)}, ${Number(d.lon).toFixed(4)}</span>
+                </div>`;
+            }
+
+            // Copy button
+            html+=`<div style="padding-top:14px;display:flex;justify-content:center">
+                <button class="ip-copy-btn" onclick="copyIP('${d.ip}',this)">
+                    <span class="iconify" data-icon="mdi:content-copy" data-width="12"></span>Sao chép IP
+                </button>
+            </div>`;
+
+            body.innerHTML=html;
+            icon.innerHTML='<div class="online-dot"></div>';
+
+            // Hiện card
+            requestAnimationFrame(()=>{
+                card.classList.add('visible');
+                card.classList.add('active');
+                // Animate từng row
+                const rows=body.querySelectorAll('.ip-row');
+                rows.forEach((row,i)=>{
+                    setTimeout(()=>row.classList.add('show'), 100 + i*120);
+                });
+            });
         }
 
         function copyIP(ip,btn){
@@ -425,6 +443,7 @@
             });
         }
 
+        // Chạy
         fetchIPInfo();
     </script>
 </body>
