@@ -76,7 +76,6 @@
         .toast{position:fixed;bottom:84px;right:24px;z-index:50;padding:12px 20px;border-radius:12px;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:#34D399;font-size:13px;font-weight:500;backdrop-filter:blur(10px);opacity:0;transform:translateY(10px);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);pointer-events:none}
         .toast.show{opacity:1;transform:translateY(0)}
 
-        /* IP Card */
         .ip-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:20px;overflow:hidden;max-height:0;opacity:0;margin-bottom:0;transition:all 0.6s cubic-bezier(0.16,1,0.3,1);border-width:0}
         .ip-card.visible{max-height:600px;opacity:1;margin-bottom:32px;border-width:1px}
         .ip-card-header{padding:16px 20px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.04)}
@@ -95,7 +94,6 @@
         .ip-copy-btn:hover{background:rgba(255,255,255,0.1);color:#e2e8f0;border-color:rgba(255,255,255,0.15)}
         .ip-copy-btn.copied{background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);color:#34D399}
 
-        /* Live Clock */
         .live-clock-container{display:flex;align-items:center;justify-content:center;gap:16px;padding:18px 20px;border-radius:16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);margin-bottom:8px}
         .clock-time{font-size:32px;font-weight:600;letter-spacing:-0.5px;font-variant-numeric:tabular-nums;background:linear-gradient(135deg,#fff 0%,#a5b4fc 50%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
         .clock-seconds{font-size:18px;font-weight:400;color:#6366f1;opacity:0.7;font-variant-numeric:tabular-nums;animation:sec-pulse 1s ease-in-out infinite}
@@ -108,27 +106,16 @@
         .online-dot::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px solid rgba(34,197,94,0.4);animation:gps-ring 2s ease-out infinite}
         @keyframes gps-ring{0%{transform:scale(1);opacity:1}100%{transform:scale(2);opacity:0}}
 
-        /* Music FAB */
-        .music-fab{position:fixed;bottom:24px;left:24px;z-index:50;display:flex;align-items:center;gap:10px;padding:10px 16px 10px 12px;border-radius:50px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(16px);cursor:pointer;transition:all 0.4s cubic-bezier(0.16,1,0.3,1)}
-        .music-fab:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15);transform:scale(1.03)}
-        .music-fab:active{transform:scale(0.97)}
-        .music-fab-icon{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#a855f7);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;overflow:hidden}
-        .music-fab-icon .iconify{font-size:16px;color:#fff;position:relative;z-index:1}
-        .music-bars-mini{display:flex;align-items:flex-end;gap:2px;height:14px;position:absolute;inset:0;z-index:0;opacity:0;transition:opacity 0.3s ease}
-        .music-fab.playing .music-bars-mini{opacity:1}
-        .music-fab.playing .music-fab-icon .iconify{opacity:0}
-        .mbar{width:2px;border-radius:99px;background:rgba(255,255,255,0.8);animation:mbounce 0.6s ease-in-out infinite alternate}
-        .mbar:nth-child(1){height:6px;animation-delay:0s}.mbar:nth-child(2){height:10px;animation-delay:0.12s}.mbar:nth-child(3){height:4px;animation-delay:0.24s}.mbar:nth-child(4){height:8px;animation-delay:0.36s}.mbar:nth-child(5){height:5px;animation-delay:0.08s}
-        @keyframes mbounce{0%{transform:scaleY(0.3)}100%{transform:scaleY(1)}}
-        .music-fab.paused .mbar{animation-play-state:paused}
-        .music-fab-text{display:flex;flex-direction:column}
-        .music-fab-title{font-size:11px;font-weight:600;color:#e2e8f0;white-space:nowrap;max-width:120px;overflow:hidden;text-overflow:ellipsis}
-        .music-fab-sub{font-size:9px;color:#64748b;font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
-        #ytPlayer{position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+        /* YouTube player ẩn */
+        #ytPlayerContainer{position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden}
     </style>
 </head>
 <body>
-    <iframe id="ytPlayer" src="https://www.youtube.com/embed/ECLfqo75Qh8?autoplay=1&loop=1&playlist=ECLfqo75Qh8&controls=0&showinfo=0&modestbranding=1&rel=0&enablejsapi=0&origin=*" allow="autoplay;encrypted-media" frameborder="0"></iframe>
+
+    <!-- YouTube Player ẩn — dùng IFrame API để kontrol volume -->
+    <div id="ytPlayerContainer">
+        <div id="ytPlayer"></div>
+    </div>
 
     <div class="bg-glow-1"></div>
     <div class="bg-glow-2"></div>
@@ -234,21 +221,6 @@
         </div>
     </main>
 
-    <!-- Music FAB -->
-    <div class="music-fab playing" id="musicFab" onclick="toggleMusic()">
-        <div class="music-fab-icon">
-            <span class="iconify" data-icon="mdi:play" data-width="16"></span>
-            <div class="music-bars-mini">
-                <div class="mbar"></div><div class="mbar"></div><div class="mbar"></div><div class="mbar"></div><div class="mbar"></div>
-            </div>
-        </div>
-        <div class="music-fab-text">
-            <span class="music-fab-title" id="songTitle">YouTube Music</span>
-            <span class="music-fab-sub" id="songStatus">Playing</span>
-        </div>
-    </div>
-
-    <!-- Share -->
     <button class="share-btn" onclick="shareProfile()" title="Chia sẻ">
         <span class="iconify" data-icon="mdi:share-variant" data-width="20"></span>
     </button>
@@ -273,24 +245,92 @@
         function shareProfile(){if(navigator.share)navigator.share({title:'Bio',text:'Xem profile!',url:location.href}).catch(()=>{});else navigator.clipboard.writeText(location.href).then(()=>showToast('Đã sao chép liên kết!')).catch(()=>{})}
         function showToast(t){const e=document.getElementById('toast');document.getElementById('toastText').textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2500)}
 
-        // ===== Music =====
-        const musicFab=document.getElementById('musicFab');
-        const songStatus=document.getElementById('songStatus');
-        const ytPlayer=document.getElementById('ytPlayer');
-        let musicPlaying=true;
+        // ============================================================
+        //  NHẠC — YouTube IFrame API, volume 100, autoplay ép buộc
+        // ============================================================
+        let ytPlayer = null;
+        let musicStarted = false;
 
-        function toggleMusic(){
-            musicPlaying=!musicPlaying;
-            if(musicPlaying){
-                ytPlayer.src='https://www.youtube.com/embed/ECLfqo75Qh8?autoplay=1&loop=1&playlist=ECLfqo75Qh8&controls=0&showinfo=0&modestbranding=1&rel=0&enablejsapi=0';
-                musicFab.classList.remove('paused');musicFab.classList.add('playing');
-                songStatus.textContent='Playing';
-            }else{
-                ytPlayer.src='about:blank';
-                musicFab.classList.remove('playing');musicFab.classList.add('paused');
-                songStatus.textContent='Paused';
+        // Tải YouTube IFrame API
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        document.head.appendChild(tag);
+
+        function onYouTubeIframeAPIReady() {
+            ytPlayer = new YT.Player('ytPlayer', {
+                width: '1',
+                height: '1',
+                videoId: 'ECLfqo75Qh8',
+                playerVars: {
+                    autoplay: 1,
+                    loop: 1,
+                    playlist: 'ECLfqo75Qh8',
+                    controls: 0,
+                    showinfo: 0,
+                    modestbranding: 1,
+                    rel: 0,
+                    fs: 0,
+                    iv_load_policy: 3,
+                    disablekb: 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Set âm lượng tối đa (100%)
+            event.target.setVolume(100);
+            // Thử phát ngay
+            event.target.playVideo();
+            musicStarted = true;
+        }
+
+        function onPlayerStateChange(event) {
+            // Nếu bị dừng (trình duyệt chặn autoplay), thử phát lại
+            if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.CUED) {
+                if (ytPlayer) {
+                    ytPlayer.setVolume(100);
+                    ytPlayer.playVideo();
+                }
             }
         }
+
+        // Ép phát khi người dùng tương tác lần đầu (bypass chính sách autoplay)
+        function forcePlay() {
+            if (musicStarted && ytPlayer) {
+                ytPlayer.setVolume(100);
+                ytPlayer.playVideo();
+            }
+            // Chỉ cần 1 lần, xóa listener
+            document.removeEventListener('click', forcePlay);
+            document.removeEventListener('touchstart', forcePlay);
+            document.removeEventListener('scroll', forcePlay);
+            document.removeEventListener('keydown', forcePlay);
+        }
+        document.addEventListener('click', forcePlay);
+        document.addEventListener('touchstart', forcePlay);
+        document.addEventListener('scroll', forcePlay);
+        document.addEventListener('keydown', forcePlay);
+
+        // Thử phát lại liên tục mỗi 2 giây nếu chưa phát được
+        let playInterval = setInterval(() => {
+            if (ytPlayer && ytPlayer.getPlayerState) {
+                const state = ytPlayer.getPlayerState();
+                if (state !== YT.PlayerState.PLAYING) {
+                    ytPlayer.setVolume(100);
+                    ytPlayer.playVideo();
+                } else {
+                    // Đã phát thành công, dừng interval
+                    clearInterval(playInterval);
+                }
+            }
+        }, 2000);
+
+        // Dừng thử lại sau 30 giây
+        setTimeout(() => clearInterval(playInterval), 30000);
 
         // ===== Live Clock =====
         const clockHM=document.getElementById('clockHM'),clockSec=document.getElementById('clockSec');
@@ -307,11 +347,7 @@
 
         // ===== IP Info =====
         function getFlag(c){return String.fromCodePoint(...c.toUpperCase().split('').map(ch=>127397+ch.charCodeAt(0)))}
-
-        function fetchWithTimeout(url,ms=8000){
-            const ctrl=new AbortController();const tid=setTimeout(()=>ctrl.abort(),ms);
-            return fetch(url,{signal:ctrl.signal}).then(r=>{clearTimeout(tid);if(!r.ok)throw new Error(r.status);return r.json()}).catch(e=>{clearTimeout(tid);throw e});
-        }
+        function fetchWithTimeout(url,ms=8000){const ctrl=new AbortController();const tid=setTimeout(()=>ctrl.abort(),ms);return fetch(url,{signal:ctrl.signal}).then(r=>{clearTimeout(tid);if(!r.ok)throw new Error(r.status);return r.json()}).catch(e=>{clearTimeout(tid);throw e})}
 
         function normalize(data,source){
             const r={ip:null,ver:null,city:null,region:null,country:null,cc:null,tz:null,lat:null,lon:null};
