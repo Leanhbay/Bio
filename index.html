@@ -69,16 +69,6 @@
         ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:99px}
         #particles{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-        .music-bar{width:3px;border-radius:99px;background:linear-gradient(to top,#6366f1,#a855f7);animation:music-bounce 0.8s ease-in-out infinite alternate}
-        .music-bar:nth-child(1){height:12px;animation-delay:0s}.music-bar:nth-child(2){height:20px;animation-delay:0.15s}
-        .music-bar:nth-child(3){height:8px;animation-delay:0.3s}.music-bar:nth-child(4){height:16px;animation-delay:0.45s}
-        .music-bar:nth-child(5){height:10px;animation-delay:0.1s}
-        @keyframes music-bounce{0%{transform:scaleY(0.3)}100%{transform:scaleY(1)}}
-        .paused .music-bar{animation-play-state:paused}
-
-        .now-playing{display:flex;align-items:center;gap:12px;padding:12px 18px;border-radius:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);cursor:pointer;transition:all 0.3s ease}
-        .now-playing:hover{background:rgba(255,255,255,0.06)}
-
         .share-btn{position:fixed;bottom:24px;right:24px;z-index:50;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#a855f7);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;color:#fff;box-shadow:0 8px 30px -6px rgba(99,102,241,0.5);transition:all 0.3s ease}
         .share-btn:hover{transform:scale(1.1);box-shadow:0 12px 40px -6px rgba(99,102,241,0.6)}
         .share-btn:active{transform:scale(0.95)}
@@ -87,68 +77,18 @@
         .toast.show{opacity:1;transform:translateY(0)}
 
         /* ===== Visitor Counter Card ===== */
-        .visitor-card{
-            position:relative;
-            background:rgba(255,255,255,0.03);
-            border:1px solid rgba(255,255,255,0.06);
-            border-radius:24px;
-            padding:28px 24px;
-            text-align:center;
-            overflow:hidden;
-            transition:all 0.4s ease;
-        }
-        .visitor-card:hover{
-            border-color:rgba(99,102,241,0.2);
-            box-shadow:0 0 50px -15px rgba(99,102,241,0.2);
-        }
-        .visitor-card::before{
-            content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
-            background:conic-gradient(from 0deg,transparent,rgba(99,102,241,0.03),transparent,rgba(168,85,247,0.03),transparent);
-            animation:visitor-glow 8s linear infinite;
-        }
+        .visitor-card{position:relative;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:24px;padding:28px 24px;text-align:center;overflow:hidden;transition:all 0.4s ease}
+        .visitor-card:hover{border-color:rgba(99,102,241,0.2);box-shadow:0 0 50px -15px rgba(99,102,241,0.2)}
+        .visitor-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent,rgba(99,102,241,0.03),transparent,rgba(168,85,247,0.03),transparent);animation:visitor-glow 8s linear infinite}
         @keyframes visitor-glow{to{transform:rotate(360deg)}}
-
-        .visitor-icon-ring{
-            width:56px;height:56px;border-radius:50%;margin:0 auto 16px;
-            background:linear-gradient(135deg,rgba(99,102,241,0.15),rgba(168,85,247,0.15));
-            border:1px solid rgba(99,102,241,0.2);
-            display:flex;align-items:center;justify-content:center;
-            position:relative;z-index:1;
-        }
-        .visitor-number{
-            font-size:48px;font-weight:700;letter-spacing:-2px;
-            font-variant-numeric:tabular-nums;line-height:1;
-            position:relative;z-index:1;
-            background:linear-gradient(135deg,#fff 0%,#a5b4fc 40%,#c4b5fd 100%);
-            -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-            background-clip:text;
-        }
-        .visitor-label{
-            font-size:12px;color:#64748b;font-weight:600;
-            text-transform:uppercase;letter-spacing:2px;
-            margin-top:8px;position:relative;z-index:1;
-        }
-        .visitor-sub{
-            font-size:11px;color:#475569;font-weight:400;
-            margin-top:6px;position:relative;z-index:1;
-        }
-        .visitor-avatars{
-            display:flex;justify-content:center;margin-top:16px;
-            position:relative;z-index:1;
-        }
-        .visitor-avatars img{
-            width:28px;height:28px;border-radius:50%;
-            border:2px solid #030304;margin-left:-8px;
-            object-fit:cover;
-        }
+        .visitor-icon-ring{width:56px;height:56px;border-radius:50%;margin:0 auto 16px;background:linear-gradient(135deg,rgba(99,102,241,0.15),rgba(168,85,247,0.15));border:1px solid rgba(99,102,241,0.2);display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
+        .visitor-number{font-size:48px;font-weight:700;letter-spacing:-2px;font-variant-numeric:tabular-nums;line-height:1;position:relative;z-index:1;background:linear-gradient(135deg,#fff 0%,#a5b4fc 40%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .visitor-label{font-size:12px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-top:8px;position:relative;z-index:1}
+        .visitor-sub{font-size:11px;color:#475569;font-weight:400;margin-top:6px;position:relative;z-index:1}
+        .visitor-avatars{display:flex;justify-content:center;margin-top:16px;position:relative;z-index:1}
+        .visitor-avatars img{width:28px;height:28px;border-radius:50%;border:2px solid #030304;margin-left:-8px;object-fit:cover}
         .visitor-avatars img:first-child{margin-left:0}
-        .visitor-avatars .more{
-            width:28px;height:28px;border-radius:50%;
-            border:2px solid #030304;margin-left:-8px;
-            background:rgba(99,102,241,0.2);
-            font-size:10px;font-weight:600;color:#a5b4fc;
-            display:flex;align-items:center;justify-content:center;
-        }
+        .visitor-avatars .more{width:28px;height:28px;border-radius:50%;border:2px solid #030304;margin-left:-8px;background:rgba(99,102,241,0.2);font-size:10px;font-weight:600;color:#a5b4fc;display:flex;align-items:center;justify-content:center}
 
         /* ===== IP Card ===== */
         .ip-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:20px;overflow:hidden;max-height:0;opacity:0;margin-bottom:0;transition:all 0.6s cubic-bezier(0.16,1,0.3,1);border-width:0}
@@ -181,9 +121,58 @@
         .online-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;position:relative;flex-shrink:0}
         .online-dot::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px solid rgba(34,197,94,0.4);animation:gps-ring 2s ease-out infinite}
         @keyframes gps-ring{0%{transform:scale(1);opacity:1}100%{transform:scale(2);opacity:0}}
+
+        /* ===== Music Player (floating) ===== */
+        .music-fab{
+            position:fixed;bottom:24px;left:24px;z-index:50;
+            display:flex;align-items:center;gap:10px;
+            padding:10px 16px 10px 12px;border-radius:50px;
+            background:rgba(255,255,255,0.06);
+            border:1px solid rgba(255,255,255,0.08);
+            backdrop-filter:blur(16px);
+            cursor:pointer;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+        .music-fab:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.15);transform:scale(1.03)}
+        .music-fab:active{transform:scale(0.97)}
+
+        .music-fab-icon{
+            width:32px;height:32px;border-radius:50%;
+            background:linear-gradient(135deg,#6366f1,#a855f7);
+            display:flex;align-items:center;justify-content:center;
+            flex-shrink:0;position:relative;overflow:hidden;
+        }
+        .music-fab-icon .iconify{font-size:16px;color:#fff;position:relative;z-index:1}
+
+        .music-bars-mini{
+            display:flex;align-items:flex-end;gap:2px;height:14px;
+            position:absolute;inset:0;z-index:0;opacity:0;
+            transition:opacity 0.3s ease;
+        }
+        .music-fab.playing .music-bars-mini{opacity:1}
+        .music-fab.playing .music-fab-icon .iconify{opacity:0}
+
+        .mbar{width:2px;border-radius:99px;background:rgba(255,255,255,0.8);animation:mbounce 0.6s ease-in-out infinite alternate}
+        .mbar:nth-child(1){height:6px;animation-delay:0s}.mbar:nth-child(2){height:10px;animation-delay:0.12s}
+        .mbar:nth-child(3){height:4px;animation-delay:0.24s}.mbar:nth-child(4){height:8px;animation-delay:0.36s}
+        .mbar:nth-child(5){height:5px;animation-delay:0.08s}
+        @keyframes mbounce{0%{transform:scaleY(0.3)}100%{transform:scaleY(1)}}
+        .music-fab.paused .mbar{animation-play-state:paused}
+
+        .music-fab-text{display:flex;flex-direction:column}
+        .music-fab-title{font-size:11px;font-weight:600;color:#e2e8f0;white-space:nowrap;max-width:120px;overflow:hidden;text-overflow:ellipsis}
+        .music-fab-sub{font-size:9px;color:#64748b;font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
+
+        /* Hidden YouTube iframe */
+        #ytPlayer{position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
     </style>
 </head>
 <body>
+    <!-- Hidden YouTube Player -->
+    <iframe id="ytPlayer" 
+            src="https://www.youtube.com/embed/ECLfqo75Qh8?autoplay=1&loop=1&playlist=ECLfqo75Qh8&controls=0&showinfo=0&modestbranding=1&rel=0&enablejsapi=0&origin=*" 
+            allow="autoplay;encrypted-media" 
+            frameborder="0"></iframe>
+
     <div class="bg-glow-1"></div>
     <div class="bg-glow-2"></div>
     <div class="bg-glow-3"></div>
@@ -207,24 +196,15 @@
                 </div>
                 <h1 class="reveal delay-1 text-2xl font-semibold tracking-tight mb-1">Nguyễn Văn A</h1>
                 <p class="reveal delay-2 text-sm text-slate-400 mb-3">@nguyenvana.official</p>
-                <p class="reveal delay-3 text-center text-sm text-slate-400 leading-relaxed max-w-xs mb-4">
+                <p class="reveal delay-3 text-center text-sm text-slate-400 leading-relaxed max-w-xs">
                     ✨ Creator & Content Strategist<br>
                     🎬 Chia sẻ kiến thức & trải nghiệm sống<br>
                     📍 Hà Nội, Việt Nam
                 </p>
-                <div class="reveal delay-4 now-playing" onclick="toggleMusic()">
-                    <div class="flex items-end gap-[3px] h-5" id="musicBars">
-                        <div class="music-bar"></div><div class="music-bar"></div><div class="music-bar"></div><div class="music-bar"></div><div class="music-bar"></div>
-                    </div>
-                    <div class="text-left">
-                        <div class="text-[11px] text-slate-500 font-medium uppercase tracking-wider">Now Playing</div>
-                        <div class="text-xs text-slate-300 font-medium">Đang nghe nhạc...</div>
-                    </div>
-                </div>
             </div>
 
-            <!-- ===== Visitor Counter ===== -->
-            <div class="reveal delay-5 visitor-card mb-8">
+            <!-- Visitor Counter -->
+            <div class="reveal delay-4 visitor-card mb-8">
                 <div class="visitor-icon-ring">
                     <span class="iconify" data-icon="mdi:account-group" data-width="24" style="color:#a5b4fc"></span>
                 </div>
@@ -241,7 +221,7 @@
             </div>
 
             <!-- Live Clock -->
-            <div class="reveal delay-6">
+            <div class="reveal delay-5">
                 <div class="live-clock-container">
                     <div style="display:flex;align-items:baseline;gap:2px">
                         <span class="clock-time" id="clockHM">--:--</span>
@@ -257,7 +237,7 @@
             </div>
 
             <!-- IP Visitor Card -->
-            <div class="ip-card reveal delay-7" id="ipCard">
+            <div class="ip-card reveal delay-6" id="ipCard">
                 <div class="ip-card-header">
                     <span class="iconify" data-icon="mdi:shield-eye" data-width="18" style="color:#6366f1"></span>
                     <span class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Thông tin truy cập</span>
@@ -266,44 +246,44 @@
                 <div class="ip-card-body" id="ipBody"></div>
             </div>
 
-            <div class="reveal delay-8 divider mb-6"></div>
+            <div class="reveal delay-7 divider mb-6"></div>
 
             <!-- Social Links -->
             <div class="flex flex-col gap-3 mb-8">
-                <a href="https://facebook.com" target="_blank" class="reveal delay-8 social-link facebook">
+                <a href="https://facebook.com" target="_blank" class="reveal delay-7 social-link facebook">
                     <span class="social-icon"><span class="iconify" data-icon="mdi:facebook" data-width="26"></span></span>
                     <div><div class="text-sm font-medium">Facebook</div><div class="text-xs text-slate-500">fb.com/nguyenvana</div></div>
                     <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
                 </a>
-                <a href="https://instagram.com" target="_blank" class="reveal delay-8 social-link instagram">
+                <a href="https://instagram.com" target="_blank" class="reveal delay-7 social-link instagram">
                     <span class="social-icon"><span class="iconify" data-icon="mdi:instagram" data-width="26"></span></span>
                     <div><div class="text-sm font-medium">Instagram</div><div class="text-xs text-slate-500">@nguyenvana.official</div></div>
                     <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
                 </a>
-                <a href="https://tiktok.com" target="_blank" class="reveal delay-9 social-link tiktok">
+                <a href="https://tiktok.com" target="_blank" class="reveal delay-8 social-link tiktok">
                     <span class="social-icon"><span class="iconify" data-icon="ic:baseline-tiktok" data-width="26"></span></span>
                     <div><div class="text-sm font-medium">TikTok</div><div class="text-xs text-slate-500">@nguyenvana</div></div>
                     <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
                 </a>
-                <a href="https://zalo.me" target="_blank" class="reveal delay-9 social-link zalo">
+                <a href="https://zalo.me" target="_blank" class="reveal delay-8 social-link zalo">
                     <span class="social-icon"><span class="iconify" data-icon="simple-icons:zalo" data-width="26"></span></span>
                     <div><div class="text-sm font-medium">Zalo</div><div class="text-xs text-slate-500">0812 345 678</div></div>
                     <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
                 </a>
-                <a href="https://youtube.com" target="_blank" class="reveal delay-10 social-link youtube">
+                <a href="https://youtube.com" target="_blank" class="reveal delay-9 social-link youtube">
                     <span class="social-icon"><span class="iconify" data-icon="mdi:youtube" data-width="26"></span></span>
                     <div><div class="text-sm font-medium">YouTube</div><div class="text-xs text-slate-500">Nguyễn Văn A Official</div></div>
                     <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
                 </a>
-                <a href="https://t.me" target="_blank" class="reveal delay-10 social-link telegram">
+                <a href="https://t.me" target="_blank" class="reveal delay-9 social-link telegram">
                     <span class="social-icon"><span class="iconify" data-icon="mdi:telegram" data-width="26"></span></span>
                     <div><div class="text-sm font-medium">Telegram</div><div class="text-xs text-slate-500">@nguyenvana_channel</div></div>
                     <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
                 </a>
             </div>
 
-            <div class="reveal delay-11 divider mb-6"></div>
-            <div class="reveal delay-11 text-center">
+            <div class="reveal delay-10 divider mb-6"></div>
+            <div class="reveal delay-10 text-center">
                 <div class="flex items-center justify-center gap-2 mb-3">
                     <div class="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
                     <span class="text-[11px] text-slate-500 font-medium uppercase tracking-widest">Powered by Bio Link</span>
@@ -314,6 +294,21 @@
         </div>
     </main>
 
+    <!-- Floating Music Control -->
+    <div class="music-fab playing" id="musicFab" onclick="toggleMusic()">
+        <div class="music-fab-icon">
+            <span class="iconify" data-icon="mdi:play" data-width="16"></span>
+            <div class="music-bars-mini">
+                <div class="mbar"></div><div class="mbar"></div><div class="mbar"></div><div class="mbar"></div><div class="mbar"></div>
+            </div>
+        </div>
+        <div class="music-fab-text">
+            <span class="music-fab-title" id="songTitle">Đang phát...</span>
+            <span class="music-fab-sub" id="songStatus">Playing</span>
+        </div>
+    </div>
+
+    <!-- Share Button -->
     <button class="share-btn" onclick="shareProfile()" title="Chia sẻ">
         <span class="iconify" data-icon="mdi:share-variant" data-width="20"></span>
     </button>
@@ -338,9 +333,35 @@
         function shareProfile(){if(navigator.share)navigator.share({title:'Bio',text:'Xem profile!',url:location.href}).catch(()=>{});else navigator.clipboard.writeText(location.href).then(()=>showToast('Đã sao chép liên kết!')).catch(()=>{})}
         function showToast(t){const e=document.getElementById('toast');document.getElementById('toastText').textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2500)}
 
-        // ===== Music =====
-        let musicOn=true;
-        function toggleMusic(){musicOn=!musicOn;document.getElementById('musicBars').classList.toggle('paused',!musicOn)}
+        // ============================================================
+        //  MUSIC — Tự phát khi vào trang
+        // ============================================================
+        const musicFab=document.getElementById('musicFab');
+        const songTitle=document.getElementById('songTitle');
+        const songStatus=document.getElementById('songStatus');
+        const ytPlayer=document.getElementById('ytPlayer');
+        let musicPlaying=true;
+
+        // Lấy tên bài hát từ YouTube (fallback)
+        songTitle.textContent='YouTube Music';
+
+        // Toggle nhạc: reload iframe để play/pause
+        function toggleMusic(){
+            musicPlaying=!musicPlaying;
+            if(musicPlaying){
+                // Phát lại
+                ytPlayer.src='https://www.youtube.com/embed/ECLfqo75Qh8?autoplay=1&loop=1&playlist=ECLfqo75Qh8&controls=0&showinfo=0&modestbranding=1&rel=0&enablejsapi=0';
+                musicFab.classList.remove('paused');
+                musicFab.classList.add('playing');
+                songStatus.textContent='Playing';
+            }else{
+                // Dừng — set src rỗng rồi khôi phục
+                ytPlayer.src='about:blank';
+                musicFab.classList.remove('playing');
+                musicFab.classList.add('paused');
+                songStatus.textContent='Paused';
+            }
+        }
 
         // ============================================================
         //  LIVE CLOCK
@@ -358,7 +379,7 @@
         tick();setInterval(tick,1000);
 
         // ============================================================
-        //  VISITOR COUNTER — 3 API fallback + localStorage backup
+        //  VISITOR COUNTER
         // ============================================================
         const visitorEl=document.getElementById('visitorCount');
         const visitorSub=document.getElementById('visitorSub');
@@ -370,58 +391,24 @@
         }
 
         function animateCount(el,target){
-            const duration=1500;const start=performance.now();const from=0;
-            function step(now){
-                const p=Math.min((now-start)/duration,1);
-                const ease=1-Math.pow(1-p,3); // ease-out cubic
-                el.textContent=Math.floor(from+(target-from)*ease).toLocaleString('vi-VN');
-                if(p<1)requestAnimationFrame(step);
-                else el.textContent=target.toLocaleString('vi-VN');
-            }
+            const duration=1500;const start=performance.now();
+            function step(now){const p=Math.min((now-start)/duration,1);const ease=1-Math.pow(1-p,3);el.textContent=Math.floor(target*ease).toLocaleString('vi-VN');if(p<1)requestAnimationFrame(step);else el.textContent=target.toLocaleString('vi-VN')}
             requestAnimationFrame(step);
         }
 
         function updateVisitorUI(count){
             animateCount(visitorEl,count);
-            visitorSub.textContent='Bạn là lượt truy cập thứ ' + count.toLocaleString('vi-VN');
-            const extra=count>4?'+':'';
-            visitorMore.textContent=extra;
+            visitorSub.textContent='Bạn là lượt truy cập thứ '+count.toLocaleString('vi-VN');
+            visitorMore.textContent=count>4?'+':'';
         }
 
         async function fetchVisitorCount(){
             let count=null;
-
-            // Thử 1: counterapi.dev
-            try{
-                const d=await fetchWithTimeout('https://api.counterapi.dev/v1/bio-nguyenvana/visits/up',6000);
-                if(d&&typeof d.count==='number'){count=d.count;}
-            }catch(e){console.log('counterapi fail:',e.message)}
-
-            // Thử 2: backup namespace
-            if(count===null){
-                try{
-                    const d=await fetchWithTimeout('https://api.counterapi.dev/v1/bio-nva-page/hits/up',6000);
-                    if(d&&typeof d.count==='number'){count=d.count;}
-                }catch(e){console.log('counterapi2 fail:',e.message)}
-            }
-
-            // Fallback: localStorage
-            if(count===null){
-                let stored=parseInt(localStorage.getItem('bio_visit_count'))||0;
-                const lastVisit=localStorage.getItem('bio_visit_time');
-                const now=Date.now();
-                // Chỉ +1 nếu cách lần trước > 30 giây (tránh F5 spam)
-                if(!lastVisit||(now-parseInt(lastVisit))>30000){
-                    stored++;
-                    localStorage.setItem('bio_visit_count',stored);
-                    localStorage.setItem('bio_visit_time',now.toString());
-                }
-                count=stored;
-            }
-
-            if(count!==null) updateVisitorUI(count);
+            try{const d=await fetchWithTimeout('https://api.counterapi.dev/v1/bio-nguyenvana/visits/up',6000);if(d&&typeof d.count==='number')count=d.count;}catch(e){}
+            if(count===null){try{const d=await fetchWithTimeout('https://api.counterapi.dev/v1/bio-nva-page/hits/up',6000);if(d&&typeof d.count==='number')count=d.count;}catch(e){}}
+            if(count===null){let s=parseInt(localStorage.getItem('bio_visit_count'))||0;const lt=localStorage.getItem('bio_visit_time');const now=Date.now();if(!lt||(now-parseInt(lt))>30000){s++;localStorage.setItem('bio_visit_count',s);localStorage.setItem('bio_visit_time',now.toString())}count=s;}
+            if(count!==null)updateVisitorUI(count);
         }
-
         fetchVisitorCount();
 
         // ============================================================
@@ -431,18 +418,10 @@
 
         function normalize(data,source){
             const r={ip:null,ver:null,city:null,region:null,country:null,cc:null,tz:null,lat:null,lon:null};
-            if(source==='ipwho'){
-                r.ip=data.ip;r.ver=data.type||'IPv4';r.city=data.city;r.region=data.region;
-                r.country=data.country;r.cc=data.country_code;r.tz=data.timezone?.id;r.lat=data.latitude;r.lon=data.longitude;
-            }else if(source==='ipapi'){
-                r.ip=data.ip;r.ver=(data.ip||'').includes(':')?'IPv6':'IPv4';r.city=data.city;r.region=data.region;
-                r.country=data.country_name;r.cc=data.country_code;r.tz=data.timezone;r.lat=data.latitude;r.lon=data.longitude;
-            }else if(source==='freeip'){
-                r.ip=data.ipAddress;r.ver=(data.ipAddress||'').includes(':')?'IPv6':'IPv4';r.city=data.cityName;r.region=data.regionName;
-                r.country=data.countryName;r.cc=data.countryCode;r.tz=data.timeZone;r.lat=data.latitude;r.lon=data.longitude;
-            }else if(source==='ipify'){
-                r.ip=data.ip;r.ver=(data.ip||'').includes(':')?'IPv6':'IPv4';
-            }
+            if(source==='ipwho'){r.ip=data.ip;r.ver=data.type||'IPv4';r.city=data.city;r.region=data.region;r.country=data.country;r.cc=data.country_code;r.tz=data.timezone?.id;r.lat=data.latitude;r.lon=data.longitude;}
+            else if(source==='ipapi'){r.ip=data.ip;r.ver=(data.ip||'').includes(':')?'IPv6':'IPv4';r.city=data.city;r.region=data.region;r.country=data.country_name;r.cc=data.country_code;r.tz=data.timezone;r.lat=data.latitude;r.lon=data.longitude;}
+            else if(source==='freeip'){r.ip=data.ipAddress;r.ver=(data.ipAddress||'').includes(':')?'IPv6':'IPv4';r.city=data.cityName;r.region=data.regionName;r.country=data.countryName;r.cc=data.countryCode;r.tz=data.timeZone;r.lat=data.latitude;r.lon=data.longitude;}
+            else if(source==='ipify'){r.ip=data.ip;r.ver=(data.ip||'').includes(':')?'IPv6':'IPv4';}
             return r;
         }
 
@@ -468,10 +447,7 @@
             if(d.lat!=null&&d.lon!=null)html+=`<div class="ip-row" data-i="3"><div class="ip-label"><span class="iconify" data-icon="mdi:crosshairs-gps" data-width="14"></span>Tọa độ</div><span class="ip-value" style="font-size:12px;color:#94a3b8;font-family:'SF Mono','Fira Code',monospace">${Number(d.lat).toFixed(4)}, ${Number(d.lon).toFixed(4)}</span></div>`;
             html+=`<div style="padding-top:14px;display:flex;justify-content:center"><button class="ip-copy-btn" onclick="copyIP('${d.ip}',this)"><span class="iconify" data-icon="mdi:content-copy" data-width="12"></span>Sao chép IP</button></div>`;
             body.innerHTML=html;icon.innerHTML='<div class="online-dot"></div>';
-            requestAnimationFrame(()=>{
-                card.classList.add('visible');card.classList.add('active');
-                body.querySelectorAll('.ip-row').forEach((row,i)=>setTimeout(()=>row.classList.add('show'),100+i*120));
-            });
+            requestAnimationFrame(()=>{card.classList.add('visible');card.classList.add('active');body.querySelectorAll('.ip-row').forEach((row,i)=>setTimeout(()=>row.classList.add('show'),100+i*120));});
         }
 
         function copyIP(ip,btn){
@@ -481,7 +457,6 @@
                 setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='<span class="iconify" data-icon="mdi:content-copy" data-width="12"></span> Sao chép IP'},2000);
             });
         }
-
         fetchIPInfo();
     </script>
 </body>
