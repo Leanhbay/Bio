@@ -32,19 +32,9 @@
             filter: blur(100px); pointer-events: none; z-index: 0;
             animation: float3 12s ease-in-out infinite;
         }
-
-        @keyframes float1 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(60px, 40px) scale(1.1); }
-        }
-        @keyframes float2 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-50px, -30px) scale(1.15); }
-        }
-        @keyframes float3 {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.2); }
-        }
+        @keyframes float1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(60px,40px) scale(1.1)} }
+        @keyframes float2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-50px,-30px) scale(1.15)} }
+        @keyframes float3 { 0%,100%{transform:translate(-50%,-50%) scale(1)} 50%{transform:translate(-50%,-50%) scale(1.2)} }
 
         .noise-overlay {
             position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.03;
@@ -57,21 +47,11 @@
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             filter: blur(10px);
         }
-        .reveal.active {
-            opacity: 1; transform: translateY(0) scale(1);
-            filter: blur(0);
-        }
-        .delay-1 { transition-delay: 100ms; }
-        .delay-2 { transition-delay: 200ms; }
-        .delay-3 { transition-delay: 300ms; }
-        .delay-4 { transition-delay: 400ms; }
-        .delay-5 { transition-delay: 500ms; }
-        .delay-6 { transition-delay: 600ms; }
-        .delay-7 { transition-delay: 700ms; }
-        .delay-8 { transition-delay: 800ms; }
-        .delay-9 { transition-delay: 900ms; }
-        .delay-10 { transition-delay: 1000ms; }
-        .delay-11 { transition-delay: 1100ms; }
+        .reveal.active { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        .delay-1{transition-delay:100ms}.delay-2{transition-delay:200ms}.delay-3{transition-delay:300ms}
+        .delay-4{transition-delay:400ms}.delay-5{transition-delay:500ms}.delay-6{transition-delay:600ms}
+        .delay-7{transition-delay:700ms}.delay-8{transition-delay:800ms}.delay-9{transition-delay:900ms}
+        .delay-10{transition-delay:1000ms}.delay-11{transition-delay:1100ms}
 
         .avatar-ring {
             background: conic-gradient(from 0deg, #6366f1, #a855f7, #3b82f6, #6366f1);
@@ -83,240 +63,158 @@
         .avatar-wrapper:hover { transform: scale(1.05); }
 
         .status-dot { animation: pulse-dot 2s ease-in-out infinite; }
-        @keyframes pulse-dot {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
-            50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
-        }
+        @keyframes pulse-dot { 0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.6)} 50%{box-shadow:0 0 0 6px rgba(34,197,94,0)} }
 
         .social-link {
-            position: relative;
-            display: flex; align-items: center; gap: 16px;
-            padding: 16px 24px;
-            border-radius: 16px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow: hidden; cursor: pointer;
-            text-decoration: none; color: #fff;
+            position: relative; display: flex; align-items: center; gap: 16px;
+            padding: 16px 24px; border-radius: 16px;
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px); transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            overflow: hidden; cursor: pointer; text-decoration: none; color: #fff;
         }
-        .social-link::before {
-            content: ''; position: absolute; inset: 0;
-            opacity: 0; transition: opacity 0.4s ease; border-radius: 16px;
-        }
-        .social-link:hover {
-            transform: translateY(-2px) scale(1.02);
-            border-color: rgba(255,255,255,0.12);
-        }
+        .social-link::before { content:''; position:absolute; inset:0; opacity:0; transition:opacity 0.4s ease; border-radius:16px; }
+        .social-link:hover { transform: translateY(-2px) scale(1.02); border-color: rgba(255,255,255,0.12); }
         .social-link:hover::before { opacity: 1; }
         .social-link:active { transform: translateY(0) scale(0.98); }
 
-        .social-link.facebook::before { background: linear-gradient(135deg, rgba(24,119,242,0.15), rgba(24,119,242,0.03)); }
-        .social-link.facebook:hover { border-color: rgba(24,119,242,0.3); box-shadow: 0 8px 30px -8px rgba(24,119,242,0.2); }
-        .social-link.facebook .social-icon { color: #1877F2; }
+        .social-link.facebook::before{background:linear-gradient(135deg,rgba(24,119,242,0.15),rgba(24,119,242,0.03))}
+        .social-link.facebook:hover{border-color:rgba(24,119,242,0.3);box-shadow:0 8px 30px -8px rgba(24,119,242,0.2)}
+        .social-link.facebook .social-icon{color:#1877F2}
 
-        .social-link.instagram::before { background: linear-gradient(135deg, rgba(225,48,108,0.15), rgba(131,58,180,0.08)); }
-        .social-link.instagram:hover { border-color: rgba(225,48,108,0.3); box-shadow: 0 8px 30px -8px rgba(225,48,108,0.2); }
-        .social-link.instagram .social-icon {
-            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
+        .social-link.instagram::before{background:linear-gradient(135deg,rgba(225,48,108,0.15),rgba(131,58,180,0.08))}
+        .social-link.instagram:hover{border-color:rgba(225,48,108,0.3);box-shadow:0 8px 30px -8px rgba(225,48,108,0.2)}
+        .social-link.instagram .social-icon{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-        .social-link.tiktok::before { background: linear-gradient(135deg, rgba(255,0,80,0.15), rgba(0,242,234,0.08)); }
-        .social-link.tiktok:hover { border-color: rgba(255,0,80,0.3); box-shadow: 0 8px 30px -8px rgba(255,0,80,0.15); }
-        .social-link.tiktok .social-icon {
-            background: linear-gradient(135deg, #ff0050, #00f2ea);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
+        .social-link.tiktok::before{background:linear-gradient(135deg,rgba(255,0,80,0.15),rgba(0,242,234,0.08))}
+        .social-link.tiktok:hover{border-color:rgba(255,0,80,0.3);box-shadow:0 8px 30px -8px rgba(255,0,80,0.15)}
+        .social-link.tiktok .social-icon{background:linear-gradient(135deg,#ff0050,#00f2ea);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-        .social-link.zalo::before { background: linear-gradient(135deg, rgba(0,136,255,0.15), rgba(0,136,255,0.03)); }
-        .social-link.zalo:hover { border-color: rgba(0,136,255,0.3); box-shadow: 0 8px 30px -8px rgba(0,136,255,0.2); }
-        .social-link.zalo .social-icon { color: #0088FF; }
+        .social-link.zalo::before{background:linear-gradient(135deg,rgba(0,136,255,0.15),rgba(0,136,255,0.03))}
+        .social-link.zalo:hover{border-color:rgba(0,136,255,0.3);box-shadow:0 8px 30px -8px rgba(0,136,255,0.2)}
+        .social-link.zalo .social-icon{color:#0088FF}
 
-        .social-link.youtube::before { background: linear-gradient(135deg, rgba(255,0,0,0.15), rgba(255,0,0,0.03)); }
-        .social-link.youtube:hover { border-color: rgba(255,0,0,0.3); box-shadow: 0 8px 30px -8px rgba(255,0,0,0.2); }
-        .social-link.youtube .social-icon { color: #FF0000; }
+        .social-link.youtube::before{background:linear-gradient(135deg,rgba(255,0,0,0.15),rgba(255,0,0,0.03))}
+        .social-link.youtube:hover{border-color:rgba(255,0,0,0.3);box-shadow:0 8px 30px -8px rgba(255,0,0,0.2)}
+        .social-link.youtube .social-icon{color:#FF0000}
 
-        .social-link.telegram::before { background: linear-gradient(135deg, rgba(0,136,204,0.15), rgba(0,136,204,0.03)); }
-        .social-link.telegram:hover { border-color: rgba(0,136,204,0.3); box-shadow: 0 8px 30px -8px rgba(0,136,204,0.2); }
-        .social-link.telegram .social-icon { color: #0088CC; }
+        .social-link.telegram::before{background:linear-gradient(135deg,rgba(0,136,204,0.15),rgba(0,136,204,0.03))}
+        .social-link.telegram:hover{border-color:rgba(0,136,204,0.3);box-shadow:0 8px 30px -8px rgba(0,136,204,0.2)}
+        .social-link.telegram .social-icon{color:#0088CC}
 
-        .social-icon {
-            font-size: 26px; flex-shrink: 0;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .social-link:hover .social-icon { transform: scale(1.15); }
-
-        .social-arrow {
-            margin-left: auto; opacity: 0; transform: translateX(-8px);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); color: #64748b;
-        }
-        .social-link:hover .social-arrow { opacity: 1; transform: translateX(0); }
+        .social-icon{font-size:26px;flex-shrink:0;transition:transform 0.4s cubic-bezier(0.16,1,0.3,1)}
+        .social-link:hover .social-icon{transform:scale(1.15)}
+        .social-arrow{margin-left:auto;opacity:0;transform:translateX(-8px);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);color:#64748b}
+        .social-link:hover .social-arrow{opacity:1;transform:translateX(0)}
 
         .stat-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 16px; padding: 20px; text-align: center;
-            transition: all 0.4s ease;
+            background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);
+            border-radius:16px;padding:20px;text-align:center;transition:all 0.4s ease;
         }
-        .stat-card:hover {
-            background: rgba(255,255,255,0.05);
-            border-color: rgba(255,255,255,0.1);
-            transform: translateY(-2px);
-        }
+        .stat-card:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);transform:translateY(-2px)}
 
-        .divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
-        }
+        .divider{height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,0.08),transparent)}
+        ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}
+        ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:99px}
+        #particles{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+        .music-bar{width:3px;border-radius:99px;background:linear-gradient(to top,#6366f1,#a855f7);animation:music-bounce 0.8s ease-in-out infinite alternate}
+        .music-bar:nth-child(1){height:12px;animation-delay:0s}.music-bar:nth-child(2){height:20px;animation-delay:0.15s}
+        .music-bar:nth-child(3){height:8px;animation-delay:0.3s}.music-bar:nth-child(4){height:16px;animation-delay:0.45s}
+        .music-bar:nth-child(5){height:10px;animation-delay:0.1s}
+        @keyframes music-bounce{0%{transform:scaleY(0.3)}100%{transform:scaleY(1)}}
+        .paused .music-bar{animation-play-state:paused}
 
-        #particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+        .now-playing{display:flex;align-items:center;gap:12px;padding:12px 18px;border-radius:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);cursor:pointer;transition:all 0.3s ease}
+        .now-playing:hover{background:rgba(255,255,255,0.06)}
 
-        .music-bar {
-            width: 3px; border-radius: 99px;
-            background: linear-gradient(to top, #6366f1, #a855f7);
-            animation: music-bounce 0.8s ease-in-out infinite alternate;
-        }
-        .music-bar:nth-child(1) { height: 12px; animation-delay: 0s; }
-        .music-bar:nth-child(2) { height: 20px; animation-delay: 0.15s; }
-        .music-bar:nth-child(3) { height: 8px; animation-delay: 0.3s; }
-        .music-bar:nth-child(4) { height: 16px; animation-delay: 0.45s; }
-        .music-bar:nth-child(5) { height: 10px; animation-delay: 0.1s; }
-        @keyframes music-bounce {
-            0% { transform: scaleY(0.3); }
-            100% { transform: scaleY(1); }
-        }
-        .paused .music-bar { animation-play-state: paused; }
+        .share-btn{position:fixed;bottom:24px;right:24px;z-index:50;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#a855f7);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;color:#fff;box-shadow:0 8px 30px -6px rgba(99,102,241,0.5);transition:all 0.3s ease}
+        .share-btn:hover{transform:scale(1.1);box-shadow:0 12px 40px -6px rgba(99,102,241,0.6)}
+        .share-btn:active{transform:scale(0.95)}
 
-        .now-playing {
-            display: flex; align-items: center; gap: 12px;
-            padding: 12px 18px; border-radius: 14px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            cursor: pointer; transition: all 0.3s ease;
-        }
-        .now-playing:hover { background: rgba(255,255,255,0.06); }
+        .toast{position:fixed;bottom:84px;right:24px;z-index:50;padding:12px 20px;border-radius:12px;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:#34D399;font-size:13px;font-weight:500;backdrop-filter:blur(10px);opacity:0;transform:translateY(10px);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);pointer-events:none}
+        .toast.show{opacity:1;transform:translateY(0)}
 
-        .share-btn {
-            position: fixed; bottom: 24px; right: 24px; z-index: 50;
-            width: 48px; height: 48px; border-radius: 50%;
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; border: none; color: #fff;
-            box-shadow: 0 8px 30px -6px rgba(99,102,241,0.5);
-            transition: all 0.3s ease;
-        }
-        .share-btn:hover { transform: scale(1.1); box-shadow: 0 12px 40px -6px rgba(99,102,241,0.6); }
-        .share-btn:active { transform: scale(0.95); }
+        /* ===== IP / GPS Visitor Card ===== */
+        .ip-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:20px;overflow:hidden;transition:all 0.4s ease}
+        .ip-card:hover{border-color:rgba(99,102,241,0.2);box-shadow:0 0 40px -12px rgba(99,102,241,0.15)}
+        .ip-card-header{padding:16px 20px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.04)}
+        .ip-card-body{padding:16px 20px 20px}
 
-        .toast {
-            position: fixed; bottom: 84px; right: 24px; z-index: 50;
-            padding: 12px 20px; border-radius: 12px;
-            background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3);
-            color: #34D399; font-size: 13px; font-weight: 500;
-            backdrop-filter: blur(10px);
-            opacity: 0; transform: translateY(10px);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            pointer-events: none;
-        }
-        .toast.show { opacity: 1; transform: translateY(0); }
+        .ip-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
+        .ip-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,0.03)}
+        .ip-label{display:flex;align-items:center;gap:8px;font-size:12px;color:#64748b;font-weight:500}
+        .ip-label .iconify{font-size:14px;color:#475569}
+        .ip-value{font-size:13px;color:#e2e8f0;font-weight:500;font-variant-numeric:tabular-nums}
+        .ip-value.primary{color:#a5b4fc;font-weight:600;font-size:14px;letter-spacing:0.5px}
 
-        /* ===== IP Visitor Card ===== */
-        .ip-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-        .ip-card:hover {
-            border-color: rgba(99,102,241,0.2);
-            box-shadow: 0 0 40px -12px rgba(99,102,241,0.15);
-        }
-        .ip-card-header {
-            padding: 16px 20px 12px;
-            display: flex; align-items: center; gap: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-        }
-        .ip-card-body { padding: 16px 20px 20px; }
+        .ip-loading{display:flex;align-items:center;gap:8px;color:#64748b;font-size:13px}
+        .ip-spinner{width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,255,255,0.1);border-top-color:#6366f1;animation:spin 0.8s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
 
-        .ip-row {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 8px 0;
+        .ip-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+        .ip-badge.ipv4{background:rgba(99,102,241,0.12);color:#a5b4fc}
+        .ip-badge.ipv6{background:rgba(168,85,247,0.12);color:#c4b5fd}
+
+        .ip-copy-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:#94a3b8;font-size:11px;cursor:pointer;transition:all 0.3s ease}
+        .ip-copy-btn:hover{background:rgba(255,255,255,0.1);color:#e2e8f0;border-color:rgba(255,255,255,0.15)}
+        .ip-copy-btn.copied{background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);color:#34D399}
+
+        /* ===== Live Clock ===== */
+        .live-clock-container {
+            display: flex; align-items: center; justify-content: center; gap: 16px;
+            padding: 18px 20px; border-radius: 16px;
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 8px;
         }
-        .ip-row:not(:last-child) {
-            border-bottom: 1px solid rgba(255,255,255,0.03);
-        }
-        .ip-label {
-            display: flex; align-items: center; gap: 8px;
-            font-size: 12px; color: #64748b; font-weight: 500;
-        }
-        .ip-label .iconify { font-size: 14px; color: #475569; }
-        .ip-value {
-            font-size: 13px; color: #e2e8f0; font-weight: 500;
+        .clock-time {
+            font-size: 32px; font-weight: 600; letter-spacing: -0.5px;
             font-variant-numeric: tabular-nums;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 50%, #c4b5fd 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .ip-value.primary {
-            color: #a5b4fc;
-            font-weight: 600;
-            font-size: 14px;
-            letter-spacing: 0.5px;
+        .clock-seconds {
+            font-size: 18px; font-weight: 400; color: #6366f1; opacity: 0.7;
+            font-variant-numeric: tabular-nums;
+            animation: sec-pulse 1s ease-in-out infinite;
+        }
+        @keyframes sec-pulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+        .clock-separator {
+            display: flex; flex-direction: column; gap: 4px;
+        }
+        .clock-separator span {
+            width: 3px; height: 3px; border-radius: 50%;
+            background: #6366f1; opacity: 0.4;
         }
 
-        .ip-loading {
+        .clock-date {
+            font-size: 12px; color: #64748b; font-weight: 500;
+            text-align: center; margin-bottom: 20px;
+        }
+
+        .gps-pulse {
+            display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+            background: #22c55e; position: relative;
+        }
+        .gps-pulse::before {
+            content: ''; position: absolute; inset: -3px; border-radius: 50%;
+            border: 1.5px solid rgba(34,197,94,0.4);
+            animation: gps-ring 2s ease-out infinite;
+        }
+        @keyframes gps-ring { 0%{transform:scale(1);opacity:1} 100%{transform:scale(2);opacity:0} }
+
+        .gps-locating {
             display: flex; align-items: center; gap: 8px;
-            color: #64748b; font-size: 13px;
+            color: #f59e0b; font-size: 12px; font-weight: 500;
         }
-        .ip-spinner {
-            width: 14px; height: 14px; border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.1);
-            border-top-color: #6366f1;
-            animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        .gps-locating .iconify { animation: spin 1.5s linear infinite; }
 
-        .ip-badge {
-            display: inline-flex; align-items: center; gap: 4px;
-            padding: 2px 8px; border-radius: 6px;
-            font-size: 10px; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.5px;
-        }
-        .ip-badge.ipv4 {
-            background: rgba(99,102,241,0.12); color: #a5b4fc;
-        }
-        .ip-badge.ipv6 {
-            background: rgba(168,85,247,0.12); color: #c4b5fd;
-        }
-
-        .ip-map-dot {
-            display: inline-block; width: 6px; height: 6px;
-            border-radius: 50%; background: #22c55e;
-            animation: pulse-dot 2s ease-in-out infinite;
-            margin-right: 2px;
-        }
-
-        .ip-copy-btn {
-            display: inline-flex; align-items: center; gap: 4px;
-            padding: 4px 10px; border-radius: 8px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.08);
-            color: #94a3b8; font-size: 11px; cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .ip-copy-btn:hover {
-            background: rgba(255,255,255,0.1);
-            color: #e2e8f0;
-            border-color: rgba(255,255,255,0.15);
-        }
-        .ip-copy-btn.copied {
-            background: rgba(16,185,129,0.12);
-            border-color: rgba(16,185,129,0.3);
-            color: #34D399;
+        .accuracy-badge {
+            display: inline-flex; align-items: center; gap: 3px;
+            padding: 1px 6px; border-radius: 4px; font-size: 9px; font-weight: 600;
+            background: rgba(34,197,94,0.1); color: #4ade80;
+            text-transform: uppercase; letter-spacing: 0.3px;
         }
     </style>
 </head>
@@ -352,7 +250,7 @@
                     📍 Hà Nội, Việt Nam
                 </p>
 
-                <div class="reveal delay-4 now-playing" id="nowPlaying" onclick="toggleMusic()">
+                <div class="reveal delay-4 now-playing" onclick="toggleMusic()">
                     <div class="flex items-end gap-[3px] h-5" id="musicBars">
                         <div class="music-bar"></div>
                         <div class="music-bar"></div>
@@ -370,25 +268,43 @@
             <!-- Stats -->
             <div class="reveal delay-5 grid grid-cols-3 gap-3 mb-8">
                 <div class="stat-card">
-                    <div class="text-xl font-semibold" style="background: linear-gradient(135deg, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" id="statFollowers">0</div>
+                    <div class="text-xl font-semibold" style="background:linear-gradient(135deg,#fff,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text" id="statFollowers">0</div>
                     <div class="text-[11px] text-slate-500 font-medium mt-1 uppercase tracking-wider">Followers</div>
                 </div>
                 <div class="stat-card">
-                    <div class="text-xl font-semibold" style="background: linear-gradient(135deg, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" id="statLikes">0</div>
+                    <div class="text-xl font-semibold" style="background:linear-gradient(135deg,#fff,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text" id="statLikes">0</div>
                     <div class="text-[11px] text-slate-500 font-medium mt-1 uppercase tracking-wider">Likes</div>
                 </div>
                 <div class="stat-card">
-                    <div class="text-xl font-semibold" style="background: linear-gradient(135deg, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" id="statViews">0</div>
+                    <div class="text-xl font-semibold" style="background:linear-gradient(135deg,#fff,#94a3b8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text" id="statViews">0</div>
                     <div class="text-[11px] text-slate-500 font-medium mt-1 uppercase tracking-wider">Views</div>
                 </div>
             </div>
 
-            <!-- ===== IP Visitor Card ===== -->
-            <div class="reveal delay-6 ip-card mb-8" id="ipCard">
+            <!-- ===== Live Clock ===== -->
+            <div class="reveal delay-6">
+                <div class="live-clock-container">
+                    <div style="display:flex;align-items:baseline;gap:2px;">
+                        <span class="clock-time" id="clockHM">--:--</span>
+                        <span class="clock-seconds" id="clockSec">--</span>
+                    </div>
+                    <div class="clock-separator"><span></span><span></span></div>
+                    <div style="text-align:right;">
+                        <div style="font-size:11px;color:#6366f1;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;" id="clockTzLabel">UTC</div>
+                        <div style="font-size:10px;color:#475569;font-weight:500;" id="clockTzOffset">+00:00</div>
+                    </div>
+                </div>
+                <div class="clock-date" id="clockDate">--</div>
+            </div>
+
+            <!-- ===== IP & GPS Visitor Card ===== -->
+            <div class="reveal delay-7 ip-card mb-8">
                 <div class="ip-card-header">
                     <span class="iconify" data-icon="mdi:shield-eye" data-width="18" style="color: #6366f1;"></span>
                     <span class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Thông tin truy cập</span>
-                    <span class="ml-auto text-[10px] text-slate-600 font-mono" id="visitTime"></span>
+                    <span class="ml-auto" id="gpsStatusIcon">
+                        <div class="ip-spinner" style="width:12px;height:12px;border-width:1.5px;"></div>
+                    </span>
                 </div>
                 <div class="ip-card-body" id="ipBody">
                     <div class="ip-loading">
@@ -399,69 +315,44 @@
             </div>
 
             <!-- Divider -->
-            <div class="reveal delay-7 divider mb-6"></div>
+            <div class="reveal delay-8 divider mb-6"></div>
 
             <!-- Social Links -->
             <div class="flex flex-col gap-3 mb-8">
-                <a href="https://facebook.com" target="_blank" class="reveal delay-7 social-link facebook">
+                <a href="https://facebook.com" target="_blank" class="reveal delay-8 social-link facebook">
                     <span class="social-icon"><span class="iconify" data-icon="mdi:facebook" data-width="26"></span></span>
-                    <div>
-                        <div class="text-sm font-medium">Facebook</div>
-                        <div class="text-xs text-slate-500">fb.com/nguyenvana</div>
-                    </div>
+                    <div><div class="text-sm font-medium">Facebook</div><div class="text-xs text-slate-500">fb.com/nguyenvana</div></div>
                     <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
                 </a>
-
                 <a href="https://instagram.com" target="_blank" class="reveal delay-8 social-link instagram">
                     <span class="social-icon"><span class="iconify" data-icon="mdi:instagram" data-width="26"></span></span>
-                    <div>
-                        <div class="text-sm font-medium">Instagram</div>
-                        <div class="text-xs text-slate-500">@nguyenvana.official</div>
-                    </div>
+                    <div><div class="text-sm font-medium">Instagram</div><div class="text-xs text-slate-500">@nguyenvana.official</div></div>
                     <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
                 </a>
-
-                <a href="https://tiktok.com" target="_blank" class="reveal delay-8 social-link tiktok">
+                <a href="https://tiktok.com" target="_blank" class="reveal delay-9 social-link tiktok">
                     <span class="social-icon"><span class="iconify" data-icon="ic:baseline-tiktok" data-width="26"></span></span>
-                    <div>
-                        <div class="text-sm font-medium">TikTok</div>
-                        <div class="text-xs text-slate-500">@nguyenvana</div>
-                    </div>
+                    <div><div class="text-sm font-medium">TikTok</div><div class="text-xs text-slate-500">@nguyenvana</div></div>
                     <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
                 </a>
-
                 <a href="https://zalo.me" target="_blank" class="reveal delay-9 social-link zalo">
                     <span class="social-icon"><span class="iconify" data-icon="simple-icons:zalo" data-width="26"></span></span>
-                    <div>
-                        <div class="text-sm font-medium">Zalo</div>
-                        <div class="text-xs text-slate-500">0812 345 678</div>
-                    </div>
+                    <div><div class="text-sm font-medium">Zalo</div><div class="text-xs text-slate-500">0812 345 678</div></div>
                     <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
                 </a>
-
-                <a href="https://youtube.com" target="_blank" class="reveal delay-9 social-link youtube">
+                <a href="https://youtube.com" target="_blank" class="reveal delay-10 social-link youtube">
                     <span class="social-icon"><span class="iconify" data-icon="mdi:youtube" data-width="26"></span></span>
-                    <div>
-                        <div class="text-sm font-medium">YouTube</div>
-                        <div class="text-xs text-slate-500">Nguyễn Văn A Official</div>
-                    </div>
+                    <div><div class="text-sm font-medium">YouTube</div><div class="text-xs text-slate-500">Nguyễn Văn A Official</div></div>
                     <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
                 </a>
-
                 <a href="https://t.me" target="_blank" class="reveal delay-10 social-link telegram">
                     <span class="social-icon"><span class="iconify" data-icon="mdi:telegram" data-width="26"></span></span>
-                    <div>
-                        <div class="text-sm font-medium">Telegram</div>
-                        <div class="text-xs text-slate-500">@nguyenvana_channel</div>
-                    </div>
+                    <div><div class="text-sm font-medium">Telegram</div><div class="text-xs text-slate-500">@nguyenvana_channel</div></div>
                     <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
                 </a>
             </div>
 
-            <!-- Divider -->
-            <div class="reveal delay-10 divider mb-6"></div>
+            <div class="reveal delay-11 divider mb-6"></div>
 
-            <!-- Footer -->
             <div class="reveal delay-11 text-center">
                 <div class="flex items-center justify-center gap-2 mb-3">
                     <div class="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
@@ -470,48 +361,37 @@
                 </div>
                 <p class="text-[11px] text-slate-600">© 2025 Nguyễn Văn A. All rights reserved.</p>
             </div>
-
         </div>
     </main>
 
     <button class="share-btn" onclick="shareProfile()" title="Chia sẻ">
         <span class="iconify" data-icon="mdi:share-variant" data-width="20"></span>
     </button>
-
     <div class="toast" id="toast">
         <span class="iconify inline-block align-middle mr-1" data-icon="mdi:check-circle" data-width="16"></span>
-        <span id="toastText">Đã sao chép liên kết!</span>
+        <span id="toastText">Đã sao chép!</span>
     </div>
 
     <script>
-        // ===== Reveal on scroll =====
+        // ===== Reveal =====
         function revealElements() {
             document.querySelectorAll('.reveal').forEach(el => {
-                const top = el.getBoundingClientRect().top;
-                if (top < window.innerHeight - 40) el.classList.add('active');
+                if (el.getBoundingClientRect().top < window.innerHeight - 40) el.classList.add('active');
             });
         }
         window.addEventListener('scroll', revealElements);
         window.addEventListener('load', revealElements);
 
-        // ===== Counter Animation =====
+        // ===== Counters =====
         function animateCounter(el, target) {
-            let current = 0;
-            const duration = 2000;
-            const step = target / (duration / 16);
-            function update() {
-                current += step;
-                if (current >= target) { el.textContent = formatNumber(target); return; }
-                el.textContent = formatNumber(Math.floor(current));
-                requestAnimationFrame(update);
-            }
-            update();
+            let c = 0; const step = target / 125;
+            (function update() {
+                c += step;
+                if (c >= target) { el.textContent = fmtN(target); return; }
+                el.textContent = fmtN(Math.floor(c)); requestAnimationFrame(update);
+            })();
         }
-        function formatNumber(n) {
-            if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
-            if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
-            return n.toString();
-        }
+        function fmtN(n) { return n >= 1e6 ? (n/1e6).toFixed(1)+'M' : n >= 1e3 ? (n/1e3).toFixed(1)+'K' : n.toString(); }
         setTimeout(() => {
             animateCounter(document.getElementById('statFollowers'), 125000);
             animateCounter(document.getElementById('statLikes'), 890000);
@@ -519,179 +399,259 @@
         }, 800);
 
         // ===== Particles =====
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-        class Particle {
-            constructor() { this.reset(); }
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 1.5 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.3;
-                this.speedY = (Math.random() - 0.5) * 0.3;
-                this.opacity = Math.random() * 0.3 + 0.1;
-            }
-            update() {
-                this.x += this.speedX; this.y += this.speedY;
-                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
-            }
-            draw() {
-                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(148, 163, 184, ${this.opacity})`; ctx.fill();
-            }
-        }
-        for (let i = 0; i < 50; i++) particles.push(new Particle());
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
+        const cvs = document.getElementById('particles'), cx = cvs.getContext('2d');
+        let pts = [];
+        function rsz() { cvs.width = innerWidth; cvs.height = innerHeight; }
+        rsz(); addEventListener('resize', rsz);
+        class P { constructor(){this.r()} r(){this.x=Math.random()*cvs.width;this.y=Math.random()*cvs.height;this.s=Math.random()*1.5+.5;this.dx=(Math.random()-.5)*.3;this.dy=(Math.random()-.5)*.3;this.o=Math.random()*.3+.1} u(){this.x+=this.dx;this.y+=this.dy;if(this.x<0||this.x>cvs.width||this.y<0||this.y>cvs.height)this.r()} d(){cx.beginPath();cx.arc(this.x,this.y,this.s,0,Math.PI*2);cx.fillStyle=`rgba(148,163,184,${this.o})`;cx.fill()} }
+        for(let i=0;i<50;i++)pts.push(new P);
+        (function a(){cx.clearRect(0,0,cvs.width,cvs.height);pts.forEach(p=>{p.u();p.d()});requestAnimationFrame(a)})();
 
         // ===== Share =====
         function shareProfile() {
-            if (navigator.share) {
-                navigator.share({ title: 'Nguyễn Văn A - Bio', text: 'Xem profile của tôi!', url: window.location.href }).catch(() => {});
+            if (navigator.share) navigator.share({title:'Bio',text:'Xem profile!',url:location.href}).catch(()=>{});
+            else { navigator.clipboard.writeText(location.href).then(()=>showToast('Đã sao chép liên kết!')).catch(()=>{}); }
+        }
+        function showToast(t) { const e=document.getElementById('toast');document.getElementById('toastText').textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2500); }
+
+        // ===== Music =====
+        let musicOn = true;
+        function toggleMusic() { musicOn=!musicOn; document.getElementById('musicBars').classList.toggle('paused',!musicOn); }
+
+        // ============================================================
+        //  LIVE CLOCK — chạy song song, chính xác theo thiết bị
+        // ============================================================
+        const clockHM = document.getElementById('clockHM');
+        const clockSec = document.getElementById('clockSec');
+        const clockDate = document.getElementById('clockDate');
+        const clockTzLabel = document.getElementById('clockTzLabel');
+        const clockTzOffset = document.getElementById('clockTzOffset');
+
+        // Lấy timezone từ thiết bị
+        const deviceTZ = Intl.DateTimeFormat().resolvedOptions().timeZone; // vd: "Asia/Ho_Chi_Minh"
+        const tzAbbr = new Date().toLocaleTimeString('vi-VN', { timeZoneName: 'short' }).split(' ').pop(); // vd: "GMT+7"
+        clockTzLabel.textContent = deviceTZ.split('/').pop().replace(/_/g,' ');
+
+        // Tính offset
+        const now0 = new Date();
+        const utcStr = now0.toLocaleString('en-US', { timeZone: 'UTC' });
+        const localStr = now0.toLocaleString('en-US');
+        const diffMs = new Date(localStr) - new Date(utcStr);
+        const diffH = Math.round(diffMs / 3600000);
+        const sign = diffH >= 0 ? '+' : '';
+        clockTzOffset.textContent = `UTC${sign}${diffH}`;
+
+        // Tên ngày trong tuần bằng tiếng Việt
+        const dayNames = ['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'];
+
+        function updateClock() {
+            const n = new Date();
+            const h = String(n.getHours()).padStart(2,'0');
+            const m = String(n.getMinutes()).padStart(2,'0');
+            const s = String(n.getSeconds()).padStart(2,'0');
+            clockHM.textContent = `${h}:${m}`;
+            clockSec.textContent = `:${s}`;
+            clockDate.textContent = `${dayNames[n.getDay()]}, ${n.getDate().toString().padStart(2,'0')}/${(n.getMonth()+1).toString().padStart(2,'0')}/${n.getFullYear()}`;
+        }
+        updateClock();
+        setInterval(updateClock, 1000); // Cập nhật mỗi giây
+
+        // ============================================================
+        //  GPS + IP — chạy song song, cập nhật dần
+        // ============================================================
+        const ipBody = document.getElementById('ipBody');
+        const gpsStatusIcon = document.getElementById('gpsStatusIcon');
+
+        // Dữ liệu sẽ được gom dần
+        let visitorData = {
+            ip: null, ipVersion: null, isp: null,
+            gpsLat: null, gpsLon: null, gpsAccuracy: null,
+            gpsCity: null, gpsDistrict: null, gpsCountry: null, gpsCountryCode: null,
+            ipCity: null, ipRegion: null, ipCountry: null, ipCountryCode: null,
+            timezone: deviceTZ,
+            gpsDone: false, ipDone: false, reverseDone: false
+        };
+
+        // Hàm render — gọi lại mỗi khi có dữ liệu mới
+        function renderVisitorCard() {
+            const d = visitorData;
+            const ipStr = d.ip || 'Đang lấy...';
+            const badge = d.ipVersion || '';
+            const badgeCls = badge === 'IPv6' ? 'ipv6' : 'ipv4';
+
+            // Ưu tiên GPS location, fallback IP location
+            const city = d.gpsCity || d.ipCity || '—';
+            const region = d.gpsDistrict || d.ipRegion || '';
+            const country = d.gpsCountry || d.ipCountry || '—';
+            const cc = d.gpsCountryCode || d.ipCountryCode || '';
+            const flag = cc ? getFlag(cc) : '🌍';
+            const locStr = [city, region, country].filter(Boolean).join(', ') || 'Không xác định';
+
+            // Tọa độ
+            const lat = d.gpsLat ?? (d.ipLat || null);
+            const lon = d.gpsLon ?? (d.ipLon || null);
+
+            // GPS accuracy
+            let accuracyHtml = '';
+            if (d.gpsAccuracy) {
+                const acc = Math.round(d.gpsAccuracy);
+                const lvl = acc < 50 ? 'Cao' : acc < 200 ? 'Trung bình' : 'Thấp';
+                const clr = acc < 50 ? '#4ade80' : acc < 200 ? '#fbbf24' : '#f87171';
+                accuracyHtml = `<span class="accuracy-badge" style="background:${clr}15;color:${clr};border:1px solid ${clr}30;">GPS ±${acc}m · ${lvl}</span>`;
+            }
+
+            // ISP
+            const ispStr = d.isp || '—';
+
+            // Status icon
+            if (d.gpsDone && d.ipDone) {
+                gpsStatusIcon.innerHTML = '<div class="gps-pulse"></div>';
+            } else if (d.gpsDone) {
+                gpsStatusIcon.innerHTML = '<div class="gps-pulse"></div>';
             } else {
-                navigator.clipboard.writeText(window.location.href).then(() => showToast('Đã sao chép liên kết!')).catch(() => {});
+                // đang load
             }
+
+            ipBody.innerHTML = `
+                <!-- IP -->
+                <div class="ip-row">
+                    <div class="ip-label">
+                        <span class="iconify" data-icon="mdi:ip-network" data-width="14"></span>
+                        Địa chỉ IP
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="ip-value primary">${ipStr}</span>
+                        ${badge ? `<span class="ip-badge ${badgeCls}">${badge}</span>` : ''}
+                    </div>
+                </div>
+
+                <!-- Vị trí GPS -->
+                <div class="ip-row">
+                    <div class="ip-label">
+                        <span class="iconify" data-icon="mdi:map-marker-radius" data-width="14"></span>
+                        Vị trí
+                    </div>
+                    <div class="flex items-center gap-1.5 flex-wrap justify-end">
+                        <span class="text-sm">${flag}</span>
+                        <span class="ip-value">${locStr}</span>
+                        ${accuracyHtml}
+                    </div>
+                </div>
+
+                <!-- ISP -->
+                <div class="ip-row">
+                    <div class="ip-label">
+                        <span class="iconify" data-icon="mdi:server-network" data-width="14"></span>
+                        Nhà cung cấp
+                    </div>
+                    <span class="ip-value text-right" style="max-width:200px;word-break:break-all;font-size:12px;color:#94a3b8;">${ispStr}</span>
+                </div>
+
+                <!-- Múi giờ -->
+                <div class="ip-row">
+                    <div class="ip-label">
+                        <span class="iconify" data-icon="mdi:clock-outline" data-width="14"></span>
+                        Múi giờ
+                    </div>
+                    <span class="ip-value" style="font-size:12px;color:#94a3b8;">${d.timezone}</span>
+                </div>
+
+                <!-- Tọa độ -->
+                ${lat !== null && lon !== null ? `
+                <div class="ip-row">
+                    <div class="ip-label">
+                        <span class="iconify" data-icon="mdi:crosshairs-gps" data-width="14"></span>
+                        Tọa độ GPS
+                    </div>
+                    <span class="ip-value" style="font-size:12px;color:#94a3b8;font-family:'SF Mono','Fira Code',monospace;">${lat.toFixed(6)}, ${lon.toFixed(6)}</span>
+                </div>` : ''}
+
+                <!-- Copy -->
+                ${d.ip ? `
+                <div style="padding-top:12px;display:flex;justify-content:center;">
+                    <button class="ip-copy-btn" onclick="copyIP('${d.ip}',this)">
+                        <span class="iconify" data-icon="mdi:content-copy" data-width="12"></span>
+                        Sao chép IP
+                    </button>
+                </div>` : ''}
+            `;
         }
-        function showToast(text) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastText').textContent = text;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2500);
+
+        function getFlag(code) {
+            return String.fromCodePoint(...code.toUpperCase().split('').map(c => 127397 + c.charCodeAt(0)));
         }
 
-        // ===== Music toggle =====
-        let musicPlaying = true;
-        function toggleMusic() {
-            musicPlaying = !musicPlaying;
-            document.getElementById('musicBars').classList.toggle('paused', !musicPlaying);
-        }
-
-        // ===== Visit time =====
-        document.getElementById('visitTime').textContent = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
-
-        // ===== IP & Visitor Info =====
-        async function fetchIPInfo() {
-            const ipBody = document.getElementById('ipBody');
-
+        // ---------- 1) Lấy IP + info từ API ----------
+        async function fetchIP() {
             try {
-                // Lấy IP cơ bản
-                const ipRes = await fetch('https://api.ipify.org?format=json');
-                const ipData = await ipRes.json();
-                const ip = ipData.ip;
+                const r1 = await fetch('https://api.ipify.org?format=json');
+                const d1 = await r1.json();
+                visitorData.ip = d1.ip;
+                visitorData.ipVersion = d1.ip.includes(':') ? 'IPv6' : 'IPv4';
+                renderVisitorCard();
 
-                // Lấy thông tin chi tiết
-                let details = null;
-                try {
-                    const detailRes = await fetch(`https://ipapi.co/${ip}/json/`);
-                    details = await detailRes.json();
-                } catch (e) {
-                    // fallback
-                }
-
-                const isIPv6 = ip.includes(':');
-                const badgeClass = isIPv6 ? 'ipv6' : 'ipv4';
-                const badgeText = isIPv6 ? 'IPv6' : 'IPv4';
-
-                const city = details?.city || '—';
-                const region = details?.region || '';
-                const country = details?.country_name || '—';
-                const countryCode = details?.country_code || '';
-                const isp = details?.org || '—';
-                const timezone = details?.timezone || '—';
-                const lat = details?.latitude;
-                const lon = details?.longitude;
-
-                const flagEmoji = countryCode ? getFlagEmoji(countryCode) : '🌍';
-                const locationStr = [city, region, country].filter(Boolean).join(', ');
-
-                ipBody.innerHTML = `
-                    <!-- IP Address -->
-                    <div class="ip-row">
-                        <div class="ip-label">
-                            <span class="iconify" data-icon="mdi:ip-network" data-width="14"></span>
-                            Địa chỉ IP
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="ip-value primary">${ip}</span>
-                            <span class="ip-badge ${badgeClass}">${badgeText}</span>
-                        </div>
-                    </div>
-
-                    <!-- Vị trí -->
-                    <div class="ip-row">
-                        <div class="ip-label">
-                            <span class="iconify" data-icon="mdi:map-marker" data-width="14"></span>
-                            Vị trí
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-sm">${flagEmoji}</span>
-                            <span class="ip-value">${locationStr || 'Không xác định'}</span>
-                        </div>
-                    </div>
-
-                    <!-- ISP -->
-                    <div class="ip-row">
-                        <div class="ip-label">
-                            <span class="iconify" data-icon="mdi:server-network" data-width="14"></span>
-                            Nhà cung cấp
-                        </div>
-                        <span class="ip-value text-right" style="max-width: 200px; word-break: break-all; font-size: 12px; color: #94a3b8;">${isp}</span>
-                    </div>
-
-                    <!-- Múi giờ -->
-                    <div class="ip-row">
-                        <div class="ip-label">
-                            <span class="iconify" data-icon="mdi:clock-outline" data-width="14"></span>
-                            Múi giờ
-                        </div>
-                        <span class="ip-value" style="font-size: 12px; color: #94a3b8;">${timezone}</span>
-                    </div>
-
-                    <!-- Tọa độ (nếu có) -->
-                    ${lat && lon ? `
-                    <div class="ip-row">
-                        <div class="ip-label">
-                            <span class="iconify" data-icon="mdi:crosshairs-gps" data-width="14"></span>
-                            Tọa độ
-                        </div>
-                        <span class="ip-value" style="font-size: 12px; color: #94a3b8; font-family: 'SF Mono', 'Fira Code', monospace;">${lat.toFixed(4)}, ${lon.toFixed(4)}</span>
-                    </div>` : ''}
-
-                    <!-- Copy IP -->
-                    <div style="padding-top: 12px; display: flex; justify-content: center;">
-                        <button class="ip-copy-btn" onclick="copyIP('${ip}', this)">
-                            <span class="iconify" data-icon="mdi:content-copy" data-width="12"></span>
-                            Sao chép IP
-                        </button>
-                    </div>
-                `;
-
-            } catch (error) {
-                ipBody.innerHTML = `
-                    <div style="text-align: center; padding: 8px 0;">
-                        <span class="iconify" data-icon="mdi:wifi-off" data-width="24" style="color: #ef4444; margin-bottom: 8px; display: inline-block;"></span>
-                        <p style="font-size: 13px; color: #94a3b8;">Không thể lấy thông tin IP</p>
-                        <p style="font-size: 11px; color: #475569; margin-top: 4px;">Vui lòng kiểm tra kết nối mạng</p>
-                    </div>
-                `;
+                const r2 = await fetch(`https://ipapi.co/${d1.ip}/json/`);
+                const d2 = await r2.json();
+                visitorData.isp = d2.org || null;
+                visitorData.ipCity = d2.city || null;
+                visitorData.ipRegion = d2.region || null;
+                visitorData.ipCountry = d2.country_name || null;
+                visitorData.ipCountryCode = d2.country_code || null;
+                visitorData.ipLat = d2.latitude || null;
+                visitorData.ipLon = d2.longitude || null;
+                visitorData.ipDone = true;
+                renderVisitorCard();
+            } catch(e) {
+                visitorData.ipDone = true;
+                renderVisitorCard();
             }
         }
 
-        function getFlagEmoji(countryCode) {
-            const codePoints = countryCode.toUpperCase().split('').map(
-                char => 127397 + char.charCodeAt(0)
+        // ---------- 2) Lấy GPS từ thiết bị ----------
+        function fetchGPS() {
+            if (!navigator.geolocation) {
+                visitorData.gpsDone = true;
+                renderVisitorCard();
+                return;
+            }
+            navigator.geolocation.getCurrentPosition(
+                async (pos) => {
+                    visitorData.gpsLat = pos.coords.latitude;
+                    visitorData.gpsLon = pos.coords.longitude;
+                    visitorData.gpsAccuracy = pos.coords.accuracy;
+                    visitorData.gpsDone = true;
+                    renderVisitorCard();
+
+                    // Reverse geocoding → lấy tên địa điểm
+                    try {
+                        const r = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&accept-language=vi&zoom=14`);
+                        const d = await r.json();
+                        const addr = d.address || {};
+                        visitorData.gpsCity = addr.city || addr.town || addr.village || addr.county || null;
+                        visitorData.gpsDistrict = addr.suburb || addr.district || addr.neighbourhood || addr.quarter || null;
+                        visitorData.gpsCountry = addr.country || null;
+                        visitorData.gpsCountryCode = addr.country_code?.toUpperCase() || null;
+                        visitorData.reverseDone = true;
+                        renderVisitorCard();
+                    } catch(e) {
+                        visitorData.reverseDone = true;
+                        renderVisitorCard();
+                    }
+                },
+                (err) => {
+                    // GPS bị từ chối — không sao, dùng IP location
+                    visitorData.gpsDone = true;
+                    renderVisitorCard();
+                },
+                { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
             );
-            return String.fromCodePoint(...codePoints);
         }
 
+        // Chạy song song
+        fetchIP();
+        fetchGPS();
+
+        // ===== Copy IP =====
         function copyIP(ip, btn) {
             navigator.clipboard.writeText(ip).then(() => {
                 btn.classList.add('copied');
@@ -703,9 +663,6 @@
                 }, 2000);
             });
         }
-
-        // Gọi API khi trang load xong
-        fetchIPInfo();
     </script>
 </body>
 </html>
