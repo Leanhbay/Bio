@@ -2,14 +2,19 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>My Bio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Inter',sans-serif;background:#030304;color:#fff;min-height:100vh;overflow-x:hidden}
+        *{margin:0;padding:0;box-sizing:border-box;
+          -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;
+          -webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;
+          touch-action:manipulation}
+        html,body{overflow:hidden;height:100%;width:100%;position:fixed;top:0;left:0}
+        body{font-family:'Inter',sans-serif;background:#030304;color:#fff;overflow-y:auto;-webkit-overflow-scrolling:touch}
+        img{pointer-events:none;-webkit-user-drag:none;user-drag:none}
 
         .bg-glow-1{position:fixed;top:-200px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,0.15) 0%,transparent 70%);filter:blur(80px);pointer-events:none;z-index:0;animation:float1 8s ease-in-out infinite}
         .bg-glow-2{position:fixed;bottom:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(168,85,247,0.12) 0%,transparent 70%);filter:blur(80px);pointer-events:none;z-index:0;animation:float2 10s ease-in-out infinite}
@@ -30,7 +35,6 @@
         .avatar-ring{background:conic-gradient(from 0deg,#6366f1,#a855f7,#3b82f6,#6366f1);animation:ring-rotate 4s linear infinite}
         @keyframes ring-rotate{to{transform:rotate(360deg)}}
         .avatar-wrapper{transition:transform 0.5s cubic-bezier(0.16,1,0.3,1)}
-        .avatar-wrapper:hover{transform:scale(1.05)}
 
         .status-dot{animation:pulse-dot 2s ease-in-out infinite}
         @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.6)}50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
@@ -106,16 +110,12 @@
         .online-dot::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px solid rgba(34,197,94,0.4);animation:gps-ring 2s ease-out infinite}
         @keyframes gps-ring{0%{transform:scale(1);opacity:1}100%{transform:scale(2);opacity:0}}
 
-        /* YouTube player ẩn */
         #ytPlayerContainer{position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;overflow:hidden}
     </style>
 </head>
 <body>
 
-    <!-- YouTube Player ẩn — dùng IFrame API để kontrol volume -->
-    <div id="ytPlayerContainer">
-        <div id="ytPlayer"></div>
-    </div>
+    <div id="ytPlayerContainer"><div id="ytPlayer"></div></div>
 
     <div class="bg-glow-1"></div>
     <div class="bg-glow-2"></div>
@@ -126,7 +126,6 @@
     <main class="relative z-10 flex items-center justify-center min-h-screen px-4 py-12">
         <div class="w-full max-w-md">
 
-            <!-- Profile -->
             <div class="flex flex-col items-center mb-8">
                 <div class="reveal avatar-wrapper mb-6 relative">
                     <div class="avatar-ring w-[120px] h-[120px] rounded-full p-[3px]">
@@ -147,7 +146,6 @@
                 </p>
             </div>
 
-            <!-- Live Clock -->
             <div class="reveal delay-4">
                 <div class="live-clock-container">
                     <div style="display:flex;align-items:baseline;gap:2px">
@@ -163,7 +161,6 @@
                 <div class="clock-date" id="clockDate">--</div>
             </div>
 
-            <!-- IP Card -->
             <div class="ip-card reveal delay-5" id="ipCard">
                 <div class="ip-card-header">
                     <span class="iconify" data-icon="mdi:shield-eye" data-width="18" style="color:#6366f1"></span>
@@ -175,7 +172,6 @@
 
             <div class="reveal delay-6 divider mb-6"></div>
 
-            <!-- Social Links -->
             <div class="flex flex-col gap-3 mb-8">
                 <a href="https://facebook.com" target="_blank" class="reveal delay-6 social-link facebook">
                     <span class="social-icon"><span class="iconify" data-icon="mdi:facebook" data-width="26"></span></span>
@@ -230,28 +226,62 @@
     </div>
 
     <script>
-        // ===== Reveal =====
-        function revealElements(){document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top<innerHeight-40)el.classList.add('active')})}
-        addEventListener('scroll',revealElements);addEventListener('load',revealElements);
+        // ============================================================
+        //  CHỐNG THU PHÓNG — XÊ DỊCH — COPY
+        // ============================================================
 
-        // ===== Particles =====
-        const cvs=document.getElementById('particles'),cx=cvs.getContext('2d');let pts=[];
-        function rsz(){cvs.width=innerWidth;cvs.height=innerHeight}rsz();addEventListener('resize',rsz);
-        class P{constructor(){this.r()}r(){this.x=Math.random()*cvs.width;this.y=Math.random()*cvs.height;this.s=Math.random()*1.5+.5;this.dx=(Math.random()-.5)*.3;this.dy=(Math.random()-.5)*.3;this.o=Math.random()*.3+.1}u(){this.x+=this.dx;this.y+=this.dy;if(this.x<0||this.x>cvs.width||this.y<0||this.y>cvs.height)this.r()}d(){cx.beginPath();cx.arc(this.x,this.y,this.s,0,Math.PI*2);cx.fillStyle=`rgba(148,163,184,${this.o})`;cx.fill()}}
-        for(let i=0;i<50;i++)pts.push(new P);
-        (function a(){cx.clearRect(0,0,cvs.width,cvs.height);pts.forEach(p=>{p.u();p.d()});requestAnimationFrame(a)})();
+        // Chống chuột phải
+        document.addEventListener('contextmenu', e => e.preventDefault());
 
-        // ===== Share =====
-        function shareProfile(){if(navigator.share)navigator.share({title:'Bio',text:'Xem profile!',url:location.href}).catch(()=>{});else navigator.clipboard.writeText(location.href).then(()=>showToast('Đã sao chép liên kết!')).catch(()=>{})}
-        function showToast(t){const e=document.getElementById('toast');document.getElementById('toastText').textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2500)}
+        // Chống phím tắt
+        document.addEventListener('keydown', e => {
+            // F12
+            if(e.key === 'F12'){e.preventDefault();return false}
+            // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C
+            if(e.ctrlKey && e.shiftKey && ['I','i','J','j','C','c'].includes(e.key)){e.preventDefault();return false}
+            // Ctrl+U (View Source)
+            if(e.ctrlKey && ['U','u'].includes(e.key)){e.preventDefault();return false}
+            // Ctrl+S (Save)
+            if(e.ctrlKey && ['S','s'].includes(e.key)){e.preventDefault();return false}
+            // Ctrl+C (Copy)
+            if(e.ctrlKey && ['C','c'].includes(e.key)){e.preventDefault();return false}
+            // Ctrl+P (Print)
+            if(e.ctrlKey && ['P','p'].includes(e.key)){e.preventDefault();return false}
+            // Ctrl+Shift+U
+            if(e.ctrlKey && e.shiftKey && ['U','u'].includes(e.key)){e.preventDefault();return false}
+        });
+
+        // Chống kéo thả hình ảnh
+        document.addEventListener('dragstart', e => e.preventDefault());
+
+        // Chống pinch zoom trên mobile
+        document.addEventListener('gesturestart', e => e.preventDefault());
+        document.addEventListener('gesturechange', e => e.preventDefault());
+        document.addEventListener('gestureend', e => e.preventDefault());
+
+        // Chống double-tap zoom trên mobile
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', e => {
+            const now = Date.now();
+            if(now - lastTouchEnd <= 300) e.preventDefault();
+            lastTouchEnd = now;
+        }, {passive: false});
+
+        // Chống Ctrl+Copy trên mobile (nếu có bàn phím)
+        document.addEventListener('copy', e => e.preventDefault());
+        document.addEventListener('selectstart', e => e.preventDefault());
+
+        // Chống thu phóng bằng Ctrl+/+-
+        document.addEventListener('wheel', e => {
+            if(e.ctrlKey) e.preventDefault();
+        }, {passive: false});
 
         // ============================================================
-        //  NHẠC — YouTube IFrame API, volume 100, autoplay ép buộc
+        //  NHẠC — YouTube IFrame API, phát ngay lập tức
         // ============================================================
         let ytPlayer = null;
-        let musicStarted = false;
+        let playerReady = false;
 
-        // Tải YouTube IFrame API
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         document.head.appendChild(tag);
@@ -281,56 +311,77 @@
         }
 
         function onPlayerReady(event) {
-            // Set âm lượng tối đa (100%)
+            playerReady = true;
             event.target.setVolume(100);
-            // Thử phát ngay
             event.target.playVideo();
-            musicStarted = true;
         }
 
         function onPlayerStateChange(event) {
-            // Nếu bị dừng (trình duyệt chặn autoplay), thử phát lại
+            // Bị pause/cued → ép phát lại
             if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.CUED) {
-                if (ytPlayer) {
-                    ytPlayer.setVolume(100);
-                    ytPlayer.playVideo();
-                }
+                tryPlay();
             }
         }
 
-        // Ép phát khi người dùng tương tác lần đầu (bypass chính sách autoplay)
-        function forcePlay() {
-            if (musicStarted && ytPlayer) {
-                ytPlayer.setVolume(100);
-                ytPlayer.playVideo();
+        function tryPlay() {
+            if (ytPlayer && playerReady) {
+                try {
+                    ytPlayer.setVolume(100);
+                    ytPlayer.playVideo();
+                } catch(e) {}
             }
-            // Chỉ cần 1 lần, xóa listener
+        }
+
+        // Ép phát khi có BẤT KỲ tương tác nào
+        function forcePlay() {
+            tryPlay();
             document.removeEventListener('click', forcePlay);
             document.removeEventListener('touchstart', forcePlay);
+            document.removeEventListener('touchend', forcePlay);
             document.removeEventListener('scroll', forcePlay);
             document.removeEventListener('keydown', forcePlay);
+            document.removeEventListener('pointerdown', forcePlay);
         }
         document.addEventListener('click', forcePlay);
         document.addEventListener('touchstart', forcePlay);
+        document.addEventListener('touchend', forcePlay);
         document.addEventListener('scroll', forcePlay);
         document.addEventListener('keydown', forcePlay);
+        document.addEventListener('pointerdown', forcePlay);
 
-        // Thử phát lại liên tục mỗi 2 giây nếu chưa phát được
-        let playInterval = setInterval(() => {
-            if (ytPlayer && ytPlayer.getPlayerState) {
-                const state = ytPlayer.getPlayerState();
-                if (state !== YT.PlayerState.PLAYING) {
-                    ytPlayer.setVolume(100);
-                    ytPlayer.playVideo();
-                } else {
-                    // Đã phát thành công, dừng interval
-                    clearInterval(playInterval);
-                }
+        // Retry liên tục mỗi 500ms — ép phát đến khi thành công
+        let retryCount = 0;
+        let playRetry = setInterval(() => {
+            retryCount++;
+            if (ytPlayer && playerReady && ytPlayer.getPlayerState) {
+                try {
+                    const state = ytPlayer.getPlayerState();
+                    if (state !== YT.PlayerState.PLAYING) {
+                        ytPlayer.setVolume(100);
+                        ytPlayer.playVideo();
+                    } else {
+                        clearInterval(playRetry);
+                    }
+                } catch(e) {}
             }
-        }, 2000);
+            // Dừng sau 20 giây (40 lần retry)
+            if (retryCount > 40) clearInterval(playRetry);
+        }, 500);
 
-        // Dừng thử lại sau 30 giây
-        setTimeout(() => clearInterval(playInterval), 30000);
+        // ===== Reveal =====
+        function revealElements(){document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top<innerHeight-40)el.classList.add('active')})}
+        addEventListener('scroll',revealElements);addEventListener('load',revealElements);
+
+        // ===== Particles =====
+        const cvs=document.getElementById('particles'),cx=cvs.getContext('2d');let pts=[];
+        function rsz(){cvs.width=innerWidth;cvs.height=innerHeight}rsz();addEventListener('resize',rsz);
+        class P{constructor(){this.r()}r(){this.x=Math.random()*cvs.width;this.y=Math.random()*cvs.height;this.s=Math.random()*1.5+.5;this.dx=(Math.random()-.5)*.3;this.dy=(Math.random()-.5)*.3;this.o=Math.random()*.3+.1}u(){this.x+=this.dx;this.y+=this.dy;if(this.x<0||this.x>cvs.width||this.y<0||this.y>cvs.height)this.r()}d(){cx.beginPath();cx.arc(this.x,this.y,this.s,0,Math.PI*2);cx.fillStyle=`rgba(148,163,184,${this.o})`;cx.fill()}}
+        for(let i=0;i<50;i++)pts.push(new P);
+        (function a(){cx.clearRect(0,0,cvs.width,cvs.height);pts.forEach(p=>{p.u();p.d()});requestAnimationFrame(a)})();
+
+        // ===== Share =====
+        function shareProfile(){if(navigator.share)navigator.share({title:'Bio',text:'Xem profile!',url:location.href}).catch(()=>{});else navigator.clipboard.writeText(location.href).then(()=>showToast('Đã sao chép liên kết!')).catch(()=>{})}
+        function showToast(t){const e=document.getElementById('toast');document.getElementById('toastText').textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2500)}
 
         // ===== Live Clock =====
         const clockHM=document.getElementById('clockHM'),clockSec=document.getElementById('clockSec');
