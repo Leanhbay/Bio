@@ -2,576 +2,710 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title id="tab-title">Bio Link | LeAnhBay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            height: 100dvh; 
-            overflow: hidden; 
-            -webkit-tap-highlight-color: transparent; 
-            margin: 0;
-            padding: 0;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #030304; color: #fff; min-height: 100vh; overflow-x: hidden; }
+
+        .bg-glow-1 {
+            position: fixed; top: -200px; left: -200px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+            filter: blur(80px); pointer-events: none; z-index: 0;
+            animation: float1 8s ease-in-out infinite;
+        }
+        .bg-glow-2 {
+            position: fixed; bottom: -200px; right: -200px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%);
+            filter: blur(80px); pointer-events: none; z-index: 0;
+            animation: float2 10s ease-in-out infinite;
+        }
+        .bg-glow-3 {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+            filter: blur(100px); pointer-events: none; z-index: 0;
+            animation: float3 12s ease-in-out infinite;
         }
 
-        /* --- HIỆU ỨNG VIỀN SÁNG CHẠY --- */
-        @property --border-angle {
-            syntax: "<angle>";
-            inherits: false;
-            initial-value: 0deg;
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, 40px) scale(1.1); }
+        }
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-50px, -30px) scale(1.15); }
+        }
+        @keyframes float3 {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
         }
 
-        .bio-button {
+        .noise-overlay {
+            position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.03;
+            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+            background-size: 200px 200px;
+        }
+
+        .reveal {
+            opacity: 0; transform: translateY(30px) scale(0.98);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: blur(10px);
+        }
+        .reveal.active {
+            opacity: 1; transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+        .delay-1 { transition-delay: 100ms; }
+        .delay-2 { transition-delay: 200ms; }
+        .delay-3 { transition-delay: 300ms; }
+        .delay-4 { transition-delay: 400ms; }
+        .delay-5 { transition-delay: 500ms; }
+        .delay-6 { transition-delay: 600ms; }
+        .delay-7 { transition-delay: 700ms; }
+        .delay-8 { transition-delay: 800ms; }
+        .delay-9 { transition-delay: 900ms; }
+        .delay-10 { transition-delay: 1000ms; }
+        .delay-11 { transition-delay: 1100ms; }
+
+        .avatar-ring {
+            background: conic-gradient(from 0deg, #6366f1, #a855f7, #3b82f6, #6366f1);
+            animation: ring-rotate 4s linear infinite;
+        }
+        @keyframes ring-rotate { to { transform: rotate(360deg); } }
+
+        .avatar-wrapper { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .avatar-wrapper:hover { transform: scale(1.05); }
+
+        .status-dot { animation: pulse-dot 2s ease-in-out infinite; }
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+            50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+        }
+
+        .social-link {
             position: relative;
-            border-radius: 1rem;
-            background: rgba(255, 255, 255, 0.05);
+            display: flex; align-items: center; gap: 16px;
+            padding: 16px 24px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-            border: none;
-            rotate: 0deg;
-            transform: translateZ(0); 
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-                        box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                        background-color 0.4s ease;
-            will-change: transform, box-shadow, rotate;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden; cursor: pointer;
+            text-decoration: none; color: #fff;
+        }
+        .social-link::before {
+            content: ''; position: absolute; inset: 0;
+            opacity: 0; transition: opacity 0.4s ease; border-radius: 16px;
+        }
+        .social-link:hover {
+            transform: translateY(-2px) scale(1.02);
+            border-color: rgba(255,255,255,0.12);
+        }
+        .social-link:hover::before { opacity: 1; }
+        .social-link:active { transform: translateY(0) scale(0.98); }
+
+        .social-link.facebook::before { background: linear-gradient(135deg, rgba(24,119,242,0.15), rgba(24,119,242,0.03)); }
+        .social-link.facebook:hover { border-color: rgba(24,119,242,0.3); box-shadow: 0 8px 30px -8px rgba(24,119,242,0.2); }
+        .social-link.facebook .social-icon { color: #1877F2; }
+
+        .social-link.instagram::before { background: linear-gradient(135deg, rgba(225,48,108,0.15), rgba(131,58,180,0.08)); }
+        .social-link.instagram:hover { border-color: rgba(225,48,108,0.3); box-shadow: 0 8px 30px -8px rgba(225,48,108,0.2); }
+        .social-link.instagram .social-icon {
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
 
-        .bio-button::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            padding: 2px;
-            background: conic-gradient(from var(--border-angle), transparent 60%, #38bdf8 80%, #c084fc 100%);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            animation: spinBorder 3.5s linear infinite;
+        .social-link.tiktok::before { background: linear-gradient(135deg, rgba(255,0,80,0.15), rgba(0,242,234,0.08)); }
+        .social-link.tiktok:hover { border-color: rgba(255,0,80,0.3); box-shadow: 0 8px 30px -8px rgba(255,0,80,0.15); }
+        .social-link.tiktok .social-icon {
+            background: linear-gradient(135deg, #ff0050, #00f2ea);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        .social-link.zalo::before { background: linear-gradient(135deg, rgba(0,136,255,0.15), rgba(0,136,255,0.03)); }
+        .social-link.zalo:hover { border-color: rgba(0,136,255,0.3); box-shadow: 0 8px 30px -8px rgba(0,136,255,0.2); }
+        .social-link.zalo .social-icon { color: #0088FF; }
+
+        .social-link.youtube::before { background: linear-gradient(135deg, rgba(255,0,0,0.15), rgba(255,0,0,0.03)); }
+        .social-link.youtube:hover { border-color: rgba(255,0,0,0.3); box-shadow: 0 8px 30px -8px rgba(255,0,0,0.2); }
+        .social-link.youtube .social-icon { color: #FF0000; }
+
+        .social-link.telegram::before { background: linear-gradient(135deg, rgba(0,136,204,0.15), rgba(0,136,204,0.03)); }
+        .social-link.telegram:hover { border-color: rgba(0,136,204,0.3); box-shadow: 0 8px 30px -8px rgba(0,136,204,0.2); }
+        .social-link.telegram .social-icon { color: #0088CC; }
+
+        .social-icon {
+            font-size: 26px; flex-shrink: 0;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .social-link:hover .social-icon { transform: scale(1.15); }
+
+        .social-arrow {
+            margin-left: auto; opacity: 0; transform: translateX(-8px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); color: #64748b;
+        }
+        .social-link:hover .social-arrow { opacity: 1; transform: translateX(0); }
+
+        .stat-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px; padding: 20px; text-align: center;
+            transition: all 0.4s ease;
+        }
+        .stat-card:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+        #particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+        .music-bar {
+            width: 3px; border-radius: 99px;
+            background: linear-gradient(to top, #6366f1, #a855f7);
+            animation: music-bounce 0.8s ease-in-out infinite alternate;
+        }
+        .music-bar:nth-child(1) { height: 12px; animation-delay: 0s; }
+        .music-bar:nth-child(2) { height: 20px; animation-delay: 0.15s; }
+        .music-bar:nth-child(3) { height: 8px; animation-delay: 0.3s; }
+        .music-bar:nth-child(4) { height: 16px; animation-delay: 0.45s; }
+        .music-bar:nth-child(5) { height: 10px; animation-delay: 0.1s; }
+        @keyframes music-bounce {
+            0% { transform: scaleY(0.3); }
+            100% { transform: scaleY(1); }
+        }
+        .paused .music-bar { animation-play-state: paused; }
+
+        .now-playing {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 18px; border-radius: 14px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .now-playing:hover { background: rgba(255,255,255,0.06); }
+
+        .share-btn {
+            position: fixed; bottom: 24px; right: 24px; z-index: 50;
+            width: 48px; height: 48px; border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; border: none; color: #fff;
+            box-shadow: 0 8px 30px -6px rgba(99,102,241,0.5);
+            transition: all 0.3s ease;
+        }
+        .share-btn:hover { transform: scale(1.1); box-shadow: 0 12px 40px -6px rgba(99,102,241,0.6); }
+        .share-btn:active { transform: scale(0.95); }
+
+        .toast {
+            position: fixed; bottom: 84px; right: 24px; z-index: 50;
+            padding: 12px 20px; border-radius: 12px;
+            background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3);
+            color: #34D399; font-size: 13px; font-weight: 500;
+            backdrop-filter: blur(10px);
+            opacity: 0; transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             pointer-events: none;
         }
+        .toast.show { opacity: 1; transform: translateY(0); }
 
-        .bio-button > * {
-            position: relative;
-            z-index: 2;
+        /* ===== IP Visitor Card ===== */
+        .ip-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
         }
+        .ip-card:hover {
+            border-color: rgba(99,102,241,0.2);
+            box-shadow: 0 0 40px -12px rgba(99,102,241,0.15);
+        }
+        .ip-card-header {
+            padding: 16px 20px 12px;
+            display: flex; align-items: center; gap: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .ip-card-body { padding: 16px 20px 20px; }
 
-        .bio-button:hover {
-            transform: translate3d(0, -6px, 0) scale(1.02);
-            background: rgba(255, 255, 255, 0.12);
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2),
-                        0 20px 40px -10px rgba(0, 0, 0, 0.5), 
-                        0 0 25px rgba(192, 132, 252, 0.4);
-            animation-play-state: paused !important;
+        .ip-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 8px 0;
         }
-
-        .bio-button:hover::before {
-            animation-duration: 1.2s; 
-            background: conic-gradient(from var(--border-angle), transparent 40%, #38bdf8 70%, #c084fc 100%);
+        .ip-row:not(:last-child) {
+            border-bottom: 1px solid rgba(255,255,255,0.03);
         }
-
-        .bio-button:active {
-            transform: translate3d(0, -2px, 0) scale(0.98);
-            transition-duration: 0.1s;
+        .ip-label {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 12px; color: #64748b; font-weight: 500;
         }
-
-        @keyframes spinBorder {
-            to { --border-angle: 360deg; }
+        .ip-label .iconify { font-size: 14px; color: #475569; }
+        .ip-value {
+            font-size: 13px; color: #e2e8f0; font-weight: 500;
+            font-variant-numeric: tabular-nums;
         }
-        
-        .ip-widget-active {
-            position: relative;
-        }
-        .ip-widget-active::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            padding: 2px;
-            background: conic-gradient(from var(--border-angle), transparent 60%, #38bdf8 80%, #c084fc 100%);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            animation: spinBorder 3.5s linear infinite;
-            pointer-events: none;
-        }
-        .ip-widget-active > span {
-            position: relative;
-            z-index: 2;
+        .ip-value.primary {
+            color: #a5b4fc;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
         }
 
-        @keyframes fadeInRise {
-            0% { opacity: 0; transform: translate3d(0, 30px, 0) scale(0.9); filter: blur(8px); }
-            100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
+        .ip-loading {
+            display: flex; align-items: center; gap: 8px;
+            color: #64748b; font-size: 13px;
+        }
+        .ip-spinner {
+            width: 14px; height: 14px; border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-top-color: #6366f1;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .ip-badge {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 2px 8px; border-radius: 6px;
+            font-size: 10px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .ip-badge.ipv4 {
+            background: rgba(99,102,241,0.12); color: #a5b4fc;
+        }
+        .ip-badge.ipv6 {
+            background: rgba(168,85,247,0.12); color: #c4b5fd;
         }
 
-        .animate-fade-in {
-            animation: fadeInRise 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-            will-change: transform, opacity, filter;
+        .ip-map-dot {
+            display: inline-block; width: 6px; height: 6px;
+            border-radius: 50%; background: #22c55e;
+            animation: pulse-dot 2s ease-in-out infinite;
+            margin-right: 2px;
         }
 
-        .animate-ios-shake {
-            animation: iosShake 0.35s infinite alternate ease-in-out;
-            transform-origin: center;
+        .ip-copy-btn {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 4px 10px; border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: #94a3b8; font-size: 11px; cursor: pointer;
+            transition: all 0.3s ease;
         }
-
-        @keyframes iosShake {
-            0% { rotate: -0.6deg; }
-            100% { rotate: 0.6deg; }
+        .ip-copy-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: #e2e8f0;
+            border-color: rgba(255,255,255,0.15);
         }
-        
-        .money-drop { position: fixed; top: -10%; z-index: 0; user-select: none; pointer-events: none; animation: moneyFall linear forwards; }
-        @keyframes moneyFall {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(115vh) rotate(360deg); opacity: 0; }
+        .ip-copy-btn.copied {
+            background: rgba(16,185,129,0.12);
+            border-color: rgba(16,185,129,0.3);
+            color: #34D399;
         }
-        
-        #image-popup { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform-origin: center; }
-        #image-popup.active { transform: translate(-50%, -50%) scale(1); opacity: 1; pointer-events: auto; }
-        #image-popup:not(.active) { transform: translate(-50%, -50%) scale(0); opacity: 0; pointer-events: none; }
-        
-        @keyframes avatarPulse {
-            0% { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; transform: scale(1); }
-            25% { border-color: #ff00ff; box-shadow: 0 0 20px #ff00ff; transform: scale(1.08); }
-            50% { border-color: #00ff00; box-shadow: 0 0 15px #00ff00; transform: scale(0.98); }
-            75% { border-color: #00ffff; box-shadow: 0 0 20px #00ffff; transform: scale(1.05); }
-            100% { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; transform: scale(1); }
-        }
-        .avatar-visualizer {
-            border-width: 4px;
-            border-style: solid;
-            border-radius: 50%;
-            animation: avatarPulse 2.5s infinite ease-in-out;
-            will-change: transform, border-color, box-shadow;
-        }
-        
-        @keyframes heartbeat { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        .animate-heartbeat { animation: heartbeat 1.5s infinite; }
-
-        @keyframes floatWidgetCenter { 
-            0% { transform: translate(-50%, var(--drop-y)); } 
-            50% { transform: translate(-50%, calc(var(--drop-y) - 8px)); } 
-            100% { transform: translate(-50%, var(--drop-y)); } 
-        }
-        .floating-widget-center { 
-            animation: floatWidgetCenter 3s ease-in-out infinite; 
-        }
-        
-        @keyframes blinkCursor { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-        .cursor-blink { animation: blinkCursor 1s step-end infinite; }
     </style>
 </head>
-<body class="flex flex-col items-center justify-center w-full relative">
+<body>
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+    <div class="bg-glow-3"></div>
+    <div class="noise-overlay"></div>
+    <canvas id="particles"></canvas>
 
-    <div id="bg-layer" class="fixed inset-0 w-full h-[100dvh] -z-10 bg-cover bg-center bg-no-repeat"></div>
+    <main class="relative z-10 flex items-center justify-center min-h-screen px-4 py-12">
+        <div class="w-full max-w-md">
 
-    <div id="welcome-overlay" class="fixed inset-0 z-[100] bg-slate-900/90 backdrop-blur-md flex flex-col items-center justify-center transition-opacity duration-700">
-        <img src="https://sf-static.upanhlaylink.com/img/image_20260422d19d8c975970f37d448368b012dd11fb.jpg" class="w-24 h-24 rounded-full object-cover border-4 border-white/20 mb-6 shadow-2xl animate-heartbeat">
-        <h2 class="text-white text-2xl font-bold mb-2 tracking-wide">Lê Anh Bảy</h2>
-        
-        <div id="analysis-text" class="h-8 flex items-center justify-center mt-2 transition-all duration-300"></div>
+            <!-- Profile Section -->
+            <div class="flex flex-col items-center mb-8">
+                <div class="reveal avatar-wrapper mb-6 relative">
+                    <div class="avatar-ring w-[120px] h-[120px] rounded-full p-[3px]">
+                        <div class="w-full h-full rounded-full overflow-hidden bg-[#0A0A0C] p-[3px]">
+                            <img src="https://picsum.photos/seed/bio-avatar-pro/300/300.jpg" alt="Avatar" class="w-full h-full rounded-full object-cover">
+                        </div>
+                    </div>
+                    <div class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-[#030304] flex items-center justify-center">
+                        <div class="status-dot w-3.5 h-3.5 rounded-full bg-green-500"></div>
+                    </div>
+                </div>
 
-        <div id="tap-to-enter-container" class="opacity-0 transition-all duration-1000 transform translate-y-4 absolute bottom-[120px]">
-            <p class="text-white/80 bg-white/10 px-6 py-2 rounded-full flex items-center gap-2 animate-pulse mt-2 shadow-lg backdrop-blur-sm">
-                <i class="ph-fill ph-hand-tap text-xl"></i>
-                Chạm vào màn hình
-            </p>
-        </div>
-    </div>
+                <h1 class="reveal delay-1 text-2xl font-semibold tracking-tight mb-1">Nguyễn Văn A</h1>
+                <p class="reveal delay-2 text-sm text-slate-400 mb-3">@nguyenvana.official</p>
 
-    <div id="center-info-drop" class="fixed top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-[110] hidden flex-wrap items-center justify-center text-cyan-300 font-mono text-[13px] sm:text-sm font-semibold w-max pointer-events-none"></div>
+                <p class="reveal delay-3 text-center text-sm text-slate-400 leading-relaxed max-w-xs mb-4">
+                    ✨ Creator & Content Strategist<br>
+                    🎬 Chia sẻ kiến thức & trải nghiệm sống<br>
+                    📍 Hà Nội, Việt Nam
+                </p>
 
-    <audio id="bg-music" loop playsinline preload="auto">
-        <source id="music-src" src="" type="audio/mpeg">
-    </audio>
-
-    <button id="music-toggle" class="hidden fixed bottom-6 left-4 w-10 h-10 sm:w-12 sm:h-12 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-full shadow-2xl items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
-        <i id="music-icon" class="ph-bold ph-speaker-slash text-lg sm:text-xl"></i>
-    </button>
-
-    <button onclick="togglePopupImage()" class="hidden fixed bottom-6 right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white text-slate-900 rounded-full shadow-2xl items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
-        <i class="ph-bold ph-currency-dollar text-lg sm:text-xl text-green-600"></i>
-    </button>
-
-    <div id="image-popup" class="fixed top-1/2 left-1/2 w-[280px] h-[280px] sm:w-80 sm:h-80 bg-white/10 backdrop-blur-md p-2 rounded-2xl border border-white/20 shadow-2xl z-50 hidden">
-        <button onclick="togglePopupImage()" class="absolute -top-3 -left-3 w-7 h-7 flex items-center justify-center rounded-full bg-slate-800 text-white border border-white/20 hover:bg-slate-700 shadow-lg z-10">
-            <i class="ph-bold ph-x text-xs"></i>
-        </button>
-        <img id="popup-image-content" src="" class="w-full h-full object-cover rounded-xl" alt="Image">
-    </div>
-
-    <main class="w-full max-w-md h-[100dvh] flex flex-col justify-center px-4 z-10 relative overflow-hidden">
-        
-        <div class="flex-shrink-0 text-center opacity-0 stagger-anim relative" style="animation-delay: 0.1s;">
-            <div class="relative inline-block mb-2 sm:mb-4">
-                <div class="absolute inset-0 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-full blur-lg opacity-50 animate-pulse"></div>
-                <img id="avatar" src="" alt="Avatar" class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-white/20 object-cover transition-transform duration-300">
+                <div class="reveal delay-4 now-playing" id="nowPlaying" onclick="toggleMusic()">
+                    <div class="flex items-end gap-[3px] h-5" id="musicBars">
+                        <div class="music-bar"></div>
+                        <div class="music-bar"></div>
+                        <div class="music-bar"></div>
+                        <div class="music-bar"></div>
+                        <div class="music-bar"></div>
+                    </div>
+                    <div class="text-left">
+                        <div class="text-[11px] text-slate-500 font-medium uppercase tracking-wider">Now Playing</div>
+                        <div class="text-xs text-slate-300 font-medium">Đang nghe nhạc...</div>
+                    </div>
+                </div>
             </div>
-            <h1 id="display-name" class="text-xl sm:text-2xl font-bold text-white mb-1 uppercase tracking-tight"></h1>
-            
-            <!-- Đã thêm chiều cao h-[20px] sm:h-[24px] để giữ khung giao diện không bị giật khi xóa chữ -->
-            <p id="bio-text" class="text-slate-400 text-xs sm:text-sm mb-3 leading-relaxed h-[20px] sm:h-[24px]"></p>
-            
-            <div class="flex justify-center gap-4 text-white/60">
-                <a id="social-fb" href="#" class="hover:text-white transition-colors"><i class="ph-bold ph-facebook-logo text-xl sm:text-2xl"></i></a>
-                <a id="social-zl" href="#" class="hover:text-white transition-colors"><i class="ph-bold ph-chats-teardrop text-xl sm:text-2xl"></i></a>
-                <a id="social-tg" href="#" class="hover:text-white transition-colors"><i class="ph-bold ph-telegram-logo text-xl sm:text-2xl"></i></a>
-                <a id="social-tt" href="#" class="hover:text-white transition-colors"><i class="ph-bold ph-tiktok-logo text-xl sm:text-2xl"></i></a>
+
+            <!-- Stats -->
+            <div class="reveal delay-5 grid grid-cols-3 gap-3 mb-8">
+                <div class="stat-card">
+                    <div class="text-xl font-semibold" style="background: linear-gradient(135deg, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" id="statFollowers">0</div>
+                    <div class="text-[11px] text-slate-500 font-medium mt-1 uppercase tracking-wider">Followers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="text-xl font-semibold" style="background: linear-gradient(135deg, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" id="statLikes">0</div>
+                    <div class="text-[11px] text-slate-500 font-medium mt-1 uppercase tracking-wider">Likes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="text-xl font-semibold" style="background: linear-gradient(135deg, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;" id="statViews">0</div>
+                    <div class="text-[11px] text-slate-500 font-medium mt-1 uppercase tracking-wider">Views</div>
+                </div>
             </div>
-        </div>
 
-        <div id="links-container" class="w-full flex-1 max-h-fit flex flex-col justify-center gap-2.5 mt-4 mb-2">
-            <a id="btn-fb" href="#" class="bio-button flex items-center px-4 py-2.5 sm:py-3 rounded-2xl w-full opacity-0 stagger-anim" style="animation-delay: 0.3s;">
-                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-blue-600/20 rounded-xl flex items-center justify-center text-blue-400 mr-3 flex-shrink-0"><i class="ph-bold ph-facebook-logo text-lg"></i></div>
-                <div class="flex-1 text-left"><h2 class="text-white text-sm font-semibold h-[20px]" data-text="Facebook"></h2><p class="text-slate-500 text-[11px] h-[16px]" data-text="Trang cá nhân chính chủ"></p></div>
-                <i class="ph ph-caret-right text-slate-500"></i>
-            </a>
-            <a id="btn-tt" href="#" class="bio-button flex items-center px-4 py-2.5 sm:py-3 rounded-2xl w-full opacity-0 stagger-anim" style="animation-delay: 0.45s;">
-                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-slate-100/20 rounded-xl flex items-center justify-center text-white mr-3 flex-shrink-0"><i class="ph-bold ph-tiktok-logo text-lg"></i></div>
-                <div class="flex-1 text-left"><h2 class="text-white text-sm font-semibold h-[20px]" data-text="TikTok"></h2><p class="text-slate-500 text-[11px] h-[16px]" data-text="Video sáng tạo"></p></div>
-                <i class="ph ph-caret-right text-slate-500"></i>
-            </a>
-            <a id="btn-zl" href="#" class="bio-button flex items-center px-4 py-2.5 sm:py-3 rounded-2xl w-full opacity-0 stagger-anim" style="animation-delay: 0.6s;">
-                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-blue-400/20 rounded-xl flex items-center justify-center text-blue-300 mr-3 flex-shrink-0"><i class="ph-bold ph-chats-teardrop text-lg"></i></div>
-                <div class="flex-1 text-left"><h2 class="text-white text-sm font-semibold h-[20px]" data-text="Zalo"></h2><p class="text-slate-500 text-[11px] h-[16px]" data-text="Kết nối nhanh chóng"></p></div>
-                <i class="ph ph-caret-right text-slate-500"></i>
-            </a>
-            <a id="btn-tg" href="#" class="bio-button flex items-center px-4 py-2.5 sm:py-3 rounded-2xl w-full opacity-0 stagger-anim" style="animation-delay: 0.75s;">
-                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-sky-500/20 rounded-xl flex items-center justify-center text-sky-400 mr-3 flex-shrink-0"><i class="ph-bold ph-telegram-logo text-lg"></i></div>
-                <div class="flex-1 text-left"><h2 class="text-white text-sm font-semibold h-[20px]" data-text="Telegram"></h2><p class="text-slate-500 text-[11px] h-[16px]" data-text="Trao đổi công việc"></p></div>
-                <i class="ph ph-caret-right text-slate-500"></i>
-            </a>
-            <a id="btn-mail" href="#" class="bio-button flex items-center px-4 py-2.5 sm:py-3 rounded-2xl w-full opacity-0 stagger-anim" style="animation-delay: 0.9s;">
-                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-red-500/20 rounded-xl flex items-center justify-center text-red-400 mr-3 flex-shrink-0"><i class="ph-bold ph-envelope text-lg"></i></div>
-                <div class="flex-1 text-left"><h2 class="text-white text-sm font-semibold h-[20px]" data-text="Gmail"></h2><p class="text-slate-500 text-[11px] h-[16px]" data-text="Liên hệ qua thư điện tử"></p></div>
-                <i class="ph ph-caret-right text-slate-500"></i>
-            </a>
-        </div>
+            <!-- ===== IP Visitor Card ===== -->
+            <div class="reveal delay-6 ip-card mb-8" id="ipCard">
+                <div class="ip-card-header">
+                    <span class="iconify" data-icon="mdi:shield-eye" data-width="18" style="color: #6366f1;"></span>
+                    <span class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Thông tin truy cập</span>
+                    <span class="ml-auto text-[10px] text-slate-600 font-mono" id="visitTime"></span>
+                </div>
+                <div class="ip-card-body" id="ipBody">
+                    <div class="ip-loading">
+                        <div class="ip-spinner"></div>
+                        <span>Đang lấy thông tin...</span>
+                    </div>
+                </div>
+            </div>
 
-        <footer class="flex-shrink-0 text-center opacity-0 stagger-anim pt-2" style="animation-delay: 1.05s;">
-            <p id="footer-text" class="text-slate-500 text-[10px] uppercase tracking-widest font-semibold"></p>
-        </footer>
+            <!-- Divider -->
+            <div class="reveal delay-7 divider mb-6"></div>
+
+            <!-- Social Links -->
+            <div class="flex flex-col gap-3 mb-8">
+                <a href="https://facebook.com" target="_blank" class="reveal delay-7 social-link facebook">
+                    <span class="social-icon"><span class="iconify" data-icon="mdi:facebook" data-width="26"></span></span>
+                    <div>
+                        <div class="text-sm font-medium">Facebook</div>
+                        <div class="text-xs text-slate-500">fb.com/nguyenvana</div>
+                    </div>
+                    <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
+                </a>
+
+                <a href="https://instagram.com" target="_blank" class="reveal delay-8 social-link instagram">
+                    <span class="social-icon"><span class="iconify" data-icon="mdi:instagram" data-width="26"></span></span>
+                    <div>
+                        <div class="text-sm font-medium">Instagram</div>
+                        <div class="text-xs text-slate-500">@nguyenvana.official</div>
+                    </div>
+                    <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
+                </a>
+
+                <a href="https://tiktok.com" target="_blank" class="reveal delay-8 social-link tiktok">
+                    <span class="social-icon"><span class="iconify" data-icon="ic:baseline-tiktok" data-width="26"></span></span>
+                    <div>
+                        <div class="text-sm font-medium">TikTok</div>
+                        <div class="text-xs text-slate-500">@nguyenvana</div>
+                    </div>
+                    <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
+                </a>
+
+                <a href="https://zalo.me" target="_blank" class="reveal delay-9 social-link zalo">
+                    <span class="social-icon"><span class="iconify" data-icon="simple-icons:zalo" data-width="26"></span></span>
+                    <div>
+                        <div class="text-sm font-medium">Zalo</div>
+                        <div class="text-xs text-slate-500">0812 345 678</div>
+                    </div>
+                    <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
+                </a>
+
+                <a href="https://youtube.com" target="_blank" class="reveal delay-9 social-link youtube">
+                    <span class="social-icon"><span class="iconify" data-icon="mdi:youtube" data-width="26"></span></span>
+                    <div>
+                        <div class="text-sm font-medium">YouTube</div>
+                        <div class="text-xs text-slate-500">Nguyễn Văn A Official</div>
+                    </div>
+                    <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
+                </a>
+
+                <a href="https://t.me" target="_blank" class="reveal delay-10 social-link telegram">
+                    <span class="social-icon"><span class="iconify" data-icon="mdi:telegram" data-width="26"></span></span>
+                    <div>
+                        <div class="text-sm font-medium">Telegram</div>
+                        <div class="text-xs text-slate-500">@nguyenvana_channel</div>
+                    </div>
+                    <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="18"></span></span>
+                </a>
+            </div>
+
+            <!-- Divider -->
+            <div class="reveal delay-10 divider mb-6"></div>
+
+            <!-- Footer -->
+            <div class="reveal delay-11 text-center">
+                <div class="flex items-center justify-center gap-2 mb-3">
+                    <div class="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
+                    <span class="text-[11px] text-slate-500 font-medium uppercase tracking-widest">Powered by Bio Link</span>
+                    <div class="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                </div>
+                <p class="text-[11px] text-slate-600">© 2025 Nguyễn Văn A. All rights reserved.</p>
+            </div>
+
+        </div>
     </main>
 
+    <button class="share-btn" onclick="shareProfile()" title="Chia sẻ">
+        <span class="iconify" data-icon="mdi:share-variant" data-width="20"></span>
+    </button>
+
+    <div class="toast" id="toast">
+        <span class="iconify inline-block align-middle mr-1" data-icon="mdi:check-circle" data-width="16"></span>
+        <span id="toastText">Đã sao chép liên kết!</span>
+    </div>
+
     <script>
-        const CONFIG = {
-            name: "LeAnhBay",
-            bgImageUrl: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=2070&auto=format&fit=crop", 
-            avatar: "https://sf-static.upanhlaylink.com/img/image_20260422d19d8c975970f37d448368b012dd11fb.jpg",
-            popupImageUrl: "https://sf-static.upanhlaylink.com/img/image_20260422cb051728967d78243e652478c696223b.jpg",
-            bio: "Tất cả đều miễn phí trừ những thứ trả phí :)",
-            musicUrl: "https://www.dropbox.com/scl/fi/gvkocofm9tl09qbdl33at/Ng-i-nh-h-nh-ph-c-mp3cut.net.mp3?rlkey=30wpccrvhvl47remeo2j5g47y&st=hiimcry7&raw=1",
-            links: {
-                facebook: "https://www.facebook.com/share/1CTtfYmwnt/?mibextid=wwXIfr",
-                zalo: "https://zalo.me/0353319326",
-                telegram: "https://t.me/mr777lab",
-                tiktok: "https://tiktok.com/@leanhbay",
-                gmail: "mailto:leanhbayy@gmail.com" 
+        // ===== Reveal on scroll =====
+        function revealElements() {
+            document.querySelectorAll('.reveal').forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < window.innerHeight - 40) el.classList.add('active');
+            });
+        }
+        window.addEventListener('scroll', revealElements);
+        window.addEventListener('load', revealElements);
+
+        // ===== Counter Animation =====
+        function animateCounter(el, target) {
+            let current = 0;
+            const duration = 2000;
+            const step = target / (duration / 16);
+            function update() {
+                current += step;
+                if (current >= target) { el.textContent = formatNumber(target); return; }
+                el.textContent = formatNumber(Math.floor(current));
+                requestAnimationFrame(update);
             }
-        };
+            update();
+        }
+        function formatNumber(n) {
+            if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+            if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+            return n.toString();
+        }
+        setTimeout(() => {
+            animateCounter(document.getElementById('statFollowers'), 125000);
+            animateCounter(document.getElementById('statLikes'), 890000);
+            animateCounter(document.getElementById('statViews'), 5200000);
+        }, 800);
 
-        const bgMusic = document.getElementById('bg-music');
-        const avatar = document.getElementById('avatar');
-        const welcomeOverlay = document.getElementById('welcome-overlay');
-
-        async function typeWriterEffect(elementId, text, speed = 50) {
-            const el = document.getElementById(elementId);
-            el.innerHTML = `
-                <i class="ph ph-terminal-window mr-2 text-green-400"></i>
-                <span id="typed-text" class="font-mono text-green-400"></span>
-                <span class="font-mono text-green-400 cursor-blink">_</span>
-            `;
-            const textSpan = document.getElementById('typed-text');
-            for (let i = 0; i < text.length; i++) {
-                textSpan.innerHTML += text.charAt(i);
-                await new Promise(resolve => setTimeout(resolve, speed));
+        // ===== Particles =====
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.opacity = Math.random() * 0.3 + 0.1;
+            }
+            update() {
+                this.x += this.speedX; this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+            }
+            draw() {
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(148, 163, 184, ${this.opacity})`; ctx.fill();
             }
         }
-
-        // HÀM GÕ CHỮ (XUẤT HIỆN)
-        async function simpleTypeWriter(element, text, speed) {
-            element.innerHTML = '';
-            const cursor = document.createElement('span');
-            cursor.className = 'cursor-blink text-slate-400 opacity-70 ml-0.5';
-            cursor.textContent = '|';
-            element.appendChild(cursor);
-            
-            let currentText = '';
-            for (let i = 0; i < text.length; i++) {
-                currentText += text.charAt(i);
-                element.innerHTML = currentText;
-                element.appendChild(cursor);
-                await new Promise(resolve => setTimeout(resolve, speed));
-            }
-            cursor.remove(); 
+        for (let i = 0; i < 50; i++) particles.push(new Particle());
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateParticles);
         }
+        animateParticles();
 
-        // HÀM XÓA CHỮ (BACKSPACE)
-        async function simpleDeleteWriter(element, text, speed) {
-            const cursor = document.createElement('span');
-            cursor.className = 'cursor-blink text-slate-400 opacity-70 ml-0.5';
-            cursor.textContent = '|';
-            
-            let currentText = text;
-            for (let i = text.length; i >= 0; i--) {
-                currentText = text.substring(0, i);
-                element.innerHTML = currentText;
-                element.appendChild(cursor);
-                await new Promise(resolve => setTimeout(resolve, speed));
-            }
-            cursor.remove();
-        }
-
-        // VÒNG LẶP GÕ VÀ XÓA MÔ TẢ TRONG CÁC NÚT (SO LE)
-        async function runTypingCycle(btn, titleEl, descEl, titleText, descText, delay) {
-            await new Promise(r => setTimeout(r, delay));
-            btn.classList.add('animate-ios-shake');
-
-            const titleSpeed = 50; 
-            const altDescText = "Uy Tín - An Toàn - Chất Lượng";
-
-            await simpleTypeWriter(titleEl, titleText, titleSpeed);
-            let isOriginalText = true;
-
-            while (true) {
-                const currentText = isOriginalText ? descText : altDescText;
-                const typeDurationDesc = 3000;
-                const typeSpeedDesc = typeDurationDesc / currentText.length;
-                const deleteDurationDesc = 1700;
-                const deleteSpeedDesc = deleteDurationDesc / currentText.length;
-
-                await simpleTypeWriter(descEl, currentText, typeSpeedDesc);
-                await new Promise(r => setTimeout(r, 2000));
-                await simpleDeleteWriter(descEl, currentText, deleteSpeedDesc);
-                isOriginalText = !isOriginalText;
+        // ===== Share =====
+        function shareProfile() {
+            if (navigator.share) {
+                navigator.share({ title: 'Nguyễn Văn A - Bio', text: 'Xem profile của tôi!', url: window.location.href }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href).then(() => showToast('Đã sao chép liên kết!')).catch(() => {});
             }
         }
+        function showToast(text) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastText').textContent = text;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
 
-        // VÒNG LẶP CHO TIỂU SỬ DƯỚI TÊN (Gõ 2.5s -> Nhấp nháy 3 lần -> Xóa 1.7s)
-        async function runBioTypingCycle(element, text, delay) {
-            await new Promise(r => setTimeout(r, delay));
+        // ===== Music toggle =====
+        let musicPlaying = true;
+        function toggleMusic() {
+            musicPlaying = !musicPlaying;
+            document.getElementById('musicBars').classList.toggle('paused', !musicPlaying);
+        }
 
-            const typeDuration = 2500;
-            const typeSpeed = typeDuration / text.length;
-            const deleteDuration = 1700;
-            const deleteSpeed = deleteDuration / text.length;
+        // ===== Visit time =====
+        document.getElementById('visitTime').textContent = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
 
-            while (true) {
-                // 1. Gõ chữ trong 2.5s
-                await simpleTypeWriter(element, text, typeSpeed);
+        // ===== IP & Visitor Info =====
+        async function fetchIPInfo() {
+            const ipBody = document.getElementById('ipBody');
 
-                // Thêm con trỏ tạm để làm đẹp khi nhấp nháy
-                element.innerHTML = text + '<span class="cursor-blink text-slate-400 opacity-70 ml-0.5">|</span>';
+            try {
+                // Lấy IP cơ bản
+                const ipRes = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipRes.json();
+                const ip = ipData.ip;
 
-                // 2. Nhấp nháy nhẹ 3 lần
-                for(let i = 0; i < 3; i++) {
-                    element.style.transition = 'opacity 0.2s ease-in-out';
-                    element.style.opacity = '0.3';
-                    await new Promise(r => setTimeout(r, 250));
-                    element.style.opacity = '1';
-                    await new Promise(r => setTimeout(r, 250));
+                // Lấy thông tin chi tiết
+                let details = null;
+                try {
+                    const detailRes = await fetch(`https://ipapi.co/${ip}/json/`);
+                    details = await detailRes.json();
+                } catch (e) {
+                    // fallback
                 }
 
-                // Xóa con trỏ tạm, vì hàm simpleDeleteWriter sẽ tự tạo lại con trỏ khác
-                element.innerHTML = text;
+                const isIPv6 = ip.includes(':');
+                const badgeClass = isIPv6 ? 'ipv6' : 'ipv4';
+                const badgeText = isIPv6 ? 'IPv6' : 'IPv4';
 
-                // 3. Xóa trong 1.7s
-                await simpleDeleteWriter(element, text, deleteSpeed);
+                const city = details?.city || '—';
+                const region = details?.region || '';
+                const country = details?.country_name || '—';
+                const countryCode = details?.country_code || '';
+                const isp = details?.org || '—';
+                const timezone = details?.timezone || '—';
+                const lat = details?.latitude;
+                const lon = details?.longitude;
 
-                // Đợi 0.5s trước khi lặp lại vòng tiếp theo
-                await new Promise(r => setTimeout(r, 500));
+                const flagEmoji = countryCode ? getFlagEmoji(countryCode) : '🌍';
+                const locationStr = [city, region, country].filter(Boolean).join(', ');
+
+                ipBody.innerHTML = `
+                    <!-- IP Address -->
+                    <div class="ip-row">
+                        <div class="ip-label">
+                            <span class="iconify" data-icon="mdi:ip-network" data-width="14"></span>
+                            Địa chỉ IP
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="ip-value primary">${ip}</span>
+                            <span class="ip-badge ${badgeClass}">${badgeText}</span>
+                        </div>
+                    </div>
+
+                    <!-- Vị trí -->
+                    <div class="ip-row">
+                        <div class="ip-label">
+                            <span class="iconify" data-icon="mdi:map-marker" data-width="14"></span>
+                            Vị trí
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-sm">${flagEmoji}</span>
+                            <span class="ip-value">${locationStr || 'Không xác định'}</span>
+                        </div>
+                    </div>
+
+                    <!-- ISP -->
+                    <div class="ip-row">
+                        <div class="ip-label">
+                            <span class="iconify" data-icon="mdi:server-network" data-width="14"></span>
+                            Nhà cung cấp
+                        </div>
+                        <span class="ip-value text-right" style="max-width: 200px; word-break: break-all; font-size: 12px; color: #94a3b8;">${isp}</span>
+                    </div>
+
+                    <!-- Múi giờ -->
+                    <div class="ip-row">
+                        <div class="ip-label">
+                            <span class="iconify" data-icon="mdi:clock-outline" data-width="14"></span>
+                            Múi giờ
+                        </div>
+                        <span class="ip-value" style="font-size: 12px; color: #94a3b8;">${timezone}</span>
+                    </div>
+
+                    <!-- Tọa độ (nếu có) -->
+                    ${lat && lon ? `
+                    <div class="ip-row">
+                        <div class="ip-label">
+                            <span class="iconify" data-icon="mdi:crosshairs-gps" data-width="14"></span>
+                            Tọa độ
+                        </div>
+                        <span class="ip-value" style="font-size: 12px; color: #94a3b8; font-family: 'SF Mono', 'Fira Code', monospace;">${lat.toFixed(4)}, ${lon.toFixed(4)}</span>
+                    </div>` : ''}
+
+                    <!-- Copy IP -->
+                    <div style="padding-top: 12px; display: flex; justify-content: center;">
+                        <button class="ip-copy-btn" onclick="copyIP('${ip}', this)">
+                            <span class="iconify" data-icon="mdi:content-copy" data-width="12"></span>
+                            Sao chép IP
+                        </button>
+                    </div>
+                `;
+
+            } catch (error) {
+                ipBody.innerHTML = `
+                    <div style="text-align: center; padding: 8px 0;">
+                        <span class="iconify" data-icon="mdi:wifi-off" data-width="24" style="color: #ef4444; margin-bottom: 8px; display: inline-block;"></span>
+                        <p style="font-size: 13px; color: #94a3b8;">Không thể lấy thông tin IP</p>
+                        <p style="font-size: 11px; color: #475569; margin-top: 4px;">Vui lòng kiểm tra kết nối mạng</p>
+                    </div>
+                `;
             }
         }
 
-        async function fetchUserInfo() {
-            const analysisEl = document.getElementById('analysis-text');
-            const centerInfoDrop = document.getElementById('center-info-drop');
-            
-            let userIP = "Unknown";
-            const fetchPromise = fetch('https://api.ipify.org?format=json')
-                .then(res => res.json())
-                .then(data => { userIP = data.ip; })
-                .catch(error => { userIP = "Lỗi IP"; });
+        function getFlagEmoji(countryCode) {
+            const codePoints = countryCode.toUpperCase().split('').map(
+                char => 127397 + char.charCodeAt(0)
+            );
+            return String.fromCodePoint(...codePoints);
+        }
 
-            const textToType = "Đang Truy Xuất Thông Tin...";
-            const typingDuration = 2500; 
-            const speedPerChar = typingDuration / textToType.length; 
-
-            await typeWriterEffect('analysis-text', textToType, speedPerChar);
-            await fetchPromise; 
-            await new Promise(r => setTimeout(r, 600)); 
-
-            analysisEl.innerHTML = `<i class="ph-fill ph-check-circle mr-2 text-green-500"></i><span class="text-green-400 font-bold font-mono">Truy Xuất Thành Công!</span>`;
-            await new Promise(r => setTimeout(r, 600)); 
-            
-            analysisEl.style.display = 'none';
-            centerInfoDrop.classList.remove('hidden');
-            centerInfoDrop.classList.add('flex');
-
-            const ua = navigator.userAgent;
-            let deviceName = "Unknown";
-            let browserName = "Unknown";
-
-            if (/iPhone|iPad|iPod/.test(ua)) { deviceName = "iOS"; } 
-            else if (/Android/.test(ua)) { deviceName = "Android"; } 
-            else if (/Windows/.test(ua)) { deviceName = "Windows"; } 
-            else if (/Mac OS/.test(ua)) { deviceName = "MacOS"; }
-            else if (/Linux/.test(ua)) { deviceName = "Linux"; }
-
-            if (ua.includes("Firefox")) { browserName = "Firefox"; }
-            else if (ua.includes("OPR/") || ua.includes("Opera/")) { browserName = "Opera"; }
-            else if (ua.includes("Edg/")) { browserName = "Edge"; }
-            else if (ua.includes("Chrome")) { browserName = "Chrome"; }
-            else if (ua.includes("Safari") && !ua.includes("Chrome")) { browserName = "Safari"; }
-
-            const infoString = `[${userIP}] - ${deviceName} - ${browserName}`;
-            for (let i = 0; i < infoString.length; i++) {
-                const span = document.createElement('span');
-                span.textContent = infoString[i] === ' ' ? '\u00A0' : infoString[i];
-                span.style.opacity = '0';
-                span.style.display = 'inline-block';
-                span.style.transition = 'opacity 0.1s';
-                centerInfoDrop.appendChild(span);
-
-                await new Promise(r => setTimeout(r, 35));
-                span.style.opacity = '1';
-            }
-
-            await new Promise(r => setTimeout(r, 200));
-
-            const spans = centerInfoDrop.querySelectorAll('span');
-            const rect = centerInfoDrop.getBoundingClientRect();
-            const currentCenterY = rect.top + (rect.height / 2);
-            const targetCenterY = window.innerHeight - 30; 
-            const dropDistancePx = targetCenterY - currentCenterY;
-            
-            spans.forEach((span, i) => {
+        function copyIP(ip, btn) {
+            navigator.clipboard.writeText(ip).then(() => {
+                btn.classList.add('copied');
+                btn.innerHTML = '<span class="iconify" data-icon="mdi:check" data-width="12"></span> Đã sao chép!';
+                showToast('Đã sao chép IP: ' + ip);
                 setTimeout(() => {
-                    span.style.transition = 'transform 0.5s cubic-bezier(0.5, 1.5, 0.6, 1), color 0.3s';
-                    span.style.transform = `translateY(${dropDistancePx}px)`;
-                    span.style.color = '#f8fafc'; 
-                }, i * 35);
+                    btn.classList.remove('copied');
+                    btn.innerHTML = '<span class="iconify" data-icon="mdi:content-copy" data-width="12"></span> Sao chép IP';
+                }, 2000);
             });
-
-            const dropDuration = spans.length * 35 + 500; 
-
-            setTimeout(() => {
-                centerInfoDrop.style.transition = 'none';
-                centerInfoDrop.style.transform = `translate(-50%, calc(-50% + ${dropDistancePx}px))`;
-                
-                spans.forEach(span => {
-                    span.style.transition = 'none';
-                    span.style.transform = 'translateY(0)';
-                });
-
-                void centerInfoDrop.offsetWidth;
-
-                centerInfoDrop.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
-                centerInfoDrop.classList.add('bg-white/10', 'rounded-xl', 'px-5', 'py-2.5', 'shadow-[0_10px_30px_rgba(0,0,0,0.5)]', 'backdrop-blur-xl', 'ip-widget-active');
-                
-                centerInfoDrop.style.setProperty('--drop-y', `calc(-50% + ${dropDistancePx}px)`);
-                
-                setTimeout(() => {
-                    centerInfoDrop.classList.add('floating-widget-center');
-
-                    welcomeOverlay.classList.add('cursor-pointer');
-                    const tapContainer = document.getElementById('tap-to-enter-container');
-                    tapContainer.classList.remove('opacity-0', 'translate-y-4');
-                    tapContainer.classList.add('opacity-100', 'translate-y-0');
-                    
-                    welcomeOverlay.addEventListener('click', startApp, { once: true });
-                }, 600); 
-
-            }, dropDuration); 
         }
 
-        function initBioLink() {
-            if (CONFIG.bgImageUrl && CONFIG.bgImageUrl !== "") {
-                document.getElementById('bg-layer').style.backgroundImage = `url('${CONFIG.bgImageUrl}')`;
-            }
-            document.title = `Bio Link | ${CONFIG.name}`;
-            document.getElementById('display-name').innerText = CONFIG.name;
-            document.getElementById('avatar').src = CONFIG.avatar;
-            document.getElementById('popup-image-content').src = CONFIG.popupImageUrl;
-            
-            // NOTE: bio-text giờ sẽ được gõ bằng hiệu ứng khi startApp() thay vì gán tĩnh luôn ở đây.
-            document.getElementById('footer-text').innerHTML = `&copy; 2026 ${CONFIG.name}`;
-            
-            document.getElementById('social-fb').href = CONFIG.links.facebook;
-            document.getElementById('social-zl').href = CONFIG.links.zalo;
-            document.getElementById('social-tg').href = CONFIG.links.telegram;
-            document.getElementById('social-tt').href = CONFIG.links.tiktok;
-            
-            document.getElementById('btn-fb').href = CONFIG.links.facebook;
-            document.getElementById('btn-tt').href = CONFIG.links.tiktok;
-            document.getElementById('btn-zl').href = CONFIG.links.zalo;
-            document.getElementById('btn-tg').href = CONFIG.links.telegram;
-            document.getElementById('btn-mail').href = CONFIG.links.gmail;
-
-            document.getElementById('music-src').src = CONFIG.musicUrl;
-            bgMusic.load();
-
-            fetchUserInfo();
-        }
-
-        function startApp() {
-            welcomeOverlay.style.opacity = '0';
-            
-            const elementsToAnimate = document.querySelectorAll('.stagger-anim');
-            elementsToAnimate.forEach(el => {
-                el.classList.remove('opacity-0');
-                el.classList.add('animate-fade-in');
-            });
-
-            // Chạy hiệu ứng cho tiểu sử dưới Tên với độ trễ 600ms để đợi giao diện nổi lên
-            runBioTypingCycle(document.getElementById('bio-text'), CONFIG.bio, 600);
-
-            const buttons = document.querySelectorAll('.bio-button');
-            buttons.forEach((btn, index) => {
-                const titleEl = btn.querySelector('h2');
-                const descEl = btn.querySelector('p');
-                const titleText = titleEl.getAttribute('data-text');
-                const descText = descEl.getAttribute('data-text');
-                
-                const delay = (0.3 + index * 0.15) * 1000 + 400; 
-                runTypingCycle(btn, titleEl, descEl, titleText, descText, delay);
-            });
-
-            setTimeout(() => {
-                welcomeOverlay.style.display = 'none';
-            }, 700);
-
-            bgMusic.play().then(() => {
-                avatar.classList.add('avatar-visualizer');
-            }).catch(e => console.log("Lỗi phát nhạc: ", e));
-        }
-
-        function togglePopupImage() {
-            const popup = document.getElementById('image-popup');
-            if (popup.classList.contains('hidden')) {
-                popup.classList.remove('hidden');
-            }
-            popup.classList.toggle('active');
-        }
-
-        function createMoneyRain() {
-            const money = document.createElement('div');
-            money.innerHTML = ['💵', '💸', '💰', '🪙'][Math.floor(Math.random() * 4)];
-            money.classList.add('money-drop');
-            money.style.left = Math.random() * 100 + 'vw';
-            money.style.fontSize = Math.random() * 1.5 + 1 + 'rem';
-            money.style.animationDuration = Math.random() * 3 + 4 + 's';
-            money.style.opacity = Math.random() * 0.5 + 0.3;
-            document.body.appendChild(money);
-            setTimeout(() => money.remove(), 7000); 
-        }
-        setInterval(createMoneyRain, 400);
-
-        initBioLink();
+        // Gọi API khi trang load xong
+        fetchIPInfo();
     </script>
 </body>
 </html>
