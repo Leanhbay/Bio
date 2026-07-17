@@ -14,7 +14,6 @@ html,body{overflow:hidden;height:100%;width:100%;position:fixed;top:0;left:0}
 body{font-family:'Inter',sans-serif;background:#0a0f1e;color:#e2e8f0;overflow-y:auto;-webkit-overflow-scrolling:touch;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-webkit-optimize-contrast}
 
-/* === TINH VÂN NÂNG CẤP === */
 .nebula-1{position:fixed;top:-120px;left:-120px;width:550px;height:550px;background:radial-gradient(circle,rgba(0,229,255,0.22) 0%,transparent 70%);filter:blur(80px);pointer-events:none;z-index:0;animation:nebFloat1 9s ease-in-out infinite}
 .nebula-2{position:fixed;bottom:-120px;right:-120px;width:550px;height:550px;background:radial-gradient(circle,rgba(124,58,237,0.20) 0%,transparent 70%);filter:blur(80px);pointer-events:none;z-index:0;animation:nebFloat2 11s ease-in-out infinite}
 .nebula-3{position:fixed;top:40%;right:-80px;width:450px;height:450px;background:radial-gradient(circle,rgba(6,182,212,0.16) 0%,transparent 70%);filter:blur(90px);pointer-events:none;z-index:0;animation:nebFloat3 13s ease-in-out infinite}
@@ -24,26 +23,19 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 @keyframes nebFloat2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,-25px) scale(1.1)}}
 @keyframes nebFloat3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-30px,20px) scale(1.15)}}
 
-/* === LƯỚI KHÔNG GIAN === */
 .space-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.035) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:1}
-
-/* === SCANLINE === */
 .scanlines{position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.02) 2px,rgba(0,0,0,0.02) 4px);pointer-events:none;z-index:2}
-
-/* === VẾT QUÉT === */
 .scan-sweep{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,rgba(0,229,255,0.7) 50%,transparent 100%);z-index:100;animation:sweep 5s ease-in-out infinite;pointer-events:none;box-shadow:0 0 20px rgba(0,229,255,0.3),0 0 60px rgba(0,229,255,0.1)}
 @keyframes sweep{0%{transform:translateX(-100%);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateX(100%);opacity:0}}
 
 #particles{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-/* === HIỆN === */
 .reveal{opacity:0;transform:translateY(30px) scale(0.98);transition:all 0.8s cubic-bezier(0.16,1,0.3,1);filter:blur(10px)}
 .reveal.active{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
 .delay-1{transition-delay:100ms}.delay-2{transition-delay:200ms}.delay-3{transition-delay:300ms}
 .delay-4{transition-delay:400ms}.delay-5{transition-delay:500ms}.delay-6{transition-delay:600ms}
 .delay-7{transition-delay:700ms}.delay-8{transition-delay:800ms}.delay-9{transition-delay:900ms}
 
-/* === AVATAR VÀ QUỸ ĐẠO NÂNG CẤP === */
 .orbit-system{position:relative;width:200px;height:200px;display:flex;align-items:center;justify-content:center;perspective:800px;margin-bottom:28px}
 .orbit-ring{position:absolute;inset:0;border-radius:50%;border:1.5px solid}
 .ring-1{border-color:rgba(0,229,255,0.25);transform:rotateX(72deg);animation:orbitSpin1 7s linear infinite;box-shadow:0 0 15px rgba(0,229,255,0.08)}
@@ -59,14 +51,12 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 @keyframes ringRotate{to{transform:rotate(360deg)}}
 .avatar-wrapper{position:relative;z-index:2;transition:transform 0.5s cubic-bezier(0.16,1,0.3,1)}
 
-/* === TRẠNG THÁI === */
 .status-dot{animation:pulseDot 2s ease-in-out infinite}
 @keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.6)}50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
 .radar-ping{position:absolute;inset:-4px;border-radius:50%;border:1.5px solid rgba(0,229,255,0.5);animation:radarPing 2s ease-out infinite}
 .radar-ping:nth-child(2){animation-delay:0.7s}
 @keyframes radarPing{0%{transform:scale(1);opacity:0.8}100%{transform:scale(3);opacity:0}}
 
-/* === ĐỒNG HỒ NÂNG CẤP === */
 .live-clock-container{display:flex;align-items:center;justify-content:center;gap:16px;padding:20px 24px;border-radius:18px;background:linear-gradient(135deg,rgba(0,229,255,0.04),rgba(124,58,237,0.02));border:1px solid rgba(0,229,255,0.1);box-shadow:inset 0 1px 0 rgba(255,255,255,0.05),inset 0 0 50px rgba(0,229,255,0.02),0 4px 20px rgba(0,0,0,0.3);margin-bottom:8px;position:relative;overflow:hidden}
 .live-clock-container::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.3),transparent)}
 .clock-time{font-family:'Orbitron',sans-serif;font-size:32px;font-weight:800;letter-spacing:2px;font-variant-numeric:tabular-nums;background:linear-gradient(135deg,#00e5ff 0%,#ffffff 30%,#e2e8f0 50%,#c4b5fd 80%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 8px rgba(0,229,255,0.3))}
@@ -76,7 +66,6 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 .clock-separator span{width:3px;height:3px;border-radius:50%;background:#00e5ff;opacity:0.4;box-shadow:0 0 4px rgba(0,229,255,0.5)}
 .clock-date{font-size:12px;color:#64748b;font-weight:500;text-align:center;margin-bottom:20px;letter-spacing:0.5px}
 
-/* === THẺ IP NÂNG CẤP === */
 .ip-card{background:linear-gradient(135deg,rgba(0,229,255,0.03),rgba(15,23,42,0.9));border:1px solid rgba(0,229,255,0.08);border-radius:20px;overflow:hidden;max-height:0;opacity:0;margin-bottom:0;transition:all 0.6s cubic-bezier(0.16,1,0.3,1);border-width:0;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
 .ip-card.visible{max-height:600px;opacity:1;margin-bottom:32px;border-width:1px;box-shadow:0 8px 32px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.04)}
 .ip-card-header{padding:16px 20px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(0,229,255,0.06);position:relative}
@@ -96,205 +85,130 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 .ip-copy-btn:hover{background:rgba(0,229,255,0.12);color:#e2e8f0;border-color:rgba(0,229,255,0.25);box-shadow:0 4px 15px rgba(0,229,255,0.1)}
 .ip-copy-btn.copied{background:rgba(0,229,255,0.15);border-color:rgba(0,229,255,0.35);color:#00e5ff}
 
-/* === NGĂN CÁCH NÂNG CẤP === */
 .divider{height:1px;background:linear-gradient(to right,transparent,rgba(0,229,255,0.35),rgba(124,58,237,0.35),transparent);position:relative;margin-bottom:24px;box-shadow:0 0 8px rgba(0,229,255,0.1)}
 .divider::after{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:7px;height:7px;background:#00e5ff;border-radius:50%;box-shadow:0 0 12px #00e5ff,0 0 30px rgba(0,229,255,0.4),0 0 60px rgba(0,229,255,0.15)}
 
-/* ============================================
-   === 3D HUB SYSTEM - NÂNG CẤP ĐỘ NÉT/BÓNG ===
-   ============================================ */
 .social-links-wrap{perspective:1200px;perspective-origin:center}
-
-/* Base 3D Hub */
-.social-link{position:relative;display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,0.07) 0%,rgba(255,255,255,0.02) 40%,rgba(255,255,255,0.04) 100%),rgba(10,15,30,0.85);border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(28px) saturate(2);-webkit-backdrop-filter:blur(28px) saturate(2);transition:all 0.5s cubic-bezier(0.16,1,0.3,1);overflow:hidden;cursor:pointer;text-decoration:none;color:#e2e8f0;transform-style:preserve-3d;will-change:transform,box-shadow;box-shadow:0 4px 16px rgba(0,0,0,0.5),0 0 0 0.5px rgba(255,255,255,0.06),inset 0 1px 0 rgba(255,255,255,0.1),inset 0 -1px 0 rgba(0,0,0,0.3)}
-
-/* Top specular highlight - always visible (glossy) */
+.social-link{position:relative;display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,0.07) 0%,rgba(255,255,255,0.02) 40%,rgba(255,255,255,0.04) 100%),rgba(10,15,30,0.85);border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(28px) saturate(2);-webkit-backdrop-filter:blur(28px) saturate(2);transition:all 0.5s cubic-bezier(0.16,1,0.3,1);overflow:hidden;cursor:pointer;text-decoration:none;color:#e2e8f0;transform-style:preserve-3d;will-change:transform,box-shadow;box-shadow:0 4px 16px rgba(0,0,0,0.5),0 0 0 0.5px rgba(255,255,255,0.06),inset 0 1px 0 rgba(255,255,255,0.1),inset 0 -1px 0 rgba(0,0,0,0.3);animation:hubBreath 4s ease-in-out infinite}
+.social-link:nth-child(2){animation-delay:0.5s}.social-link:nth-child(3){animation-delay:1s}.social-link:nth-child(4){animation-delay:1.5s}.social-link:nth-child(5){animation-delay:2s}.social-link:nth-child(6){animation-delay:2.5s}
+@keyframes hubBreath{0%,100%{box-shadow:0 4px 16px rgba(0,0,0,0.5),0 0 0 0.5px rgba(255,255,255,0.06),inset 0 1px 0 rgba(255,255,255,0.1),inset 0 -1px 0 rgba(0,0,0,0.3)}50%{box-shadow:0 6px 20px rgba(0,0,0,0.5),0 0 0 0.5px rgba(255,255,255,0.08),inset 0 1px 0 rgba(255,255,255,0.12),inset 0 -1px 0 rgba(0,0,0,0.3),0 0 30px rgba(0,229,255,0.02)}}
 .social-link::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.25) 20%,rgba(255,255,255,0.35) 50%,rgba(255,255,255,0.25) 80%,transparent 100%);z-index:15;pointer-events:none}
-
-/* Glare spot - follows mouse */
 .social-link::after{content:'';position:absolute;top:-150%;left:-150%;width:400%;height:400%;background:radial-gradient(ellipse at var(--gx,50%) var(--gy,50%),rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.06) 12%,transparent 45%);opacity:0;transition:opacity 0.4s ease;pointer-events:none;z-index:14}
 .social-link:hover::after{opacity:1}
-
-/* Hub colored glow (outer) */
 .hub-glow{position:absolute;inset:-3px;border-radius:23px;opacity:0;transition:opacity 0.5s ease,filter 0.5s ease;pointer-events:none;z-index:-1;filter:blur(16px)}
 .social-link:hover .hub-glow{opacity:1}
-
-/* Hub background tint on hover */
 .hub-bg{position:absolute;inset:0;border-radius:20px;opacity:0;transition:opacity 0.5s ease;pointer-events:none;z-index:1}
 .social-link:hover .hub-bg{opacity:1}
-
-/* Shine sweep */
 .hub-shine{position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.1) 40%,rgba(255,255,255,0.15) 50%,rgba(255,255,255,0.1) 60%,transparent 100%);transform:skewX(-25deg);pointer-events:none;z-index:13;transition:none}
 .social-link:hover .hub-shine{animation:hubShine 0.9s cubic-bezier(0.16,1,0.3,1) forwards}
 @keyframes hubShine{to{left:200%}}
-
-/* Bottom glossy reflection */
 .hub-reflection{position:absolute;bottom:0;left:5%;right:5%;height:40%;background:linear-gradient(to top,rgba(255,255,255,0.035),transparent);border-radius:0 0 20px 20px;pointer-events:none;z-index:12}
-
-/* Edge glow border */
 .hub-edge{position:absolute;inset:0;border-radius:20px;border:1.5px solid transparent;opacity:0;transition:opacity 0.5s ease,border-color 0.5s ease,box-shadow 0.5s ease;pointer-events:none;z-index:11}
 .social-link:hover .hub-edge{opacity:1}
-
-/* Edge shimmer - always on, subtle */
 .hub-edge::after{content:'';position:absolute;top:-1px;left:-60%;width:30%;height:calc(100% + 2px);background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);animation:edgeShimmer 5s ease-in-out infinite;pointer-events:none;border-radius:20px}
 @keyframes edgeShimmer{0%,100%{left:-30%}50%{left:100%}}
-
-/* Click ripple */
 .hub-ripple{position:absolute;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.2);transform:translate(-50%,-50%) scale(0);animation:rippleOut 0.7s ease-out forwards;pointer-events:none;z-index:20}
 @keyframes rippleOut{to{transform:translate(-50%,-50%) scale(50);opacity:0}}
-
-/* Social icon and text */
 .social-icon{font-size:28px;flex-shrink:0;transition:all 0.5s cubic-bezier(0.16,1,0.3,1);position:relative;z-index:5;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3))}
 .social-text{position:relative;z-index:5;transition:all 0.4s ease}
 .social-text .text-sm{font-weight:600;font-size:15px;letter-spacing:0.3px}
 .social-arrow{margin-left:auto;opacity:0;transform:translateX(-10px);transition:all 0.5s cubic-bezier(0.16,1,0.3,1);color:#00e5ff;z-index:5;position:relative;filter:drop-shadow(0 0 4px rgba(0,229,255,0.4))}
 .social-link:hover .social-arrow{opacity:0.8;transform:translateX(0)}
 .social-link:hover .social-icon{transform:scale(1.2) rotateY(12deg)}
-
-/* Focus dimming on siblings */
 .social-links-wrap:hover .social-link:not(:hover){opacity:0.45;filter:brightness(0.6) saturate(0.5);transform:scale(0.98)}
-.social-links-wrap .social-link{transition:all 0.5s cubic-bezier(0.16,1,0.3,1)}
 
-/* ==============================
-   === FACEBOOK HUB ===
-   ============================== */
 .social-link.facebook .hub-glow{background:rgba(24,119,242,0.35)}
 .social-link.facebook .hub-bg{background:linear-gradient(135deg,rgba(24,119,242,0.14),rgba(24,119,242,0.02))}
 .social-link.facebook .hub-edge{border-color:rgba(24,119,242,0.45);box-shadow:0 0 20px rgba(24,119,242,0.15),inset 0 0 20px rgba(24,119,242,0.05)}
 .social-link.facebook:hover{box-shadow:0 12px 40px rgba(24,119,242,0.3),0 0 0 1px rgba(24,119,242,0.3),0 0 60px rgba(24,119,242,0.08),inset 0 1px 0 rgba(255,255,255,0.12),inset 0 0 40px rgba(24,119,242,0.06)}
 .social-link.facebook .social-icon{color:#1877F2}
-/* Facebook unique: pulse ring from icon */
 .social-link.facebook:hover .social-icon::after{content:'';position:absolute;inset:-10px;border-radius:50%;border:2px solid rgba(24,119,242,0.5);animation:fbPulse 1.2s ease-out infinite}
 .social-link.facebook:hover .social-icon::before{content:'';position:absolute;inset:-10px;border-radius:50%;border:1.5px solid rgba(24,119,242,0.3);animation:fbPulse 1.2s ease-out 0.4s infinite}
 @keyframes fbPulse{0%{transform:scale(0.8);opacity:1}100%{transform:scale(2);opacity:0}}
-/* Facebook unique: "like" burst particles */
 .social-link.facebook .fb-particles{position:absolute;inset:0;pointer-events:none;z-index:4;overflow:hidden}
 .social-link.facebook:hover .fb-particles span{position:absolute;top:50%;left:22%;width:3px;height:3px;border-radius:50%;background:#1877F2;opacity:0;animation:fbBurst 1.5s ease-out infinite}
-.social-link.facebook:hover .fb-particles span:nth-child(1){animation-delay:0s}
-.social-link.facebook:hover .fb-particles span:nth-child(2){animation-delay:0.2s}
-.social-link.facebook:hover .fb-particles span:nth-child(3){animation-delay:0.4s}
-.social-link.facebook:hover .fb-particles span:nth-child(4){animation-delay:0.6s}
-.social-link.facebook:hover .fb-particles span:nth-child(5){animation-delay:0.8s}
+.social-link.facebook:hover .fb-particles span:nth-child(1){animation-delay:0s}.social-link.facebook:hover .fb-particles span:nth-child(2){animation-delay:0.2s}.social-link.facebook:hover .fb-particles span:nth-child(3){animation-delay:0.4s}.social-link.facebook:hover .fb-particles span:nth-child(4){animation-delay:0.6s}.social-link.facebook:hover .fb-particles span:nth-child(5){animation-delay:0.8s}
 @keyframes fbBurst{0%{transform:translate(0,0) scale(1);opacity:0.8}100%{transform:translate(var(--bx,20px),var(--by,-30px)) scale(0);opacity:0}}
 
-/* ==============================
-   === INSTAGRAM HUB ===
-   ============================== */
 .social-link.instagram .hub-glow{background:linear-gradient(135deg,rgba(225,48,108,0.3),rgba(131,58,180,0.3))}
 .social-link.instagram .hub-bg{background:linear-gradient(135deg,rgba(225,48,108,0.12),rgba(131,58,180,0.06),rgba(252,175,69,0.06))}
 .social-link.instagram .social-icon{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(225,48,108,0.4))}
-/* Instagram unique: rotating gradient border */
 .social-link.instagram .hub-edge{inset:-2px;border-radius:22px;border:none;background:conic-gradient(from var(--ig-rot),#f09433,#e6683c,#dc2743,#cc2366,#bc1888,#f09433);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;padding:2px;opacity:0;filter:blur(0.5px)}
 .social-link.instagram:hover .hub-edge{opacity:0.8;animation:igSpin 3s linear infinite}
 @keyframes igSpin{to{--ig-rot:360deg}}
 .social-link.instagram:hover{box-shadow:0 12px 40px rgba(225,48,108,0.25),0 0 0 1px rgba(225,48,108,0.25),0 0 60px rgba(131,58,180,0.08),inset 0 1px 0 rgba(255,255,255,0.12),inset 0 0 40px rgba(225,48,108,0.04)}
-/* Instagram unique: camera flash on hover enter */
 .social-link.instagram .ig-flash{position:absolute;inset:0;background:rgba(255,255,255,0.15);opacity:0;pointer-events:none;z-index:16;border-radius:20px;transition:none}
 .social-link.instagram:hover .ig-flash{animation:igFlash 0.3s ease-out}
 @keyframes igFlash{0%{opacity:0.6}100%{opacity:0}}
-/* Instagram unique: rainbow shimmer overlay */
 .social-link.instagram .ig-rainbow{position:absolute;inset:0;pointer-events:none;z-index:3;opacity:0;transition:opacity 0.5s ease;background:linear-gradient(90deg,transparent 0%,rgba(240,148,51,0.05) 20%,rgba(220,39,67,0.05) 40%,rgba(188,24,136,0.05) 60%,rgba(131,58,180,0.05) 80%,transparent 100%);background-size:200% 100%;animation:igRainbow 3s ease-in-out infinite}
 .social-link.instagram:hover .ig-rainbow{opacity:1}
 @keyframes igRainbow{0%,100%{background-position:200% 0}50%{background-position:-200% 0}}
 
-/* ==============================
-   === TIKTOK HUB ===
-   ============================== */
 .social-link.tiktok .hub-glow{background:linear-gradient(135deg,rgba(255,0,80,0.3),rgba(0,242,234,0.3))}
 .social-link.tiktok .hub-bg{background:linear-gradient(135deg,rgba(255,0,80,0.12),rgba(0,242,234,0.06))}
 .social-link.tiktok .hub-edge{border-color:rgba(255,0,80,0.4);box-shadow:0 0 20px rgba(255,0,80,0.12),0 0 20px rgba(0,242,234,0.12),inset 0 0 20px rgba(255,0,80,0.04);animation:tiktokFlicker 2s ease-in-out infinite}
 @keyframes tiktokFlicker{0%,100%{border-color:rgba(255,0,80,0.4)}50%{border-color:rgba(0,242,234,0.5)}}
 .social-link.tiktok .social-icon{background:linear-gradient(135deg,#ff0050,#00f2ea);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(255,0,80,0.4))}
 .social-link.tiktok:hover{box-shadow:0 12px 40px rgba(255,0,80,0.25),0 0 0 1px rgba(255,0,80,0.3),0 0 60px rgba(0,242,234,0.08),inset 0 1px 0 rgba(255,255,255,0.12),inset 0 0 40px rgba(255,0,80,0.04)}
-/* TikTok unique: glitch effect on text */
 .social-link.tiktok:hover .social-text{animation:tiktokGlitch 0.4s ease}
 @keyframes tiktokGlitch{0%,100%{transform:translateX(0);filter:none}15%{transform:translateX(-4px);filter:hue-rotate(90deg)}30%{transform:translateX(4px);filter:hue-rotate(-90deg)}45%{transform:translateX(-2px)}60%{transform:translateX(2px);filter:hue-rotate(45deg)}75%{transform:translateX(-1px)}90%{transform:translateX(1px);filter:none}}
-/* TikTok unique: neon scan line */
 .social-link.tiktok .tt-scan{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(0,242,234,0.6),rgba(255,0,80,0.6),transparent);pointer-events:none;z-index:16;opacity:0;transition:opacity 0.3s ease}
 .social-link.tiktok:hover .tt-scan{opacity:1;animation:ttScan 1.5s ease-in-out infinite}
 @keyframes ttScan{0%{top:-2px;opacity:0}10%{opacity:1}90%{opacity:1}100%{top:calc(100% + 2px);opacity:0}}
-/* TikTok unique: floating music notes */
 .social-link.tiktok .tt-notes{position:absolute;inset:0;pointer-events:none;z-index:4;overflow:hidden}
 .social-link.tiktok:hover .tt-notes span{position:absolute;bottom:-10px;font-size:10px;opacity:0;animation:ttNote 2s ease-out infinite}
-.social-link.tiktok:hover .tt-notes span:nth-child(1){left:30%;animation-delay:0s;color:#ff0050}
-.social-link.tiktok:hover .tt-notes span:nth-child(2){left:50%;animation-delay:0.5s;color:#00f2ea}
-.social-link.tiktok:hover .tt-notes span:nth-child(3){left:70%;animation-delay:1s;color:#ff0050}
+.social-link.tiktok:hover .tt-notes span:nth-child(1){left:30%;animation-delay:0s;color:#ff0050}.social-link.tiktok:hover .tt-notes span:nth-child(2){left:50%;animation-delay:0.5s;color:#00f2ea}.social-link.tiktok:hover .tt-notes span:nth-child(3){left:70%;animation-delay:1s;color:#ff0050}
 @keyframes ttNote{0%{transform:translateY(0) rotate(0);opacity:0.7}50%{opacity:0.5}100%{transform:translateY(-60px) rotate(20deg) translateX(10px);opacity:0}}
 
-/* ==============================
-   === ZALO HUB ===
-   ============================== */
-.social-link.zalo .hub-glow{background:rgba(0,136,255,0.3)}
+.social-link.zalo .hub-glow{background:rgba(0,136,255,0.3);animation:zaloBreath 3s ease-in-out infinite}
 .social-link.zalo .hub-bg{background:linear-gradient(135deg,rgba(0,136,255,0.12),rgba(0,136,255,0.02))}
 .social-link.zalo .hub-edge{border-color:rgba(0,136,255,0.4);box-shadow:0 0 20px rgba(0,136,255,0.12),inset 0 0 20px rgba(0,136,255,0.04)}
 .social-link.zalo .social-icon{color:#0088FF;filter:drop-shadow(0 2px 6px rgba(0,136,255,0.4))}
 .social-link.zalo:hover{box-shadow:0 12px 40px rgba(0,136,255,0.3),0 0 0 1px rgba(0,136,255,0.3),0 0 60px rgba(0,136,255,0.08),inset 0 1px 0 rgba(255,255,255,0.12),inset 0 0 40px rgba(0,136,255,0.05)}
-/* Zalo unique: wave border animation */
+@keyframes zaloBreath{0%,100%{filter:blur(16px) brightness(1)}50%{filter:blur(20px) brightness(1.2)}}
 .social-link.zalo .zalo-wave{position:absolute;bottom:0;left:0;right:0;height:3px;pointer-events:none;z-index:16;overflow:hidden;border-radius:0 0 20px 20px;opacity:0;transition:opacity 0.5s ease}
 .social-link.zalo:hover .zalo-wave{opacity:1}
 .social-link.zalo .zalo-wave::before{content:'';position:absolute;bottom:0;left:-100%;width:200%;height:100%;background:repeating-linear-gradient(90deg,transparent 0%,rgba(0,136,255,0.4) 10%,transparent 20%);animation:zaloWaveFlow 2s linear infinite}
 @keyframes zaloWaveFlow{to{transform:translateX(50%)}}
-/* Zalo unique: gentle breathing aura */
-.social-link.zalo .hub-glow{animation:zaloBreath 3s ease-in-out infinite}
-@keyframes zaloBreath{0%,100%{filter:blur(16px) brightness(1)}50%{filter:blur(20px) brightness(1.2)}}
-/* Zalo unique: message bubble float */
 .social-link.zalo:hover .social-icon{animation:zaloFloat 2s ease-in-out infinite}
 @keyframes zaloFloat{0%,100%{transform:scale(1.2) rotateY(12deg) translateY(0)}50%{transform:scale(1.25) rotateY(12deg) translateY(-4px)}}
 
-/* ==============================
-   === YOUTUBE HUB ===
-   ============================== */
 .social-link.youtube .hub-glow{background:rgba(255,0,0,0.3)}
 .social-link.youtube .hub-bg{background:linear-gradient(135deg,rgba(255,0,0,0.12),rgba(255,0,0,0.02))}
 .social-link.youtube .hub-edge{border-color:rgba(255,0,0,0.45);box-shadow:0 0 25px rgba(255,0,0,0.15),inset 0 0 25px rgba(255,0,0,0.05);animation:ytBorderPulse 1.5s ease-in-out infinite}
 @keyframes ytBorderPulse{0%,100%{border-color:rgba(255,0,0,0.45);box-shadow:0 0 25px rgba(255,0,0,0.15),inset 0 0 25px rgba(255,0,0,0.05)}50%{border-color:rgba(255,0,0,0.25);box-shadow:0 0 15px rgba(255,0,0,0.08),inset 0 0 15px rgba(255,0,0,0.02)}}
 .social-link.youtube .social-icon{color:#FF0000;filter:drop-shadow(0 2px 6px rgba(255,0,0,0.5))}
 .social-link.youtube:hover{box-shadow:0 12px 40px rgba(255,0,0,0.3),0 0 0 1px rgba(255,0,0,0.3),0 0 80px rgba(255,0,0,0.08),inset 0 1px 0 rgba(255,255,255,0.12),inset 0 0 40px rgba(255,0,0,0.05)}
-/* YouTube unique: play button pulse */
 .social-link.youtube:hover .social-icon{animation:ytIconPulse 0.8s ease}
 @keyframes ytIconPulse{0%{transform:scale(1);filter:drop-shadow(0 2px 6px rgba(255,0,0,0.5))}40%{transform:scale(1.5) rotateY(15deg);filter:drop-shadow(0 0 20px rgba(255,0,0,0.8))}100%{transform:scale(1.2) rotateY(12deg);filter:drop-shadow(0 2px 8px rgba(255,0,0,0.5))}}
-/* YouTube unique: red spotlight from center */
 .social-link.youtube .yt-spot{position:absolute;inset:0;pointer-events:none;z-index:2;opacity:0;transition:opacity 0.5s ease;border-radius:20px;background:radial-gradient(circle at 15% 50%,rgba(255,0,0,0.12),transparent 60%)}
 .social-link.youtube:hover .yt-spot{opacity:1}
-/* YouTube unique: screen glow lines */
 .social-link.youtube .yt-lines{position:absolute;inset:0;pointer-events:none;z-index:3;opacity:0;transition:opacity 0.5s ease;overflow:hidden;border-radius:20px}
 .social-link.youtube:hover .yt-lines{opacity:1}
 .social-link.youtube .yt-lines::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(0deg,transparent,transparent 4px,rgba(255,0,0,0.015) 4px,rgba(255,0,0,0.015) 5px);animation:ytLinesScroll 8s linear infinite}
 @keyframes ytLinesScroll{to{transform:translateY(5px)}}
 
-/* ==============================
-   === TELEGRAM HUB ===
-   ============================== */
 .social-link.telegram .hub-glow{background:rgba(0,136,204,0.3)}
 .social-link.telegram .hub-bg{background:linear-gradient(135deg,rgba(0,136,204,0.12),rgba(0,136,204,0.02))}
 .social-link.telegram .hub-edge{border-color:rgba(0,136,204,0.4);box-shadow:0 0 20px rgba(0,136,204,0.12),inset 0 0 20px rgba(0,136,204,0.04)}
 .social-link.telegram .social-icon{color:#0088CC;filter:drop-shadow(0 2px 6px rgba(0,136,204,0.4))}
 .social-link.telegram:hover{box-shadow:0 12px 40px rgba(0,136,204,0.3),0 0 0 1px rgba(0,136,204,0.3),0 0 60px rgba(0,136,204,0.08),inset 0 1px 0 rgba(255,255,255,0.12),inset 0 0 40px rgba(0,136,204,0.05)}
-/* Telegram unique: send ripple */
 .social-link.telegram:hover .social-icon::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(0,136,204,0.4);animation:tgSend 1.5s ease-out infinite}
 @keyframes tgSend{0%{transform:scale(0.9);opacity:1;clip-path:inset(0 50% 0 0)}50%{clip-path:inset(0 0 0 0)}100%{transform:scale(2.5);opacity:0;clip-path:inset(0 0 0 0)}}
-/* Telegram unique: paper plane trail dots */
 .social-link.telegram .tg-trail{position:absolute;inset:0;pointer-events:none;z-index:4;overflow:hidden}
 .social-link.telegram:hover .tg-trail span{position:absolute;width:4px;height:4px;border-radius:50%;background:#0088CC;opacity:0;animation:tgDot 1.8s ease-out infinite}
-.social-link.telegram:hover .tg-trail span:nth-child(1){left:25%;top:50%;animation-delay:0s}
-.social-link.telegram:hover .tg-trail span:nth-child(2){left:35%;top:45%;animation-delay:0.15s}
-.social-link.telegram:hover .tg-trail span:nth-child(3){left:45%;top:40%;animation-delay:0.3s}
-.social-link.telegram:hover .tg-trail span:nth-child(4){left:55%;top:35%;animation-delay:0.45s}
+.social-link.telegram:hover .tg-trail span:nth-child(1){left:25%;top:50%;animation-delay:0s}.social-link.telegram:hover .tg-trail span:nth-child(2){left:35%;top:45%;animation-delay:0.15s}.social-link.telegram:hover .tg-trail span:nth-child(3){left:45%;top:40%;animation-delay:0.3s}.social-link.telegram:hover .tg-trail span:nth-child(4){left:55%;top:35%;animation-delay:0.45s}
 @keyframes tgDot{0%{transform:scale(1);opacity:0.6}100%{transform:translate(30px,-20px) scale(0);opacity:0}}
-/* Telegram unique: quick bounce on hover */
 .social-link.telegram:hover .social-text{animation:tgBounce 0.5s ease}
 @keyframes tgBounce{0%{transform:translateX(0)}25%{transform:translateX(6px)}50%{transform:translateX(-3px)}75%{transform:translateX(2px)}100%{transform:translateX(0)}}
 
-/* === NÚT CHIA SẺ === */
-.share-btn{position:fixed;bottom:24px;right:24px;z-index:50;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#00e5ff,#7c3aed);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;color:#fff;box-shadow:0 8px 30px -6px rgba(0,229,255,0.5),0 0 20px rgba(124,58,237,0.3),inset 0 1px 0 rgba(255,255,255,0.2);transition:all 0.3s ease;position:fixed}
+.share-btn{position:fixed;bottom:24px;right:24px;z-index:50;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#00e5ff,#7c3aed);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;color:#fff;box-shadow:0 8px 30px -6px rgba(0,229,255,0.5),0 0 20px rgba(124,58,237,0.3),inset 0 1px 0 rgba(255,255,255,0.2);transition:all 0.3s ease}
 .share-btn:hover{transform:scale(1.12) rotate(15deg);box-shadow:0 12px 40px -6px rgba(0,229,255,0.6),0 0 40px rgba(124,58,237,0.4),inset 0 1px 0 rgba(255,255,255,0.3)}
 .share-btn:active{transform:scale(0.95)}
 
-/* === THÔNG BÁO === */
 .toast{position:fixed;bottom:86px;right:24px;z-index:50;padding:14px 22px;border-radius:14px;background:rgba(10,15,30,0.9);border:1px solid rgba(0,229,255,0.25);color:#00e5ff;font-size:13px;font-weight:600;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);opacity:0;transform:translateY(10px) scale(0.95);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);pointer-events:none;box-shadow:0 8px 30px rgba(0,0,0,0.4),0 0 20px rgba(0,229,255,0.1),inset 0 1px 0 rgba(255,255,255,0.05)}
 .toast.show{opacity:1;transform:translateY(0) scale(1)}
 
-/* === ONLINE DOT === */
 .online-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;position:relative;flex-shrink:0;box-shadow:0 0 6px rgba(34,197,94,0.5)}
 .online-dot::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px solid rgba(34,197,94,0.4);animation:gpsRing 2s ease-out infinite}
 @keyframes gpsRing{0%{transform:scale(1);opacity:1}100%{transform:scale(2.5);opacity:0}}
@@ -305,14 +219,125 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 
 .section-label{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#00e5ff;opacity:0.5}
 
-/* === SUBTLE HUB BREATHING === */
-.social-link{animation:hubBreath 4s ease-in-out infinite}
-.social-link:nth-child(2){animation-delay:0.5s}
-.social-link:nth-child(3){animation-delay:1s}
-.social-link:nth-child(4){animation-delay:1.5s}
-.social-link:nth-child(5){animation-delay:2s}
-.social-link:nth-child(6){animation-delay:2.5s}
-@keyframes hubBreath{0%,100%{box-shadow:0 4px 16px rgba(0,0,0,0.5),0 0 0 0.5px rgba(255,255,255,0.06),inset 0 1px 0 rgba(255,255,255,0.1),inset 0 -1px 0 rgba(0,0,0,0.3)}50%{box-shadow:0 6px 20px rgba(0,0,0,0.5),0 0 0 0.5px rgba(255,255,255,0.08),inset 0 1px 0 rgba(255,255,255,0.12),inset 0 -1px 0 rgba(0,0,0,0.3),0 0 30px rgba(0,229,255,0.02)}}
+/* ========================================
+   === ROBOT AI COMPANION — SIÊU ĐẸP ===
+   ======================================== */
+.robot-container{position:fixed;bottom:24px;left:24px;z-index:40;cursor:grab;touch-action:none;transition:filter 0.3s ease;-webkit-user-select:none;user-select:none}
+.robot-container:active{cursor:grabbing}
+.robot-container:hover .robot-glow-bg{opacity:0.6}
+.robot-glow-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,0.12) 0%,rgba(124,58,237,0.06) 40%,transparent 70%);filter:blur(20px);opacity:0.3;transition:opacity 0.5s ease;pointer-events:none}
+
+.robot{position:relative;width:80px;animation:robotFloat 3.5s ease-in-out infinite;transform-origin:bottom center}
+@keyframes robotFloat{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-10px) rotate(1.5deg)}50%{transform:translateY(-6px) rotate(0deg)}75%{transform:translateY(-12px) rotate(-1.5deg)}}
+
+/* Antenna */
+.robot-antenna{position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:2px;height:20px;background:linear-gradient(to top,rgba(0,229,255,0.3),rgba(0,229,255,0.7));z-index:3}
+.antenna-ball{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:#00e5ff;box-shadow:0 0 10px #00e5ff,0 0 25px rgba(0,229,255,0.5),0 0 50px rgba(0,229,255,0.2);animation:antennaPulse 2s ease-in-out infinite}
+@keyframes antennaPulse{0%,100%{box-shadow:0 0 10px #00e5ff,0 0 25px rgba(0,229,255,0.5);transform:translateX(-50%) scale(1)}50%{box-shadow:0 0 18px #00e5ff,0 0 35px rgba(0,229,255,0.7),0 0 60px rgba(0,229,255,0.3);transform:translateX(-50%) scale(1.25)}}
+.antenna-ball.flash{animation:antennaFlash 0.4s ease!important}
+@keyframes antennaFlash{0%{box-shadow:0 0 10px #00e5ff,0 0 25px rgba(0,229,255,0.5);transform:translateX(-50%) scale(1)}30%{box-shadow:0 0 30px #ffffff,0 0 60px #00e5ff,0 0 80px rgba(0,229,255,0.8);transform:translateX(-50%) scale(1.6)}100%{box-shadow:0 0 10px #00e5ff,0 0 25px rgba(0,229,255,0.5);transform:translateX(-50%) scale(1)}}
+
+/* Head */
+.robot-head{width:62px;height:52px;margin:0 auto;background:linear-gradient(155deg,#1a2545 0%,#111b33 40%,#0d1528 100%);border-radius:18px 18px 14px 14px;border:1.5px solid rgba(0,229,255,0.2);box-shadow:0 6px 20px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.08),inset 0 -1px 0 rgba(0,0,0,0.3),0 0 25px rgba(0,229,255,0.06);position:relative;overflow:visible;z-index:2}
+.robot-head::before{content:'';position:absolute;top:2px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.35),transparent);z-index:5}
+.robot-head::after{content:'';position:absolute;bottom:0;left:8%;right:8%;height:12px;background:linear-gradient(to top,rgba(0,229,255,0.03),transparent);border-radius:0 0 14px 14px;pointer-events:none}
+
+/* Ears */
+.robot-ear{position:absolute;top:16px;width:5px;height:14px;background:linear-gradient(155deg,#1a2545,#0d1528);border:1px solid rgba(0,229,255,0.15);z-index:1}
+.robot-ear.left{left:-4px;border-radius:4px 0 0 4px;border-right:none}
+.robot-ear.right{right:-4px;border-radius:0 4px 4px 0;border-left:none}
+.robot-ear::after{content:'';position:absolute;top:3px;left:1px;right:1px;height:3px;border-radius:1px;background:rgba(0,229,255,0.3);box-shadow:0 0 4px rgba(0,229,255,0.3)}
+
+/* Face */
+.robot-face{position:relative;display:flex;align-items:center;justify-content:center;gap:16px;padding-top:15px;z-index:3}
+
+/* Eyes */
+.robot-eye{width:15px;height:15px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#0c1220,#060a14);border:1.5px solid rgba(0,229,255,0.3);position:relative;overflow:hidden;box-shadow:inset 0 0 6px rgba(0,229,255,0.12),0 0 8px rgba(0,229,255,0.08);transition:height 0.1s ease,border-radius 0.1s ease,margin-top 0.1s ease}
+.robot-eye.blink{height:2px!important;border-radius:2px!important;margin-top:7px!important}
+.robot-eye.sleepy{height:8px!important;margin-top:4px!important;border-radius:8px 8px 4px 4px!important}
+.robot-pupil{width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffffff 0%,#00e5ff 50%,#0099aa 100%);box-shadow:0 0 8px #00e5ff,0 0 16px rgba(0,229,255,0.4);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transition:transform 0.06s linear;will-change:transform}
+.robot-pupil::after{content:'';position:absolute;top:1px;right:1px;width:2.5px;height:2.5px;border-radius:50%;background:rgba(255,255,255,0.9)}
+.robot-pupil::before{content:'';position:absolute;bottom:2px;left:1.5px;width:1.5px;height:1.5px;border-radius:50%;background:rgba(255,255,255,0.3)}
+
+/* Mouth */
+.robot-mouth{position:absolute;bottom:9px;left:50%;transform:translateX(-50%);display:flex;gap:2.5px;z-index:3;transition:all 0.3s ease}
+.mouth-led{width:3px;height:3px;border-radius:50%;background:rgba(0,229,255,0.25);transition:all 0.3s ease}
+.robot-mouth.happy .mouth-led{background:#00e5ff;box-shadow:0 0 5px rgba(0,229,255,0.6)}
+.robot-mouth.happy .mouth-led:nth-child(1),.robot-mouth.happy .mouth-led:nth-child(5){opacity:0.4}
+.robot-mouth.happy .mouth-led:nth-child(2),.robot-mouth.happy .mouth-led:nth-child(4){opacity:0.8;transform:scale(1.1)}
+.robot-mouth.happy .mouth-led:nth-child(3){opacity:1;transform:scale(1.3);box-shadow:0 0 8px rgba(0,229,255,0.8)}
+.robot-mouth.surprised{gap:0;width:10px;height:10px;border-radius:50%;background:rgba(0,229,255,0.15);border:1.5px solid rgba(0,229,255,0.35);padding:0}
+.robot-mouth.surprised .mouth-led{display:none}
+.robot-mouth.love .mouth-led{background:#f472b6;box-shadow:0 0 5px rgba(244,114,182,0.6)}
+
+/* Neck connector */
+.robot-neck{width:16px;height:4px;margin:0 auto;background:linear-gradient(to right,rgba(0,229,255,0.1),rgba(0,229,255,0.2),rgba(0,229,255,0.1));border-radius:0 0 3px 3px;position:relative;z-index:1}
+
+/* Body */
+.robot-body{width:52px;height:36px;margin:0 auto;background:linear-gradient(155deg,#172040 0%,#101830 40%,#0b1222 100%);border-radius:10px 10px 14px 14px;border:1.5px solid rgba(0,229,255,0.15);position:relative;box-shadow:0 6px 18px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.05),0 0 20px rgba(0,229,255,0.04);z-index:2}
+.robot-body::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.2),transparent)}
+
+/* Chest core */
+.robot-core{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#a855f7,#7c3aed 60%,#5b21b6);box-shadow:0 0 10px #7c3aed,0 0 25px rgba(124,58,237,0.4),0 0 45px rgba(124,58,237,0.15);animation:corePulse 1.8s ease-in-out infinite}
+@keyframes corePulse{0%,100%{opacity:0.6;transform:translate(-50%,-50%) scale(1);box-shadow:0 0 10px #7c3aed,0 0 25px rgba(124,58,237,0.4)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.15);box-shadow:0 0 15px #7c3aed,0 0 35px rgba(124,58,237,0.6),0 0 55px rgba(124,58,237,0.2)}}
+
+/* Chest lines */
+.robot-body-lines{position:absolute;inset:4px 8px;pointer-events:none}
+.robot-body-lines::before{content:'';position:absolute;top:4px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.08),transparent)}
+.robot-body-lines::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.08),transparent)}
+
+/* Arms */
+.robot-arm{position:absolute;width:9px;height:22px;background:linear-gradient(155deg,#172040,#0b1222);border:1px solid rgba(0,229,255,0.12);top:4px;transition:transform 0.3s cubic-bezier(0.16,1,0.3,1);z-index:1}
+.robot-arm.left{left:-10px;border-radius:5px 5px 5px 10px;transform:rotate(12deg);border-right:none}
+.robot-arm.right{right:-10px;border-radius:5px 5px 10px 5px;transform:rotate(-12deg);border-left:none}
+.robot-arm.left::after,.robot-arm.right::after{content:'';position:absolute;bottom:-3px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:linear-gradient(155deg,#172040,#0b1222);border:1px solid rgba(0,229,255,0.1)}
+.robot-arm.right.wave{animation:armWave 0.5s ease-in-out 3}
+@keyframes armWave{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(-50deg)}}
+
+/* Feet */
+.robot-feet{display:flex;justify-content:center;gap:14px;margin-top:-1px;position:relative;z-index:1}
+.robot-foot{width:16px;height:6px;background:linear-gradient(155deg,#151d38,#0b1222);border:1px solid rgba(0,229,255,0.1);border-top:none;border-radius:0 0 5px 5px;box-shadow:0 3px 8px rgba(0,0,0,0.3)}
+
+/* Shadow */
+.robot-shadow{width:55px;height:10px;margin:6px auto 0;background:radial-gradient(ellipse,rgba(0,229,255,0.12) 0%,rgba(0,229,255,0.04) 50%,transparent 70%);border-radius:50%;animation:shadowPulse 3.5s ease-in-out infinite}
+@keyframes shadowPulse{0%,100%{transform:scaleX(1);opacity:0.7}25%{transform:scaleX(0.8);opacity:0.3}50%{transform:scaleX(0.9);opacity:0.5}75%{transform:scaleX(0.75);opacity:0.25}}
+
+/* Holographic rings */
+.holo-ring{position:absolute;top:50%;left:50%;border-radius:50%;pointer-events:none;z-index:0}
+.holo-ring-1{width:100px;height:100px;border:1px solid rgba(0,229,255,0.1);transform:translate(-50%,-50%) rotateX(72deg);animation:holoSpin1 6s linear infinite}
+.holo-ring-1::after{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:#00e5ff;box-shadow:0 0 8px #00e5ff,0 0 16px rgba(0,229,255,0.4)}
+.holo-ring-2{width:85px;height:85px;border:1px solid rgba(124,58,237,0.08);transform:translate(-50%,-50%) rotateX(72deg) rotateY(50deg);animation:holoSpin2 8s linear infinite reverse}
+.holo-ring-2::after{content:'';position:absolute;top:-2.5px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:#7c3aed;box-shadow:0 0 6px #7c3aed,0 0 14px rgba(124,58,237,0.4)}
+@keyframes holoSpin1{to{transform:translate(-50%,-50%) rotateX(72deg) rotateZ(360deg)}}
+@keyframes holoSpin2{to{transform:translate(-50%,-50%) rotateX(72deg) rotateY(50deg) rotateZ(360deg)}}
+
+/* Floating holographic symbols */
+.robot-holo-symbols{position:absolute;inset:-35px;pointer-events:none;z-index:0}
+.holo-sym{position:absolute;top:50%;left:50%;font-family:'Orbitron',sans-serif;font-size:7px;font-weight:600;color:rgba(0,229,255,0.35);text-shadow:0 0 5px rgba(0,229,255,0.25);animation:holoSymFloat 5s ease-in-out infinite;animation-delay:var(--d,0s);opacity:0;will-change:transform,opacity;transform:translate(var(--x,0px),var(--y,0px)) scale(0.7)}
+@keyframes holoSymFloat{0%,100%{opacity:0;transform:translate(var(--x,0px),var(--y,0px)) scale(0.7)}15%{opacity:0.5}50%{opacity:0.6;transform:translate(calc(var(--x,0px) + 4px),calc(var(--y,0px) - 10px)) scale(1)}85%{opacity:0.4}}
+
+/* Robot particles */
+.robot-particles{position:absolute;inset:-25px;pointer-events:none;z-index:0}
+.r-particle{position:absolute;top:50%;left:50%;width:2.5px;height:2.5px;border-radius:50%;background:var(--pc,#00e5ff);box-shadow:0 0 5px var(--pc,#00e5ff);opacity:0;animation:rPartFloat 4.5s ease-in-out infinite;animation-delay:var(--pd,0s);will-change:transform,opacity}
+@keyframes rPartFloat{0%,100%{transform:translate(calc(var(--px,0px) - 1.25px),calc(var(--py,0px) - 1.25px)) scale(0);opacity:0}25%{opacity:0.6;transform:translate(calc(var(--px,0px) - 1.25px),calc(var(--py,0px) - 1.25px - 12px)) scale(1)}50%{opacity:0.4;transform:translate(calc(var(--px,0px) - 1.25px + 6px),calc(var(--py,0px) - 1.25px - 18px)) scale(0.7)}75%{opacity:0.2}}
+
+/* Speech bubble */
+.robot-speech{position:absolute;bottom:calc(100% + 16px);left:50%;transform:translateX(-50%) scale(0) translateY(8px);background:rgba(8,12,25,0.95);border:1px solid rgba(0,229,255,0.25);border-radius:14px;padding:9px 16px;font-size:11px;font-weight:600;color:#e2e8f0;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,0.6),0 0 20px rgba(0,229,255,0.08),inset 0 1px 0 rgba(255,255,255,0.05);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:all 0.45s cubic-bezier(0.16,1,0.3,1);pointer-events:none;z-index:100;letter-spacing:0.3px}
+.robot-speech::after{content:'';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%) rotate(45deg);width:10px;height:10px;background:rgba(8,12,25,0.95);border-right:1px solid rgba(0,229,255,0.25);border-bottom:1px solid rgba(0,229,255,0.25)}
+.robot-speech::before{content:'';position:absolute;top:0;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.15),transparent);border-radius:14px 14px 0 0}
+.robot-speech.show{transform:translateX(-50%) scale(1) translateY(0)}
+
+/* Zzz animation for sleep */
+.robot-zzz{position:absolute;top:-10px;right:-5px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;color:rgba(0,229,255,0.5);opacity:0;pointer-events:none;z-index:50}
+.robot-zzz.show span{display:inline-block;animation:zzzFloat 2s ease-in-out infinite}
+.robot-zzz.show span:nth-child(1){animation-delay:0s}
+.robot-zzz.show span:nth-child(2){animation-delay:0.4s;font-size:11px}
+.robot-zzz.show span:nth-child(3){animation-delay:0.8s;font-size:13px}
+@keyframes zzzFloat{0%,100%{opacity:0;transform:translateY(0) translateX(0)}30%{opacity:0.6}100%{opacity:0;transform:translateY(-25px) translateX(8px)}}
+
+/* Love hearts on double click */
+.love-heart{position:absolute;font-size:10px;pointer-events:none;z-index:50;animation:loveFloat 1.2s ease-out forwards;color:#f472b6;text-shadow:0 0 6px rgba(244,114,182,0.5)}
+@keyframes loveFloat{0%{opacity:1;transform:translateY(0) scale(0.5)}50%{opacity:0.8;transform:translateY(-20px) scale(1.2)}100%{opacity:0;transform:translateY(-40px) scale(0.3) rotate(20deg)}}
 </style>
 </head>
 <body>
@@ -332,7 +357,6 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 <main class="relative z-10 flex items-center justify-center min-h-screen px-4 py-12">
 <div class="w-full max-w-md">
 
-  <!-- AVATAR + QUỸ ĐẠO -->
   <div class="flex flex-col items-center mb-8">
     <div class="reveal orbit-system">
       <div class="orbit-ring ring-1"><div class="orbit-particle"></div></div>
@@ -360,7 +384,6 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
     </p>
   </div>
 
-  <!-- ĐỒNG HỒ -->
   <div class="reveal delay-4">
     <div class="live-clock-container">
       <div style="display:flex;align-items:baseline;gap:2px">
@@ -376,7 +399,6 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
     <div class="clock-date" id="clockDate">Đang tải...</div>
   </div>
 
-  <!-- THẺ IP -->
   <div class="ip-card reveal delay-5" id="ipCard">
     <div class="ip-card-header">
       <span class="iconify" data-icon="mdi:shield-eye" data-width="18" style="color:#00e5ff;filter:drop-shadow(0 0 4px rgba(0,229,255,0.4))"></span>
@@ -386,96 +408,50 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
     <div class="ip-card-body" id="ipBody"></div>
   </div>
 
-  <!-- NGĂN CÁCH -->
   <div class="reveal delay-6 divider"></div>
 
-  <!-- ========== 3D HUBS ========== -->
   <div class="social-links-wrap flex flex-col gap-3.5 mb-8">
-
-    <!-- FACEBOOK -->
     <a href="https://www.facebook.com/share/1DAZ6EvoHn/?mibextid=wwXIfr" target="_blank" class="reveal delay-6 social-link facebook">
-      <span class="hub-glow"></span>
-      <span class="hub-bg"></span>
-      <span class="hub-shine"></span>
-      <span class="hub-reflection"></span>
-      <span class="hub-edge"></span>
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span>
       <span class="fb-particles"><span style="--bx:25px;--by:-35px"></span><span style="--bx:-20px;--by:-30px"></span><span style="--bx:30px;--by:-25px"></span><span style="--bx:-15px;--by:-40px"></span><span style="--bx:20px;--by:-20px"></span></span>
       <span class="social-icon"><span class="iconify" data-icon="mdi:facebook" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">Facebook</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-
-    <!-- INSTAGRAM -->
     <a href="https://www.instagram.com/leanhbay06?igsh=Nm1pdHY3NzUxbXN2&utm_source=qr" target="_blank" class="reveal delay-6 social-link instagram">
-      <span class="hub-glow"></span>
-      <span class="hub-bg"></span>
-      <span class="hub-shine"></span>
-      <span class="hub-reflection"></span>
-      <span class="hub-edge"></span>
-      <span class="ig-flash"></span>
-      <span class="ig-rainbow"></span>
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span><span class="ig-flash"></span><span class="ig-rainbow"></span>
       <span class="social-icon"><span class="iconify" data-icon="mdi:instagram" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">Instagram</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-
-    <!-- TIKTOK -->
     <a href="https://www.tiktok.com/@leanhbay?_r=1&_t=ZS-97yHkjYeByK" target="_blank" class="reveal delay-7 social-link tiktok">
-      <span class="hub-glow"></span>
-      <span class="hub-bg"></span>
-      <span class="hub-shine"></span>
-      <span class="hub-reflection"></span>
-      <span class="hub-edge"></span>
-      <span class="tt-scan"></span>
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span><span class="tt-scan"></span>
       <span class="tt-notes"><span>♪</span><span>♫</span><span>♪</span></span>
       <span class="social-icon"><span class="iconify" data-icon="ic:baseline-tiktok" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">TikTok</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-
-    <!-- ZALO -->
     <a href="https://zalo.me/0353319326" target="_blank" class="reveal delay-7 social-link zalo">
-      <span class="hub-glow"></span>
-      <span class="hub-bg"></span>
-      <span class="hub-shine"></span>
-      <span class="hub-reflection"></span>
-      <span class="hub-edge"></span>
-      <span class="zalo-wave"></span>
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span><span class="zalo-wave"></span>
       <span class="social-icon"><span class="iconify" data-icon="simple-icons:zalo" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">Zalo</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-
-    <!-- YOUTUBE -->
     <a href="https://youtube.com/@leanhbay2006?si=gkjsfRiQGQrb18X5" target="_blank" class="reveal delay-8 social-link youtube">
-      <span class="hub-glow"></span>
-      <span class="hub-bg"></span>
-      <span class="hub-shine"></span>
-      <span class="hub-reflection"></span>
-      <span class="hub-edge"></span>
-      <span class="yt-spot"></span>
-      <span class="yt-lines"></span>
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span><span class="yt-spot"></span><span class="yt-lines"></span>
       <span class="social-icon"><span class="iconify" data-icon="mdi:youtube" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">YouTube</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-
-    <!-- TELEGRAM -->
     <a href="https://t.me/mr777lab" target="_blank" class="reveal delay-8 social-link telegram">
-      <span class="hub-glow"></span>
-      <span class="hub-bg"></span>
-      <span class="hub-shine"></span>
-      <span class="hub-reflection"></span>
-      <span class="hub-edge"></span>
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span>
       <span class="tg-trail"><span></span><span></span><span></span><span></span></span>
       <span class="social-icon"><span class="iconify" data-icon="mdi:telegram" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">Telegram</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-
   </div>
 
-  <!-- FOOTER -->
   <div class="reveal delay-9 divider" style="margin-bottom:20px"></div>
   <div class="reveal delay-9 text-center pb-8">
     <div class="flex items-center justify-center gap-3 mb-3">
@@ -488,6 +464,66 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 
 </div>
 </main>
+
+<!-- ============ ROBOT AI COMPANION ============ -->
+<div class="robot-container" id="robotContainer">
+  <div class="robot-glow-bg"></div>
+  <div class="robot-speech" id="robotSpeech">Đang khởi động... ⚡</div>
+  <div class="robot-zzz" id="robotZzz"><span>z</span><span>Z</span><span>Z</span></div>
+  <div class="robot" id="robot">
+    <!-- Holographic rings -->
+    <div class="holo-ring holo-ring-1"></div>
+    <div class="holo-ring holo-ring-2"></div>
+    <!-- Floating symbols -->
+    <div class="robot-holo-symbols">
+      <span class="holo-sym" style="--x:-22px;--y:-20px;--d:0s">01</span>
+      <span class="holo-sym" style="--x:24px;--y:-28px;--d:1s">AI</span>
+      <span class="holo-sym" style="--x:-28px;--y:8px;--d:2s">⟐</span>
+      <span class="holo-sym" style="--x:28px;--y:2px;--d:3s">◈</span>
+      <span class="holo-sym" style="--x:2px;--y:-38px;--d:4s">◇</span>
+      <span class="holo-sym" style="--x:-18px;--y:22px;--d:1.5s">∞</span>
+    </div>
+    <!-- Particles -->
+    <div class="robot-particles">
+      <div class="r-particle" style="--px:-22px;--py:-12px;--pd:0s;--pc:#00e5ff"></div>
+      <div class="r-particle" style="--px:26px;--py:-18px;--pd:0.9s;--pc:#7c3aed"></div>
+      <div class="r-particle" style="--px:-18px;--py:22px;--pd:1.8s;--pc:#06b6d4"></div>
+      <div class="r-particle" style="--px:22px;--py:16px;--pd:2.7s;--pc:#a855f7"></div>
+      <div class="r-particle" style="--px:0px;--py:-32px;--pd:3.6s;--pc:#00e5ff"></div>
+      <div class="r-particle" style="--px:-30px;--py:5px;--pd:1.2s;--pc:#c4b5fd"></div>
+    </div>
+    <!-- Antenna -->
+    <div class="robot-antenna"><div class="antenna-ball" id="antennaBall"></div></div>
+    <!-- Head -->
+    <div class="robot-head" id="robotHead">
+      <div class="robot-ear left"></div>
+      <div class="robot-ear right"></div>
+      <div class="robot-face">
+        <div class="robot-eye blink" id="eyeLeft"><div class="robot-pupil" id="pupilLeft"></div></div>
+        <div class="robot-eye blink" id="eyeRight"><div class="robot-pupil" id="pupilRight"></div></div>
+      </div>
+      <div class="robot-mouth" id="robotMouth">
+        <div class="mouth-led"></div><div class="mouth-led"></div><div class="mouth-led"></div><div class="mouth-led"></div><div class="mouth-led"></div>
+      </div>
+    </div>
+    <!-- Neck -->
+    <div class="robot-neck"></div>
+    <!-- Body -->
+    <div class="robot-body" id="robotBody">
+      <div class="robot-body-lines"></div>
+      <div class="robot-core"></div>
+      <div class="robot-arm left" id="armLeft"></div>
+      <div class="robot-arm right" id="armRight"></div>
+    </div>
+    <!-- Feet -->
+    <div class="robot-feet">
+      <div class="robot-foot"></div>
+      <div class="robot-foot"></div>
+    </div>
+    <!-- Shadow -->
+    <div class="robot-shadow"></div>
+  </div>
+</div>
 
 <button class="share-btn" onclick="shareProfile()" title="Chia sẻ">
   <span class="iconify" data-icon="mdi:share-variant" data-width="22"></span>
@@ -591,15 +627,8 @@ animateStars();
 document.querySelectorAll('.social-link').forEach(hub=>{
   let rafId=null;
   let isHovered=false;
-
   hub.addEventListener('mouseenter',()=>{isHovered=true});
-  hub.addEventListener('mouseleave',()=>{
-    isHovered=false;
-    hub.style.transform='';
-    hub.style.setProperty('--gx','50%');
-    hub.style.setProperty('--gy','50%');
-  });
-
+  hub.addEventListener('mouseleave',()=>{isHovered=false;hub.style.transform='';hub.style.setProperty('--gx','50%');hub.style.setProperty('--gy','50%')});
   hub.addEventListener('mousemove',e=>{
     if(!isHovered)return;
     if(rafId)cancelAnimationFrame(rafId);
@@ -615,21 +644,8 @@ document.querySelectorAll('.social-link').forEach(hub=>{
       rafId=null;
     });
   });
-
-  // Touch support
-  hub.addEventListener('touchstart',()=>{
-    hub.style.transform='perspective(800px) rotateX(-3deg) rotateY(3deg) translateZ(10px) scale(1.04)';
-    hub.style.setProperty('--gx','35%');
-    hub.style.setProperty('--gy','35%');
-  },{passive:true});
-
-  hub.addEventListener('touchend',()=>{
-    hub.style.transform='';
-    hub.style.setProperty('--gx','50%');
-    hub.style.setProperty('--gy','50%');
-  },{passive:true});
-
-  // Click ripple effect
+  hub.addEventListener('touchstart',()=>{hub.style.transform='perspective(800px) rotateX(-3deg) rotateY(3deg) translateZ(10px) scale(1.04)';hub.style.setProperty('--gx','35%');hub.style.setProperty('--gy','35%')},{passive:true});
+  hub.addEventListener('touchend',()=>{hub.style.transform='';hub.style.setProperty('--gx','50%');hub.style.setProperty('--gy','50%')},{passive:true});
   hub.addEventListener('pointerdown',e=>{
     const rect=hub.getBoundingClientRect();
     const ripple=document.createElement('span');
@@ -656,75 +672,377 @@ function showToast(t){
 }
 
 // ============================
-// ĐỒNG HỒ TRỰC TIẾP
+// ĐỒNG HỒ
 // ============================
-const clockHM=document.getElementById('clockHM');
-const clockSec=document.getElementById('clockSec');
-const clockDate=document.getElementById('clockDate');
-const clockTzLabel=document.getElementById('clockTzLabel');
-const clockTzOffset=document.getElementById('clockTzOffset');
-
-const deviceTZ=Intl.DateTimeFormat().resolvedOptions().timeZone;
-clockTzLabel.textContent=deviceTZ.split('/').pop().replace(/_/g,' ');
-const n0=new Date(),u0=n0.toLocaleString('en-US',{timeZone:'UTC'}),l0=n0.toLocaleString('en-US');
-const dH=Math.round((new Date(l0)-new Date(u0))/3600000);
-clockTzOffset.textContent='UTC'+(dH>=0?'+':'')+dH;
-
-const dayN=['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ bảy'];
-function tick(){
-  const n=new Date();
-  clockHM.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
-  clockSec.textContent=':'+String(n.getSeconds()).padStart(2,'0');
-  clockDate.textContent=dayN[n.getDay()]+', '+String(n.getDate()).padStart(2,'0')+'/'+String(n.getMonth()+1).padStart(2,'0')+'/'+n.getFullYear();
+function updateClock(){
+  const now=new Date();
+  const h=String(now.getHours()).padStart(2,'0');
+  const m=String(now.getMinutes()).padStart(2,'0');
+  const s=String(now.getSeconds()).padStart(2,'0');
+  document.getElementById('clockHM').textContent=h+':'+m;
+  document.getElementById('clockSec').textContent=':'+s;
+  const days=['Chủ nhật','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'];
+  const months=['01','02','03','04','05','06','07','08','09','10','11','12'];
+  document.getElementById('clockDate').textContent=days[now.getDay()]+', '+now.getDate()+'/'+months[now.getMonth()]+'/'+now.getFullYear();
+  const offset=-now.getTimezoneOffset()/60;
+  document.getElementById('clockTzOffset').textContent='UTC'+(offset>=0?'+':'')+offset;
 }
-tick();setInterval(tick,1000);
+updateClock();
+setInterval(updateClock,1000);
 
 // ============================
-// THÔNG TIN IP
+// THẺ IP
 // ============================
-function getFlag(c){return String.fromCodePoint(...c.toUpperCase().split('').map(ch=>127397+ch.charCodeAt(0)))}
-function fetchWithTimeout(url,ms){const ctrl=new AbortController();const tid=setTimeout(()=>ctrl.abort(),ms||8000);return fetch(url,{signal:ctrl.signal}).then(r=>{clearTimeout(tid);if(!r.ok)throw new Error(r.status);return r.json()}).catch(e=>{clearTimeout(tid);throw e})}
-function normalize(data,source){
-  const r={ip:null,ver:null,city:null,region:null,country:null,cc:null,tz:null,lat:null,lon:null};
-  if(source==='ipwho'){r.ip=data.ip;r.ver=data.type||'IPv4';r.city=data.city;r.region=data.region;r.country=data.country;r.cc=data.country_code;r.tz=data.timezone?.id;r.lat=data.latitude;r.lon=data.longitude;}
-  else if(source==='ipapi'){r.ip=data.ip;r.ver=(data.ip||'').includes(':')?'IPv6':'IPv4';r.city=data.city;r.region=data.region;r.country=data.country_name;r.cc=data.country_code;r.tz=data.timezone;r.lat=data.latitude;r.lon=data.longitude;}
-  else if(source==='freeip'){r.ip=data.ipAddress;r.ver=(data.ipAddress||'').includes(':')?'IPv6':'IPv4';r.city=data.cityName;r.region=data.regionName;r.country=data.countryName;r.cc=data.countryCode;r.tz=data.timeZone;r.lat=data.latitude;r.lon=data.longitude;}
-  else if(source==='ipify'){r.ip=data.ip;r.ver=(data.ip||'').includes(':')?'IPv6':'IPv4';}
-  return r;
+async function loadIP(){
+  const card=document.getElementById('ipCard');
+  const body=document.getElementById('ipBody');
+  const icon=document.getElementById('statusIcon');
+  try{
+    const r=await fetch('https://ipapi.co/json/');
+    const d=await r.json();
+    icon.innerHTML='<span class="iconify" data-icon="mdi:check-circle" data-width="16" style="color:#22c55e"></span>';
+    card.classList.add('visible');
+    const rows=[
+      {l:'mdi:ip-network',t:'IP',v:d.ip,p:true,b:d.version==='IPv4'?'ipv4':'ipv6',bt:d.version||'IPv4'},
+      {l:'mdi:map-marker',t:'Vị trí',v:(d.city||'')+', '+(d.region||'')+', '+(d.country_name||'')},
+      {l:'mdi:earth',t:'Quốc gia',v:(d.country_name||'')+' ('+(d.country_code||'')+')'},
+      {l:'mdi:provider',t:'ISP',v:d.org||'N/A'},
+      {l:'mdi:clock-outline',t:'Múi giờ',v:d.timezone||'N/A'},
+      {l:'mdi:crosshairs-gps',t:'Tọa độ',v:(d.latitude||'?')+', '+(d.longitude||'?')},
+    ];
+    body.innerHTML='';
+    rows.forEach((row,i)=>{
+      const div=document.createElement('div');
+      div.className='ip-row';
+      let valHtml='<span class="ip-value'+(row.p?' primary':'')+'">'+row.v+'</span>';
+      if(row.b)valHtml+=' <span class="ip-badge '+row.bt+' ml-2">'+row.bt+'</span>';
+      if(row.p)valHtml='<div class="flex items-center gap-2">'+valHtml+'<button class="ip-copy-btn" onclick="copyIP(\''+row.v+'\')"><span class="iconify" data-icon="mdi:content-copy" data-width="12"></span>Sao chép</button></div>';
+      div.innerHTML='<span class="ip-label"><span class="iconify" data-icon="'+row.l+'" data-width="15"></span>'+row.t+'</span>'+valHtml;
+      body.appendChild(div);
+      setTimeout(()=>div.classList.add('show'),150+i*100);
+    });
+  }catch(e){
+    icon.innerHTML='<span class="iconify" data-icon="mdi:alert-circle" data-width="16" style="color:#ef4444"></span>';
+    card.classList.add('visible');
+    body.innerHTML='<div class="ip-row show"><span class="ip-label"><span class="iconify" data-icon="mdi:alert" data-width="15"></span>Lỗi</span><span class="ip-value" style="color:#ef4444">Không thể tải dữ liệu</span></div>';
+  }
 }
-async function fetchIPInfo(){
-  let info=null;
-  try{const d=await fetchWithTimeout('https://ipwho.is/json/');if(d&&d.success!==false&&d.ip)info=normalize(d,'ipwho')}catch(e){}
-  if(!info||!info.city){try{const d=await fetchWithTimeout('https://ipapi.co/json/');if(d&&d.ip){const n=normalize(d,'ipapi');info=info?{...info,...n}:n}}catch(e){}}
-  if(!info||!info.city){try{const d=await fetchWithTimeout('https://freeipapi.com/api/json');if(d&&d.ipAddress){const n=normalize(d,'freeip');info=info?{...info,...n}:n}}catch(e){}}
-  if(!info){try{const d=await fetchWithTimeout('https://api.ipify.org?format=json');if(d&&d.ip)info=normalize(d,'ipify')}catch(e){}}
-  if(info&&info.ip)showCard(info);
-}
-function showCard(d){
-  const card=document.getElementById('ipCard'),body=document.getElementById('ipBody'),icon=document.getElementById('statusIcon');
-  const ver=d.ver||'IPv4',verCls=ver==='IPv6'?'ipv6':'ipv4';
-  const flag=d.cc?getFlag(d.cc):'🌍';
-  const loc=[d.city,d.region,d.country].filter(Boolean).join(', ')||'Đã thu thập';
-  const tz=d.tz||deviceTZ;
-  let html=`
-    <div class="ip-row" data-i="0"><div class="ip-label"><span class="iconify" data-icon="mdi:ip-network" data-width="15"></span>Địa chỉ IP</div><div class="flex items-center gap-2"><span class="ip-value primary">${d.ip}</span><span class="ip-badge ${verCls}">${ver}</span></div></div>
-    <div class="ip-row" data-i="1"><div class="ip-label"><span class="iconify" data-icon="mdi:map-marker" data-width="15"></span>Vị trí</div><div class="flex items-center gap-1.5"><span class="text-sm">${flag}</span><span class="ip-value">${loc}</span></div></div>
-    <div class="ip-row" data-i="2"><div class="ip-label"><span class="iconify" data-icon="mdi:clock-outline" data-width="15"></span>Múi giờ</div><span class="ip-value" style="font-size:12px;color:#94a3b8">${tz}</span></div>`;
-  if(d.lat!=null&&d.lon!=null)html+=`<div class="ip-row" data-i="3"><div class="ip-label"><span class="iconify" data-icon="mdi:crosshairs-gps" data-width="15"></span>Tọa độ</div><span class="ip-value" style="font-size:12px;color:#94a3b8;font-family:'SF Mono','Fira Code',monospace">${Number(d.lat).toFixed(4)}, ${Number(d.lon).toFixed(4)}</span></div>`;
-  html+=`<div style="padding-top:16px;display:flex;justify-content:center"><button class="ip-copy-btn" onclick="copyIP('${d.ip}',this)"><span class="iconify" data-icon="mdi:content-copy" data-width="13"></span> Sao chép IP</button></div>`;
-  body.innerHTML=html;
-  icon.innerHTML='<div class="online-dot"></div>';
-  requestAnimationFrame(()=>{card.classList.add('visible');card.classList.add('active');body.querySelectorAll('.ip-row').forEach((row,i)=>setTimeout(()=>row.classList.add('show'),100+i*120))});
-}
-function copyIP(ip,btn){
+function copyIP(ip){
   navigator.clipboard.writeText(ip).then(()=>{
-    btn.classList.add('copied');
-    btn.innerHTML='<span class="iconify" data-icon="mdi:check" data-width="13"></span> Đã sao chép!';
-    showToast('Xác nhận sao chép IP: '+ip);
-    setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='<span class="iconify" data-icon="mdi:content-copy" data-width="13"></span> Sao chép IP'},2000);
-  });
+    document.querySelectorAll('.ip-copy-btn').forEach(b=>{b.classList.add('copied');b.innerHTML='<span class="iconify" data-icon="mdi:check" data-width="12"></span>Đã chép!';setTimeout(()=>{b.classList.remove('copied');b.innerHTML='<span class="iconify" data-icon="mdi:content-copy" data-width="12"></span>Sao chép'},1500)});
+  }).catch(()=>{});
 }
-fetchIPInfo();
+setTimeout(loadIP,800);
+
+// ================================================
+// ================================================
+// === ROBOT AI COMPANION — HỆ THỐNG THÔNG MINH ===
+// ================================================
+// ================================================
+
+(function(){
+  const container = document.getElementById('robotContainer');
+  const robot = document.getElementById('robot');
+  const eyeL = document.getElementById('eyeLeft');
+  const eyeR = document.getElementById('eyeRight');
+  const pupilL = document.getElementById('pupilLeft');
+  const pupilR = document.getElementById('pupilRight');
+  const mouth = document.getElementById('robotMouth');
+  const armR = document.getElementById('armRight');
+  const armL = document.getElementById('armLeft');
+  const antenna = document.getElementById('antennaBall');
+  const speech = document.getElementById('robotSpeech');
+  const zzz = document.getElementById('robotZzz');
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let isDragging = false;
+  let dragStarted = false;
+  let dragOffsetX = 0, dragOffsetY = 0;
+  let lastInteraction = Date.now();
+  let isSleeping = false;
+  let isWaking = true; // initial wake sequence
+  let speechTimeout = null;
+  let clickCount = 0;
+  let clickTimer = null;
+
+  // --- Messages ---
+  const messages = [
+    'Xin chào bạn! 👋',
+    'Tôi là AI Bot 🤖',
+    'Kéo tôi đi nào! ✨',
+    'Trang web đẹp quá 💫',
+    'Nhấp vào tôi nhé! 😊',
+    'Đang phân tích... 🔍',
+    'Hệ thống OK ✅',
+    'Bạn biết không? 🤔',
+    'Tôi rất thông minh! 🧠',
+    '01101000 01101001 😄',
+    'Hôm nay vui không? 🌟',
+    'Cho tôi ăn dữ liệu! 🍔',
+  ];
+  let msgIndex = 0;
+
+  // --- Eye Tracking ---
+  function updateEyes(){
+    if(isSleeping || isWaking) return;
+    [eyeL, eyeR].forEach((eye, i) => {
+      const pupil = i === 0 ? pupilL : pupilR;
+      const rect = eye.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const angle = Math.atan2(mouseY - cy, mouseX - cx);
+      const dist = Math.min(3, Math.hypot(mouseX - cx, mouseY - cy) / 60);
+      const ox = Math.cos(angle) * dist;
+      const oy = Math.sin(angle) * dist;
+      pupil.style.transform = 'translate(calc(-50% + ' + ox + 'px), calc(-50% + ' + oy + 'px))';
+    });
+    requestAnimationFrame(updateEyes);
+  }
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    wakeUp();
+  });
+  document.addEventListener('touchmove', e => {
+    if(e.touches.length){
+      mouseX = e.touches[0].clientX;
+      mouseY = e.touches[0].clientY;
+    }
+    wakeUp();
+  }, {passive:true});
+
+  // --- Blinking ---
+  function blink(){
+    if(isSleeping || isWaking) { scheduleBlink(); return; }
+    eyeL.classList.add('blink');
+    eyeR.classList.add('blink');
+    setTimeout(() => {
+      eyeL.classList.remove('blink');
+      eyeR.classList.remove('blink');
+    }, 120);
+    scheduleBlink();
+  }
+  function scheduleBlink(){
+    setTimeout(blink, 2000 + Math.random() * 4000);
+  }
+
+  // --- Speech ---
+  function showSpeech(msg){
+    speech.textContent = msg;
+    speech.classList.add('show');
+    clearTimeout(speechTimeout);
+    speechTimeout = setTimeout(() => speech.classList.remove('show'), 3500);
+  }
+  function hideSpeech(){
+    speech.classList.remove('show');
+    clearTimeout(speechTimeout);
+  }
+
+  // --- Wake Up Sequence ---
+  function startWakeSequence(){
+    isWaking = true;
+    // Eyes start closed (blink class already on)
+    setTimeout(() => {
+      eyeL.classList.remove('blink');
+      eyeR.classList.remove('blink');
+      showSpeech('Đang khởi động... ⚡');
+    }, 1200);
+    setTimeout(() => {
+      showSpeech('Hệ thống sẵn sàng! ✅');
+    }, 2800);
+    setTimeout(() => {
+      isWaking = false;
+      showSpeech('Xin chào bạn! 👋');
+      scheduleBlink();
+      requestAnimationFrame(updateEyes);
+      startIdleCheck();
+    }, 4200);
+  }
+
+  // --- Sleep / Wake ---
+  function goToSleep(){
+    if(isSleeping) return;
+    isSleeping = true;
+    hideSpeech();
+    eyeL.classList.add('sleepy');
+    eyeR.classList.add('sleepy');
+    mouth.className = 'robot-mouth';
+    zzz.classList.add('show');
+    showSpeech('Zzz... 💤');
+  }
+  function wakeUp(){
+    lastInteraction = Date.now();
+    if(!isSleeping) return;
+    isSleeping = false;
+    eyeL.classList.remove('sleepy','blink');
+    eyeR.classList.remove('sleepy','blink');
+    zzz.classList.remove('show');
+    hideSpeech();
+    // Quick happy expression
+    mouth.classList.add('happy');
+    setTimeout(() => mouth.classList.remove('happy'), 800);
+  }
+  function startIdleCheck(){
+    setInterval(() => {
+      if(!isSleeping && !isWaking && Date.now() - lastInteraction > 12000){
+        goToSleep();
+      }
+    }, 2000);
+  }
+
+  // --- Click Reactions ---
+  function onRobotClick(){
+    clickCount++;
+    clearTimeout(clickTimer);
+    clickTimer = setTimeout(() => { clickCount = 0; }, 400);
+
+    if(clickCount === 2){
+      // Double click — love reaction
+      onRobotDoubleClick();
+      clickCount = 0;
+      return;
+    }
+
+    // Single click — wave + happy + speech
+    armR.classList.remove('wave');
+    void armR.offsetWidth;
+    armR.classList.add('wave');
+    setTimeout(() => armR.classList.remove('wave'), 1600);
+
+    mouth.classList.remove('surprised','love');
+    mouth.classList.add('happy');
+    setTimeout(() => mouth.classList.remove('happy'), 1500);
+
+    antenna.classList.remove('flash');
+    void antenna.offsetWidth;
+    antenna.classList.add('flash');
+    setTimeout(() => antenna.classList.remove('flash'), 400);
+
+    showSpeech(messages[msgIndex % messages.length]);
+    msgIndex++;
+
+    // Spawn a small heart sometimes
+    if(Math.random() > 0.5) spawnHeart();
+  }
+
+  function onRobotDoubleClick(){
+    // Love reaction
+    mouth.classList.remove('happy','surprised');
+    mouth.classList.add('love');
+    setTimeout(() => mouth.classList.remove('love'), 2000);
+
+    antenna.classList.remove('flash');
+    void antenna.offsetWidth;
+    antenna.classList.add('flash');
+    setTimeout(() => antenna.classList.remove('flash'), 400);
+
+    showSpeech('Yêu bạn! 💕');
+    for(let i = 0; i < 5; i++){
+      setTimeout(() => spawnHeart(), i * 150);
+    }
+  }
+
+  function spawnHeart(){
+    const heart = document.createElement('div');
+    heart.className = 'love-heart';
+    heart.textContent = '♥';
+    heart.style.left = (20 + Math.random() * 40) + 'px';
+    heart.style.top = (10 + Math.random() * 20) + 'px';
+    robot.appendChild(heart);
+    heart.addEventListener('animationend', () => heart.remove());
+  }
+
+  // --- Dragging ---
+  container.addEventListener('pointerdown', e => {
+    isDragging = true;
+    dragStarted = false;
+    const rect = container.getBoundingClientRect();
+    dragOffsetX = e.clientX - rect.left;
+    dragOffsetY = e.clientY - rect.top;
+    container.style.transition = 'filter 0.3s ease';
+    container.style.bottom = 'auto';
+    container.style.left = rect.left + 'px';
+    container.style.top = rect.top + 'px';
+    container.setPointerCapture(e.pointerId);
+    e.preventDefault();
+    wakeUp();
+  });
+
+  container.addEventListener('pointermove', e => {
+    if(!isDragging) return;
+    dragStarted = true;
+    const x = Math.max(0, Math.min(window.innerWidth - 80, e.clientX - dragOffsetX));
+    const y = Math.max(0, Math.min(window.innerHeight - 100, e.clientY - dragOffsetY));
+    container.style.left = x + 'px';
+    container.style.top = y + 'px';
+    // Tilt robot slightly in drag direction
+    const dx = (e.clientX - dragOffsetX + 40 - window.innerWidth/2) / window.innerWidth * 8;
+    robot.style.animation = 'none';
+    robot.style.transform = 'rotate(' + dx + 'deg)';
+  });
+
+  container.addEventListener('pointerup', e => {
+    if(!isDragging) return;
+    isDragging = false;
+    robot.style.animation = '';
+    robot.style.transform = '';
+    container.style.transition = '';
+    if(!dragStarted){
+      onRobotClick();
+    }
+    try{ container.releasePointerCapture(e.pointerId); }catch(ex){}
+  });
+
+  container.addEventListener('pointercancel', () => {
+    isDragging = false;
+    robot.style.animation = '';
+    robot.style.transform = '';
+    container.style.transition = '';
+  });
+
+  // --- Scroll reaction ---
+  let lastScrollY = 0;
+  let scrollDir = 0;
+  function onScroll(){
+    const sy = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    scrollDir = sy > lastScrollY ? 1 : -1;
+    lastScrollY = sy;
+    wakeUp();
+    // Briefly tilt head in scroll direction
+    if(!isSleeping && !isWaking){
+      const head = document.getElementById('robotHead');
+      head.style.transition = 'transform 0.3s ease';
+      head.style.transform = 'rotateX(' + (scrollDir * 5) + 'deg)';
+      setTimeout(() => {
+        head.style.transform = '';
+        setTimeout(() => head.style.transition = '', 300);
+      }, 300);
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  document.body.addEventListener('scroll', onScroll, {passive:true});
+
+  // --- Hover social link — robot looks that way ---
+  document.querySelectorAll('.social-link').forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      if(isSleeping || isWaking) return;
+      const rect = link.getBoundingClientRect();
+      mouseX = rect.left + rect.width / 2;
+      mouseY = rect.top + rect.height / 2;
+      // Curious expression
+      mouth.className = 'robot-mouth surprised';
+    });
+    link.addEventListener('mouseleave', () => {
+      mouth.className = 'robot-mouth';
+    });
+  });
+
+  // --- Initialize ---
+  startWakeSequence();
+
+})();
 </script>
 </body>
 </html>
