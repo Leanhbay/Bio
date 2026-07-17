@@ -14,40 +14,41 @@ html,body{overflow:hidden;height:100%;width:100%;position:fixed;top:0;left:0}
 body{font-family:'Inter',sans-serif;background:#0a0f1e;color:#e2e8f0;overflow-y:auto;-webkit-overflow-scrolling:touch;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-webkit-optimize-contrast}
 
-.nebula-1{position:fixed;top:-120px;left:-120px;width:550px;height:550px;background:radial-gradient(circle,rgba(0,229,255,0.22) 0%,transparent 70%);filter:blur(80px);pointer-events:none;z-index:0;animation:nebFloat1 9s ease-in-out infinite}
-.nebula-2{position:fixed;bottom:-120px;right:-120px;width:550px;height:550px;background:radial-gradient(circle,rgba(124,58,237,0.20) 0%,transparent 70%);filter:blur(80px);pointer-events:none;z-index:0;animation:nebFloat2 11s ease-in-out infinite}
-.nebula-3{position:fixed;top:40%;right:-80px;width:450px;height:450px;background:radial-gradient(circle,rgba(6,182,212,0.16) 0%,transparent 70%);filter:blur(90px);pointer-events:none;z-index:0;animation:nebFloat3 13s ease-in-out infinite}
-.nebula-4{position:fixed;bottom:30%;left:-60px;width:400px;height:400px;background:radial-gradient(circle,rgba(168,85,247,0.13) 0%,transparent 70%);filter:blur(70px);pointer-events:none;z-index:0;animation:nebFloat1 15s ease-in-out infinite reverse}
-.nebula-5{position:fixed;top:20%;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(0,229,255,0.06) 0%,transparent 70%);filter:blur(100px);pointer-events:none;z-index:0;animation:nebFloat3 18s ease-in-out infinite reverse}
-@keyframes nebFloat1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(50px,30px) scale(1.12)}}
-@keyframes nebFloat2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,-25px) scale(1.1)}}
-@keyframes nebFloat3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-30px,20px) scale(1.15)}}
+/* TỐI ƯU LAG: Giảm blur, dùng gradient mềm hơn */
+.nebula-1{position:fixed;top:-120px;left:-120px;width:550px;height:550px;background:radial-gradient(circle,rgba(0,229,255,0.15) 0%,transparent 70%);pointer-events:none;z-index:0;animation:nebFloat1 9s ease-in-out infinite; will-change: transform;}
+.nebula-2{position:fixed;bottom:-120px;right:-120px;width:550px;height:550px;background:radial-gradient(circle,rgba(124,58,237,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;animation:nebFloat2 11s ease-in-out infinite; will-change: transform;}
+.nebula-3{position:fixed;top:40%;right:-80px;width:450px;height:450px;background:radial-gradient(circle,rgba(6,182,212,0.1) 0%,transparent 70%);pointer-events:none;z-index:0;animation:nebFloat3 13s ease-in-out infinite; will-change: transform;}
+.nebula-4{position:fixed;bottom:30%;left:-60px;width:400px;height:400px;background:radial-gradient(circle,rgba(168,85,247,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;animation:nebFloat1 15s ease-in-out infinite reverse; will-change: transform;}
+.nebula-5{position:fixed;top:20%;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(0,229,255,0.04) 0%,transparent 70%);pointer-events:none;z-index:0;animation:nebFloat3 18s ease-in-out infinite reverse; will-change: transform;}
+@keyframes nebFloat1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,15px) scale(1.05)}}
+@keyframes nebFloat2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-20px,-15px) scale(1.05)}}
+@keyframes nebFloat3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-15px,10px) scale(1.05)}}
 
 .space-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.035) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:1}
 .scanlines{position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.02) 2px,rgba(0,0,0,0.02) 4px);pointer-events:none;z-index:2}
-.scan-sweep{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,rgba(0,229,255,0.7) 50%,transparent 100%);z-index:100;animation:sweep 5s ease-in-out infinite;pointer-events:none;box-shadow:0 0 20px rgba(0,229,255,0.3),0 0 60px rgba(0,229,255,0.1)}
+.scan-sweep{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,rgba(0,229,255,0.7) 50%,transparent 100%);z-index:100;animation:sweep 5s ease-in-out infinite;pointer-events:none;}
 @keyframes sweep{0%{transform:translateX(-100%);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateX(100%);opacity:0}}
 
 #particles{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-.reveal{opacity:0;transform:translateY(30px) scale(0.98);transition:all 0.8s cubic-bezier(0.16,1,0.3,1);filter:blur(10px)}
-.reveal.active{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+.reveal{opacity:0;transform:translateY(30px) scale(0.98);transition:all 0.8s cubic-bezier(0.16,1,0.3,1);}
+.reveal.active{opacity:1;transform:translateY(0) scale(1);}
 .delay-1{transition-delay:100ms}.delay-2{transition-delay:200ms}.delay-3{transition-delay:300ms}
 .delay-4{transition-delay:400ms}.delay-5{transition-delay:500ms}.delay-6{transition-delay:600ms}
 .delay-7{transition-delay:700ms}.delay-8{transition-delay:800ms}.delay-9{transition-delay:900ms}
 
 .orbit-system{position:relative;width:200px;height:200px;display:flex;align-items:center;justify-content:center;perspective:800px;margin-bottom:28px}
 .orbit-ring{position:absolute;inset:0;border-radius:50%;border:1.5px solid}
-.ring-1{border-color:rgba(0,229,255,0.25);transform:rotateX(72deg);animation:orbitSpin1 7s linear infinite;box-shadow:0 0 15px rgba(0,229,255,0.08)}
-.ring-2{border-color:rgba(124,58,237,0.20);transform:rotateX(72deg) rotateY(55deg);animation:orbitSpin2 9s linear infinite;box-shadow:0 0 15px rgba(124,58,237,0.06)}
-.ring-3{border-color:rgba(6,182,212,0.12);transform:rotateX(45deg) rotateY(-30deg);animation:orbitSpin1 13s linear infinite reverse;box-shadow:0 0 10px rgba(6,182,212,0.05)}
+.ring-1{border-color:rgba(0,229,255,0.25);transform:rotateX(72deg);animation:orbitSpin1 7s linear infinite;}
+.ring-2{border-color:rgba(124,58,237,0.20);transform:rotateX(72deg) rotateY(55deg);animation:orbitSpin2 9s linear infinite;}
+.ring-3{border-color:rgba(6,182,212,0.12);transform:rotateX(45deg) rotateY(-30deg);animation:orbitSpin1 13s linear infinite reverse;}
 .orbit-particle{position:absolute;width:6px;height:6px;border-radius:50%;top:-3px;left:50%;margin-left:-3px}
-.ring-1 .orbit-particle{background:#00e5ff;box-shadow:0 0 10px #00e5ff,0 0 25px rgba(0,229,255,0.5)}
-.ring-2 .orbit-particle{background:#7c3aed;box-shadow:0 0 10px #7c3aed,0 0 25px rgba(124,58,237,0.5)}
-.ring-3 .orbit-particle{background:#06b6d4;box-shadow:0 0 8px #06b6d4,0 0 20px rgba(6,182,212,0.4);width:4px;height:4px;top:-2px;margin-left:-2px}
+.ring-1 .orbit-particle{background:#00e5ff;}
+.ring-2 .orbit-particle{background:#7c3aed;}
+.ring-3 .orbit-particle{background:#06b6d4;width:4px;height:4px;top:-2px;margin-left:-2px}
 @keyframes orbitSpin1{to{transform:rotateX(72deg) rotateZ(360deg)}}
 @keyframes orbitSpin2{to{transform:rotateX(72deg) rotateY(55deg) rotateZ(360deg)}}
-.avatar-ring{background:conic-gradient(from 0deg,#00e5ff,#7c3aed,#06b6d4,#a855f7,#00e5ff);animation:ringRotate 4s linear infinite;padding:3px;filter:drop-shadow(0 0 12px rgba(0,229,255,0.4)) drop-shadow(0 0 30px rgba(124,58,237,0.2))}
+.avatar-ring{background:conic-gradient(from 0deg,#00e5ff,#7c3aed,#06b6d4,#a855f7,#00e5ff);animation:ringRotate 4s linear infinite;padding:3px;}
 @keyframes ringRotate{to{transform:rotate(360deg)}}
 .avatar-wrapper{position:relative;z-index:2;transition:transform 0.5s cubic-bezier(0.16,1,0.3,1)}
 
@@ -57,17 +58,17 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 .radar-ping:nth-child(2){animation-delay:0.7s}
 @keyframes radarPing{0%{transform:scale(1);opacity:0.8}100%{transform:scale(3);opacity:0}}
 
-.live-clock-container{display:flex;align-items:center;justify-content:center;gap:16px;padding:20px 24px;border-radius:18px;background:linear-gradient(135deg,rgba(0,229,255,0.04),rgba(124,58,237,0.02));border:1px solid rgba(0,229,255,0.1);box-shadow:inset 0 1px 0 rgba(255,255,255,0.05),inset 0 0 50px rgba(0,229,255,0.02),0 4px 20px rgba(0,0,0,0.3);margin-bottom:8px;position:relative;overflow:hidden}
+.live-clock-container{display:flex;align-items:center;justify-content:center;gap:16px;padding:20px 24px;border-radius:18px;background:linear-gradient(135deg,rgba(0,229,255,0.04),rgba(124,58,237,0.02));border:1px solid rgba(0,229,255,0.1);margin-bottom:8px;position:relative;overflow:hidden}
 .live-clock-container::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.3),transparent)}
-.clock-time{font-family:'Orbitron',sans-serif;font-size:32px;font-weight:800;letter-spacing:2px;font-variant-numeric:tabular-nums;background:linear-gradient(135deg,#00e5ff 0%,#ffffff 30%,#e2e8f0 50%,#c4b5fd 80%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 8px rgba(0,229,255,0.3))}
-.clock-seconds{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:500;color:#00e5ff;opacity:0.6;font-variant-numeric:tabular-nums;animation:secPulse 1s ease-in-out infinite;text-shadow:0 0 10px rgba(0,229,255,0.3)}
+.clock-time{font-family:'Orbitron',sans-serif;font-size:32px;font-weight:800;letter-spacing:2px;font-variant-numeric:tabular-nums;background:linear-gradient(135deg,#00e5ff 0%,#ffffff 30%,#e2e8f0 50%,#c4b5fd 80%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.clock-seconds{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:500;color:#00e5ff;opacity:0.6;font-variant-numeric:tabular-nums;animation:secPulse 1s ease-in-out infinite;}
 @keyframes secPulse{0%,100%{opacity:0.2}50%{opacity:0.9}}
 .clock-separator{display:flex;flex-direction:column;gap:5px}
-.clock-separator span{width:3px;height:3px;border-radius:50%;background:#00e5ff;opacity:0.4;box-shadow:0 0 4px rgba(0,229,255,0.5)}
+.clock-separator span{width:3px;height:3px;border-radius:50%;background:#00e5ff;opacity:0.4;}
 .clock-date{font-size:12px;color:#64748b;font-weight:500;text-align:center;margin-bottom:20px;letter-spacing:0.5px}
 
-.ip-card{background:linear-gradient(135deg,rgba(0,229,255,0.03),rgba(15,23,42,0.9));border:1px solid rgba(0,229,255,0.08);border-radius:20px;overflow:hidden;max-height:0;opacity:0;margin-bottom:0;transition:all 0.6s cubic-bezier(0.16,1,0.3,1);border-width:0;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
-.ip-card.visible{max-height:600px;opacity:1;margin-bottom:32px;border-width:1px;box-shadow:0 8px 32px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.04)}
+.ip-card{background:linear-gradient(135deg,rgba(0,229,255,0.03),rgba(15,23,42,0.9));border:1px solid rgba(0,229,255,0.08);border-radius:20px;overflow:hidden;max-height:0;opacity:0;margin-bottom:0;transition:all 0.6s cubic-bezier(0.16,1,0.3,1);border-width:0;}
+.ip-card.visible{max-height:600px;opacity:1;margin-bottom:32px;border-width:1px;}
 .ip-card-header{padding:16px 20px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(0,229,255,0.06);position:relative}
 .ip-card-header::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.15),transparent)}
 .ip-card-body{padding:4px 20px 20px}
@@ -75,250 +76,153 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 .ip-row.show{opacity:1;transform:translateY(0)}
 .ip-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,0.03)}
 .ip-label{display:flex;align-items:center;gap:8px;font-size:12px;color:#64748b;font-weight:500}
-.ip-label .iconify{font-size:15px;color:#00e5ff;opacity:0.7;filter:drop-shadow(0 0 4px rgba(0,229,255,0.3))}
+.ip-label .iconify{font-size:15px;color:#00e5ff;opacity:0.7;}
 .ip-value{font-size:13px;color:#cbd5e1;font-weight:600;font-variant-numeric:tabular-nums}
-.ip-value.primary{color:#00e5ff;font-weight:700;font-size:14px;letter-spacing:0.8px;text-shadow:0 0 15px rgba(0,229,255,0.4),0 0 30px rgba(0,229,255,0.15)}
+.ip-value.primary{color:#00e5ff;font-weight:700;font-size:14px;letter-spacing:0.8px;}
 .ip-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:7px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
 .ip-badge.ipv4{background:rgba(0,229,255,0.12);color:#00e5ff;border:1px solid rgba(0,229,255,0.15)}
 .ip-badge.ipv6{background:rgba(124,58,237,0.15);color:#c4b5fd;border:1px solid rgba(124,58,237,0.15)}
-.ip-copy-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:10px;background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.12);color:#94a3b8;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.3s ease;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
-.ip-copy-btn:hover{background:rgba(0,229,255,0.12);color:#e2e8f0;border-color:rgba(0,229,255,0.25);box-shadow:0 4px 15px rgba(0,229,255,0.1)}
-.ip-copy-btn.copied{background:rgba(0,229,255,0.15);border-color:rgba(0,229,255,0.35);color:#00e5ff}
 
-.divider{height:1px;background:linear-gradient(to right,transparent,rgba(0,229,255,0.35),rgba(124,58,237,0.35),transparent);position:relative;margin-bottom:24px;box-shadow:0 0 8px rgba(0,229,255,0.1)}
-.divider::after{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:7px;height:7px;background:#00e5ff;border-radius:50%;box-shadow:0 0 12px #00e5ff,0 0 30px rgba(0,229,255,0.4),0 0 60px rgba(0,229,255,0.15)}
+.divider{height:1px;background:linear-gradient(to right,transparent,rgba(0,229,255,0.35),rgba(124,58,237,0.35),transparent);position:relative;margin-bottom:24px;}
+.divider::after{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:7px;height:7px;background:#00e5ff;border-radius:50%;}
 
 .social-links-wrap{perspective:1200px;perspective-origin:center}
-.social-link{position:relative;display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,0.07) 0%,rgba(255,255,255,0.02) 40%,rgba(255,255,255,0.04) 100%),rgba(10,15,30,0.85);border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(28px) saturate(2);-webkit-backdrop-filter:blur(28px) saturate(2);transition:all 0.5s cubic-bezier(0.16,1,0.3,1);overflow:hidden;cursor:pointer;text-decoration:none;color:#e2e8f0;transform-style:preserve-3d;will-change:transform,box-shadow;box-shadow:0 4px 16px rgba(0,0,0,0.5),0 0 0 0.5px rgba(255,255,255,0.06),inset 0 1px 0 rgba(255,255,255,0.1),inset 0 -1px 0 rgba(0,0,0,0.3);animation:hubBreath 4s ease-in-out infinite}
+/* TỐI ƯU LAG: Giảm backdrop-filter blur */
+.social-link{position:relative;display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,0.07) 0%,rgba(255,255,255,0.02) 40%,rgba(255,255,255,0.04) 100%),rgba(10,15,30,0.85);border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:all 0.5s cubic-bezier(0.16,1,0.3,1);overflow:hidden;cursor:pointer;text-decoration:none;color:#e2e8f0;transform-style:preserve-3d;will-change:transform,box-shadow;animation:hubBreath 4s ease-in-out infinite}
 .social-link:nth-child(2){animation-delay:0.5s}.social-link:nth-child(3){animation-delay:1s}.social-link:nth-child(4){animation-delay:1.5s}.social-link:nth-child(5){animation-delay:2s}.social-link:nth-child(6){animation-delay:2.5s}
-@keyframes hubBreath{0%,100%{box-shadow:0 4px 16px rgba(0,0,0,0.5),0 0 0 0.5px rgba(255,255,255,0.06),inset 0 1px 0 rgba(255,255,255,0.1),inset 0 -1px 0 rgba(0,0,0,0.3)}50%{box-shadow:0 6px 20px rgba(0,0,0,0.5),0 0 0 0.5px rgba(255,255,255,0.08),inset 0 1px 0 rgba(255,255,255,0.12),inset 0 -1px 0 rgba(0,0,0,0.3),0 0 30px rgba(0,229,255,0.02)}}
+@keyframes hubBreath{0%,100%{box-shadow:0 4px 16px rgba(0,0,0,0.3)}50%{box-shadow:0 6px 20px rgba(0,0,0,0.4)}}
 .social-link::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.25) 20%,rgba(255,255,255,0.35) 50%,rgba(255,255,255,0.25) 80%,transparent 100%);z-index:15;pointer-events:none}
-.social-link::after{content:'';position:absolute;top:-150%;left:-150%;width:400%;height:400%;background:radial-gradient(ellipse at var(--gx,50%) var(--gy,50%),rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.06) 12%,transparent 45%);opacity:0;transition:opacity 0.4s ease;pointer-events:none;z-index:14}
-.social-link:hover::after{opacity:1}
-.hub-glow{position:absolute;inset:-3px;border-radius:23px;opacity:0;transition:opacity 0.5s ease,filter 0.5s ease;pointer-events:none;z-index:-1;filter:blur(16px)}
+.hub-glow{position:absolute;inset:-3px;border-radius:23px;opacity:0;transition:opacity 0.5s ease;pointer-events:none;z-index:-1;}
 .social-link:hover .hub-glow{opacity:1}
 .hub-bg{position:absolute;inset:0;border-radius:20px;opacity:0;transition:opacity 0.5s ease;pointer-events:none;z-index:1}
 .social-link:hover .hub-bg{opacity:1}
 .hub-shine{position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.1) 40%,rgba(255,255,255,0.15) 50%,rgba(255,255,255,0.1) 60%,transparent 100%);transform:skewX(-25deg);pointer-events:none;z-index:13;transition:none}
 .social-link:hover .hub-shine{animation:hubShine 0.9s cubic-bezier(0.16,1,0.3,1) forwards}
 @keyframes hubShine{to{left:200%}}
-.hub-reflection{position:absolute;bottom:0;left:5%;right:5%;height:40%;background:linear-gradient(to top,rgba(255,255,255,0.035),transparent);border-radius:0 0 20px 20px;pointer-events:none;z-index:12}
-.hub-edge{position:absolute;inset:0;border-radius:20px;border:1.5px solid transparent;opacity:0;transition:opacity 0.5s ease,border-color 0.5s ease,box-shadow 0.5s ease;pointer-events:none;z-index:11}
+.hub-edge{position:absolute;inset:0;border-radius:20px;border:1.5px solid transparent;opacity:0;transition:opacity 0.5s ease;pointer-events:none;z-index:11}
 .social-link:hover .hub-edge{opacity:1}
-.hub-edge::after{content:'';position:absolute;top:-1px;left:-60%;width:30%;height:calc(100% + 2px);background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);animation:edgeShimmer 5s ease-in-out infinite;pointer-events:none;border-radius:20px}
-@keyframes edgeShimmer{0%,100%{left:-30%}50%{left:100%}}
 
-.social-icon{font-size:28px;flex-shrink:0;transition:all 0.5s cubic-bezier(0.16,1,0.3,1);position:relative;z-index:5;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3))}
+.social-icon{font-size:28px;flex-shrink:0;transition:all 0.5s cubic-bezier(0.16,1,0.3,1);position:relative;z-index:5;}
 .social-text{position:relative;z-index:5;transition:all 0.4s ease}
 .social-text .text-sm{font-weight:600;font-size:15px;letter-spacing:0.3px}
-.social-arrow{margin-left:auto;opacity:0;transform:translateX(-10px);transition:all 0.5s cubic-bezier(0.16,1,0.3,1);color:#00e5ff;z-index:5;position:relative;filter:drop-shadow(0 0 4px rgba(0,229,255,0.4))}
+.social-arrow{margin-left:auto;opacity:0;transform:translateX(-10px);transition:all 0.5s cubic-bezier(0.16,1,0.3,1);color:#00e5ff;z-index:5;position:relative;}
 .social-link:hover .social-arrow{opacity:0.8;transform:translateX(0)}
 .social-link:hover .social-icon{transform:scale(1.2) rotateY(12deg)}
-.social-links-wrap:hover .social-link:not(:hover){opacity:0.45;filter:brightness(0.6) saturate(0.5);transform:scale(0.98)}
 
-.social-link.facebook .hub-glow{background:rgba(24,119,242,0.35)}
+/* Tối ưu màu sắc Social */
+.social-link.facebook .hub-glow{background:rgba(24,119,242,0.3)}
 .social-link.facebook .hub-bg{background:linear-gradient(135deg,rgba(24,119,242,0.14),rgba(24,119,242,0.02))}
-.social-link.facebook .hub-edge{border-color:rgba(24,119,242,0.45);box-shadow:0 0 20px rgba(24,119,242,0.15),inset 0 0 20px rgba(24,119,242,0.05)}
-.social-link.facebook:hover{box-shadow:0 12px 40px rgba(24,119,242,0.3),0 0 0 1px rgba(24,119,242,0.3),0 0 60px rgba(24,119,242,0.08),inset 0 1px 0 rgba(255,255,255,0.12),inset 0 0 40px rgba(24,119,242,0.06)}
 .social-link.facebook .social-icon{color:#1877F2}
 
 .social-link.instagram .hub-glow{background:linear-gradient(135deg,rgba(225,48,108,0.3),rgba(131,58,180,0.3))}
-.social-link.instagram .hub-bg{background:linear-gradient(135deg,rgba(225,48,108,0.12),rgba(131,58,180,0.06),rgba(252,175,69,0.06))}
-.social-link.instagram .social-icon{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(225,48,108,0.4))}
-.social-link.instagram .hub-edge{inset:-2px;border-radius:22px;border:none;background:conic-gradient(from var(--ig-rot),#f09433,#e6683c,#dc2743,#cc2366,#bc1888,#f09433);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;padding:2px;opacity:0;filter:blur(0.5px)}
-.social-link.instagram:hover .hub-edge{opacity:0.8;animation:igSpin 3s linear infinite}
-@keyframes igSpin{to{--ig-rot:360deg}}
-.social-link.instagram:hover{box-shadow:0 12px 40px rgba(225,48,108,0.25),0 0 0 1px rgba(225,48,108,0.25),0 0 60px rgba(131,58,180,0.08),inset 0 1px 0 rgba(255,255,255,0.12),inset 0 0 40px rgba(225,48,108,0.04)}
-.social-link.instagram .ig-flash{position:absolute;inset:0;background:rgba(255,255,255,0.15);opacity:0;pointer-events:none;z-index:16;border-radius:20px;transition:none}
-.social-link.instagram:hover .ig-flash{animation:igFlash 0.3s ease-out}
-@keyframes igFlash{0%{opacity:0.6}100%{opacity:0}}
-.social-link.instagram .ig-rainbow{position:absolute;inset:0;pointer-events:none;z-index:3;opacity:0;transition:opacity 0.5s ease;background:linear-gradient(90deg,transparent 0%,rgba(240,148,51,0.05) 20%,rgba(220,39,67,0.05) 40%,rgba(188,24,136,0.05) 60%,rgba(131,58,180,0.05) 80%,transparent 100%);background-size:200% 100%;animation:igRainbow 3s ease-in-out infinite}
-.social-link.instagram:hover .ig-rainbow{opacity:1}
-@keyframes igRainbow{0%,100%{background-position:200% 0}50%{background-position:-200% 0}}
+.social-link.instagram .hub-bg{background:linear-gradient(135deg,rgba(225,48,108,0.12),rgba(131,58,180,0.06))}
+.social-link.instagram .social-icon{background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 
 .social-link.tiktok .hub-glow{background:linear-gradient(135deg,rgba(255,0,80,0.3),rgba(0,242,234,0.3))}
 .social-link.tiktok .hub-bg{background:linear-gradient(135deg,rgba(255,0,80,0.12),rgba(0,242,234,0.06))}
-.social-link.tiktok .hub-edge{border-color:rgba(255,0,80,0.4);box-shadow:0 0 20px rgba(255,0,80,0.12),0 0 20px rgba(0,242,234,0.12),inset 0 0 20px rgba(255,0,80,0.04);animation:tiktokFlicker 2s ease-in-out infinite}
-@keyframes tiktokFlicker{0%,100%{border-color:rgba(255,0,80,0.4)}50%{border-color:rgba(0,242,234,0.5)}}
-.social-link.tiktok .social-icon{background:linear-gradient(135deg,#ff0050,#00f2ea);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 6px rgba(255,0,80,0.4))}
-.social-link.tiktok:hover{box-shadow:0 12px 40px rgba(255,0,80,0.25),0 0 0 1px rgba(255,0,80,0.3),0 0 60px rgba(0,242,234,0.08),inset 0 1px 0 rgba(255,255,255,0.12),inset 0 0 40px rgba(255,0,80,0.04)}
-.social-link.tiktok:hover .social-text{animation:tiktokGlitch 0.4s ease}
-@keyframes tiktokGlitch{0%,100%{transform:translateX(0);filter:none}15%{transform:translateX(-4px);filter:hue-rotate(90deg)}30%{transform:translateX(4px);filter:hue-rotate(-90deg)}45%{transform:translateX(-2px)}60%{transform:translateX(2px);filter:hue-rotate(45deg)}75%{transform:translateX(-1px)}90%{transform:translateX(1px);filter:none}}
-.social-link.tiktok .tt-scan{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(0,242,234,0.6),rgba(255,0,80,0.6),transparent);pointer-events:none;z-index:16;opacity:0;transition:opacity 0.3s ease}
-.social-link.tiktok:hover .tt-scan{opacity:1;animation:ttScan 1.5s ease-in-out infinite}
-@keyframes ttScan{0%{top:-2px;opacity:0}10%{opacity:1}90%{opacity:1}100%{top:calc(100% + 2px);opacity:0}}
-.social-link.tiktok .tt-notes{position:absolute;inset:0;pointer-events:none;z-index:4;overflow:hidden}
-.social-link.tiktok:hover .tt-notes span{position:absolute;bottom:-10px;font-size:10px;opacity:0;animation:ttNote 2s ease-out infinite}
-.social-link.tiktok:hover .tt-notes span:nth-child(1){left:30%;animation-delay:0s;color:#ff0050}.social-link.tiktok:hover .tt-notes span:nth-child(2){left:50%;animation-delay:0.5s;color:#00f2ea}.social-link.tiktok:hover .tt-notes span:nth-child(3){left:70%;animation-delay:1s;color:#ff0050}
-@keyframes ttNote{0%{transform:translateY(0) rotate(0);opacity:0.7}50%{opacity:0.5}100%{transform:translateY(-60px) rotate(20deg) translateX(10px);opacity:0}}
+.social-link.tiktok .social-icon{background:linear-gradient(135deg,#ff0050,#00f2ea);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 
-.social-link.zalo .hub-glow{background:rgba(0,136,255,0.3);animation:zaloBreath 3s ease-in-out infinite}
+.social-link.zalo .hub-glow{background:rgba(0,136,255,0.3);}
 .social-link.zalo .hub-bg{background:linear-gradient(135deg,rgba(0,136,255,0.12),rgba(0,136,255,0.02))}
-.social-link.zalo .hub-edge{border-color:rgba(0,136,255,0.4);box-shadow:0 0 20px rgba(0,136,255,0.12),inset 0 0 20px rgba(0,136,255,0.04)}
-.social-link.zalo .social-icon{color:#0088FF;filter:drop-shadow(0 2px 6px rgba(0,136,255,0.4))}
-.social-link.zalo:hover{box-shadow:0 12px 40px rgba(0,136,255,0.3),0 0 0 1px rgba(0,136,255,0.3),0 0 60px rgba(0,136,255,0.08),inset 0 1px 0 rgba(255,255,255,0.12),inset 0 0 40px rgba(0,136,255,0.05)}
-@keyframes zaloBreath{0%,100%{filter:blur(16px) brightness(1)}50%{filter:blur(20px) brightness(1.2)}}
-.social-link.zalo .zalo-wave{position:absolute;bottom:0;left:0;right:0;height:3px;pointer-events:none;z-index:16;overflow:hidden;border-radius:0 0 20px 20px;opacity:0;transition:opacity 0.5s ease}
-.social-link.zalo:hover .zalo-wave{opacity:1}
-.social-link.zalo .zalo-wave::before{content:'';position:absolute;bottom:0;left:-100%;width:200%;height:100%;background:repeating-linear-gradient(90deg,transparent 0%,rgba(0,136,255,0.4) 10%,transparent 20%);animation:zaloWaveFlow 2s linear infinite}
-@keyframes zaloWaveFlow{to{transform:translateX(50%)}}
-.social-link.zalo:hover .social-icon{animation:zaloFloat 2s ease-in-out infinite}
-@keyframes zaloFloat{0%,100%{transform:scale(1.2) rotateY(12deg) translateY(0)}50%{transform:scale(1.25) rotateY(12deg) translateY(-4px)}}
+.social-link.zalo .social-icon{color:#0088FF;}
 
 .social-link.youtube .hub-glow{background:rgba(255,0,0,0.3)}
 .social-link.youtube .hub-bg{background:linear-gradient(135deg,rgba(255,0,0,0.12),rgba(255,0,0,0.02))}
-.social-link.youtube .hub-edge{border-color:rgba(255,0,0,0.45);box-shadow:0 0 25px rgba(255,0,0,0.15),inset 0 0 25px rgba(255,0,0,0.05);animation:ytBorderPulse 1.5s ease-in-out infinite}
-@keyframes ytBorderPulse{0%,100%{border-color:rgba(255,0,0,0.45);box-shadow:0 0 25px rgba(255,0,0,0.15),inset 0 0 25px rgba(255,0,0,0.05)}50%{border-color:rgba(255,0,0,0.25);box-shadow:0 0 15px rgba(255,0,0,0.08),inset 0 0 15px rgba(255,0,0,0.02)}}
-.social-link.youtube .social-icon{color:#FF0000;filter:drop-shadow(0 2px 6px rgba(255,0,0,0.5))}
-.social-link.youtube:hover{box-shadow:0 12px 40px rgba(255,0,0,0.3),0 0 0 1px rgba(255,0,0,0.3),0 0 80px rgba(255,0,0,0.08),inset 0 1px 0 rgba(255,255,255,0.12),inset 0 0 40px rgba(255,0,0,0.05)}
-.social-link.youtube:hover .social-icon{animation:ytIconPulse 0.8s ease}
-@keyframes ytIconPulse{0%{transform:scale(1);filter:drop-shadow(0 2px 6px rgba(255,0,0,0.5))}40%{transform:scale(1.5) rotateY(15deg);filter:drop-shadow(0 0 20px rgba(255,0,0,0.8))}100%{transform:scale(1.2) rotateY(12deg);filter:drop-shadow(0 2px 8px rgba(255,0,0,0.5))}}
-.social-link.youtube .yt-spot{position:absolute;inset:0;pointer-events:none;z-index:2;opacity:0;transition:opacity 0.5s ease;border-radius:20px;background:radial-gradient(circle at 15% 50%,rgba(255,0,0,0.12),transparent 60%)}
-.social-link.youtube:hover .yt-spot{opacity:1}
-.social-link.youtube .yt-lines{position:absolute;inset:0;pointer-events:none;z-index:3;opacity:0;transition:opacity 0.5s ease;overflow:hidden;border-radius:20px}
-.social-link.youtube:hover .yt-lines{opacity:1}
-.social-link.youtube .yt-lines::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(0deg,transparent,transparent 4px,rgba(255,0,0,0.015) 4px,rgba(255,0,0,0.015) 5px);animation:ytLinesScroll 8s linear infinite}
-@keyframes ytLinesScroll{to{transform:translateY(5px)}}
+.social-link.youtube .social-icon{color:#FF0000;}
 
 .social-link.telegram .hub-glow{background:rgba(0,136,204,0.3)}
 .social-link.telegram .hub-bg{background:linear-gradient(135deg,rgba(0,136,204,0.12),rgba(0,136,204,0.02))}
-.social-link.telegram .hub-edge{border-color:rgba(0,136,204,0.4);box-shadow:0 0 20px rgba(0,136,204,0.12),inset 0 0 20px rgba(0,136,204,0.04)}
-.social-link.telegram .social-icon{color:#0088CC;filter:drop-shadow(0 2px 6px rgba(0,136,204,0.4))}
-.social-link.telegram:hover{box-shadow:0 12px 40px rgba(0,136,204,0.3),0 0 0 1px rgba(0,136,204,0.3),0 0 60px rgba(0,136,204,0.08),inset 0 1px 0 rgba(255,255,255,0.12),inset 0 0 40px rgba(0,136,204,0.05)}
-.social-link.telegram:hover .social-icon{animation:tgBounce 0.5s ease}
-@keyframes tgBounce{0%{transform:translateX(0)}25%{transform:translateX(6px)}50%{transform:translateX(-3px)}75%{transform:translateX(2px)}100%{transform:translateX(0)}}
+.social-link.telegram .social-icon{color:#0088CC;}
 
-.share-btn{position:fixed;bottom:24px;right:24px;z-index:50;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#00e5ff,#7c3aed);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;color:#fff;box-shadow:0 8px 30px -6px rgba(0,229,255,0.5),0 0 20px rgba(124,58,237,0.3),inset 0 1px 0 rgba(255,255,255,0.2);transition:all 0.3s ease}
-.share-btn:hover{transform:scale(1.12) rotate(15deg);box-shadow:0 12px 40px -6px rgba(0,229,255,0.6),0 0 40px rgba(124,58,237,0.4),inset 0 1px 0 rgba(255,255,255,0.3)}
+.share-btn{position:fixed;bottom:24px;right:24px;z-index:50;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#00e5ff,#7c3aed);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;color:#fff;transition:all 0.3s ease}
+.share-btn:hover{transform:scale(1.12) rotate(15deg);}
 .share-btn:active{transform:scale(0.95)}
 
-.toast{position:fixed;bottom:86px;right:24px;z-index:50;padding:14px 22px;border-radius:14px;background:rgba(10,15,30,0.9);border:1px solid rgba(0,229,255,0.25);color:#00e5ff;font-size:13px;font-weight:600;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);opacity:0;transform:translateY(10px) scale(0.95);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);pointer-events:none;box-shadow:0 8px 30px rgba(0,0,0,0.4),0 0 20px rgba(0,229,255,0.1),inset 0 1px 0 rgba(255,255,255,0.05)}
+.toast{position:fixed;bottom:86px;right:24px;z-index:50;padding:14px 22px;border-radius:14px;background:rgba(10,15,30,0.9);border:1px solid rgba(0,229,255,0.25);color:#00e5ff;font-size:13px;font-weight:600;opacity:0;transform:translateY(10px) scale(0.95);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);pointer-events:none;}
 .toast.show{opacity:1;transform:translateY(0) scale(1)}
 
-.online-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;position:relative;flex-shrink:0;box-shadow:0 0 6px rgba(34,197,94,0.5)}
-.online-dot::before{content:'';position:absolute;inset:-3px;border-radius:50%;border:1.5px solid rgba(34,197,94,0.4);animation:gpsRing 2s ease-out infinite}
-@keyframes gpsRing{0%{transform:scale(1);opacity:1}100%{transform:scale(2.5);opacity:0}}
-
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(0,229,255,0.2);border-radius:99px;box-shadow:0 0 6px rgba(0,229,255,0.2)}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(0,229,255,0.2);border-radius:99px;}
 .section-label{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#00e5ff;opacity:0.5}
 
 /* === ROBOT AI COMPANION === */
 .robot-container{position:fixed;bottom:24px;left:24px;z-index:40;cursor:pointer;touch-action:none;transition:filter 0.3s ease;-webkit-user-select:none;user-select:none}
-.robot-container:hover .robot-glow-bg{opacity:0.6}
-.robot-glow-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,0.12) 0%,rgba(124,58,237,0.06) 40%,transparent 70%);filter:blur(20px);opacity:0.3;transition:opacity 0.5s ease;pointer-events:none}
-.robot{position:relative;width:80px;animation:robotFloat 3.5s ease-in-out infinite;transform-origin:bottom center}
-@keyframes robotFloat{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-10px) rotate(1.5deg)}50%{transform:translateY(-6px) rotate(0deg)}75%{transform:translateY(-12px) rotate(-1.5deg)}}
-.robot-antenna{position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:2px;height:20px;background:linear-gradient(to top,rgba(0,229,255,0.3),rgba(0,229,255,0.7));z-index:3}
-.antenna-ball{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:#00e5ff;box-shadow:0 0 10px #00e5ff,0 0 25px rgba(0,229,255,0.5);animation:antennaPulse 2s ease-in-out infinite}
-@keyframes antennaPulse{0%,100%{box-shadow:0 0 10px #00e5ff,0 0 25px rgba(0,229,255,0.5);transform:translateX(-50%) scale(1)}50%{box-shadow:0 0 18px #00e5ff,0 0 35px rgba(0,229,255,0.7);transform:translateX(-50%) scale(1.25)}}
-.antenna-ball.flash{animation:antennaFlash 0.4s ease!important}
-@keyframes antennaFlash{0%{box-shadow:0 0 10px #00e5ff;transform:translateX(-50%) scale(1)}30%{box-shadow:0 0 30px #fff,0 0 60px #00e5ff;transform:translateX(-50%) scale(1.6)}100%{box-shadow:0 0 10px #00e5ff;transform:translateX(-50%) scale(1)}}
-.robot-head{width:62px;height:52px;margin:0 auto;background:linear-gradient(155deg,#1a2545,#111b33 40%,#0d1528);border-radius:18px 18px 14px 14px;border:1.5px solid rgba(0,229,255,0.2);box-shadow:0 6px 20px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.08),0 0 25px rgba(0,229,255,0.06);position:relative;z-index:2}
-.robot-head::before{content:'';position:absolute;top:2px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.35),transparent);z-index:5}
-.robot-ear{position:absolute;top:16px;width:5px;height:14px;background:linear-gradient(155deg,#1a2545,#0d1528);border:1px solid rgba(0,229,255,0.15);z-index:1}
-.robot-ear.left{left:-4px;border-radius:4px 0 0 4px;border-right:none}
-.robot-ear.right{right:-4px;border-radius:0 4px 4px 0;border-left:none}
-.robot-face{position:relative;display:flex;align-items:center;justify-content:center;gap:16px;padding-top:15px;z-index:3}
-.robot-eye{width:15px;height:15px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#0c1220,#060a14);border:1.5px solid rgba(0,229,255,0.3);position:relative;overflow:hidden;box-shadow:inset 0 0 6px rgba(0,229,255,0.12);transition:height 0.1s ease,border-radius 0.1s ease}
-.robot-eye.blink{height:2px!important;border-radius:2px!important;margin-top:7px!important}
-.robot-pupil{width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#00e5ff 50%,#0099aa);box-shadow:0 0 8px #00e5ff,0 0 16px rgba(0,229,255,0.4);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transition:transform 0.06s linear;will-change:transform}
-.robot-pupil::after{content:'';position:absolute;top:1px;right:1px;width:2.5px;height:2.5px;border-radius:50%;background:rgba(255,255,255,0.9)}
-.robot-mouth{position:absolute;bottom:9px;left:50%;transform:translateX(-50%);display:flex;gap:2.5px;z-index:3;transition:all 0.3s ease}
-.mouth-led{width:3px;height:3px;border-radius:50%;background:rgba(0,229,255,0.25);transition:all 0.3s ease}
-.robot-mouth.happy .mouth-led{background:#00e5ff;box-shadow:0 0 5px rgba(0,229,255,0.6)}
-.robot-mouth.happy .mouth-led:nth-child(1),.robot-mouth.happy .mouth-led:nth-child(5){opacity:0.4}
-.robot-mouth.happy .mouth-led:nth-child(2),.robot-mouth.happy .mouth-led:nth-child(4){opacity:0.8;transform:scale(1.1)}
-.robot-mouth.happy .mouth-led:nth-child(3){opacity:1;transform:scale(1.3);box-shadow:0 0 8px rgba(0,229,255,0.8)}
-.robot-neck{width:16px;height:4px;margin:0 auto;background:linear-gradient(to right,rgba(0,229,255,0.1),rgba(0,229,255,0.2),rgba(0,229,255,0.1));border-radius:0 0 3px 3px;z-index:1}
-.robot-body{width:52px;height:36px;margin:0 auto;background:linear-gradient(155deg,#172040,#101830 40%,#0b1222);border-radius:10px 10px 14px 14px;border:1.5px solid rgba(0,229,255,0.15);position:relative;box-shadow:0 6px 18px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.05);z-index:2}
-.robot-body::before{content:'';position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.2),transparent)}
-.robot-core{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#a855f7,#7c3aed 60%,#5b21b6);box-shadow:0 0 10px #7c3aed,0 0 25px rgba(124,58,237,0.4);animation:corePulse 1.8s ease-in-out infinite}
-@keyframes corePulse{0%,100%{opacity:0.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.15);box-shadow:0 0 15px #7c3aed,0 0 35px rgba(124,58,237,0.6)}}
-.robot-arm{position:absolute;width:9px;height:22px;background:linear-gradient(155deg,#172040,#0b1222);border:1px solid rgba(0,229,255,0.12);top:4px;transition:transform 0.3s cubic-bezier(0.16,1,0.3,1);z-index:1}
-.robot-arm.left{left:-10px;border-radius:5px 5px 5px 10px;transform:rotate(12deg);border-right:none}
-.robot-arm.right{right:-10px;border-radius:5px 5px 10px 5px;transform:rotate(-12deg);border-left:none}
-.robot-arm.right.wave{animation:armWave 0.5s ease-in-out 3}
-@keyframes armWave{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(-50deg)}}
-.robot-feet{display:flex;justify-content:center;gap:14px;margin-top:-1px;z-index:1}
-.robot-foot{width:16px;height:6px;background:linear-gradient(155deg,#151d38,#0b1222);border:1px solid rgba(0,229,255,0.1);border-top:none;border-radius:0 0 5px 5px;box-shadow:0 3px 8px rgba(0,0,0,0.3)}
-.robot-shadow{width:55px;height:10px;margin:6px auto 0;background:radial-gradient(ellipse,rgba(0,229,255,0.12),rgba(0,229,255,0.04) 50%,transparent 70%);border-radius:50%;animation:shadowPulse 3.5s ease-in-out infinite}
-@keyframes shadowPulse{0%,100%{transform:scaleX(1);opacity:0.7}25%{transform:scaleX(0.8);opacity:0.3}50%{transform:scaleX(0.9);opacity:0.5}75%{transform:scaleX(0.75);opacity:0.25}}
-.robot-speech{position:absolute;bottom:calc(100% + 16px);left:50%;transform:translateX(-50%) scale(0) translateY(8px);background:rgba(8,12,25,0.95);border:1px solid rgba(0,229,255,0.25);border-radius:14px;padding:9px 16px;font-size:11px;font-weight:600;color:#e2e8f0;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,0.6),0 0 20px rgba(0,229,255,0.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:all 0.45s cubic-bezier(0.16,1,0.3,1);pointer-events:none;z-index:100}
+.robot-glow-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,0.2) 0%, transparent 70%);opacity:0.3;pointer-events:none}
+.robot{position:relative;width:70px;animation:robotFloat 3.5s ease-in-out infinite;transform-origin:bottom center}
+@keyframes robotFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.robot-antenna{position:absolute;top:-18px;left:50%;transform:translateX(-50%);width:2px;height:18px;background:linear-gradient(to top,rgba(0,229,255,0.3),rgba(0,229,255,0.7));z-index:3}
+.antenna-ball{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:#00e5ff;animation:antennaPulse 2s ease-in-out infinite}
+@keyframes antennaPulse{0%,100%{box-shadow:0 0 10px #00e5ff;transform:translateX(-50%) scale(1)}50%{box-shadow:0 0 15px #00e5ff;transform:translateX(-50%) scale(1.2)}}
+.robot-head{width:56px;height:46px;margin:0 auto;background:linear-gradient(155deg,#1a2545,#111b33 40%,#0d1528);border-radius:16px 16px 12px 12px;border:1.5px solid rgba(0,229,255,0.2);position:relative;z-index:2}
+.robot-ear{position:absolute;top:14px;width:4px;height:12px;background:linear-gradient(155deg,#1a2545,#0d1528);border:1px solid rgba(0,229,255,0.15);z-index:1}
+.robot-ear.left{left:-4px;border-radius:3px 0 0 3px;border-right:none}
+.robot-ear.right{right:-4px;border-radius:0 3px 3px 0;border-left:none}
+.robot-face{position:relative;display:flex;align-items:center;justify-content:center;gap:14px;padding-top:12px;z-index:3}
+.robot-eye{width:12px;height:12px;border-radius:50%;background:#060a14;border:1.5px solid rgba(0,229,255,0.3);position:relative;overflow:hidden;}
+.robot-pupil{width:6px;height:6px;border-radius:50%;background:#00e5ff;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+.robot-mouth{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:2px;z-index:3;}
+.mouth-led{width:3px;height:3px;border-radius:50%;background:rgba(0,229,255,0.25);}
+.robot-mouth.happy .mouth-led{background:#00e5ff;}
+.robot-neck{width:14px;height:4px;margin:0 auto;background:rgba(0,229,255,0.15);border-radius:0 0 2px 2px;z-index:1}
+.robot-body{width:46px;height:32px;margin:0 auto;background:linear-gradient(155deg,#172040,#101830 40%,#0b1222);border-radius:8px 8px 12px 12px;border:1.5px solid rgba(0,229,255,0.15);position:relative;z-index:2}
+.robot-core{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;background:#7c3aed;box-shadow:0 0 10px #7c3aed;animation:corePulse 1.8s ease-in-out infinite}
+@keyframes corePulse{0%,100%{opacity:0.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
+.robot-arm{position:absolute;width:8px;height:20px;background:linear-gradient(155deg,#172040,#0b1222);border:1px solid rgba(0,229,255,0.12);top:4px;z-index:1}
+.robot-arm.left{left:-8px;border-radius:4px 4px 4px 8px;transform:rotate(15deg);border-right:none}
+.robot-arm.right{right:-8px;border-radius:4px 4px 8px 4px;transform:rotate(-15deg);border-left:none}
+.robot-feet{display:flex;justify-content:center;gap:12px;margin-top:-1px;z-index:1}
+.robot-foot{width:14px;height:5px;background:#101830;border:1px solid rgba(0,229,255,0.1);border-top:none;border-radius:0 0 4px 4px;}
+.robot-speech{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%) scale(0) translateY(8px);background:rgba(8,12,25,0.95);border:1px solid rgba(0,229,255,0.25);border-radius:12px;padding:8px 14px;font-size:11px;font-weight:600;color:#e2e8f0;white-space:nowrap;transition:all 0.4s ease;pointer-events:none;z-index:100}
 .robot-speech::after{content:'';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%) rotate(45deg);width:10px;height:10px;background:rgba(8,12,25,0.95);border-right:1px solid rgba(0,229,255,0.25);border-bottom:1px solid rgba(0,229,255,0.25)}
 .robot-speech.show{transform:translateX(-50%) scale(1) translateY(0)}
 
-/* === CHAT PANEL === */
-.chat-panel{position:fixed;bottom:110px;left:24px;width:370px;max-width:calc(100vw - 48px);height:520px;max-height:calc(100vh - 150px);z-index:45;border-radius:24px;background:rgba(8,12,25,0.92);border:1px solid rgba(0,229,255,0.12);backdrop-filter:blur(40px) saturate(1.8);-webkit-backdrop-filter:blur(40px) saturate(1.8);box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 40px rgba(0,229,255,0.05),inset 0 1px 0 rgba(255,255,255,0.06);display:flex;flex-direction:column;overflow:hidden;transform:scale(0.8) translateY(20px);opacity:0;pointer-events:none;transition:all 0.5s cubic-bezier(0.16,1,0.3,1);transform-origin:bottom left}
+/* === CHAT PANEL (TỐI ƯU KÍCH THƯỚC) === */
+.chat-panel{position:fixed;bottom:100px;left:24px;width:340px;height:480px;z-index:45;border-radius:20px;background:rgba(8,12,25,0.95);border:1px solid rgba(0,229,255,0.2);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);box-shadow:0 15px 40px rgba(0,0,0,0.6), 0 0 20px rgba(0,229,255,0.05);display:flex;flex-direction:column;overflow:hidden;transform:scale(0.8) translateY(20px);opacity:0;pointer-events:none;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);transform-origin:bottom left}
 .chat-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
-.chat-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.3),rgba(124,58,237,0.2),transparent);z-index:2}
-.chat-panel-bg{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden;border-radius:24px}
-.chat-panel-bg::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 20%,rgba(0,229,255,0.03) 0%,transparent 50%),radial-gradient(circle at 70% 80%,rgba(124,58,237,0.02) 0%,transparent 50%)}
-.chat-panel-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.015) 1px,transparent 1px);background-size:30px 30px}
-
-.chat-header{position:relative;z-index:2;padding:16px 18px 14px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(0,229,255,0.08);background:rgba(0,0,0,0.2)}
-.chat-header-avatar{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,rgba(0,229,255,0.15),rgba(124,58,237,0.1));border:1px solid rgba(0,229,255,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
-.chat-header-avatar .mini-core{width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#a855f7,#7c3aed);box-shadow:0 0 8px #7c3aed,0 0 16px rgba(124,58,237,0.4);animation:corePulse 1.8s ease-in-out infinite}
-.chat-header-info{flex:1;min-width:0}
-.chat-header-name{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;color:#e2e8f0;letter-spacing:0.5px}
-.chat-header-status{display:flex;align-items:center;gap:5px;margin-top:2px}
-.chat-header-status .dot{width:5px;height:5px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px rgba(34,197,94,0.5);animation:pulseDot 2s ease-in-out infinite}
-.chat-header-status span{font-size:10px;color:#64748b;font-weight:500}
+.chat-header{padding:14px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(0,229,255,0.1);background:rgba(0,0,0,0.3)}
+.chat-header-avatar{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,rgba(0,229,255,0.15),rgba(124,58,237,0.1));border:1px solid rgba(0,229,255,0.2);display:flex;align-items:center;justify-content:center;}
+.chat-header-avatar .mini-core{width:8px;height:8px;border-radius:50%;background:#7c3aed;animation:corePulse 1.8s ease-in-out infinite}
+.chat-header-info{flex:1;}
+.chat-header-name{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;}
+.chat-header-status{display:flex;align-items:center;gap:5px;margin-top:2px;font-size:10px;color:#64748b;}
+.chat-header-status .dot{width:5px;height:5px;border-radius:50%;background:#22c55e;}
 .chat-header-actions{display:flex;gap:6px}
-.chat-header-btn{width:30px;height:30px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.04);color:#64748b;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s ease;font-size:14px}
-.chat-header-btn:hover{background:rgba(0,229,255,0.1);color:#00e5ff;border-color:rgba(0,229,255,0.2)}
-.chat-header-btn.close-btn:hover{background:rgba(239,68,68,0.1);color:#ef4444;border-color:rgba(239,68,68,0.2)}
-
-.chat-messages{position:relative;z-index:1;flex:1;overflow-y:auto;overflow-x:hidden;padding:16px 18px;display:flex;flex-direction:column;gap:12px;-webkit-overflow-scrolling:touch}
-.chat-messages::-webkit-scrollbar{width:3px}
-.chat-messages::-webkit-scrollbar-thumb{background:rgba(0,229,255,0.15);border-radius:99px}
-
-.chat-msg{display:flex;gap:10px;max-width:88%;animation:msgIn 0.4s cubic-bezier(0.16,1,0.3,1) both}
+.chat-header-btn{width:28px;height:28px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#94a3b8;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.chat-header-btn:hover{color:#00e5ff;border-color:rgba(0,229,255,0.3)}
+.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;}
+.chat-msg{display:flex;gap:8px;max-width:90%;}
 .chat-msg.user{align-self:flex-end;flex-direction:row-reverse}
-@keyframes msgIn{from{opacity:0;transform:translateY(12px) scale(0.96)}to{opacity:1;transform:translateY(0) scale(1)}}
-.chat-msg-avatar{width:28px;height:28px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:2px}
-.chat-msg.ai .chat-msg-avatar{background:linear-gradient(135deg,rgba(0,229,255,0.12),rgba(124,58,237,0.08));border:1px solid rgba(0,229,255,0.15)}
-.chat-msg.ai .chat-msg-avatar .mini-core{width:8px;height:8px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#a855f7,#7c3aed);box-shadow:0 0 6px rgba(124,58,237,0.4)}
-.chat-msg.user .chat-msg-avatar{background:linear-gradient(135deg,rgba(0,229,255,0.2),rgba(6,182,212,0.15));border:1px solid rgba(0,229,255,0.2);font-size:12px;color:#00e5ff;font-weight:700}
-.chat-msg-bubble{padding:11px 15px;border-radius:16px;font-size:13px;line-height:1.6;font-weight:400;position:relative;word-break:break-word}
-.chat-msg.ai .chat-msg-bubble{background:linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.06);color:#cbd5e1;border-bottom-left-radius:4px}
-.chat-msg.user .chat-msg-bubble{background:linear-gradient(135deg,rgba(0,229,255,0.15),rgba(0,229,255,0.06));border:1px solid rgba(0,229,255,0.2);color:#e2e8f0;border-bottom-right-radius:4px}
-.chat-msg-time{font-size:9px;color:#475569;margin-top:4px;opacity:0.7}
-.chat-msg.user .chat-msg-time{text-align:right}
+.chat-msg-avatar{width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold}
+.chat-msg.ai .chat-msg-avatar{background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3); color:#c4b5fd;}
+.chat-msg.user .chat-msg-avatar{background:rgba(0,229,255,0.15);border:1px solid rgba(0,229,255,0.3); color:#00e5ff;}
+.chat-msg-bubble{padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.5;}
+.chat-msg.ai .chat-msg-bubble{background:rgba(255,255,255,0.05);border-bottom-left-radius:4px}
+.chat-msg.user .chat-msg-bubble{background:rgba(0,229,255,0.1);border-bottom-right-radius:4px;color:#00e5ff}
+.chat-suggestions{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px;}
+.chat-sug-btn{padding:6px 12px;border-radius:14px;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.15);color:#94a3b8;font-size:11px;cursor:pointer;}
+.chat-input-area{padding:12px;border-top:1px solid rgba(0,229,255,0.1);background:rgba(0,0,0,0.2)}
+.chat-input-wrap{display:flex;gap:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:4px 4px 4px 12px;}
+.chat-input{flex:1;background:none;border:none;outline:none;color:#e2e8f0;font-size:13px;}
+.chat-send-btn{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#00e5ff,#7c3aed);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;}
+.chat-send-btn:disabled{opacity:0.4;}
 
-.chat-typing{display:flex;gap:10px;max-width:88%;animation:msgIn 0.4s cubic-bezier(0.16,1,0.3,1) both}
-.chat-typing-avatar{width:28px;height:28px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(0,229,255,0.12),rgba(124,58,237,0.08));border:1px solid rgba(0,229,255,0.15)}
-.chat-typing-avatar .mini-core{width:8px;height:8px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#a855f7,#7c3aed);box-shadow:0 0 6px rgba(124,58,237,0.4)}
-.chat-typing-bubble{padding:14px 18px;border-radius:16px;border-bottom-left-radius:4px;background:linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.06);display:flex;gap:5px;align-items:center}
-.typing-dot{width:6px;height:6px;border-radius:50%;background:rgba(0,229,255,0.4);animation:typingBounce 1.4s ease-in-out infinite}
-.typing-dot:nth-child(2){animation-delay:0.15s}
-.typing-dot:nth-child(3){animation-delay:0.3s}
-@keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:0.3}30%{transform:translateY(-6px);opacity:1}}
-
-.chat-suggestions{display:flex;flex-wrap:wrap;gap:6px;padding:0 18px 12px;position:relative;z-index:1}
-.chat-sug-btn{padding:7px 13px;border-radius:20px;background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.12);color:#94a3b8;font-size:11px;font-weight:500;cursor:pointer;transition:all 0.3s ease;white-space:nowrap}
-.chat-sug-btn:hover{background:rgba(0,229,255,0.12);color:#00e5ff;border-color:rgba(0,229,255,0.25);box-shadow:0 0 12px rgba(0,229,255,0.08)}
-
-.chat-input-area{position:relative;z-index:2;padding:12px 16px 16px;border-top:1px solid rgba(0,229,255,0.06);background:rgba(0,0,0,0.15)}
-.chat-input-wrap{display:flex;gap:10px;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:4px 4px 4px 16px;transition:all 0.3s ease}
-.chat-input-wrap:focus-within{border-color:rgba(0,229,255,0.3);box-shadow:0 0 20px rgba(0,229,255,0.06),inset 0 0 20px rgba(0,229,255,0.02)}
-.chat-input{flex:1;background:none;border:none;outline:none;color:#e2e8f0;font-size:13px;font-family:'Inter',sans-serif;font-weight:400;padding:8px 0}
-.chat-input::placeholder{color:#475569}
-.chat-send-btn{width:38px;height:38px;border-radius:12px;border:none;background:linear-gradient(135deg,#00e5ff,#7c3aed);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s ease;flex-shrink:0;box-shadow:0 4px 12px rgba(0,229,255,0.2)}
-.chat-send-btn:hover{transform:scale(1.08);box-shadow:0 6px 20px rgba(0,229,255,0.35)}
-.chat-send-btn:active{transform:scale(0.95)}
-.chat-send-btn:disabled{opacity:0.3;cursor:not-allowed;transform:none;box-shadow:none}
-.chat-send-btn .iconify{font-size:18px}
-
-.chat-error{padding:10px 14px;border-radius:12px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.15);color:#fca5a5;font-size:12px;font-weight:500;text-align:center;animation:msgIn 0.4s cubic-bezier(0.16,1,0.3,1) both}
-
+/* MOBILE RESPONSIVE CHO CHAT */
 @media(max-width:480px){
-  .chat-panel{left:12px;right:12px;bottom:100px;width:auto;max-width:none;height:calc(100vh - 120px);max-height:none;border-radius:20px}
+  .chat-panel{
+    left: 16px;
+    right: 16px;
+    bottom: 110px; /* Nâng cao lên khỏi robot */
+    width: auto;
+    height: 420px; /* Cố định chiều cao gọn gàng */
+    max-height: 65vh; 
+  }
   .robot-container{bottom:16px;left:16px}
+  .share-btn{bottom:16px;right:16px;width:48px;height:48px}
 }
 </style>
 </head>
 <body>
 
+<!-- Nebulas (đã được làm nhẹ lại) -->
 <div class="nebula-1"></div>
 <div class="nebula-2"></div>
 <div class="nebula-3"></div>
@@ -351,8 +255,8 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
       </div>
     </div>
 
-    <h1 class="reveal delay-1 text-2xl font-semibold tracking-tight mb-1" style="font-family:'Orbitron',sans-serif;letter-spacing:1.5px;background:linear-gradient(135deg,#fff 0%,#00e5ff 50%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 12px rgba(0,229,255,0.3))">leanhbay</h1>
-    <p class="reveal delay-2 text-sm text-slate-400 mb-3" style="letter-spacing:0.5px;font-weight:500">@leanhbay</p>
+    <h1 class="reveal delay-1 text-2xl font-semibold tracking-tight mb-1" style="font-family:'Orbitron',sans-serif;letter-spacing:1.5px;background:linear-gradient(135deg,#fff 0%,#00e5ff 50%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">leanhbay</h1>
+    <p class="reveal delay-2 text-sm text-slate-400 mb-3">@leanhbay</p>
     <p class="reveal delay-3 text-center text-sm text-slate-400 leading-relaxed max-w-xs">✨ Chào cậu<br>📍 Hà Nội, Việt Nam</p>
   </div>
 
@@ -373,7 +277,7 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 
   <div class="ip-card reveal delay-5" id="ipCard">
     <div class="ip-card-header">
-      <span class="iconify" data-icon="mdi:shield-eye" data-width="18" style="color:#00e5ff;filter:drop-shadow(0 0 4px rgba(0,229,255,0.4))"></span>
+      <span class="iconify" data-icon="mdi:shield-eye" data-width="18" style="color:#00e5ff;"></span>
       <span class="section-label">Thông tin truy cập của bạn</span>
       <span class="ml-auto" id="statusIcon"></span>
     </div>
@@ -383,39 +287,38 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
   <div class="reveal delay-6 divider"></div>
 
   <div class="social-links-wrap flex flex-col gap-3.5 mb-8">
-    <a href="https://www.facebook.com/share/1DAZ6EvoHn/?mibextid=wwXIfr" target="_blank" class="reveal delay-6 social-link facebook">
-      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span>
+    <a href="#" class="reveal delay-6 social-link facebook">
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-edge"></span>
       <span class="social-icon"><span class="iconify" data-icon="mdi:facebook" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">Facebook</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-    <a href="https://www.instagram.com/leanhbay06?igsh=Nm1pdHY3NzUxbXN2&utm_source=qr" target="_blank" class="reveal delay-6 social-link instagram">
-      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span><span class="ig-flash"></span><span class="ig-rainbow"></span>
+    <a href="#" class="reveal delay-6 social-link instagram">
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-edge"></span>
       <span class="social-icon"><span class="iconify" data-icon="mdi:instagram" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">Instagram</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-    <a href="https://www.tiktok.com/@leanhbay?_r=1&_t=ZS-97yHkjYeByK" target="_blank" class="reveal delay-7 social-link tiktok">
-      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span><span class="tt-scan"></span>
-      <span class="tt-notes"><span>♪</span><span>♫</span><span>♪</span></span>
+    <a href="#" class="reveal delay-7 social-link tiktok">
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-edge"></span>
       <span class="social-icon"><span class="iconify" data-icon="ic:baseline-tiktok" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">TikTok</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-    <a href="https://zalo.me/0353319326" target="_blank" class="reveal delay-7 social-link zalo">
-      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span><span class="zalo-wave"></span>
+    <a href="#" class="reveal delay-7 social-link zalo">
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-edge"></span>
       <span class="social-icon"><span class="iconify" data-icon="simple-icons:zalo" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">Zalo</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-    <a href="https://youtube.com/@leanhbay2006?si=gkjsfRiQGQrb18X5" target="_blank" class="reveal delay-8 social-link youtube">
-      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span><span class="yt-spot"></span><span class="yt-lines"></span>
+    <a href="#" class="reveal delay-8 social-link youtube">
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-edge"></span>
       <span class="social-icon"><span class="iconify" data-icon="mdi:youtube" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">YouTube</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-    <a href="https://t.me/mr777lab" target="_blank" class="reveal delay-8 social-link telegram">
-      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span>
+    <a href="#" class="reveal delay-8 social-link telegram">
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-edge"></span>
       <span class="social-icon"><span class="iconify" data-icon="mdi:telegram" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">Telegram</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
@@ -426,7 +329,6 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 </div>
 </main>
 
-<!-- Share Button -->
 <button class="share-btn" id="shareBtn" aria-label="Chia sẻ">
   <span class="iconify" data-icon="mdi:share-variant" data-width="22"></span>
 </button>
@@ -442,8 +344,8 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
       <div class="robot-ear left"></div>
       <div class="robot-ear right"></div>
       <div class="robot-face">
-        <div class="robot-eye" id="eyeL"><div class="robot-pupil" id="pupilL"></div></div>
-        <div class="robot-eye" id="eyeR"><div class="robot-pupil" id="pupilR"></div></div>
+        <div class="robot-eye"><div class="robot-pupil"></div></div>
+        <div class="robot-eye"><div class="robot-pupil"></div></div>
       </div>
       <div class="robot-mouth" id="robotMouth">
         <div class="mouth-led"></div><div class="mouth-led"></div><div class="mouth-led"></div><div class="mouth-led"></div><div class="mouth-led"></div>
@@ -459,13 +361,11 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
       <div class="robot-foot"></div>
       <div class="robot-foot"></div>
     </div>
-    <div class="robot-shadow"></div>
   </div>
 </div>
 
 <!-- Chat Panel -->
 <div class="chat-panel" id="chatPanel">
-  <div class="chat-panel-bg"></div>
   <div class="chat-header">
     <div class="chat-header-avatar"><div class="mini-core"></div></div>
     <div class="chat-header-info">
@@ -476,7 +376,7 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
       <button class="chat-header-btn" id="chatClearBtn" title="Xóa chat">
         <span class="iconify" data-icon="mdi:delete-outline" data-width="16"></span>
       </button>
-      <button class="chat-header-btn close-btn" id="chatCloseBtn" title="Đóng">
+      <button class="chat-header-btn" id="chatCloseBtn" title="Đóng">
         <span class="iconify" data-icon="mdi:close" data-width="16"></span>
       </button>
     </div>
@@ -484,15 +384,14 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
   <div class="chat-messages" id="chatMessages"></div>
   <div class="chat-suggestions" id="chatSuggestions">
     <button class="chat-sug-btn" data-q="leanhbay là ai?">🤔 leanhbay là ai?</button>
-    <button class="chat-sug-btn" data-q="leanhbay ở đâu?">📍 leanhbay ở đâu?</button>
-    <button class="chat-sug-btn" data-q="Mạng xã hội của leanhbay">🌐 Mạng xã hội</button>
-    <button class="chat-sug-btn" data-q="Chào cậu nhé!">👋 Chào cậu nhé!</button>
+    <button class="chat-sug-btn" data-q="leanhbay ở đâu?">📍 Ở đâu?</button>
+    <button class="chat-sug-btn" data-q="Chào cậu!">👋 Chào cậu!</button>
   </div>
   <div class="chat-input-area">
     <div class="chat-input-wrap">
       <input type="text" class="chat-input" id="chatInput" placeholder="Nhập tin nhắn..." autocomplete="off">
       <button class="chat-send-btn" id="chatSendBtn" disabled>
-        <span class="iconify" data-icon="mdi:send" data-width="18"></span>
+        <span class="iconify" data-icon="mdi:send" data-width="16"></span>
       </button>
     </div>
   </div>
@@ -500,57 +399,40 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 
 <script>
 /* ============================================
-   GIẢI MÃ API KEY (ẩn dưới dạng mảng số)
-   LƯU Ý: Đây chỉ là ẩn giấu cơ bản!
-   Để bảo mật thật sự → dùng server proxy.
+   GIẢI MÃ API KEY
+   LƯU Ý: Đảm bảo Key của bạn đang hoạt động bình thường
    ============================================ */
 const _0xk=[65,81,46,65,98,56,82,78,54,75,110,53,65,77,98,100,68,80,77,113,118,76,85,52,111,86,115,86,114,113,87,90,77,106,51,66,85,118,81,50,81,95,88,89,98,65,66,115,55,99,113,82,103];
-const _AK=_0xk.map(function(c){return String.fromCharCode(c)}).join('');
+const _AK=_0xk.map(c=>String.fromCharCode(c)).join('');
 
 /* === CLOCK === */
 function updateClock(){
   const n=new Date();
-  const h=String(n.getHours()).padStart(2,'0');
-  const m=String(n.getMinutes()).padStart(2,'0');
-  const s=String(n.getSeconds()).padStart(2,'0');
-  document.getElementById('clockHM').textContent=h+':'+m;
-  document.getElementById('clockSec').textContent=':'+s;
+  document.getElementById('clockHM').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
+  document.getElementById('clockSec').textContent=':'+String(n.getSeconds()).padStart(2,'0');
   const days=['Chủ nhật','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'];
-  const months=['01','02','03','04','05','06','07','08','09','10','11','12'];
-  document.getElementById('clockDate').textContent=days[n.getDay()]+', '+n.getDate()+'/'+months[n.getMonth()]+'/'+n.getFullYear();
+  document.getElementById('clockDate').textContent=days[n.getDay()]+', '+n.getDate()+'/'+String(n.getMonth()+1).padStart(2,'0')+'/'+n.getFullYear();
   const off=-n.getTimezoneOffset();
-  const offH=Math.floor(Math.abs(off)/60);
-  const offM=Math.abs(off)%60;
-  const sign=off>=0?'+':'-';
-  document.getElementById('clockTzOffset').textContent='UTC'+sign+String(offH).padStart(2,'0')+':'+String(offM).padStart(2,'0');
+  document.getElementById('clockTzOffset').textContent='UTC'+(off>=0?'+':'-')+String(Math.floor(Math.abs(off)/60)).padStart(2,'0')+':'+String(Math.abs(off)%60).padStart(2,'0');
 }
-updateClock();setInterval(updateClock,1000);
+setInterval(updateClock,1000); updateClock();
 
-/* === REVEAL === */
-const revObs=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('active');revObs.unobserve(e.target)}});
-},{threshold:0.15});
-document.querySelectorAll('.reveal').forEach(function(el){revObs.observe(el)});
+/* === REVEAL ANIMATION === */
+const revObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('active');revObs.unobserve(x.target)}})},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
 
-/* === PARTICLES === */
+/* === PARTICLES (ĐÃ GIẢM TẢI XUỐNG 25 HẠT) === */
 (function(){
-  const c=document.getElementById('particles');
-  const ctx=c.getContext('2d');
-  let w,h;
-  function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}
-  resize();window.addEventListener('resize',resize);
-  const pts=[];
-  for(let i=0;i<60;i++){
-    pts.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.5+0.3,dx:(Math.random()-0.5)*0.3,dy:(Math.random()-0.5)*0.3,o:Math.random()*0.5+0.1});
-  }
+  const c=document.getElementById('particles'), ctx=c.getContext('2d');
+  let w,h; function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}
+  window.addEventListener('resize',resize); resize();
+  const pts=Array.from({length: 25}, ()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.5+0.5,dx:(Math.random()-0.5)*0.2,dy:(Math.random()-0.5)*0.2,o:Math.random()*0.5}));
   function draw(){
     ctx.clearRect(0,0,w,h);
-    pts.forEach(function(p){
-      p.x+=p.dx;p.y+=p.dy;
-      if(p.x<0)p.x=w;if(p.x>w)p.x=0;
-      if(p.y<0)p.y=h;if(p.y>h)p.y=0;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(0,229,255,'+p.o+')';ctx.fill();
+    pts.forEach(p=>{
+      p.x+=p.dx; p.y+=p.dy;
+      if(p.x<0)p.x=w; if(p.x>w)p.x=0; if(p.y<0)p.y=h; if(p.y>h)p.y=0;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=`rgba(0,229,255,${p.o})`; ctx.fill();
     });
     requestAnimationFrame(draw);
   }
@@ -558,249 +440,93 @@ document.querySelectorAll('.reveal').forEach(function(el){revObs.observe(el)});
 })();
 
 /* === IP INFO === */
-(function(){
-  const card=document.getElementById('ipCard');
-  const body=document.getElementById('ipBody');
-  const icon=document.getElementById('statusIcon');
-  setTimeout(function(){card.classList.add('visible')},1200);
-  fetch('https://ipapi.co/json/').then(function(r){return r.json()}).then(function(d){
-    icon.innerHTML='<span class="online-dot"></span>';
-    const rows=[
-      {l:'mdi:ip-network',t:'IP',v:d.ip,p:true,b:d.version==='IPv4'?'ipv4':'ipv6'},
-      {l:'mdi:map-marker',t:'Vị trí',v:(d.city||'?')+', '+(d.region||'?')+', '+(d.country_name||'?')},
-      {l:'mdi:isp',t:'ISP',v:d.org||'thu thập'},
-      {l:'mdi:clock-outline',t:'Múi giờ',v:d.timezone||'thu thập'},
-      {l:'mdi:compass',t:'Tọa độ',v:d.latitude&&d.longitude?d.latitude+', '+d.longitude:'thu thập'}
-    ];
-    body.innerHTML=rows.map(function(r,i){
-      return '<div class="ip-row" style="transition-delay:'+(i*120)+'ms"><div class="ip-label"><span class="iconify" data-icon="'+r.l+'" data-width="15"></span>'+r.t+'</div><div class="ip-value '+(r.p?'primary':'')+'">'+r.v+(r.b?' <span class="ip-badge '+r.b+'">'+r.b.toUpperCase()+'</span>':'')+'</div></div>';
-    }).join('');
-    setTimeout(function(){body.querySelectorAll('.ip-row').forEach(function(r){r.classList.add('show')})},200);
-  }).catch(function(){
-    icon.innerHTML='<span class="iconify" data-icon="mdi:alert-circle" data-width="18" style="color:#ef4444"></span>';
-    body.innerHTML='<div class="ip-row show" style="justify-content:center;padding:20px"><span style="color:#64748b;font-size:12px">done</span></div>';
-  });
-})();
-
-/* === SOCIAL LINK EFFECTS === */
-document.querySelectorAll('.social-link').forEach(function(link){
-  link.addEventListener('mousemove',function(e){
-    const r=link.getBoundingClientRect();
-    link.style.setProperty('--gx',((e.clientX-r.left)/r.width*100)+'%');
-    link.style.setProperty('--gy',((e.clientY-r.top)/r.height*100)+'%');
-    const cx=r.left+r.width/2,cy=r.top+r.height/2;
-    const rx=(e.clientY-cy)/r.height*-8,ry=(e.clientX-cx)/r.width*8;
-    link.style.transform='perspective(800px) rotateX('+rx+'deg) rotateY('+ry+'deg) scale(1.03)';
-  });
-  link.addEventListener('mouseleave',function(){link.style.transform=''});
-  link.addEventListener('click',function(e){
-    const rip=document.createElement('span');rip.className='hub-ripple';
-    const r=link.getBoundingClientRect();
-    rip.style.left=(e.clientX-r.left)+'px';rip.style.top=(e.clientY-r.top)+'px';
-    link.appendChild(rip);setTimeout(function(){rip.remove()},700);
-  });
+setTimeout(()=>document.getElementById('ipCard').classList.add('visible'), 1000);
+fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{
+  document.getElementById('statusIcon').innerHTML='<span class="online-dot"></span>';
+  const rows=[
+    {l:'mdi:ip-network',t:'IP',v:d.ip, p:true},
+    {l:'mdi:map-marker',t:'Vị trí',v:(d.city||'?')+', '+(d.country_name||'?')},
+    {l:'mdi:isp',t:'ISP',v:d.org||'Unknown'}
+  ];
+  document.getElementById('ipBody').innerHTML=rows.map((r,i)=>`<div class="ip-row" style="transition-delay:${i*100}ms"><div class="ip-label"><span class="iconify" data-icon="${r.l}"></span>${r.t}</div><div class="ip-value ${r.p?'primary':''}">${r.v}</div></div>`).join('');
+  setTimeout(()=>document.querySelectorAll('.ip-row').forEach(r=>r.classList.add('show')), 200);
+}).catch(()=>{
+  document.getElementById('statusIcon').innerHTML='<span class="iconify" data-icon="mdi:alert-circle" style="color:#ef4444"></span>';
 });
 
-/* === SHARE === */
-document.getElementById('shareBtn').addEventListener('click',function(){
-  if(navigator.share){
-    navigator.share({title:'Tiểu sử của leanhbay',text:'Xem tiểu sử của leanhbay nhé!',url:window.location.href}).catch(function(){});
-  }else{
-    navigator.clipboard.writeText(window.location.href).then(function(){showToast('Đã sao chép liên kết!')});
-  }
-});
-function showToast(msg){
-  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
-  setTimeout(function(){t.classList.remove('show')},2500);
-}
+/* === ROBOT SPEECH & CHAT TÍNH NĂNG === */
+let chatOpen=false, chatHistory=[], isGen=false;
+const chatPanel=document.getElementById('chatPanel'), chatInp=document.getElementById('chatInput'), chatBtn=document.getElementById('chatSendBtn'), msgs=document.getElementById('chatMessages');
 
-/* === ROBOT EYES FOLLOW CURSOR === */
-document.addEventListener('mousemove',function(e){
-  const rc=document.getElementById('robotContainer');
-  if(!rc)return;
-  const rect=rc.getBoundingClientRect();
-  const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;
-  const dx=e.clientX-cx,dy=e.clientY-cy;
-  const dist=Math.sqrt(dx*dx+dy*dy);
-  const maxMove=3;
-  const move=Math.min(dist/80,maxMove);
-  const angle=Math.atan2(dy,dx);
-  const mx=Math.cos(angle)*move,my=Math.sin(angle)*move;
-  document.getElementById('pupilL').style.transform='translate(calc(-50% + '+mx+'px),calc(-50% + '+my+'px))';
-  document.getElementById('pupilR').style.transform='translate(calc(-50% + '+mx+'px),calc(-50% + '+my+'px))';
-});
-
-/* === ROBOT BLINK === */
-setInterval(function(){
-  const eL=document.getElementById('eyeL'),eR=document.getElementById('eyeR');
-  eL.classList.add('blink');eR.classList.add('blink');
-  setTimeout(function(){eL.classList.remove('blink');eR.classList.remove('blink')},150);
-},3500);
-
-/* === ROBOT SPEECH BUBBLE === */
-const speechTexts=['Nhấp vào tôi!','Có chuyện gì không?','Hỏi tôi gì đi!','Tớ ở đây nè!','Click vào tớ đi!'];
-let speechIdx=0;
-function showRobotSpeech(text){
-  const sp=document.getElementById('robotSpeech');
-  sp.textContent=text;sp.classList.add('show');
-  setTimeout(function(){sp.classList.remove('show')},3000);
-}
-setTimeout(function(){showRobotSpeech(speechTexts[0])},2000);
-setInterval(function(){
-  if(!chatOpen){speechIdx=(speechIdx+1)%speechTexts.length;showRobotSpeech(speechTexts[speechIdx])}
-},8000);
-
-/* === CHAT FUNCTIONALITY === */
-let chatOpen=false;
-let chatHistory=[];
-let isGenerating=false;
-const chatPanel=document.getElementById('chatPanel');
-const chatMessages=document.getElementById('chatMessages');
-const chatInput=document.getElementById('chatInput');
-const chatSendBtn=document.getElementById('chatSendBtn');
-const chatSuggestions=document.getElementById('chatSuggestions');
-
-const SYSTEM_PROMPT='Bạn là "Robot AI", một trợ lý ảo dễ thương và hài hước của leanhbay. Bạn LUÔN trả lời bằng tiếng Việt.\n\nThông tin về leanhbay:\n- Biệt danh: leanhbay\n- Sống ở: Hà Nội, Việt Nam\n- Có mặt trên: Facebook, Instagram, TikTok, Zalo, YouTube, Telegram\n\nPhong cách:\n- Ngắn gọn, thân thiện, có chút hài hước\n- Thỉnh thoảng dùng emoji phù hợp\n- Nếu hỏi về leanhbay, trả lời dựa trên thông tin trên\n- Nếu hỏi chuyện khác, trả lời tự nhiên nhưng ngắn\n- KHÔNG BAO GIỜ nói bạn là AI hay language model hay Gemini\n- Giữ mỗi câu trả lời dưới 80 từ trừ khi được hỏi chi tiết';
+const SYS_PROMPT='Bạn là Robot AI, trợ lý ảo vui vẻ của leanhbay. Trả lời ngắn gọn, thân thiện bằng tiếng Việt. Nếu hỏi về leanhbay: sống ở Hà Nội, VN. Không nhận mình là AI của Google.';
 
 function toggleChat(){
   chatOpen=!chatOpen;
   chatPanel.classList.toggle('open',chatOpen);
   if(chatOpen){
     document.getElementById('robotSpeech').classList.remove('show');
-    document.getElementById('antennaBall').classList.add('flash');
-    setTimeout(function(){document.getElementById('antennaBall').classList.remove('flash')},500);
-    document.getElementById('robotMouth').classList.add('happy');
-    setTimeout(function(){document.getElementById('robotMouth').classList.remove('happy')},2000);
-    if(chatHistory.length===0){addAIMessage('Xin chào! 👋 Mình là Robot AI, trợ lý của leanhbay. Cậu muốn biết gì về leanhbay không?');}
-    chatInput.focus();
-  }else{
-    chatSuggestions.style.display='';
+    if(chatHistory.length===0) addAI('Xin chào! 👋 Mình là Robot trợ lý của leanhbay. Bạn cần hỏi gì nào?');
+    setTimeout(()=>chatInp.focus(), 300);
   }
 }
 
-document.getElementById('robotContainer').addEventListener('click',toggleChat);
-document.getElementById('chatCloseBtn').addEventListener('click',function(e){e.stopPropagation();toggleChat()});
-document.getElementById('chatClearBtn').addEventListener('click',function(){
-  chatHistory=[];
-  chatMessages.innerHTML='';
-  chatSuggestions.style.display='';
-  addAIMessage('Chat đã được xóa! 🧹 Cậu muốn hỏi gì nữa không?');
+// BẬT TÍNH NĂNG CLICK RA NGOÀI ĐỂ ĐÓNG CHAT
+document.addEventListener('click', (e) => {
+  if (chatOpen && !chatPanel.contains(e.target) && !document.getElementById('robotContainer').contains(e.target)) {
+    toggleChat();
+  }
 });
 
-chatInput.addEventListener('input',function(){
-  chatSendBtn.disabled=!chatInput.value.trim();
-});
-chatInput.addEventListener('keydown',function(e){
-  if(e.key==='Enter'&&!e.shiftKey&&chatInput.value.trim()){e.preventDefault();sendMessage(chatInput.value.trim())}
-});
-chatSendBtn.addEventListener('click',function(){
-  if(chatInput.value.trim())sendMessage(chatInput.value.trim());
-});
+document.getElementById('robotContainer').addEventListener('click', toggleChat);
+document.getElementById('chatCloseBtn').addEventListener('click', toggleChat);
+document.getElementById('chatClearBtn').addEventListener('click', ()=>{chatHistory=[]; msgs.innerHTML=''; addAI('Đã xóa sạch bộ nhớ! 🧹');});
 
-document.querySelectorAll('.chat-sug-btn').forEach(function(btn){
-  btn.addEventListener('click',function(){sendMessage(btn.dataset.q)});
-});
+chatInp.addEventListener('input', ()=>chatBtn.disabled=!chatInp.value.trim());
+chatInp.addEventListener('keydown', e=>{if(e.key==='Enter' && chatInp.value.trim()) sendMsg(chatInp.value.trim())});
+chatBtn.addEventListener('click', ()=>{if(chatInp.value.trim()) sendMsg(chatInp.value.trim())});
+document.querySelectorAll('.chat-sug-btn').forEach(b=>b.addEventListener('click', ()=>sendMsg(b.dataset.q)));
 
-function getTimeStr(){
-  const n=new Date();
-  return String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
+function addMsg(txt, type){
+  const d=document.createElement('div'); d.className=`chat-msg ${type}`;
+  d.innerHTML=`<div class="chat-msg-avatar">${type==='user'?'Bạn':'AI'}</div><div class="chat-msg-bubble">${txt}</div>`;
+  msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight;
 }
+const addAI=t=>addMsg(t,'ai'); const addU=t=>addMsg(t,'user');
 
-function addUserMessage(text){
-  const div=document.createElement('div');
-  div.className='chat-msg user';
-  div.innerHTML='<div class="chat-msg-avatar">Bạn</div><div><div class="chat-msg-bubble">'+escapeHtml(text)+'</div><div class="chat-msg-time">'+getTimeStr()+'</div></div>';
-  chatMessages.appendChild(div);
-  scrollBottom();
-}
+async function sendMsg(text){
+  if(isGen) return;
+  addU(text); chatInp.value=''; chatBtn.disabled=true; isGen=true;
+  document.getElementById('chatSuggestions').style.display='none';
+  chatHistory.push({role:'user', parts:[{text}]});
+  
+  const loading = document.createElement('div'); loading.className='chat-msg ai'; loading.innerHTML='<div class="chat-msg-avatar">AI</div><div class="chat-msg-bubble">...</div>';
+  msgs.appendChild(loading); msgs.scrollTop=msgs.scrollHeight;
 
-function addAIMessage(text){
-  const div=document.createElement('div');
-  div.className='chat-msg ai';
-  div.innerHTML='<div class="chat-msg-avatar"><div class="mini-core"></div></div><div><div class="chat-msg-bubble">'+formatAI(text)+'</div><div class="chat-msg-time">'+getTimeStr()+'</div></div>';
-  chatMessages.appendChild(div);
-  scrollBottom();
-}
-
-function addErrorMessage(text){
-  const div=document.createElement('div');
-  div.className='chat-error';
-  div.textContent=text;
-  chatMessages.appendChild(div);
-  scrollBottom();
-}
-
-function showTyping(){
-  const div=document.createElement('div');
-  div.className='chat-typing';div.id='typingIndicator';
-  div.innerHTML='<div class="chat-typing-avatar"><div class="mini-core"></div></div><div class="chat-typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
-  chatMessages.appendChild(div);
-  scrollBottom();
-}
-function hideTyping(){const t=document.getElementById('typingIndicator');if(t)t.remove()}
-
-function scrollBottom(){setTimeout(function(){chatMessages.scrollTop=chatMessages.scrollHeight},50)}
-
-function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}
-function formatAI(s){
-  let h=escapeHtml(s);
-  h=h.replace(/\*\*(.*?)\*\*/g,'<strong style="color:#00e5ff">$1</strong>');
-  h=h.replace(/\*(.*?)\*/g,'<em>$1</em>');
-  return h;
-}
-
-async function sendMessage(text){
-  if(isGenerating)return;
-  chatSuggestions.style.display='none';
-  addUserMessage(text);
-  chatInput.value='';
-  chatSendBtn.disabled=true;
-  isGenerating=true;
-
-  chatHistory.push({role:'user',parts:[{text:text}]});
-  showTyping();
-  document.getElementById('robotMouth').classList.remove('happy');
-
-  try{
-    const contents=chatHistory.map(function(m){return{role:m.role,parts:m.parts}});
-    const url='https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key='+_AK;
-    const resp=await fetch(url,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        systemInstruction:{parts:[{text:SYSTEM_PROMPT}]},
-        contents:contents,
-        generationConfig:{temperature:0.8,maxOutputTokens:300}
-      })
+  try {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${_AK}`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({systemInstruction:{parts:[{text:SYS_PROMPT}]}, contents:chatHistory, generationConfig:{maxOutputTokens:250}})
     });
-
-    if(!resp.ok){
-      const errData=await resp.json().catch(function(){return{}});
-      throw new Error(errData.error?.message||'Lỗi API: '+resp.status);
-    }
-
-    const data=await resp.json();
-    const aiText=data.candidates?.[0]?.content?.parts?.[0]?.text;
-    if(!aiText)throw new Error('Không nhận được phản hồi');
-
-    hideTyping();
-    addAIMessage(aiText);
-    chatHistory.push({role:'model',parts:[{text:aiText}]});
-
-    document.getElementById('robotMouth').classList.add('happy');
-    document.getElementById('armR').classList.add('wave');
-    setTimeout(function(){document.getElementById('robotMouth').classList.remove('happy');document.getElementById('armR').classList.remove('wave')},3000);
-
-  }catch(err){
-    hideTyping();
-    console.error('Chat error:',err);
-    addErrorMessage('⚠️ '+err.message);
-    chatHistory.pop();
+    if(!res.ok) throw new Error('API Key có thể hết hạn hoặc sai!');
+    const data = await res.json();
+    const ans = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Lỗi xử lý phản hồi';
+    loading.remove(); addAI(ans);
+    chatHistory.push({role:'model', parts:[{text:ans}]});
+  } catch(e) {
+    loading.remove(); addAI('⚠️ Lỗi: ' + e.message); chatHistory.pop();
   }
-
-  isGenerating=false;
-  chatInput.focus();
+  isGen=false; chatInp.focus();
 }
+
+/* Robot ngẫu nhiên nói chuyện */
+setInterval(()=> {
+  if(!chatOpen) {
+    const sp = document.getElementById('robotSpeech');
+    sp.textContent = ['Nhấp vào tôi!', 'Có chuyện gì không?', 'Tớ ở đây nè!'][Math.floor(Math.random()*3)];
+    sp.classList.add('show');
+    setTimeout(()=>sp.classList.remove('show'), 3000);
+  }
+}, 8000);
 </script>
 </body>
 </html>
