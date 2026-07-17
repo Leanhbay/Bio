@@ -380,7 +380,7 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
   <div class="ip-card reveal delay-5" id="ipCard">
     <div class="ip-card-header">
       <span class="iconify" data-icon="mdi:shield-eye" data-width="18" style="color:#00e5ff;filter:drop-shadow(0 0 4px rgba(0,229,255,0.4))"></span>
-      <span class="section-label">Thông tin truy cập</span>
+      <span class="section-label">Thông tin truy cập của bạn</span>
       <span class="ml-auto" id="statusIcon"></span>
     </div>
     <div class="ip-card-body" id="ipBody"></div>
@@ -480,7 +480,7 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
   <div class="reveal delay-9 text-center pb-8">
     <div class="flex items-center justify-center gap-3 mb-3">
       <div class="w-1.5 h-1.5 rounded-full bg-cyan-400" style="box-shadow:0 0 8px #00e5ff,0 0 20px rgba(0,229,255,0.3)"></div>
-      <span class="section-label">Liên kết tiểu sử</span>
+      <span class="section-label">Liên kết cá nhân</span>
       <div class="w-1.5 h-1.5 rounded-full bg-purple-400" style="box-shadow:0 0 8px #7c3aed,0 0 20px rgba(124,58,237,0.3)"></div>
     </div>
     <p class="text-[11px] text-slate-600 font-medium">© 2026 leanhbay</p>
@@ -704,7 +704,7 @@ function showCard(d){
   const card=document.getElementById('ipCard'),body=document.getElementById('ipBody'),icon=document.getElementById('statusIcon');
   const ver=d.ver||'IPv4',verCls=ver==='IPv6'?'ipv6':'ipv4';
   const flag=d.cc?getFlag(d.cc):'🌍';
-  const loc=[d.city,d.region,d.country].filter(Boolean).join(', ')||'Không xác định';
+  const loc=[d.city,d.region,d.country].filter(Boolean).join(', ')||'Đã thu thập';
   const tz=d.tz||deviceTZ;
   let html=`
     <div class="ip-row" data-i="0"><div class="ip-label"><span class="iconify" data-icon="mdi:ip-network" data-width="15"></span>Địa chỉ IP</div><div class="flex items-center gap-2"><span class="ip-value primary">${d.ip}</span><span class="ip-badge ${verCls}">${ver}</span></div></div>
