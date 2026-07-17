@@ -9,48 +9,47 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 @property --ig-rot{syntax:'<angle>';initial-value:0deg;inherits:false}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 html,body{overflow:hidden;height:100%;width:100%;position:fixed;top:0;left:0}
-body{font-family:'Inter',sans-serif;background:#0a0f1e;color:#e2e8f0;overflow-y:auto;-webkit-overflow-scrolling:touch;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
-img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-webkit-optimize-contrast}
+body{font-family:'Inter',sans-serif;background:#0a0f1e;color:#e2e8f0;overflow-y:auto;-webkit-overflow-scrolling:touch;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{pointer-events:none;-webkit-user-drag:none;image-rendering:-webkit-optimize-contrast}
 
-/* TỐI ƯU LAG: Giảm blur, dùng gradient mềm hơn */
-.nebula-1{position:fixed;top:-120px;left:-120px;width:550px;height:550px;background:radial-gradient(circle,rgba(0,229,255,0.15) 0%,transparent 70%);pointer-events:none;z-index:0;animation:nebFloat1 9s ease-in-out infinite; will-change: transform;}
-.nebula-2{position:fixed;bottom:-120px;right:-120px;width:550px;height:550px;background:radial-gradient(circle,rgba(124,58,237,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;animation:nebFloat2 11s ease-in-out infinite; will-change: transform;}
-.nebula-3{position:fixed;top:40%;right:-80px;width:450px;height:450px;background:radial-gradient(circle,rgba(6,182,212,0.1) 0%,transparent 70%);pointer-events:none;z-index:0;animation:nebFloat3 13s ease-in-out infinite; will-change: transform;}
-.nebula-4{position:fixed;bottom:30%;left:-60px;width:400px;height:400px;background:radial-gradient(circle,rgba(168,85,247,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;animation:nebFloat1 15s ease-in-out infinite reverse; will-change: transform;}
-.nebula-5{position:fixed;top:20%;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(0,229,255,0.04) 0%,transparent 70%);pointer-events:none;z-index:0;animation:nebFloat3 18s ease-in-out infinite reverse; will-change: transform;}
-@keyframes nebFloat1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,15px) scale(1.05)}}
-@keyframes nebFloat2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-20px,-15px) scale(1.05)}}
-@keyframes nebFloat3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-15px,10px) scale(1.05)}}
+/* Tối ưu: giảm blur, bỏ animation nặng cho nebula */
+.nebula-1{position:fixed;top:-120px;left:-120px;width:550px;height:550px;background:radial-gradient(circle,rgba(0,229,255,0.22) 0%,transparent 70%);filter:blur(60px);pointer-events:none;z-index:0;will-change:transform;animation:nebFloat1 12s ease-in-out infinite}
+.nebula-2{position:fixed;bottom:-120px;right:-120px;width:550px;height:550px;background:radial-gradient(circle,rgba(124,58,237,0.20) 0%,transparent 70%);filter:blur(60px);pointer-events:none;z-index:0;will-change:transform;animation:nebFloat2 14s ease-in-out infinite}
+.nebula-3{position:fixed;top:40%;right:-80px;width:450px;height:450px;background:radial-gradient(circle,rgba(6,182,212,0.16) 0%,transparent 70%);filter:blur(70px);pointer-events:none;z-index:0;will-change:transform;animation:nebFloat3 16s ease-in-out infinite}
+@keyframes nebFloat1{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,25px)}}
+@keyframes nebFloat2{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,-20px)}}
+@keyframes nebFloat3{0%,100%{transform:translate(0,0)}50%{transform:translate(-25px,15px)}}
 
-.space-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.035) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:1}
-.scanlines{position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.02) 2px,rgba(0,0,0,0.02) 4px);pointer-events:none;z-index:2}
-.scan-sweep{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,rgba(0,229,255,0.7) 50%,transparent 100%);z-index:100;animation:sweep 5s ease-in-out infinite;pointer-events:none;}
+.space-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.03) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:1}
+.scanlines{position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.015) 2px,rgba(0,0,0,0.015) 4px);pointer-events:none;z-index:2}
+.scan-sweep{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,rgba(0,229,255,0.5) 50%,transparent 100%);z-index:100;animation:sweep 6s ease-in-out infinite;pointer-events:none}
 @keyframes sweep{0%{transform:translateX(-100%);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateX(100%);opacity:0}}
 
+/* Tối ưu: ít particle hơn */
 #particles{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-.reveal{opacity:0;transform:translateY(30px) scale(0.98);transition:all 0.8s cubic-bezier(0.16,1,0.3,1);}
-.reveal.active{opacity:1;transform:translateY(0) scale(1);}
+.reveal{opacity:0;transform:translateY(30px) scale(0.98);transition:all 0.8s cubic-bezier(0.16,1,0.3,1);filter:blur(10px)}
+.reveal.active{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
 .delay-1{transition-delay:100ms}.delay-2{transition-delay:200ms}.delay-3{transition-delay:300ms}
 .delay-4{transition-delay:400ms}.delay-5{transition-delay:500ms}.delay-6{transition-delay:600ms}
 .delay-7{transition-delay:700ms}.delay-8{transition-delay:800ms}.delay-9{transition-delay:900ms}
 
 .orbit-system{position:relative;width:200px;height:200px;display:flex;align-items:center;justify-content:center;perspective:800px;margin-bottom:28px}
-.orbit-ring{position:absolute;inset:0;border-radius:50%;border:1.5px solid}
-.ring-1{border-color:rgba(0,229,255,0.25);transform:rotateX(72deg);animation:orbitSpin1 7s linear infinite;}
-.ring-2{border-color:rgba(124,58,237,0.20);transform:rotateX(72deg) rotateY(55deg);animation:orbitSpin2 9s linear infinite;}
-.ring-3{border-color:rgba(6,182,212,0.12);transform:rotateX(45deg) rotateY(-30deg);animation:orbitSpin1 13s linear infinite reverse;}
+.orbit-ring{position:absolute;inset:0;border-radius:50%;border:1.5px solid;will-change:transform}
+.ring-1{border-color:rgba(0,229,255,0.25);transform:rotateX(72deg);animation:orbitSpin1 7s linear infinite}
+.ring-2{border-color:rgba(124,58,237,0.20);transform:rotateX(72deg) rotateY(55deg);animation:orbitSpin2 9s linear infinite}
+.ring-3{border-color:rgba(6,182,212,0.12);transform:rotateX(45deg) rotateY(-30deg);animation:orbitSpin1 13s linear infinite reverse}
 .orbit-particle{position:absolute;width:6px;height:6px;border-radius:50%;top:-3px;left:50%;margin-left:-3px}
-.ring-1 .orbit-particle{background:#00e5ff;}
-.ring-2 .orbit-particle{background:#7c3aed;}
-.ring-3 .orbit-particle{background:#06b6d4;width:4px;height:4px;top:-2px;margin-left:-2px}
+.ring-1 .orbit-particle{background:#00e5ff;box-shadow:0 0 10px #00e5ff}
+.ring-2 .orbit-particle{background:#7c3aed;box-shadow:0 0 10px #7c3aed}
+.ring-3 .orbit-particle{background:#06b6d4;box-shadow:0 0 8px #06b6d4;width:4px;height:4px;top:-2px;margin-left:-2px}
 @keyframes orbitSpin1{to{transform:rotateX(72deg) rotateZ(360deg)}}
 @keyframes orbitSpin2{to{transform:rotateX(72deg) rotateY(55deg) rotateZ(360deg)}}
-.avatar-ring{background:conic-gradient(from 0deg,#00e5ff,#7c3aed,#06b6d4,#a855f7,#00e5ff);animation:ringRotate 4s linear infinite;padding:3px;}
+.avatar-ring{background:conic-gradient(from 0deg,#00e5ff,#7c3aed,#06b6d4,#a855f7,#00e5ff);animation:ringRotate 4s linear infinite;padding:3px;will-change:transform}
 @keyframes ringRotate{to{transform:rotate(360deg)}}
-.avatar-wrapper{position:relative;z-index:2;transition:transform 0.5s cubic-bezier(0.16,1,0.3,1)}
+.avatar-wrapper{position:relative;z-index:2}
 
 .status-dot{animation:pulseDot 2s ease-in-out infinite}
 @keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.6)}50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
@@ -58,17 +57,17 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 .radar-ping:nth-child(2){animation-delay:0.7s}
 @keyframes radarPing{0%{transform:scale(1);opacity:0.8}100%{transform:scale(3);opacity:0}}
 
-.live-clock-container{display:flex;align-items:center;justify-content:center;gap:16px;padding:20px 24px;border-radius:18px;background:linear-gradient(135deg,rgba(0,229,255,0.04),rgba(124,58,237,0.02));border:1px solid rgba(0,229,255,0.1);margin-bottom:8px;position:relative;overflow:hidden}
+.live-clock-container{display:flex;align-items:center;justify-content:center;gap:16px;padding:20px 24px;border-radius:18px;background:linear-gradient(135deg,rgba(0,229,255,0.04),rgba(124,58,237,0.02));border:1px solid rgba(0,229,255,0.1);box-shadow:inset 0 1px 0 rgba(255,255,255,0.05),0 4px 20px rgba(0,0,0,0.3);margin-bottom:8px;position:relative;overflow:hidden}
 .live-clock-container::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.3),transparent)}
-.clock-time{font-family:'Orbitron',sans-serif;font-size:32px;font-weight:800;letter-spacing:2px;font-variant-numeric:tabular-nums;background:linear-gradient(135deg,#00e5ff 0%,#ffffff 30%,#e2e8f0 50%,#c4b5fd 80%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.clock-seconds{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:500;color:#00e5ff;opacity:0.6;font-variant-numeric:tabular-nums;animation:secPulse 1s ease-in-out infinite;}
+.clock-time{font-family:'Orbitron',sans-serif;font-size:32px;font-weight:800;letter-spacing:2px;font-variant-numeric:tabular-nums;background:linear-gradient(135deg,#00e5ff 0%,#ffffff 30%,#e2e8f0 50%,#c4b5fd 80%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 8px rgba(0,229,255,0.3))}
+.clock-seconds{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:500;color:#00e5ff;opacity:0.6;font-variant-numeric:tabular-nums;animation:secPulse 1s ease-in-out infinite}
 @keyframes secPulse{0%,100%{opacity:0.2}50%{opacity:0.9}}
 .clock-separator{display:flex;flex-direction:column;gap:5px}
-.clock-separator span{width:3px;height:3px;border-radius:50%;background:#00e5ff;opacity:0.4;}
+.clock-separator span{width:3px;height:3px;border-radius:50%;background:#00e5ff;opacity:0.4}
 .clock-date{font-size:12px;color:#64748b;font-weight:500;text-align:center;margin-bottom:20px;letter-spacing:0.5px}
 
-.ip-card{background:linear-gradient(135deg,rgba(0,229,255,0.03),rgba(15,23,42,0.9));border:1px solid rgba(0,229,255,0.08);border-radius:20px;overflow:hidden;max-height:0;opacity:0;margin-bottom:0;transition:all 0.6s cubic-bezier(0.16,1,0.3,1);border-width:0;}
-.ip-card.visible{max-height:600px;opacity:1;margin-bottom:32px;border-width:1px;}
+.ip-card{background:linear-gradient(135deg,rgba(0,229,255,0.03),rgba(15,23,42,0.9));border:1px solid rgba(0,229,255,0.08);border-radius:20px;overflow:hidden;max-height:0;opacity:0;margin-bottom:0;transition:all 0.6s cubic-bezier(0.16,1,0.3,1);border-width:0;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+.ip-card.visible{max-height:600px;opacity:1;margin-bottom:32px;border-width:1px;box-shadow:0 8px 32px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.04)}
 .ip-card-header{padding:16px 20px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(0,229,255,0.06);position:relative}
 .ip-card-header::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.15),transparent)}
 .ip-card-body{padding:4px 20px 20px}
@@ -76,158 +75,183 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 .ip-row.show{opacity:1;transform:translateY(0)}
 .ip-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,0.03)}
 .ip-label{display:flex;align-items:center;gap:8px;font-size:12px;color:#64748b;font-weight:500}
-.ip-label .iconify{font-size:15px;color:#00e5ff;opacity:0.7;}
+.ip-label .iconify{font-size:15px;color:#00e5ff;opacity:0.7}
 .ip-value{font-size:13px;color:#cbd5e1;font-weight:600;font-variant-numeric:tabular-nums}
-.ip-value.primary{color:#00e5ff;font-weight:700;font-size:14px;letter-spacing:0.8px;}
+.ip-value.primary{color:#00e5ff;font-weight:700;font-size:14px;letter-spacing:0.8px;text-shadow:0 0 15px rgba(0,229,255,0.4)}
 .ip-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:7px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
 .ip-badge.ipv4{background:rgba(0,229,255,0.12);color:#00e5ff;border:1px solid rgba(0,229,255,0.15)}
 .ip-badge.ipv6{background:rgba(124,58,237,0.15);color:#c4b5fd;border:1px solid rgba(124,58,237,0.15)}
+.ip-copy-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:10px;background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.12);color:#94a3b8;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.3s ease}
+.ip-copy-btn:hover{background:rgba(0,229,255,0.12);color:#e2e8f0;border-color:rgba(0,229,255,0.25)}
+.ip-copy-btn.copied{background:rgba(0,229,255,0.15);border-color:rgba(0,229,255,0.35);color:#00e5ff}
 
-.divider{height:1px;background:linear-gradient(to right,transparent,rgba(0,229,255,0.35),rgba(124,58,237,0.35),transparent);position:relative;margin-bottom:24px;}
-.divider::after{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:7px;height:7px;background:#00e5ff;border-radius:50%;}
+.divider{height:1px;background:linear-gradient(to right,transparent,rgba(0,229,255,0.35),rgba(124,58,237,0.35),transparent);position:relative;margin-bottom:24px}
+.divider::after{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:7px;height:7px;background:#00e5ff;border-radius:50%;box-shadow:0 0 12px #00e5ff,0 0 30px rgba(0,229,255,0.4)}
 
-.social-links-wrap{perspective:1200px;perspective-origin:center}
-/* TỐI ƯU LAG: Giảm backdrop-filter blur */
-.social-link{position:relative;display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:20px;background:linear-gradient(160deg,rgba(255,255,255,0.07) 0%,rgba(255,255,255,0.02) 40%,rgba(255,255,255,0.04) 100%),rgba(10,15,30,0.85);border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:all 0.5s cubic-bezier(0.16,1,0.3,1);overflow:hidden;cursor:pointer;text-decoration:none;color:#e2e8f0;transform-style:preserve-3d;will-change:transform,box-shadow;animation:hubBreath 4s ease-in-out infinite}
-.social-link:nth-child(2){animation-delay:0.5s}.social-link:nth-child(3){animation-delay:1s}.social-link:nth-child(4){animation-delay:1.5s}.social-link:nth-child(5){animation-delay:2s}.social-link:nth-child(6){animation-delay:2.5s}
-@keyframes hubBreath{0%,100%{box-shadow:0 4px 16px rgba(0,0,0,0.3)}50%{box-shadow:0 6px 20px rgba(0,0,0,0.4)}}
-.social-link::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.25) 20%,rgba(255,255,255,0.35) 50%,rgba(255,255,255,0.25) 80%,transparent 100%);z-index:15;pointer-events:none}
-.hub-glow{position:absolute;inset:-3px;border-radius:23px;opacity:0;transition:opacity 0.5s ease;pointer-events:none;z-index:-1;}
+/* Social links - Tối ưu: giảm blur, bỏ backdrop-filter nặng */
+.social-links-wrap{perspective:1200px}
+.social-link{position:relative;display:flex;align-items:center;gap:16px;padding:16px 20px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,0.07) 0%,rgba(255,255,255,0.02) 100%);border:1px solid rgba(255,255,255,0.08);transition:all 0.4s ease;overflow:hidden;cursor:pointer;text-decoration:none;color:#e2e8f0;will-change:transform,box-shadow;box-shadow:0 4px 16px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.1)}
+.social-link::before{content:'';position:absolute;top:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);z-index:15;pointer-events:none}
+.social-link::after{content:'';position:absolute;top:-150%;left:-150%;width:400%;height:400%;background:radial-gradient(ellipse at var(--gx,50%) var(--gy,50%),rgba(255,255,255,0.15) 0%,transparent 40%);opacity:0;transition:opacity 0.3s ease;pointer-events:none;z-index:14}
+.social-link:hover::after{opacity:1}
+.hub-glow{position:absolute;inset:-3px;border-radius:21px;opacity:0;transition:opacity 0.4s ease;pointer-events:none;z-index:-1;filter:blur(12px)}
 .social-link:hover .hub-glow{opacity:1}
-.hub-bg{position:absolute;inset:0;border-radius:20px;opacity:0;transition:opacity 0.5s ease;pointer-events:none;z-index:1}
+.hub-bg{position:absolute;inset:0;border-radius:18px;opacity:0;transition:opacity 0.4s ease;pointer-events:none;z-index:1}
 .social-link:hover .hub-bg{opacity:1}
-.hub-shine{position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.1) 40%,rgba(255,255,255,0.15) 50%,rgba(255,255,255,0.1) 60%,transparent 100%);transform:skewX(-25deg);pointer-events:none;z-index:13;transition:none}
-.social-link:hover .hub-shine{animation:hubShine 0.9s cubic-bezier(0.16,1,0.3,1) forwards}
+.hub-shine{position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);transform:skewX(-25deg);pointer-events:none;z-index:13}
+.social-link:hover .hub-shine{animation:hubShine 0.8s ease forwards}
 @keyframes hubShine{to{left:200%}}
-.hub-edge{position:absolute;inset:0;border-radius:20px;border:1.5px solid transparent;opacity:0;transition:opacity 0.5s ease;pointer-events:none;z-index:11}
+.hub-reflection{position:absolute;bottom:0;left:5%;right:5%;height:40%;background:linear-gradient(to top,rgba(255,255,255,0.03),transparent);border-radius:0 0 18px 18px;pointer-events:none;z-index:12}
+.hub-edge{position:absolute;inset:0;border-radius:18px;border:1.5px solid transparent;opacity:0;transition:opacity 0.4s ease;pointer-events:none;z-index:11}
 .social-link:hover .hub-edge{opacity:1}
-
-.social-icon{font-size:28px;flex-shrink:0;transition:all 0.5s cubic-bezier(0.16,1,0.3,1);position:relative;z-index:5;}
-.social-text{position:relative;z-index:5;transition:all 0.4s ease}
-.social-text .text-sm{font-weight:600;font-size:15px;letter-spacing:0.3px}
-.social-arrow{margin-left:auto;opacity:0;transform:translateX(-10px);transition:all 0.5s cubic-bezier(0.16,1,0.3,1);color:#00e5ff;z-index:5;position:relative;}
+.social-icon{font-size:26px;flex-shrink:0;transition:all 0.4s ease;position:relative;z-index:5}
+.social-text{position:relative;z-index:5}
+.social-text .text-sm{font-weight:600;font-size:14px}
+.social-arrow{margin-left:auto;opacity:0;transform:translateX(-8px);transition:all 0.4s ease;color:#00e5ff;z-index:5;position:relative}
 .social-link:hover .social-arrow{opacity:0.8;transform:translateX(0)}
-.social-link:hover .social-icon{transform:scale(1.2) rotateY(12deg)}
+.social-link:hover .social-icon{transform:scale(1.15)}
+.social-links-wrap:hover .social-link:not(:hover){opacity:0.4;filter:brightness(0.6)}
 
-/* Tối ưu màu sắc Social */
-.social-link.facebook .hub-glow{background:rgba(24,119,242,0.3)}
-.social-link.facebook .hub-bg{background:linear-gradient(135deg,rgba(24,119,242,0.14),rgba(24,119,242,0.02))}
-.social-link.facebook .social-icon{color:#1877F2}
+.social-link.facebook .hub-glow{background:rgba(24,119,242,0.3)}.social-link.facebook .hub-bg{background:linear-gradient(135deg,rgba(24,119,242,0.12),transparent)}.social-link.facebook .hub-edge{border-color:rgba(24,119,242,0.4)}.social-link.facebook:hover{box-shadow:0 8px 30px rgba(24,119,242,0.25),0 0 0 1px rgba(24,119,242,0.3),inset 0 1px 0 rgba(255,255,255,0.1)}.social-link.facebook .social-icon{color:#1877F2}
 
-.social-link.instagram .hub-glow{background:linear-gradient(135deg,rgba(225,48,108,0.3),rgba(131,58,180,0.3))}
-.social-link.instagram .hub-bg{background:linear-gradient(135deg,rgba(225,48,108,0.12),rgba(131,58,180,0.06))}
-.social-link.instagram .social-icon{background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.social-link.instagram .hub-glow{background:linear-gradient(135deg,rgba(225,48,108,0.25),rgba(131,58,180,0.25))}.social-link.instagram .hub-bg{background:linear-gradient(135deg,rgba(225,48,108,0.1),rgba(131,58,180,0.05))}.social-link.instagram .social-icon{background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.social-link.instagram .hub-edge{inset:-2px;border-radius:20px;border:none;background:conic-gradient(from var(--ig-rot),#f09433,#e6683c,#dc2743,#cc2366,#bc1888,#f09433);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;padding:2px;opacity:0}.social-link.instagram:hover .hub-edge{opacity:0.7;animation:igSpin 3s linear infinite}@keyframes igSpin{to{--ig-rot:360deg}}.social-link.instagram:hover{box-shadow:0 8px 30px rgba(225,48,108,0.2),0 0 0 1px rgba(225,48,108,0.2),inset 0 1px 0 rgba(255,255,255,0.1)}.social-link.instagram .ig-flash{position:absolute;inset:0;background:rgba(255,255,255,0.12);opacity:0;pointer-events:none;z-index:16;border-radius:18px}.social-link.instagram:hover .ig-flash{animation:igFlash 0.3s ease-out}@keyframes igFlash{0%{opacity:0.5}100%{opacity:0}}
 
-.social-link.tiktok .hub-glow{background:linear-gradient(135deg,rgba(255,0,80,0.3),rgba(0,242,234,0.3))}
-.social-link.tiktok .hub-bg{background:linear-gradient(135deg,rgba(255,0,80,0.12),rgba(0,242,234,0.06))}
-.social-link.tiktok .social-icon{background:linear-gradient(135deg,#ff0050,#00f2ea);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.social-link.tiktok .hub-glow{background:linear-gradient(135deg,rgba(255,0,80,0.25),rgba(0,242,234,0.25))}.social-link.tiktok .hub-bg{background:linear-gradient(135deg,rgba(255,0,80,0.1),rgba(0,242,234,0.05))}.social-link.tiktok .hub-edge{border-color:rgba(255,0,80,0.35)}.social-link.tiktok .social-icon{background:linear-gradient(135deg,#ff0050,#00f2ea);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.social-link.tiktok:hover{box-shadow:0 8px 30px rgba(255,0,80,0.2),0 0 0 1px rgba(255,0,80,0.25),inset 0 1px 0 rgba(255,255,255,0.1)}.social-link.tiktok .tt-scan{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(0,242,234,0.5),rgba(255,0,80,0.5),transparent);pointer-events:none;z-index:16;opacity:0}.social-link.tiktok:hover .tt-scan{opacity:1;animation:ttScan 1.5s ease-in-out infinite}@keyframes ttScan{0%{top:-2px;opacity:0}10%{opacity:1}90%{opacity:1}100%{top:calc(100% + 2px);opacity:0}}
 
-.social-link.zalo .hub-glow{background:rgba(0,136,255,0.3);}
-.social-link.zalo .hub-bg{background:linear-gradient(135deg,rgba(0,136,255,0.12),rgba(0,136,255,0.02))}
-.social-link.zalo .social-icon{color:#0088FF;}
+.social-link.zalo .hub-glow{background:rgba(0,136,255,0.25)}.social-link.zalo .hub-bg{background:linear-gradient(135deg,rgba(0,136,255,0.1),transparent)}.social-link.zalo .hub-edge{border-color:rgba(0,136,255,0.35)}.social-link.zalo .social-icon{color:#0088FF}.social-link.zalo:hover{box-shadow:0 8px 30px rgba(0,136,255,0.25),0 0 0 1px rgba(0,136,255,0.3),inset 0 1px 0 rgba(255,255,255,0.1)}
 
-.social-link.youtube .hub-glow{background:rgba(255,0,0,0.3)}
-.social-link.youtube .hub-bg{background:linear-gradient(135deg,rgba(255,0,0,0.12),rgba(255,0,0,0.02))}
-.social-link.youtube .social-icon{color:#FF0000;}
+.social-link.youtube .hub-glow{background:rgba(255,0,0,0.25)}.social-link.youtube .hub-bg{background:linear-gradient(135deg,rgba(255,0,0,0.1),transparent)}.social-link.youtube .hub-edge{border-color:rgba(255,0,0,0.35)}.social-link.youtube .social-icon{color:#FF0000}.social-link.youtube:hover{box-shadow:0 8px 30px rgba(255,0,0,0.25),0 0 0 1px rgba(255,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.1)}
 
-.social-link.telegram .hub-glow{background:rgba(0,136,204,0.3)}
-.social-link.telegram .hub-bg{background:linear-gradient(135deg,rgba(0,136,204,0.12),rgba(0,136,204,0.02))}
-.social-link.telegram .social-icon{color:#0088CC;}
+.social-link.telegram .hub-glow{background:rgba(0,136,204,0.25)}.social-link.telegram .hub-bg{background:linear-gradient(135deg,rgba(0,136,204,0.1),transparent)}.social-link.telegram .hub-edge{border-color:rgba(0,136,204,0.35)}.social-link.telegram .social-icon{color:#0088CC}.social-link.telegram:hover{box-shadow:0 8px 30px rgba(0,136,204,0.25),0 0 0 1px rgba(0,136,204,0.3),inset 0 1px 0 rgba(255,255,255,0.1)}
 
-.share-btn{position:fixed;bottom:24px;right:24px;z-index:50;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#00e5ff,#7c3aed);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;color:#fff;transition:all 0.3s ease}
-.share-btn:hover{transform:scale(1.12) rotate(15deg);}
+.share-btn{position:fixed;bottom:24px;right:24px;z-index:50;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#00e5ff,#7c3aed);display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;color:#fff;box-shadow:0 6px 24px rgba(0,229,255,0.4);transition:all 0.3s ease}
+.share-btn:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(0,229,255,0.5)}
 .share-btn:active{transform:scale(0.95)}
-
-.toast{position:fixed;bottom:86px;right:24px;z-index:50;padding:14px 22px;border-radius:14px;background:rgba(10,15,30,0.9);border:1px solid rgba(0,229,255,0.25);color:#00e5ff;font-size:13px;font-weight:600;opacity:0;transform:translateY(10px) scale(0.95);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);pointer-events:none;}
+.toast{position:fixed;bottom:82px;right:24px;z-index:50;padding:12px 20px;border-radius:12px;background:rgba(10,15,30,0.9);border:1px solid rgba(0,229,255,0.2);color:#00e5ff;font-size:13px;font-weight:600;opacity:0;transform:translateY(8px) scale(0.95);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);pointer-events:none}
 .toast.show{opacity:1;transform:translateY(0) scale(1)}
 
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(0,229,255,0.2);border-radius:99px;}
 .section-label{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#00e5ff;opacity:0.5}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(0,229,255,0.15);border-radius:99px}
 
-/* === ROBOT AI COMPANION === */
-.robot-container{position:fixed;bottom:24px;left:24px;z-index:40;cursor:pointer;touch-action:none;transition:filter 0.3s ease;-webkit-user-select:none;user-select:none}
-.robot-glow-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,0.2) 0%, transparent 70%);opacity:0.3;pointer-events:none}
-.robot{position:relative;width:70px;animation:robotFloat 3.5s ease-in-out infinite;transform-origin:bottom center}
+/* === ROBOT - Thu gọn hơn === */
+.robot-container{position:fixed;bottom:20px;left:20px;z-index:40;cursor:pointer;touch-action:none}
+.robot-glow-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,0.1),transparent 70%);opacity:0.3;pointer-events:none}
+.robot{position:relative;width:60px;animation:robotFloat 4s ease-in-out infinite;transform-origin:bottom center;will-change:transform}
 @keyframes robotFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.robot-antenna{position:absolute;top:-18px;left:50%;transform:translateX(-50%);width:2px;height:18px;background:linear-gradient(to top,rgba(0,229,255,0.3),rgba(0,229,255,0.7));z-index:3}
-.antenna-ball{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:#00e5ff;animation:antennaPulse 2s ease-in-out infinite}
-@keyframes antennaPulse{0%,100%{box-shadow:0 0 10px #00e5ff;transform:translateX(-50%) scale(1)}50%{box-shadow:0 0 15px #00e5ff;transform:translateX(-50%) scale(1.2)}}
-.robot-head{width:56px;height:46px;margin:0 auto;background:linear-gradient(155deg,#1a2545,#111b33 40%,#0d1528);border-radius:16px 16px 12px 12px;border:1.5px solid rgba(0,229,255,0.2);position:relative;z-index:2}
-.robot-ear{position:absolute;top:14px;width:4px;height:12px;background:linear-gradient(155deg,#1a2545,#0d1528);border:1px solid rgba(0,229,255,0.15);z-index:1}
-.robot-ear.left{left:-4px;border-radius:3px 0 0 3px;border-right:none}
-.robot-ear.right{right:-4px;border-radius:0 3px 3px 0;border-left:none}
-.robot-face{position:relative;display:flex;align-items:center;justify-content:center;gap:14px;padding-top:12px;z-index:3}
-.robot-eye{width:12px;height:12px;border-radius:50%;background:#060a14;border:1.5px solid rgba(0,229,255,0.3);position:relative;overflow:hidden;}
-.robot-pupil{width:6px;height:6px;border-radius:50%;background:#00e5ff;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
-.robot-mouth{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:2px;z-index:3;}
-.mouth-led{width:3px;height:3px;border-radius:50%;background:rgba(0,229,255,0.25);}
-.robot-mouth.happy .mouth-led{background:#00e5ff;}
-.robot-neck{width:14px;height:4px;margin:0 auto;background:rgba(0,229,255,0.15);border-radius:0 0 2px 2px;z-index:1}
-.robot-body{width:46px;height:32px;margin:0 auto;background:linear-gradient(155deg,#172040,#101830 40%,#0b1222);border-radius:8px 8px 12px 12px;border:1.5px solid rgba(0,229,255,0.15);position:relative;z-index:2}
-.robot-core{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;background:#7c3aed;box-shadow:0 0 10px #7c3aed;animation:corePulse 1.8s ease-in-out infinite}
-@keyframes corePulse{0%,100%{opacity:0.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
-.robot-arm{position:absolute;width:8px;height:20px;background:linear-gradient(155deg,#172040,#0b1222);border:1px solid rgba(0,229,255,0.12);top:4px;z-index:1}
-.robot-arm.left{left:-8px;border-radius:4px 4px 4px 8px;transform:rotate(15deg);border-right:none}
-.robot-arm.right{right:-8px;border-radius:4px 4px 8px 4px;transform:rotate(-15deg);border-left:none}
-.robot-feet{display:flex;justify-content:center;gap:12px;margin-top:-1px;z-index:1}
-.robot-foot{width:14px;height:5px;background:#101830;border:1px solid rgba(0,229,255,0.1);border-top:none;border-radius:0 0 4px 4px;}
-.robot-speech{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%) scale(0) translateY(8px);background:rgba(8,12,25,0.95);border:1px solid rgba(0,229,255,0.25);border-radius:12px;padding:8px 14px;font-size:11px;font-weight:600;color:#e2e8f0;white-space:nowrap;transition:all 0.4s ease;pointer-events:none;z-index:100}
-.robot-speech::after{content:'';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%) rotate(45deg);width:10px;height:10px;background:rgba(8,12,25,0.95);border-right:1px solid rgba(0,229,255,0.25);border-bottom:1px solid rgba(0,229,255,0.25)}
+.robot-antenna{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:2px;height:14px;background:linear-gradient(to top,rgba(0,229,255,0.3),rgba(0,229,255,0.6))}
+.antenna-ball{position:absolute;top:-5px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:#00e5ff;box-shadow:0 0 8px #00e5ff,0 0 16px rgba(0,229,255,0.4);animation:antennaPulse 2s ease-in-out infinite}
+@keyframes antennaPulse{0%,100%{box-shadow:0 0 8px #00e5ff;transform:translateX(-50%) scale(1)}50%{box-shadow:0 0 14px #00e5ff;transform:translateX(-50%) scale(1.2)}}
+.robot-head{width:48px;height:40px;margin:0 auto;background:linear-gradient(155deg,#1a2545,#0d1528);border-radius:14px 14px 10px 10px;border:1px solid rgba(0,229,255,0.18);box-shadow:0 4px 12px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.06);position:relative}
+.robot-head::before{content:'';position:absolute;top:2px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.3),transparent)}
+.robot-ear{position:absolute;top:12px;width:4px;height:10px;background:#0d1528;border:1px solid rgba(0,229,255,0.12)}
+.robot-ear.left{left:-3px;border-radius:3px 0 0 3px;border-right:none}
+.robot-ear.right{right:-3px;border-radius:0 3px 3px 0;border-left:none}
+.robot-face{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;padding-top:12px}
+.robot-eye{width:12px;height:12px;border-radius:50%;background:#060a14;border:1px solid rgba(0,229,255,0.25);position:relative;overflow:hidden;transition:height 0.1s ease}
+.robot-eye.blink{height:2px!important;border-radius:2px!important;margin-top:5px!important}
+.robot-pupil{width:6px;height:6px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#00e5ff 60%);box-shadow:0 0 6px #00e5ff;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transition:transform 0.08s linear;will-change:transform}
+.robot-pupil::after{content:'';position:absolute;top:1px;right:1px;width:2px;height:2px;border-radius:50%;background:rgba(255,255,255,0.8)}
+.robot-mouth{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);display:flex;gap:2px}
+.mouth-led{width:2.5px;height:2.5px;border-radius:50%;background:rgba(0,229,255,0.2);transition:all 0.3s ease}
+.robot-mouth.happy .mouth-led{background:#00e5ff;box-shadow:0 0 4px rgba(0,229,255,0.5)}
+.robot-mouth.happy .mouth-led:nth-child(3){transform:scale(1.3)}
+.robot-neck{width:12px;height:3px;margin:0 auto;background:rgba(0,229,255,0.15);border-radius:0 0 2px 2px}
+.robot-body{width:40px;height:28px;margin:0 auto;background:linear-gradient(155deg,#172040,#0b1222);border-radius:8px 8px 10px 10px;border:1px solid rgba(0,229,255,0.12);position:relative;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+.robot-core{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#a855f7,#7c3aed);box-shadow:0 0 8px #7c3aed;animation:corePulse 2s ease-in-out infinite}
+@keyframes corePulse{0%,100%{opacity:0.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}}
+.robot-arm{position:absolute;width:7px;height:16px;background:#0b1222;border:1px solid rgba(0,229,255,0.1);top:3px;transition:transform 0.3s ease}
+.robot-arm.left{left:-7px;border-radius:4px 4px 4px 8px;transform:rotate(10deg);border-right:none}
+.robot-arm.right{right:-7px;border-radius:4px 4px 8px 4px;transform:rotate(-10deg);border-left:none}
+.robot-arm.right.wave{animation:armWave 0.5s ease 3}
+@keyframes armWave{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(-45deg)}}
+.robot-feet{display:flex;justify-content:center;gap:10px;margin-top:-1px}
+.robot-foot{width:12px;height:5px;background:#0b1222;border:1px solid rgba(0,229,255,0.08);border-top:none;border-radius:0 0 4px 4px}
+.robot-shadow{width:40px;height:8px;margin:4px auto 0;background:radial-gradient(ellipse,rgba(0,229,255,0.1),transparent 70%);border-radius:50%;animation:shadowPulse 4s ease-in-out infinite}
+@keyframes shadowPulse{0%,100%{transform:scaleX(1);opacity:0.6}50%{transform:scaleX(0.8);opacity:0.3}}
+.robot-speech{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) scale(0) translateY(6px);background:rgba(8,12,25,0.95);border:1px solid rgba(0,229,255,0.2);border-radius:10px;padding:7px 12px;font-size:10px;font-weight:600;color:#e2e8f0;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,0.5);transition:all 0.4s cubic-bezier(0.16,1,0.3,1);pointer-events:none;z-index:100}
+.robot-speech::after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%) rotate(45deg);width:8px;height:8px;background:rgba(8,12,25,0.95);border-right:1px solid rgba(0,229,255,0.2);border-bottom:1px solid rgba(0,229,255,0.2)}
 .robot-speech.show{transform:translateX(-50%) scale(1) translateY(0)}
 
-/* === CHAT PANEL (TỐI ƯU KÍCH THƯỚC) === */
-.chat-panel{position:fixed;bottom:100px;left:24px;width:340px;height:480px;z-index:45;border-radius:20px;background:rgba(8,12,25,0.95);border:1px solid rgba(0,229,255,0.2);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);box-shadow:0 15px 40px rgba(0,0,0,0.6), 0 0 20px rgba(0,229,255,0.05);display:flex;flex-direction:column;overflow:hidden;transform:scale(0.8) translateY(20px);opacity:0;pointer-events:none;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);transform-origin:bottom left}
-.chat-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
-.chat-header{padding:14px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(0,229,255,0.1);background:rgba(0,0,0,0.3)}
-.chat-header-avatar{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,rgba(0,229,255,0.15),rgba(124,58,237,0.1));border:1px solid rgba(0,229,255,0.2);display:flex;align-items:center;justify-content:center;}
-.chat-header-avatar .mini-core{width:8px;height:8px;border-radius:50%;background:#7c3aed;animation:corePulse 1.8s ease-in-out infinite}
-.chat-header-info{flex:1;}
-.chat-header-name{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;}
-.chat-header-status{display:flex;align-items:center;gap:5px;margin-top:2px;font-size:10px;color:#64748b;}
-.chat-header-status .dot{width:5px;height:5px;border-radius:50%;background:#22c55e;}
-.chat-header-actions{display:flex;gap:6px}
-.chat-header-btn{width:28px;height:28px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#94a3b8;display:flex;align-items:center;justify-content:center;cursor:pointer;}
-.chat-header-btn:hover{color:#00e5ff;border-color:rgba(0,229,255,0.3)}
-.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;}
-.chat-msg{display:flex;gap:8px;max-width:90%;}
-.chat-msg.user{align-self:flex-end;flex-direction:row-reverse}
-.chat-msg-avatar{width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold}
-.chat-msg.ai .chat-msg-avatar{background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.3); color:#c4b5fd;}
-.chat-msg.user .chat-msg-avatar{background:rgba(0,229,255,0.15);border:1px solid rgba(0,229,255,0.3); color:#00e5ff;}
-.chat-msg-bubble{padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.5;}
-.chat-msg.ai .chat-msg-bubble{background:rgba(255,255,255,0.05);border-bottom-left-radius:4px}
-.chat-msg.user .chat-msg-bubble{background:rgba(0,229,255,0.1);border-bottom-right-radius:4px;color:#00e5ff}
-.chat-suggestions{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px;}
-.chat-sug-btn{padding:6px 12px;border-radius:14px;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.15);color:#94a3b8;font-size:11px;cursor:pointer;}
-.chat-input-area{padding:12px;border-top:1px solid rgba(0,229,255,0.1);background:rgba(0,0,0,0.2)}
-.chat-input-wrap{display:flex;gap:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:4px 4px 4px 12px;}
-.chat-input{flex:1;background:none;border:none;outline:none;color:#e2e8f0;font-size:13px;}
-.chat-send-btn{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#00e5ff,#7c3aed);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;}
-.chat-send-btn:disabled{opacity:0.4;}
+/* === CHAT PANEL - GỌN HƠN, DỄ ĐÓNG/MỞ === */
+.chat-overlay{position:fixed;inset:0;z-index:44;background:rgba(0,0,0,0.3);opacity:0;pointer-events:none;transition:opacity 0.35s ease}
+.chat-overlay.open{opacity:1;pointer-events:all}
 
-/* MOBILE RESPONSIVE CHO CHAT */
+.chat-panel{position:fixed;bottom:90px;left:20px;width:320px;max-width:calc(100vw - 40px);height:420px;max-height:calc(100vh - 120px);z-index:45;border-radius:16px;background:rgba(8,12,25,0.96);border:1px solid rgba(0,229,255,0.1);box-shadow:0 16px 48px rgba(0,0,0,0.5),0 0 20px rgba(0,229,255,0.04);display:flex;flex-direction:column;overflow:hidden;transform:scale(0.85) translateY(16px);opacity:0;pointer-events:none;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);transform-origin:bottom left}
+.chat-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
+.chat-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,0.25),transparent);z-index:2}
+
+.chat-header{position:relative;z-index:2;padding:10px 12px 10px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(0,229,255,0.06);background:rgba(0,0,0,0.2)}
+.chat-header-avatar{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,rgba(0,229,255,0.12),rgba(124,58,237,0.08));border:1px solid rgba(0,229,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chat-header-avatar .mini-core{width:8px;height:8px;border-radius:50%;background:radial-gradient(circle,#a855f7,#7c3aed);box-shadow:0 0 6px #7c3aed}
+.chat-header-info{flex:1;min-width:0}
+.chat-header-name{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;color:#e2e8f0;letter-spacing:0.5px}
+.chat-header-status{display:flex;align-items:center;gap:4px;margin-top:1px}
+.chat-header-status .dot{width:4px;height:4px;border-radius:50%;background:#22c55e;box-shadow:0 0 4px rgba(34,197,94,0.5)}
+.chat-header-status span{font-size:9px;color:#64748b;font-weight:500}
+.chat-close-btn{width:28px;height:28px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.04);color:#64748b;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s ease;font-size:16px;flex-shrink:0}
+.chat-close-btn:hover{background:rgba(239,68,68,0.15);color:#ef4444;border-color:rgba(239,68,68,0.25)}
+.chat-close-btn:active{transform:scale(0.9)}
+
+.chat-messages{position:relative;z-index:1;flex:1;overflow-y:auto;overflow-x:hidden;padding:10px 12px;display:flex;flex-direction:column;gap:8px;-webkit-overflow-scrolling:touch}
+.chat-messages::-webkit-scrollbar{width:2px}
+.chat-messages::-webkit-scrollbar-thumb{background:rgba(0,229,255,0.1);border-radius:99px}
+
+.chat-msg{display:flex;gap:8px;max-width:88%;animation:msgIn 0.35s ease both}
+.chat-msg.user{align-self:flex-end;flex-direction:row-reverse}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.chat-msg-avatar{width:24px;height:24px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.chat-msg.ai .chat-msg-avatar{background:linear-gradient(135deg,rgba(0,229,255,0.1),rgba(124,58,237,0.06));border:1px solid rgba(0,229,255,0.12)}
+.chat-msg.ai .chat-msg-avatar .mini-core{width:6px;height:6px;border-radius:50%;background:#7c3aed;box-shadow:0 0 4px rgba(124,58,237,0.4)}
+.chat-msg.user .chat-msg-avatar{background:linear-gradient(135deg,rgba(0,229,255,0.15),rgba(6,182,212,0.1));border:1px solid rgba(0,229,255,0.15);font-size:10px;color:#00e5ff;font-weight:700}
+.chat-msg-bubble{padding:8px 12px;border-radius:12px;font-size:12px;line-height:1.55;font-weight:400;word-break:break-word}
+.chat-msg.ai .chat-msg-bubble{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.05);color:#cbd5e1;border-bottom-left-radius:3px}
+.chat-msg.user .chat-msg-bubble{background:rgba(0,229,255,0.12);border:1px solid rgba(0,229,255,0.15);color:#e2e8f0;border-bottom-right-radius:3px}
+.chat-msg-time{font-size:8px;color:#475569;margin-top:3px;opacity:0.6}
+.chat-msg.user .chat-msg-time{text-align:right}
+
+.chat-typing{display:flex;gap:8px;max-width:88%;animation:msgIn 0.35s ease both}
+.chat-typing-avatar{width:24px;height:24px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(0,229,255,0.1),rgba(124,58,237,0.06));border:1px solid rgba(0,229,255,0.12)}
+.chat-typing-avatar .mini-core{width:6px;height:6px;border-radius:50%;background:#7c3aed}
+.chat-typing-bubble{padding:10px 14px;border-radius:12px;border-bottom-left-radius:3px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.05);display:flex;gap:4px;align-items:center}
+.typing-dot{width:5px;height:5px;border-radius:50%;background:rgba(0,229,255,0.35);animation:typingBounce 1.4s ease-in-out infinite}
+.typing-dot:nth-child(2){animation-delay:0.15s}
+.typing-dot:nth-child(3){animation-delay:0.3s}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:0.3}30%{transform:translateY(-5px);opacity:1}}
+
+.chat-suggestions{display:flex;flex-wrap:wrap;gap:5px;padding:0 12px 8px;position:relative;z-index:1}
+.chat-sug-btn{padding:5px 10px;border-radius:16px;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.1);color:#94a3b8;font-size:10px;font-weight:500;cursor:pointer;transition:all 0.2s ease;white-space:nowrap}
+.chat-sug-btn:hover{background:rgba(0,229,255,0.1);color:#00e5ff;border-color:rgba(0,229,255,0.2)}
+.chat-sug-btn:active{transform:scale(0.95)}
+
+.chat-input-area{position:relative;z-index:2;padding:8px 10px 10px;border-top:1px solid rgba(0,229,255,0.05);background:rgba(0,0,0,0.12)}
+.chat-input-wrap{display:flex;gap:6px;align-items:center;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:3px 3px 3px 12px;transition:all 0.2s ease}
+.chat-input-wrap:focus-within{border-color:rgba(0,229,255,0.25);box-shadow:0 0 12px rgba(0,229,255,0.04)}
+.chat-input{flex:1;background:none;border:none;outline:none;color:#e2e8f0;font-size:12px;font-family:'Inter',sans-serif;font-weight:400;padding:6px 0}
+.chat-input::placeholder{color:#475569}
+.chat-send-btn{width:32px;height:32px;border-radius:10px;border:none;background:linear-gradient(135deg,#00e5ff,#7c3aed);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s ease;flex-shrink:0}
+.chat-send-btn:hover{transform:scale(1.05)}
+.chat-send-btn:active{transform:scale(0.92)}
+.chat-send-btn:disabled{opacity:0.25;cursor:not-allowed;transform:none}
+.chat-send-btn .iconify{font-size:15px}
+
+.chat-error{padding:8px 12px;border-radius:10px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.12);color:#fca5a5;font-size:11px;font-weight:500;text-align:center;animation:msgIn 0.35s ease both}
+
+/* Badge đếm tin nhắn */
+.chat-badge{position:absolute;top:-4px;right:-4px;min-width:16px;height:16px;border-radius:8px;background:#ef4444;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;opacity:0;transform:scale(0);transition:all 0.3s cubic-bezier(0.16,1,0.3,1);z-index:5;pointer-events:none}
+.chat-badge.show{opacity:1;transform:scale(1)}
+
 @media(max-width:480px){
-  .chat-panel{
-    left: 16px;
-    right: 16px;
-    bottom: 110px; /* Nâng cao lên khỏi robot */
-    width: auto;
-    height: 420px; /* Cố định chiều cao gọn gàng */
-    max-height: 65vh; 
-  }
-  .robot-container{bottom:16px;left:16px}
-  .share-btn{bottom:16px;right:16px;width:48px;height:48px}
+  .chat-panel{left:10px;right:10px;bottom:80px;width:auto;max-width:none;height:calc(100vh - 100px);max-height:none;border-radius:14px}
+  .robot-container{bottom:14px;left:14px}
+  .share-btn{bottom:14px;right:14px;width:44px;height:44px}
 }
 </style>
 </head>
 <body>
 
-<!-- Nebulas (đã được làm nhẹ lại) -->
 <div class="nebula-1"></div>
 <div class="nebula-2"></div>
 <div class="nebula-3"></div>
-<div class="nebula-4"></div>
-<div class="nebula-5"></div>
 <div class="space-grid"></div>
 <div class="scanlines"></div>
 <div class="scan-sweep"></div>
@@ -255,8 +279,8 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
       </div>
     </div>
 
-    <h1 class="reveal delay-1 text-2xl font-semibold tracking-tight mb-1" style="font-family:'Orbitron',sans-serif;letter-spacing:1.5px;background:linear-gradient(135deg,#fff 0%,#00e5ff 50%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">leanhbay</h1>
-    <p class="reveal delay-2 text-sm text-slate-400 mb-3">@leanhbay</p>
+    <h1 class="reveal delay-1 text-2xl font-semibold tracking-tight mb-1" style="font-family:'Orbitron',sans-serif;letter-spacing:1.5px;background:linear-gradient(135deg,#fff 0%,#00e5ff 50%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 12px rgba(0,229,255,0.3))">leanhbay</h1>
+    <p class="reveal delay-2 text-sm text-slate-400 mb-3" style="letter-spacing:0.5px;font-weight:500">@leanhbay</p>
     <p class="reveal delay-3 text-center text-sm text-slate-400 leading-relaxed max-w-xs">✨ Chào cậu<br>📍 Hà Nội, Việt Nam</p>
   </div>
 
@@ -277,7 +301,7 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 
   <div class="ip-card reveal delay-5" id="ipCard">
     <div class="ip-card-header">
-      <span class="iconify" data-icon="mdi:shield-eye" data-width="18" style="color:#00e5ff;"></span>
+      <span class="iconify" data-icon="mdi:shield-eye" data-width="18" style="color:#00e5ff"></span>
       <span class="section-label">Thông tin truy cập của bạn</span>
       <span class="ml-auto" id="statusIcon"></span>
     </div>
@@ -286,39 +310,39 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 
   <div class="reveal delay-6 divider"></div>
 
-  <div class="social-links-wrap flex flex-col gap-3.5 mb-8">
-    <a href="#" class="reveal delay-6 social-link facebook">
-      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-edge"></span>
+  <div class="social-links-wrap flex flex-col gap-3 mb-8">
+    <a href="https://www.facebook.com/share/1DAZ6EvoHn/?mibextid=wwXIfr" target="_blank" class="reveal delay-6 social-link facebook">
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span>
       <span class="social-icon"><span class="iconify" data-icon="mdi:facebook" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">Facebook</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-    <a href="#" class="reveal delay-6 social-link instagram">
-      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-edge"></span>
+    <a href="https://www.instagram.com/leanhbay06?igsh=Nm1pdHY3NzUxbXN2&utm_source=qr" target="_blank" class="reveal delay-6 social-link instagram">
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span><span class="ig-flash"></span>
       <span class="social-icon"><span class="iconify" data-icon="mdi:instagram" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">Instagram</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-    <a href="#" class="reveal delay-7 social-link tiktok">
-      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-edge"></span>
+    <a href="https://www.tiktok.com/@leanhbay?_r=1&_t=ZS-97yHkjYeByK" target="_blank" class="reveal delay-7 social-link tiktok">
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span><span class="tt-scan"></span>
       <span class="social-icon"><span class="iconify" data-icon="ic:baseline-tiktok" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">TikTok</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-    <a href="#" class="reveal delay-7 social-link zalo">
-      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-edge"></span>
+    <a href="https://zalo.me/0353319326" target="_blank" class="reveal delay-7 social-link zalo">
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span>
       <span class="social-icon"><span class="iconify" data-icon="simple-icons:zalo" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">Zalo</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-    <a href="#" class="reveal delay-8 social-link youtube">
-      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-edge"></span>
+    <a href="https://youtube.com/@leanhbay2006?si=gkjsfRiQGQrb18X5" target="_blank" class="reveal delay-8 social-link youtube">
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span>
       <span class="social-icon"><span class="iconify" data-icon="mdi:youtube" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">YouTube</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
     </a>
-    <a href="#" class="reveal delay-8 social-link telegram">
-      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-edge"></span>
+    <a href="https://t.me/@mr77lab" target="_blank" class="reveal delay-8 social-link telegram">
+      <span class="hub-glow"></span><span class="hub-bg"></span><span class="hub-shine"></span><span class="hub-reflection"></span><span class="hub-edge"></span>
       <span class="social-icon"><span class="iconify" data-icon="mdi:telegram" data-width="28"></span></span>
       <div class="social-text"><div class="text-sm font-medium">Telegram</div></div>
       <span class="social-arrow"><span class="iconify" data-icon="mdi:arrow-right" data-width="20"></span></span>
@@ -329,23 +353,29 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
 </div>
 </main>
 
+<!-- Share Button -->
 <button class="share-btn" id="shareBtn" aria-label="Chia sẻ">
   <span class="iconify" data-icon="mdi:share-variant" data-width="22"></span>
 </button>
 <div class="toast" id="toast"></div>
 
-<!-- Robot AI Companion -->
+<!-- Chat Overlay (click để đóng) -->
+<div class="chat-overlay" id="chatOverlay"></div>
+
+<!-- Robot AI -->
 <div class="robot-container" id="robotContainer">
   <div class="robot-glow-bg"></div>
-  <div class="robot-speech" id="robotSpeech">Nhấp vào tôi!</div>
+  <div class="chat-badge" id="chatBadge">0</div>
   <div class="robot" id="robot">
-    <div class="robot-antenna"><div class="antenna-ball" id="antennaBall"></div></div>
+    <div class="robot-antenna">
+      <div class="antenna-ball" id="antennaBall"></div>
+    </div>
     <div class="robot-head">
       <div class="robot-ear left"></div>
       <div class="robot-ear right"></div>
       <div class="robot-face">
-        <div class="robot-eye"><div class="robot-pupil"></div></div>
-        <div class="robot-eye"><div class="robot-pupil"></div></div>
+        <div class="robot-eye" id="eyeL"><div class="robot-pupil" id="pupilL"></div></div>
+        <div class="robot-eye" id="eyeR"><div class="robot-pupil" id="pupilR"></div></div>
       </div>
       <div class="robot-mouth" id="robotMouth">
         <div class="mouth-led"></div><div class="mouth-led"></div><div class="mouth-led"></div><div class="mouth-led"></div><div class="mouth-led"></div>
@@ -353,15 +383,17 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
     </div>
     <div class="robot-neck"></div>
     <div class="robot-body">
-      <div class="robot-core"></div>
       <div class="robot-arm left"></div>
       <div class="robot-arm right" id="armR"></div>
+      <div class="robot-core"></div>
     </div>
     <div class="robot-feet">
       <div class="robot-foot"></div>
       <div class="robot-foot"></div>
     </div>
+    <div class="robot-shadow"></div>
   </div>
+  <div class="robot-speech" id="robotSpeech">Xin chào! 👋</div>
 </div>
 
 <!-- Chat Panel -->
@@ -369,164 +401,333 @@ img{pointer-events:none;-webkit-user-drag:none;user-drag:none;image-rendering:-w
   <div class="chat-header">
     <div class="chat-header-avatar"><div class="mini-core"></div></div>
     <div class="chat-header-info">
-      <div class="chat-header-name">Robot AI</div>
+      <div class="chat-header-name">AI ASSISTANT</div>
       <div class="chat-header-status"><div class="dot"></div><span>Đang hoạt động</span></div>
     </div>
-    <div class="chat-header-actions">
-      <button class="chat-header-btn" id="chatClearBtn" title="Xóa chat">
-        <span class="iconify" data-icon="mdi:delete-outline" data-width="16"></span>
-      </button>
-      <button class="chat-header-btn" id="chatCloseBtn" title="Đóng">
-        <span class="iconify" data-icon="mdi:close" data-width="16"></span>
-      </button>
-    </div>
+    <button class="chat-close-btn" id="chatCloseBtn" aria-label="Đóng chat">
+      <span class="iconify" data-icon="mdi:close" data-width="16"></span>
+    </button>
   </div>
   <div class="chat-messages" id="chatMessages"></div>
-  <div class="chat-suggestions" id="chatSuggestions">
-    <button class="chat-sug-btn" data-q="leanhbay là ai?">🤔 leanhbay là ai?</button>
-    <button class="chat-sug-btn" data-q="leanhbay ở đâu?">📍 Ở đâu?</button>
-    <button class="chat-sug-btn" data-q="Chào cậu!">👋 Chào cậu!</button>
-  </div>
+  <div class="chat-suggestions" id="chatSuggestions"></div>
   <div class="chat-input-area">
     <div class="chat-input-wrap">
-      <input type="text" class="chat-input" id="chatInput" placeholder="Nhập tin nhắn..." autocomplete="off">
-      <button class="chat-send-btn" id="chatSendBtn" disabled>
-        <span class="iconify" data-icon="mdi:send" data-width="16"></span>
+      <input type="text" class="chat-input" id="chatInput" placeholder="Nhập tin nhắn..." maxlength="500" autocomplete="off">
+      <button class="chat-send-btn" id="chatSendBtn" disabled aria-label="Gửi">
+        <span class="iconify" data-icon="mdi:send" data-width="15"></span>
       </button>
     </div>
   </div>
 </div>
 
 <script>
-/* ============================================
-   GIẢI MÃ API KEY
-   LƯU Ý: Đảm bảo Key của bạn đang hoạt động bình thường
-   ============================================ */
-const _0xk=[65,81,46,65,98,56,82,78,54,75,110,53,65,77,98,100,68,80,77,113,118,76,85,52,111,86,115,86,114,113,87,90,77,106,51,66,85,118,81,50,81,95,88,89,98,65,66,115,55,99,113,82,103];
-const _AK=_0xk.map(c=>String.fromCharCode(c)).join('');
-
-/* === CLOCK === */
-function updateClock(){
-  const n=new Date();
-  document.getElementById('clockHM').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
-  document.getElementById('clockSec').textContent=':'+String(n.getSeconds()).padStart(2,'0');
-  const days=['Chủ nhật','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'];
-  document.getElementById('clockDate').textContent=days[n.getDay()]+', '+n.getDate()+'/'+String(n.getMonth()+1).padStart(2,'0')+'/'+n.getFullYear();
-  const off=-n.getTimezoneOffset();
-  document.getElementById('clockTzOffset').textContent='UTC'+(off>=0?'+':'-')+String(Math.floor(Math.abs(off)/60)).padStart(2,'0')+':'+String(Math.abs(off)%60).padStart(2,'0');
-}
-setInterval(updateClock,1000); updateClock();
-
-/* === REVEAL ANIMATION === */
-const revObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('active');revObs.unobserve(x.target)}})},{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
-
-/* === PARTICLES (ĐÃ GIẢM TẢI XUỐNG 25 HẠT) === */
+// ========== TỐI ƯU PARTICLES - ít hơn, dùng requestAnimationFrame đơn giản ==========
 (function(){
-  const c=document.getElementById('particles'), ctx=c.getContext('2d');
-  let w,h; function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight}
-  window.addEventListener('resize',resize); resize();
-  const pts=Array.from({length: 25}, ()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.5+0.5,dx:(Math.random()-0.5)*0.2,dy:(Math.random()-0.5)*0.2,o:Math.random()*0.5}));
+  const c=document.getElementById('particles'),ctx=c.getContext('2d');
+  let w,h,pts=[];
+  function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
+  resize();window.addEventListener('resize',resize);
+  // Chỉ 30 particle (gốc ~60+)
+  const N=Math.min(30,Math.floor(innerWidth/40));
+  for(let i=0;i<N;i++) pts.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2+0.3,dx:(Math.random()-0.5)*0.15,dy:(Math.random()-0.5)*0.15,o:Math.random()*0.4+0.1});
   function draw(){
     ctx.clearRect(0,0,w,h);
-    pts.forEach(p=>{
-      p.x+=p.dx; p.y+=p.dy;
-      if(p.x<0)p.x=w; if(p.x>w)p.x=0; if(p.y<0)p.y=h; if(p.y>h)p.y=0;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=`rgba(0,229,255,${p.o})`; ctx.fill();
-    });
+    for(const p of pts){
+      p.x+=p.dx;p.y+=p.dy;
+      if(p.x<0)p.x=w;if(p.x>w)p.x=0;
+      if(p.y<0)p.y=h;if(p.y>h)p.y=0;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(0,229,255,'+p.o+')';ctx.fill();
+    }
     requestAnimationFrame(draw);
   }
-  draw();
+  // Kiểm tra prefers-reduced-motion
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches) draw();
 })();
 
-/* === IP INFO === */
-setTimeout(()=>document.getElementById('ipCard').classList.add('visible'), 1000);
-fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{
-  document.getElementById('statusIcon').innerHTML='<span class="online-dot"></span>';
-  const rows=[
-    {l:'mdi:ip-network',t:'IP',v:d.ip, p:true},
-    {l:'mdi:map-marker',t:'Vị trí',v:(d.city||'?')+', '+(d.country_name||'?')},
-    {l:'mdi:isp',t:'ISP',v:d.org||'Unknown'}
-  ];
-  document.getElementById('ipBody').innerHTML=rows.map((r,i)=>`<div class="ip-row" style="transition-delay:${i*100}ms"><div class="ip-label"><span class="iconify" data-icon="${r.l}"></span>${r.t}</div><div class="ip-value ${r.p?'primary':''}">${r.v}</div></div>`).join('');
-  setTimeout(()=>document.querySelectorAll('.ip-row').forEach(r=>r.classList.add('show')), 200);
-}).catch(()=>{
-  document.getElementById('statusIcon').innerHTML='<span class="iconify" data-icon="mdi:alert-circle" style="color:#ef4444"></span>';
-});
-
-/* === ROBOT SPEECH & CHAT TÍNH NĂNG === */
-let chatOpen=false, chatHistory=[], isGen=false;
-const chatPanel=document.getElementById('chatPanel'), chatInp=document.getElementById('chatInput'), chatBtn=document.getElementById('chatSendBtn'), msgs=document.getElementById('chatMessages');
-
-const SYS_PROMPT='Bạn là Robot AI, trợ lý ảo vui vẻ của leanhbay. Trả lời ngắn gọn, thân thiện bằng tiếng Việt. Nếu hỏi về leanhbay: sống ở Hà Nội, VN. Không nhận mình là AI của Google.';
-
-function toggleChat(){
-  chatOpen=!chatOpen;
-  chatPanel.classList.toggle('open',chatOpen);
-  if(chatOpen){
-    document.getElementById('robotSpeech').classList.remove('show');
-    if(chatHistory.length===0) addAI('Xin chào! 👋 Mình là Robot trợ lý của leanhbay. Bạn cần hỏi gì nào?');
-    setTimeout(()=>chatInp.focus(), 300);
+// ========== CLOCK ==========
+(function(){
+  const hm=document.getElementById('clockHM'),sec=document.getElementById('clockSec'),date=document.getElementById('clockDate'),tzL=document.getElementById('clockTzLabel'),tzO=document.getElementById('clockTzOffset');
+  const days=['Chủ Nhật','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'],months=['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'];
+  const off=new Date().getTimezoneOffset(),offH=-off/60;
+  tzO.textContent='UTC'+(offH>=0?'+':'')+offH;
+  function tick(){
+    const n=new Date();
+    hm.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');
+    sec.textContent=':'+String(n.getSeconds()).padStart(2,'0');
+    date.textContent=days[n.getDay()]+', '+n.getDate()+' '+months[n.getMonth()]+' '+n.getFullYear();
   }
-}
+  tick();setInterval(tick,1000);
+})();
 
-// BẬT TÍNH NĂNG CLICK RA NGOÀI ĐỂ ĐÓNG CHAT
-document.addEventListener('click', (e) => {
-  if (chatOpen && !chatPanel.contains(e.target) && !document.getElementById('robotContainer').contains(e.target)) {
-    toggleChat();
-  }
-});
-
-document.getElementById('robotContainer').addEventListener('click', toggleChat);
-document.getElementById('chatCloseBtn').addEventListener('click', toggleChat);
-document.getElementById('chatClearBtn').addEventListener('click', ()=>{chatHistory=[]; msgs.innerHTML=''; addAI('Đã xóa sạch bộ nhớ! 🧹');});
-
-chatInp.addEventListener('input', ()=>chatBtn.disabled=!chatInp.value.trim());
-chatInp.addEventListener('keydown', e=>{if(e.key==='Enter' && chatInp.value.trim()) sendMsg(chatInp.value.trim())});
-chatBtn.addEventListener('click', ()=>{if(chatInp.value.trim()) sendMsg(chatInp.value.trim())});
-document.querySelectorAll('.chat-sug-btn').forEach(b=>b.addEventListener('click', ()=>sendMsg(b.dataset.q)));
-
-function addMsg(txt, type){
-  const d=document.createElement('div'); d.className=`chat-msg ${type}`;
-  d.innerHTML=`<div class="chat-msg-avatar">${type==='user'?'Bạn':'AI'}</div><div class="chat-msg-bubble">${txt}</div>`;
-  msgs.appendChild(d); msgs.scrollTop=msgs.scrollHeight;
-}
-const addAI=t=>addMsg(t,'ai'); const addU=t=>addMsg(t,'user');
-
-async function sendMsg(text){
-  if(isGen) return;
-  addU(text); chatInp.value=''; chatBtn.disabled=true; isGen=true;
-  document.getElementById('chatSuggestions').style.display='none';
-  chatHistory.push({role:'user', parts:[{text}]});
-  
-  const loading = document.createElement('div'); loading.className='chat-msg ai'; loading.innerHTML='<div class="chat-msg-avatar">AI</div><div class="chat-msg-bubble">...</div>';
-  msgs.appendChild(loading); msgs.scrollTop=msgs.scrollHeight;
-
-  try {
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${_AK}`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({systemInstruction:{parts:[{text:SYS_PROMPT}]}, contents:chatHistory, generationConfig:{maxOutputTokens:250}})
+// ========== IP INFO ==========
+(function(){
+  const card=document.getElementById('ipCard'),body=document.getElementById('ipBody'),icon=document.getElementById('statusIcon');
+  let done=false;
+  function show(data){
+    if(done)return;done=true;
+    icon.innerHTML='<span class="iconify" data-icon="mdi:check-circle" data-width="16" style="color:#22c55e"></span>';
+    const rows=[
+      {icon:'mdi:ip-network',label:'Địa chỉ IP',value:data.ip||'N/A',cls:'primary',badge:data.ip&&data.ip.includes(':')?'ipv6':'ipv4'},
+      {icon:'mdi:map-marker',label:'Vị trí',value:[data.city,data.region,data.country].filter(Boolean).join(', ')||'N/A'},
+      {icon:'mdi:web',label:'ISP',value:data.org||data.isp||'thu thập'},
+      {icon:'mdi:timer-sand',label:'Múi giờ',value:data.timezone||'thu thập'},
+      {icon:'mdi:map-coordinates',label:'Tọa độ',value:(data.lat&&data.lon)?data.lat+', '+data.lon:'thu thập'}
+    ];
+    body.innerHTML='';
+    rows.forEach((r,i)=>{
+      const d=document.createElement('div');d.className='ip-row';
+      let v=r.value;
+      if(r.badge)v+='<span class="ip-badge '+r.badge+'" style="margin-left:8px">'+r.badge.toUpperCase()+'</span>';
+      d.innerHTML='<div class="ip-label"><span class="iconify" data-icon="'+r.icon+'" data-width="15"></span>'+r.label+'</div><div class="ip-value '+(r.cls||'')+'">'+v+'</div>';
+      body.appendChild(d);
+      setTimeout(()=>d.classList.add('show'),80*(i+1));
     });
-    if(!res.ok) throw new Error('API Key có thể hết hạn hoặc sai!');
-    const data = await res.json();
-    const ans = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Lỗi xử lý phản hồi';
-    loading.remove(); addAI(ans);
-    chatHistory.push({role:'model', parts:[{text:ans}]});
-  } catch(e) {
-    loading.remove(); addAI('⚠️ Lỗi: ' + e.message); chatHistory.pop();
+    const cp=document.createElement('div');cp.style.cssText='padding-top:12px;text-align:center';
+    cp.innerHTML='<button class="ip-copy-btn" onclick="copyIP(\''+(data.ip||'')+'\')"><span class="iconify" data-icon="mdi:content-copy" data-width="13"></span>Copy IP</button>';
+    body.appendChild(cp);setTimeout(()=>cp.style.opacity='1',500);
+    card.classList.add('visible');
   }
-  isGen=false; chatInp.focus();
+  function err(){
+    if(done)return;done=true;
+    icon.innerHTML='<span class="iconify" data-icon="mdi:alert-circle" data-width="16" style="color:#f59e0b"></span>';
+    body.innerHTML='<div class="ip-row show"><div class="ip-label"><span class="iconify" data-icon="mdi:alert" data-width="15"></span>Lỗi</div><div class="ip-value" style="color:#f59e0b">Không tải được thông tin</div></div>';
+    card.classList.add('visible');
+  }
+  setTimeout(()=>{
+    card.classList.add('visible');
+    fetch('https://ipapi.co/json/').then(r=>r.json()).then(show).catch(()=>fetch('https://ipwho.is/').then(r=>r.json()).then(show).catch(err));
+  },800);
+})();
+function copyIP(ip){if(!ip)return;navigator.clipboard.writeText(ip).then(()=>showToast('Đã copy IP!')).catch(()=>showToast('Lỗi copy'))}
+
+// ========== TOAST ==========
+let toastTimer;
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2500);
 }
 
-/* Robot ngẫu nhiên nói chuyện */
-setInterval(()=> {
-  if(!chatOpen) {
-    const sp = document.getElementById('robotSpeech');
-    sp.textContent = ['Nhấp vào tôi!', 'Có chuyện gì không?', 'Tớ ở đây nè!'][Math.floor(Math.random()*3)];
-    sp.classList.add('show');
-    setTimeout(()=>sp.classList.remove('show'), 3000);
+// ========== SHARE ==========
+document.getElementById('shareBtn').addEventListener('click',()=>{
+  if(navigator.share)navigator.share({title:'Tiểu sử leanhbay',url:location.href}).catch(()=>{});
+  else{navigator.clipboard.writeText(location.href).then(()=>showToast('Đã copy link!')).catch(()=>showToast('Lỗi'))}
+});
+
+// ========== REVEAL ANIMATION ==========
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('active');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ========== SOCIAL HOVER GLOW TRACKING ==========
+document.querySelectorAll('.social-link').forEach(link=>{
+  link.addEventListener('mousemove',e=>{const r=link.getBoundingClientRect();link.style.setProperty('--gx',((e.clientX-r.left)/r.width*100)+'%');link.style.setProperty('--gy',((e.clientY-r.top)/r.height*100)+'%')});
+});
+
+// ========== ROBOT AI CHAT ==========
+(function(){
+  const robot=document.getElementById('robotContainer');
+  const panel=document.getElementById('chatPanel');
+  const overlay=document.getElementById('chatOverlay');
+  const closeBtn=document.getElementById('chatCloseBtn');
+  const messages=document.getElementById('chatMessages');
+  const input=document.getElementById('chatInput');
+  const sendBtn=document.getElementById('chatSendBtn');
+  const sugWrap=document.getElementById('chatSuggestions');
+  const badge=document.getElementById('chatBadge');
+  const speech=document.getElementById('robotSpeech');
+  const mouth=document.getElementById('robotMouth');
+  const armR=document.getElementById('armR');
+  const antennaBall=document.getElementById('antennaBall');
+  const eyeL=document.getElementById('eyeL');
+  const eyeR=document.getElementById('eyeR');
+  const pupilL=document.getElementById('pupilL');
+  const pupilR=document.getElementById('pupilR');
+
+  let isOpen=false, isTyping=false, unreadCount=0, speechTimer, blinkTimer;
+
+  // Eye tracking
+  document.addEventListener('mousemove',e=>{
+    const rect=robot.getBoundingClientRect();
+    const cx=rect.left+rect.width/2, cy=rect.top+rect.height*0.3;
+    const dx=e.clientX-cx, dy=e.clientY-cy;
+    const dist=Math.sqrt(dx*dx+dy*dy);
+    const maxMove=2.5;
+    const mx=(dx/Math.max(dist,1))*maxMove, my=(dy/Math.max(dist,1))*maxMove;
+    pupilL.style.transform='translate(calc(-50% + '+mx+'px), calc(-50% + '+my+'px))';
+    pupilR.style.transform='translate(calc(-50% + '+mx+'px), calc(-50% + '+my+'px))';
+  });
+
+  // Blink
+  function blink(){eyeL.classList.add('blink');eyeR.classList.add('blink');setTimeout(()=>{eyeL.classList.remove('blink');eyeR.classList.remove('blink')},120)}
+  blinkTimer=setInterval(blink,3500+Math.random()*2000);
+
+  // Speech bubble
+  function showSpeech(text,duration){
+    speech.textContent=text;speech.classList.add('show');
+    clearTimeout(speechTimer);
+    if(duration)speechTimer=setTimeout(()=>speech.classList.remove('show'),duration);
   }
-}, 8000);
+
+  // Toggle chat
+  function toggleChat(){
+    isOpen=!isOpen;
+    panel.classList.toggle('open',isOpen);
+    overlay.classList.toggle('open',isOpen);
+    if(isOpen){
+      unreadCount=0;updateBadge();
+      input.focus();
+      mouth.classList.add('happy');
+      armR.classList.add('wave');
+      setTimeout(()=>armR.classList.remove('wave'),1600);
+      if(!messages.children.length) addAIMsg('Xin chào! Mình là AI assistant của leanhbay 👋\nHãy hỏi mình bất cứ điều gì nhé!');
+      showSuggestions();
+    } else {
+      mouth.classList.remove('happy');
+      speech.classList.remove('show');
+    }
+  }
+
+  function closeChat(){
+    if(!isOpen)return;
+    isOpen=false;
+    panel.classList.remove('open');
+    overlay.classList.remove('open');
+    mouth.classList.remove('happy');
+    speech.classList.remove('show');
+  }
+
+  robot.addEventListener('click',toggleChat);
+  closeBtn.addEventListener('click',closeChat);
+  overlay.addEventListener('click',closeChat);
+
+  // ESC đóng
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeChat()});
+
+  // Badge
+  function updateBadge(){
+    if(unreadCount>0){badge.textContent=unreadCount;badge.classList.add('show')}
+    else badge.classList.remove('show');
+  }
+
+  // Time
+  function getTime(){const n=new Date();return String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')}
+
+  // Add message
+  function addMsg(text,isUser){
+    const wrap=document.createElement('div');
+    wrap.className='chat-msg '+(isUser?'user':'ai');
+    const av=document.createElement('div');
+    av.className='chat-msg-avatar';
+    if(isUser)av.textContent='•';
+    else av.innerHTML='<div class="mini-core"></div>';
+    const bub=document.createElement('div');
+    bub.className='chat-msg-bubble';
+    bub.innerHTML=text.replace(/\n/g,'<br>');
+    const time=document.createElement('div');
+    time.className='chat-msg-time';time.textContent=getTime();
+    const content=document.createElement('div');
+    content.appendChild(bub);content.appendChild(time);
+    wrap.appendChild(av);wrap.appendChild(content);
+    messages.appendChild(wrap);
+    messages.scrollTop=messages.scrollHeight;
+    return wrap;
+  }
+
+  function addUserMsg(text){addMsg(text,true);hideSuggestions()}
+
+  function addAIMsg(text){
+    // Show typing first
+    isTyping=true;
+    sendBtn.disabled=true;
+    const typ=document.createElement('div');
+    typ.className='chat-typing';typ.id='typingIndicator';
+    typ.innerHTML='<div class="chat-typing-avatar"><div class="mini-core"></div></div><div class="chat-typing-bubble"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+    messages.appendChild(typ);messages.scrollTop=messages.scrollHeight;
+
+    // Flash antenna
+    antennaBall.classList.add('flash');
+    setTimeout(()=>antennaBall.classList.remove('flash'),400);
+
+    const delay=600+Math.random()*800;
+    setTimeout(()=>{
+      const t=document.getElementById('typingIndicator');
+      if(t)t.remove();
+      addMsg(text,false);
+      isTyping=false;
+      sendBtn.disabled=!input.value.trim();
+      if(!isOpen){unreadCount++;updateBadge();showSpeech('Có tin nhắn mới!',3000)}
+      showSuggestions();
+    },delay);
+  }
+
+  function addError(text){
+    const d=document.createElement('div');d.className='chat-error';d.textContent=text;
+    messages.appendChild(d);messages.scrollTop=messages.scrollHeight;
+  }
+
+  // Suggestions
+  const defaultSugs=['Bạn là ai?','leanhbay là ai?','Liên hệ','Hỗ trợ'];
+  function showSuggestions(){
+    sugWrap.innerHTML='';
+    defaultSugs.forEach(s=>{
+      const b=document.createElement('button');b.className='chat-sug-btn';b.textContent=s;
+      b.addEventListener('click',()=>sendMessage(s));sugWrap.appendChild(b);
+    });
+  }
+  function hideSuggestions(){sWrap.innerHTML=''}
+
+  // AI Responses
+  const responses={
+    'bạn là ai':['Mình là AI assistant được tạo bởi leanhbay! 🤖\nMình ở đây để trả lời câu hỏi và hỗ trợ bạn.'],
+    'leanhbay là ai':['leanhbay là một người bình thường đến từ Hà Nội, Việt Nam! 🇻🇳\nBạn có thể tìm cậu ấy trên Facebook, Instagram, TikTok, YouTube và Telegram.'],
+    'liên hệ':['Bạn có thể liên hệ leanhbay qua:\n📱 Zalo\n💬 Telegram\n📘 Facebook & Instagram ở trên nha!'],
+    'hỗ trợ':['Mình có thể giúp bạn:\n• Thông tin về leanhbay\n• Hướng dẫn liên hệ\n• Giải đáp thắc mắc đơn giản\nHãy hỏi anything! 😊'],
+    'xin chào':['Chào bạn! 👋 Rất vui được gặp bạn!\nHôm nay mình có thể giúp gì cho bạn?'],
+    'hello':['Hello! 👋 Nice to meet you!\nHow can I help you today?'],
+    'hi':['Hi! 😊 Mình có thể giúp gì cho bạn không?'],
+    'cảm ơn':['Không có gì! 🥰 Rất vui được giúp bạn!\nCòn câu hỏi nào khác không nè?'],
+    'tạm biệt':['Tạm biệt bạn! 👋 Hẹn gặp lại nha!\nChúc bạn một ngày tuyệt vời! ✨'],
+  };
+
+  function getAIResponse(text){
+    const lower=text.toLowerCase().trim();
+    // Kiểm tra keyword
+    for(const [key,vals] of Object.entries(responses)){
+      if(lower.includes(key))return vals[Math.floor(Math.random()*vals.length)];
+    }
+    // Fallback thông minh
+    if(lower.includes('ai')||lower.includes('who'))return responses['bạn là ai'][0];
+    if(lower.includes('liên hệ')||lower.includes('contact')||lower.includes('sdt')||lower.includes('phone'))return responses['liên hệ'][0];
+    if(lower.includes('help')||lower.includes('giúp'))return responses['hỗ trợ'][0];
+    if(lower.includes('chào')||lower.includes('hello')||lower.includes('hi'))return responses['xin chào'][0];
+    if(lower.includes('cảm ơn')||lower.includes('thanks'))return responses['cảm ơn'][0];
+    if(lower.includes('bye')||lower.includes('tạm biệt'))return responses['tạm biệt'][0];
+    if(lower.includes('facebook')||lower.includes('fb'))return 'Bạn có thể tìm leanhbay trên Facebook qua link ở trên trang! 📘';
+    if(lower.includes('instagram')||lower.includes('ig'))return 'Instagram của leanhbay: @leanhbay06 📸\nLink ở trên trang nha!';
+    if(lower.includes('tiktok')||lower.includes('tt'))return 'TikTok của leanhbay: @leanhbay 🎵\nLink ở trên trang nha!';
+    if(lower.includes('youtube')||lower.includes('yt'))return 'YouTube của leanhbay: @leanhbay2006 🎬\nĐừng quên subscribe nha!';
+    if(lower.includes('zalo'))return 'Zalo của leanhbay: 0353319326 💬';
+    if(lower.includes('telegram')||lower.includes('tg'))return 'Telegram của leanhbay: t.me/leanhbay ✈️';
+
+    return 'Mình chưa hiểu lắm 😅\nBạn có thể thử hỏi:\n• "leanhbay là ai?"\n• "Liên hệ"\n• "Hỗ trợ"';
+  }
+
+  function sendMessage(text){
+    if(!text.trim()||isTyping)return;
+    addUserMsg(text.trim());
+    input.value='';sendBtn.disabled=true;
+    const resp=getAIResponse(text.trim());
+    addAIMsg(resp);
+  }
+
+  // Input events
+  input.addEventListener('input',()=>{sendBtn.disabled=!input.value.trim()||isTyping});
+  input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage(input.value)}});
+  sendBtn.addEventListener('click',()=>sendMessage(input.value));
+
+  // Hiện speech ban đầu
+  setTimeout(()=>showSpeech('Nhấn để chat! 💬',4000),2000);
+})();
 </script>
 </body>
 </html>
