@@ -117,7 +117,8 @@ class PoolTableView: UIView {
     
     required init?(coder: NSCoder) { fatalError() }
     
-    override func touchesMoved(_ touches: Set, with event: UIEvent?) {
+    // Đã sửa: Thêm <UITouch> vào biến Set
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
@@ -128,7 +129,8 @@ class PoolTableView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        super.draw(rect: rect)
+        // Đã sửa: Xóa chữ 'rect:' ở hàm super.draw
+        super.draw(rect)
         guard let context = UIGraphicsGetCurrentContext() else { return }
         
         drawTable(context: context)
