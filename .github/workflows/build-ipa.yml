@@ -2,7 +2,7 @@ name: Build Unsigned iOS IPA
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
   workflow_dispatch:
 
 jobs:
@@ -28,12 +28,15 @@ jobs:
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED="NO" \
             CODE_SIGNING_ALLOWED="NO" \
+            ENTITLEMENTS_REQUIRED="NO" \
             CONFIGURATION_BUILD_DIR=$PWD/build_output
             
       - name: Đóng gói thành file .ipa
         run: |
           mkdir -p Payload
+          # Di chuyển file .app vào thư mục Payload
           mv build_output/*.app Payload/
+          # Nén lại thành file .ipa
           zip -r PoolGame-Unsigned.ipa Payload
 
       - name: Đưa file IPA lên GitHub Artifacts
