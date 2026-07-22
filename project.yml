@@ -1,0 +1,15 @@
+name: PoolGame
+options:
+  bundleIdPrefix: com.demo
+targets:
+  PoolGame:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources: 
+      - path: Sources
+    settings:
+      GENERATE_INFOPLIST_FILE: YES
+      INFOPLIST_KEY_UILaunchScreen_Generation: YES
+      CODE_SIGNING_REQUIRED: NO
+      CODE_SIGNING_ALLOWED: NO
