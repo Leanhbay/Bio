@@ -1,0 +1,43 @@
+name: Build Unsigned iOS IPA
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build_unsigned:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Cài đặt XcodeGen và tạo Project
+        run: |
+          brew install xcodegen
+          xcodegen generate
+
+      - name: Build thư mục .app (Bỏ qua Code Signing)
+        run: |
+          xcodebuild clean build \
+            -project "PoolGame.xcodeproj" \
+            -scheme "PoolGame" \
+            -configuration Release \
+            -sdk iphoneos \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED="NO" \
+            CODE_SIGNING_ALLOWED="NO" \
+            CONFIGURATION_BUILD_DIR=$PWD/build_output
+            
+      - name: Đóng gói thành file .ipa
+        run: |
+          mkdir -p Payload
+          mv build_output/*.app Payload/
+          zip -r PoolGame-Unsigned.ipa Payload
+
+      - name: Đưa file IPA lên GitHub Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: PoolGame-Unsigned-IPA
+          path: PoolGame-Unsigned.ipa
