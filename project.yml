@@ -13,3 +13,4 @@ targets:
       INFOPLIST_KEY_UILaunchScreen_Generation: YES
       CODE_SIGNING_REQUIRED: NO
       CODE_SIGNING_ALLOWED: NO
+      SWIFT_VERSION: 5.0
