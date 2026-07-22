@@ -1,0 +1,48 @@
+name: Build Unsigned iOS IPA
+
+on:
+  push:
+    branches: [ "main" ] # Tự động build khi code được push lên nhánh main
+  workflow_dispatch: # Cho phép bạn bấm nút Run thủ công trên GitHub
+
+jobs:
+  build_unsigned:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Chọn phiên bản Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+      - name: Build thư mục .app (Bỏ qua Code Signing)
+        run: |
+          # Lưu ý: Thay YourProject.xcodeproj và YourScheme bằng tên thật của bạn
+          # Nếu bạn dùng CocoaPods, đổi -project thành -workspace và YourProject.xcworkspace
+          xcodebuild clean build \
+            -project "YourProject.xcodeproj" \
+            -scheme "YourScheme" \
+            -configuration Release \
+            -sdk iphoneos \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED="NO" \
+            CODE_SIGNING_ALLOWED="NO" \
+            CONFIGURATION_BUILD_DIR=$PWD/build_output
+            
+      - name: Đóng gói thành file .ipa
+        run: |
+          # Tạo thư mục Payload theo chuẩn cấu trúc của iOS
+          mkdir -p Payload
+          
+          # Di chuyển file .app vừa build vào thư mục Payload
+          mv build_output/*.app Payload/
+          
+          # Nén thư mục Payload thành file .ipa
+          zip -r PoolGame-Unsigned.ipa Payload
+
+      - name: Đưa file IPA lên GitHub Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: PoolGame-Unsigned-IPA
+          path: PoolGame-Unsigned.ipa
